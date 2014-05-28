@@ -1,0 +1,156 @@
+logger.fatal = FATAL
+logger.error = ERROR
+logger.warn = WARN
+logger.info = INFO
+logger.debug = DEBUG
+
+xml.notsupport = xml not supported
+xml.cdata_not_end = CDATA not end:
+xml.note_not_end = note not end:
+xml.no_map = can not convert to XmlMap
+xml.no_list = can not convert to XmlList
+xml.no_bool = can not convert to XmlBool
+xml.no_number = can not convert to XmlNumber
+xml.no_string = can not convert to XmlString
+
+json.not_support = json not supported
+json.no_map = can not convert to JsonMap
+json.no_list = can not convert to JsonList
+json.no_bool = can not convert to JsonBool
+json.no_number = can not convert to JsonNumber
+json.no_string = can not convert to JsonString
+json.need_colon = [it must be colon]:
+json.need_right_brace = [it must be brace]:
+json.pos = [position]:
+
+db.dbtype_not_support = dbtype not supported:
+db.commit_not_support = manu commit not supported
+db.driver_not_found = driver not found:
+db.regist_driver = regist driver
+db.config_file_fail = db config file load failed:
+db.load_config = load db config:
+db.config_not_found = db config not found:
+db.load = load
+db.own = 's
+db.impl = implment:
+db.auto_rollback = auto rollback and closed:
+
+sql.param_ignored = parameter ignored：
+sql.cond_not_support = condition not supported:
+sql.table_not_found = table not found:
+sql.table_file_not_found = table file not found:
+sql.file_read_error = file read failed:
+sql.file_write_error = file save failed:
+sql.insert_not_support = insert not supported:
+sql.update_not_support = update not supported:
+sql.record_not_found = record not found
+sql.record_too_many = too many records
+sql.conn_not_support = get connection not supported
+sql.update_file = update table file:
+sql.table_created = table created:
+sql.table_dropped = table dropped:
+sql.table_exists = table already exists
+sql.sql_not_support = sql not supported:
+sql.proc_not_support = procedure not supported:
+sql.count_not_support = count not supported:
+sql.page_not_support = paging not supported:
+sql.call_roc = call procedure:
+sql.query = query:
+sql.query_entity = query entity:
+sql.query_entity_page = query paging entity:
+sql.query_page = query paging:
+sql.query_page_num = page:
+sql.query_page_size = size per page:
+sql.count = count:
+sql.update = update:
+sql.var = variables
+
+bean.data_convert_fail = data convert failed
+
+exception.frame = exception
+exception.dao = dao exception
+exception.bad = bad
+exception.upload = upload error
+exception.impl_not_found = implements not found
+exception.rmi_client = rmi client exception
+exception.rmi_req_not_match = request not match
+exception.rmi_res_not_match = response not match
+
+valiadtor.integer = argument must be integer:
+valiadtor.long_integer = argument must be long integer:
+valiadtor.double = argument must be double:
+valiadtor.float = argument must be float:
+valiadtor.bool = argument must be boolean:
+
+reg.number = must int 0-9 numbers!
+reg.integer = must be integer!
+reg.integer_positive = must be integer positive!
+reg.integer_negtive = must be integer negtive!
+reg.integer_not_positive = must be integer not positive!
+reg.integer_not_negtive = must be integer not negtive!
+reg.float = must be float!
+reg.float_positive = must be float positive!
+reg.float_negtive = must be float negtive!
+reg.float_not_positive = must be float not positive!
+reg.float_not_negtive = must be float not negtive!
+reg.letter = must be letters!
+reg.letter_lowercase = must be lowercase letters!
+reg.letter_uppercase = must be uppercase letters!
+reg.email = not valid email!
+reg.mobile = not valid mobile!
+reg.error = not valid!
+
+reg.date = date must be yyyy-mm-dd！
+reg.date_suffix = must be yyyy-mm-dd！
+reg.in = must in:
+reg.length_prefix = must less than
+reg.length_suffix = letters
+reg.length_equals_prefix = must
+reg.length_equals_suffix = letters
+reg.length_not_less_prefix = can not less than
+reg.length_not_less_suffix = letters
+reg.length_more_prefix = must more than
+reg.length_more_suffix = letters
+reg.not_empty = can not empty
+
+upload.max_size = max upload size:
+upload.formats = only suports:
+
+web.app_path = app path:
+web.app_config = app config:
+web.error_page = error page:
+
+web.req_path = request path:
+web.req_args = request arguments:
+web.res_stream = response stream:
+web.res_string = response string:
+web.res_json = response json:
+web.res_page = response page:
+web.res_page_var = page variables:
+
+
+rmi.app_start = RMI server started:
+rmi.port = port:
+rmi.threads = threads:
+rmi.buffer = buffer size:
+rmi.new_client = new client in>>
+rmi.req_class = request class:
+rmi.req_method = request method:
+rmi.req_args = request arguments:
+rmi.req_fail = rmi process failed
+rmi.class_not_found = class not found:
+rmi.forbid = request forbid:
+rmi.res_json = response JSON:
+
+page.number_prefix = page
+page.input_number = input page number
+page.number_suffix = 
+page.first = fisrt
+page.prev = previous
+page.next = next
+page.last = last
+page.count_prefix = total:
+page.count_suffix = 
+page.input_size = input size per page
+page.size_prefix = 
+page.size_suffix = per page

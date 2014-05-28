@@ -1,0 +1,156 @@
+logger.fatal = 严重
+logger.error = 错误
+logger.warn = 警告
+logger.info = 信息
+logger.debug = 调试
+
+xml.not_support = 不支持的XML格式
+xml.cdata_not_end = CDATA段缺少结束标识，原文如下：
+xml.note_not_end = 注释段缺少结束标识，原文如下：
+xml.no_map = 不能转换为XmlMap
+xml.no_list = 不能转换为XmlList
+xml.no_bool = 不能转换为XmlBool
+xml.no_number = 不能转换为XmlNumber
+xml.no_string = 不能转换为XmlString
+
+json.not_support = 不支持的JSON格式
+json.no_map = 不能转换为JsonMap
+json.no_list = 不能转换为JsonList
+json.no_bool = 不能转换为JsonBool
+json.no_number = 不能转换为JsonNumber
+json.no_string = 不能转换为JsonString
+json.need_colon = [字符应该为冒号]:
+json.need_right_brace = [字符应该为右大括号]:
+json.pos = [位置]:
+
+db.dbtype_not_support = 不支持的数据库类型：
+db.commit_not_support = 数据库不支持手动commit
+db.driver_not_found = 未找到驱动：
+db.regist_driver = 注册驱动
+db.config_file_fail = 配置文件加载失败：
+db.load_config = 加载连接配置：
+db.config_not_found = 未找到连接配置：
+db.load = 加载
+db.own = 的
+db.impl = 实现：
+db.auto_rollback = 自动回滚并关闭连接：
+
+sql.param_ignored = 参数已忽略：
+sql.cond_not_support = 不支持条件：
+sql.table_not_found = 表未找到：
+sql.table_file_not_found = 表文件未找到：
+sql.file_read_error = 读取文件失败：
+sql.file_write_error = 保存文件失败：
+sql.insert_not_support = 不支持插入：
+sql.update_not_support = 不支持更新：
+sql.record_not_found = 未找到记录
+sql.record_too_many = 需要查找一条记录时找到了多条记录
+sql.conn_not_support = 不支持获取Connection
+sql.update_file = 更新物理表：
+sql.table_created = 表已创建：
+sql.table_dropped = 表已删除：
+sql.table_exists = 表已经存在
+sql.sql_not_support = 框架不支持SQL语句：
+sql.proc_not_support = 框架不支持存储过程：
+sql.count_not_support = 框架不支持计数：
+sql.page_not_support = 框架不支持分页查询：
+sql.call_roc = 调用存储过程：
+sql.query = 查询：
+sql.query_entity = 查询实体：
+sql.query_entity_page = 分页实体查询：
+sql.query_page = 分页查询：
+sql.query_page_num = 第几页：
+sql.query_page_size = 每页条数：
+sql.count = 查询记录数：
+sql.update = 更新：
+sql.var = 变量：
+
+bean.data_convert_fail = 数据转换失败
+
+exception.frame = 异常
+exception.dao = 数据访问异常
+exception.bad = 可忽略异常
+exception.upload = 文件上传异常
+exception.impl_not_found = 找不到接口的实现
+exception.rmi_client = 客户端异常
+exception.rmi_req_not_match = 请求不匹配
+exception.rmi_res_not_match = 响应不匹配
+
+valiadtor.integer = 参数应该为整数：
+valiadtor.long_integer = 参数应该为长整型：
+valiadtor.double = 参数应该为数值型：
+valiadtor.float = 参数应该为浮点数：
+valiadtor.bool = 参数应该为布尔型：
+
+reg.number = 只能包含0到9的数字！
+reg.integer = 只能是整数！
+reg.integer_positive = 只能是正整数！
+reg.integer_negtive = 只能是负整数！
+reg.integer_not_positive = 只能是非正整数！
+reg.integer_not_negtive = 只能是非负整数！
+reg.float = 只能是浮点数！
+reg.float_positive = 只能是正浮点数！
+reg.float_negtive = 只能是负浮点数！
+reg.float_not_positive = 只能是非正浮点数！
+reg.float_not_negtive = 只能是非负浮点数！
+reg.letter = 只能是英文字母！
+reg.letter_lowercase = 只能是小写英文字母！
+reg.letter_uppercase = 只能是大写英文字母！
+reg.email = 不是有效的电子邮件地址！
+reg.mobile = 不是有效的手机号码！
+reg.error = 不符合要求！
+
+reg.date = 日期格式应该为：yyyy-mm-dd！
+reg.date_suffix = 格式应该为：yyyy-mm-dd！
+reg.in = 只能为：
+reg.length_prefix = 最多不能超过
+reg.length_suffix = 个字符！
+reg.length_equals_prefix = 只能是
+reg.length_equals_suffix = 个字符！
+reg.length_not_less_prefix = 只能大于或等于
+reg.length_not_less_suffix = 个字符！
+reg.length_more_prefix = 只能大于
+reg.length_more_suffix = 个字符！
+reg.not_empty = 不能为空！
+
+upload.max_size = 最大允许上传的文件大小为：
+upload.formats = 只允许上传的文件格式有：
+
+web.app_path = 应用路径：
+web.app_config = 应用配置：
+web.error_page = 错误页面：
+
+web.req_path = 请求路径：
+web.req_args = 请求参数：
+web.res_stream = 返回流：
+web.res_string = 返回字符串：
+web.res_json = 返回JSON：
+web.res_page = 返回页面：
+web.res_page_var = 页面赋值：
+
+
+rmi.app_start = RMI服务已启动：
+rmi.port = 端口：
+rmi.threads = 线程池：
+rmi.buffer = 缓冲区：
+rmi.new_client = 新的客户端连接>>
+rmi.req_class = 请求类：
+rmi.req_method = 方法：
+rmi.req_args = 请求参数：
+rmi.req_fail = 请求处理异常
+rmi.class_not_found = 类未找到：
+rmi.forbid = 访问被禁止:
+rmi.res_json = 返回JSON：
+
+page.number_prefix = 第
+page.input_number = 输入跳转页数
+page.number_suffix = 页
+page.first = 首页
+page.prev = 上一页
+page.next = 下一页
+page.last = 尾页
+page.count_prefix = 共
+page.count_suffix = 条
+page.input_size = 输入每页条数
+page.size_prefix = 
+page.size_suffix = 条/页

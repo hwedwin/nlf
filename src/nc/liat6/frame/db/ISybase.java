@@ -1,0 +1,10 @@
+package nc.liat6.frame.db;
+
+/**
+ * SYBASE½Ó¿Ú
+ * @author 6tail
+ *
+ */
+public interface ISybase{
+
+}
