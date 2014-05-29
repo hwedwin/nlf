@@ -1,7 +1,6 @@
 package nc.liat6.frame.db.setting.impl;
 
-import nc.liat6.frame.db.setting.ConnType;
-import nc.liat6.frame.db.setting.ISetting;
+import nc.liat6.frame.db.setting.IDbSetting;
 
 /**
  * PROXOOL¡¨Ω”≥ÿ≈‰÷√
@@ -9,9 +8,9 @@ import nc.liat6.frame.db.setting.ISetting;
  * @author 6tail
  * 
  */
-public class ProxoolSetting implements ISetting{
+public class ProxoolSetting implements IDbSetting{
 	private static final long serialVersionUID = -1965324522415398901L;
-	private String type = ConnType.PROXOOL;
+	private String type = "proxool";
 	private String alias;
 	private String url;
 	private String user;

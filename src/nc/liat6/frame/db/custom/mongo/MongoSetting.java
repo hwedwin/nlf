@@ -1,7 +1,6 @@
 package nc.liat6.frame.db.custom.mongo;
 
-import nc.liat6.frame.db.setting.ConnType;
-import nc.liat6.frame.db.setting.ISetting;
+import nc.liat6.frame.db.setting.IDbSetting;
 
 /**
  * MONGO¡¨Ω”≈‰÷√
@@ -9,10 +8,10 @@ import nc.liat6.frame.db.setting.ISetting;
  * @author 6tail
  * 
  */
-public class MongoSetting implements ISetting{
+public class MongoSetting implements IDbSetting{
 
 	private static final long serialVersionUID = 5902769339352767337L;
-	private String type = ConnType.MONGO;
+	private String type = "mongo";
 	private String alias;
 	private String url;
 	private String user;

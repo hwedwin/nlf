@@ -2,11 +2,10 @@ package nc.liat6.frame.db.custom.mongo;
 
 import java.net.UnknownHostException;
 
-import nc.liat6.frame.db.DbType;
 import nc.liat6.frame.db.connection.ConnVar;
 import nc.liat6.frame.db.connection.impl.SuperConnVarProvider;
 import nc.liat6.frame.db.exception.DaoException;
-import nc.liat6.frame.db.setting.ISetting;
+import nc.liat6.frame.db.setting.IDbSetting;
 import nc.liat6.frame.locale.L;
 import nc.liat6.frame.util.Stringer;
 
@@ -23,21 +22,18 @@ public class MongoConnVarProvider extends SuperConnVarProvider{
 	/** MONGO¡¨Ω”≈‰÷√ */
 	private MongoSetting setting;
 	
-	public ISetting getSetting(){
+	public IDbSetting getSetting(){
 		return setting;
 	}
 
-	public void setSetting(ISetting setting){
+	public void setSetting(IDbSetting setting){
 		this.setting = (MongoSetting)setting;
 		super.registDriver(this.setting.getDriver());
 	}
 
 	public ConnVar getConnVar(){
 		ConnVar cv = new ConnVar();
-		if(!DbType.MONGO.toString().equalsIgnoreCase(setting.getDbType())){
-			throw new DaoException(L.get("db.dbtype_not_support")+ setting.getDbType());
-		}
-		cv.setDbType(DbType.MONGO);
+		cv.setDbType(setting.getDbType());
 		cv.setAlias(setting.getAlias());
 		MongoConnection jc = new MongoConnection();
 		String ip = Stringer.cut(setting.getUrl(),"",":").trim();
@@ -53,6 +49,11 @@ public class MongoConnVarProvider extends SuperConnVarProvider{
 		cv.setConnection(jc);
 		cv.setSetting(setting);
 		return cv;
+	}
+
+	@Override
+	public boolean support(String connType){
+		return "mongo".equalsIgnoreCase(connType);
 	}
 
 }

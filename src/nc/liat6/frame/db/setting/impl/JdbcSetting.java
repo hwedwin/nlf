@@ -1,7 +1,6 @@
 package nc.liat6.frame.db.setting.impl;
 
-import nc.liat6.frame.db.setting.ConnType;
-import nc.liat6.frame.db.setting.ISetting;
+import nc.liat6.frame.db.setting.IDbSetting;
 
 /**
  * JDBC¡¨Ω”≈‰÷√
@@ -9,10 +8,10 @@ import nc.liat6.frame.db.setting.ISetting;
  * @author 6tail
  * 
  */
-public class JdbcSetting implements ISetting{
+public class JdbcSetting implements IDbSetting{
 
 	private static final long serialVersionUID = 5902760339352767337L;
-	private String type = ConnType.JDBC;
+	private String type = "jdbc";
 	private String alias;
 	private String url;
 	private String user;

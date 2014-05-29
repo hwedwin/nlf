@@ -1,6 +1,6 @@
 package nc.liat6.frame.db.plugin.impl.oracle;
 
-import nc.liat6.frame.db.IOracle;
+import nc.liat6.frame.db.config.IOracle;
 import nc.liat6.frame.db.plugin.IUpdater;
 import nc.liat6.frame.db.plugin.Rule;
 import nc.liat6.frame.db.plugin.impl.CommonUpdater;

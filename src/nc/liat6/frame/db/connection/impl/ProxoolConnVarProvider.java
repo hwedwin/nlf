@@ -2,14 +2,12 @@ package nc.liat6.frame.db.connection.impl;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
 
-import nc.liat6.frame.db.DbType;
+import nc.liat6.frame.db.config.DbConfig;
+import nc.liat6.frame.db.config.DbConfigFactory;
 import nc.liat6.frame.db.connection.ConnVar;
 import nc.liat6.frame.db.connection.SqlConnection;
-import nc.liat6.frame.db.exception.DaoException;
-import nc.liat6.frame.db.setting.ISetting;
+import nc.liat6.frame.db.setting.IDbSetting;
 import nc.liat6.frame.db.setting.impl.ProxoolSetting;
 import nc.liat6.frame.locale.L;
 import nc.liat6.frame.locale.LocaleFactory;
@@ -26,39 +24,27 @@ public class ProxoolConnVarProvider extends SuperConnVarProvider {
 	private ProxoolSetting setting;
 	
 	private static final String DEFAULT_TEST_SQL = "SELECT 1";
-	private static final Map<DbType,String> TEST_SQL = new HashMap<DbType,String>();
-	
-	static{
-		TEST_SQL.put(DbType.ORACLE,"SELECT 1 FROM DUAL");
-		TEST_SQL.put(DbType.SQLSERVER,"SELECT 1");
-	}
 	
 
-	public ISetting getSetting() {
+	public IDbSetting getSetting() {
 		return setting;
 	}
 
-	public void setSetting(ISetting setting) {
+	public void setSetting(IDbSetting setting) {
 		this.setting = (ProxoolSetting)setting;
 		super.registDriver(this.setting.getDriver());
 	}
 
 	public ConnVar getConnVar() {
 		ConnVar cv = new ConnVar();
-		String testSql = null;
-		for(DbType t:DbType.values()){
-			if(t.toString().equalsIgnoreCase(setting.getDbType())){
-				cv.setDbType(t);
-				testSql = TEST_SQL.get(t);
-				break;
-			}
-		}
-		if(null==cv.getDbType()){
-			throw new DaoException(L.get("db.dbtype_not_support")+setting.getDbType());
-		}
-		testSql = null==testSql?DEFAULT_TEST_SQL:testSql;
-		
+		cv.setDbType(setting.getDbType());
 		cv.setAlias(setting.getAlias());
+		DbConfig dc = DbConfigFactory.getDbConfig(setting.getDbType());
+		String testSql = dc.getTestSql();
+		if(null==testSql||"".equals(testSql.trim())){
+			testSql = DEFAULT_TEST_SQL;
+		}
+		
 		Object ds = Reflector.newInstance("org.logicalcobwebs.proxool.ProxoolDataSource");
 		Reflector.execute(ds,"setDriver",new Class[]{String.class},new Object[]{setting.getDriver()});
 		Reflector.execute(ds,"setDriverUrl",new Class[]{String.class},new Object[]{setting.getUrl()});
@@ -103,6 +89,11 @@ public class ProxoolConnVarProvider extends SuperConnVarProvider {
 		cv.setConnection(sc);
 		cv.setSetting(setting);
 		return cv;
+	}
+	
+	@Override
+	public boolean support(String connType){
+		return "proxool".equalsIgnoreCase(connType);
 	}
 
 }

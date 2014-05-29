@@ -1,6 +1,5 @@
 package nc.liat6.frame.db.transaction;
 
-import nc.liat6.frame.db.DbType;
 import nc.liat6.frame.db.plugin.ICounter;
 import nc.liat6.frame.db.plugin.IDeleter;
 import nc.liat6.frame.db.plugin.IInserter;
@@ -52,9 +51,9 @@ public interface ITrans {
 	public ICounter getCounter();
 
 	/**
-	 * 获取模板
+	 * 获取SQL执行模板
 	 * 
-	 * @return 模板
+	 * @return SQL执行模板
 	 */
 	public ITemplate getTemplate();
 	
@@ -76,8 +75,7 @@ public interface ITrans {
 	/**
 	 * 获取数据库类型
 	 * @return 数据库类型
-	 * @see DbType
 	 */
-	public DbType getDbType();
+	public String getDbType();
 
 }

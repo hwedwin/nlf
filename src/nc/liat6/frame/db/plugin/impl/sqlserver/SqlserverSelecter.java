@@ -1,6 +1,6 @@
 package nc.liat6.frame.db.plugin.impl.sqlserver;
 
-import nc.liat6.frame.db.ISqlserver;
+import nc.liat6.frame.db.config.ISqlserver;
 import nc.liat6.frame.db.plugin.ISelecter;
 import nc.liat6.frame.db.plugin.Rule;
 import nc.liat6.frame.db.plugin.impl.CommonSelecter;

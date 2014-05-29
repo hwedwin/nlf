@@ -5,7 +5,6 @@ import java.util.List;
 
 import nc.liat6.frame.context.Context;
 import nc.liat6.frame.context.Statics;
-import nc.liat6.frame.db.IMongo;
 import nc.liat6.frame.db.connection.ConnVar;
 import nc.liat6.frame.db.entity.Bean;
 import nc.liat6.frame.db.exception.DaoException;

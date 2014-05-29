@@ -1,7 +1,6 @@
 package nc.liat6.frame.db.connection;
 
-import nc.liat6.frame.db.DbType;
-import nc.liat6.frame.db.setting.ISetting;
+import nc.liat6.frame.db.setting.IDbSetting;
 
 /**
  * 连接变量
@@ -14,13 +13,13 @@ public class ConnVar{
 	private int level = 0;
 
 	/** 连接设置 */
-	private ISetting setting;
+	private IDbSetting setting;
 
 	/** 定制连接 */
 	private IConnection connection;
 
 	/** 数据库类型 */
-	private DbType dbType;
+	private String dbType;
 
 	/** 别名 */
 	private String alias;
@@ -33,11 +32,11 @@ public class ConnVar{
 		this.level = level;
 	}
 
-	public ISetting getSetting(){
+	public IDbSetting getSetting(){
 		return setting;
 	}
 
-	public void setSetting(ISetting setting){
+	public void setSetting(IDbSetting setting){
 		this.setting = setting;
 	}
 
@@ -49,11 +48,11 @@ public class ConnVar{
 		this.connection = connection;
 	}
 
-	public DbType getDbType(){
+	public String getDbType(){
 		return dbType;
 	}
 
-	public void setDbType(DbType dbType){
+	public void setDbType(String dbType){
 		this.dbType = dbType;
 	}
 

@@ -24,6 +24,7 @@ json.need_right_brace = [it must be brace]:
 json.pos = [position]:
 
 db.dbtype_not_support = dbtype not supported:
+db.conntype_not_support = connection type not supported:
 db.commit_not_support = manu commit not supported
 db.driver_not_found = driver not found:
 db.regist_driver = regist driver

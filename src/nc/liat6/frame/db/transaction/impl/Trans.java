@@ -5,7 +5,6 @@ import java.util.List;
 
 import nc.liat6.frame.context.Context;
 import nc.liat6.frame.context.Statics;
-import nc.liat6.frame.db.DbType;
 import nc.liat6.frame.db.connection.ConnVar;
 import nc.liat6.frame.db.connection.ConnVarFactory;
 import nc.liat6.frame.db.exception.DaoException;
@@ -24,7 +23,7 @@ import nc.liat6.frame.db.transaction.TransFactory;
  */
 public class Trans implements ITrans{
 
-	private DbType dbType;
+	private String dbType;
 	private ITemplate template;
 	private String alias;
 
@@ -120,7 +119,7 @@ public class Trans implements ITrans{
 		return o;
 	}
 
-	public DbType getDbType(){
+	public String getDbType(){
 		return dbType;
 	}
 

@@ -4,11 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import nc.liat6.frame.db.DbType;
 import nc.liat6.frame.db.connection.ConnVar;
 import nc.liat6.frame.db.connection.SqlConnection;
 import nc.liat6.frame.db.exception.DaoException;
-import nc.liat6.frame.db.setting.ISetting;
+import nc.liat6.frame.db.setting.IDbSetting;
 import nc.liat6.frame.db.setting.impl.JdbcSetting;
 import nc.liat6.frame.locale.L;
 import nc.liat6.frame.locale.LocaleFactory;
@@ -23,26 +22,18 @@ public class JdbcConnVarProvider extends SuperConnVarProvider {
 	
 	private JdbcSetting setting;
 
-	public ISetting getSetting() {
+	public IDbSetting getSetting() {
 		return setting;
 	}
 
-	public void setSetting(ISetting setting) {
+	public void setSetting(IDbSetting setting) {
 		this.setting = (JdbcSetting)setting;
 		super.registDriver(this.setting.getDriver());
 	}
 
 	public ConnVar getConnVar() {
 		ConnVar cv = new ConnVar();
-		for(DbType t:DbType.values()){
-			if(t.toString().equalsIgnoreCase(setting.getDbType())){
-				cv.setDbType(t);
-				break;
-			}
-		}
-		if(null==cv.getDbType()){
-			throw new DaoException(L.get("db.dbtype_not_support")+setting.getDbType());
-		}
+		cv.setDbType(setting.getDbType());
 		cv.setAlias(setting.getAlias());
 		try {
 			Connection conn = DriverManager.getConnection(setting.getUrl(), setting.getUser(), setting.getPassword());
@@ -59,6 +50,11 @@ public class JdbcConnVarProvider extends SuperConnVarProvider {
 		}
 		cv.setSetting(setting);
 		return cv;
+	}
+
+	@Override
+	public boolean support(String connType){
+		return "jdbc".equalsIgnoreCase(connType);
 	}
 
 }

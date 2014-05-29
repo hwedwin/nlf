@@ -24,6 +24,7 @@ json.need_right_brace = [字符应该为右大括号]:
 json.pos = [位置]:
 
 db.dbtype_not_support = 不支持的数据库类型：
+db.conntype_not_support = 不支持的连接类型：
 db.commit_not_support = 数据库不支持手动commit
 db.driver_not_found = 未找到驱动：
 db.regist_driver = 注册驱动
