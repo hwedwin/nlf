@@ -33,7 +33,7 @@ public class DbSettingFactory {
 	}
 	
 	private synchronized static void init(){
-		IDbSettingManager dsm = Factory.getCaller().newInstance(IDbSettingManager.class.getName());
+		IDbSettingManager dsm = Factory.getCaller().newInstance(IDbSettingManager.class);
 		List<IDbSetting> l = dsm.getDbSettings();
 		StringBuilder s = new StringBuilder();
 		for(IDbSetting o:l){
