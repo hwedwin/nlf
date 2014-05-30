@@ -1,6 +1,5 @@
 package nc.liat6.frame.db.setting;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -8,9 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import nc.liat6.frame.Factory;
-import nc.liat6.frame.db.entity.Bean;
 import nc.liat6.frame.db.exception.DaoException;
-import nc.liat6.frame.json.JSON;
 import nc.liat6.frame.locale.L;
 import nc.liat6.frame.locale.LocaleFactory;
 import nc.liat6.frame.log.Logger;
@@ -23,8 +20,7 @@ import nc.liat6.frame.util.Stringer;
  * 
  */
 public class DbSettingFactory {
-	/** 数据库配置文件目录 */
-	public static final String DB_DIR = "db";
+	
 	/** 连接配置映射 */
 	private static final Map<String, IDbSetting> SETTING_POOL = new HashMap<String, IDbSetting>();
 	/** 连接配置列表，与映射对应 */
@@ -37,29 +33,8 @@ public class DbSettingFactory {
 	}
 	
 	private synchronized static void init(){
-		List<IDbSetting> l = new ArrayList<IDbSetting>();
-		File dir = new File(Factory.APP_PATH, DB_DIR);
-		if (!dir.exists()) {
-			dir.mkdirs();
-		}
-		File[] fs = dir.listFiles(new DbSettingFileFilter());
-		List<String> impls = Factory.getImpls(IDbSettingProvider.class.getName());
-		outer:for (File f : fs) {
-			try {
-				Bean o = JSON.toBean(Stringer.readFromFile(f,"utf-8"));
-				String type = o.getString("type","");
-				type = type.toUpperCase();
-				for(String klass:impls){
-					IDbSettingProvider dsp = Factory.getCaller().newInstance(klass);
-					if(dsp.support(type)){
-						l.add(dsp.getDbSetting(o));
-						continue outer;
-					}
-				}
-			} catch (Exception e) {
-				throw new DaoException(L.get("db.config_file_fail")+f.getName(),e);
-			}
-		}
+		IDbSettingManager dsm = Factory.getCaller().newInstance(IDbSettingManager.class.getName());
+		List<IDbSetting> l = dsm.getDbSettings();
 		StringBuilder s = new StringBuilder();
 		for(IDbSetting o:l){
 			s.append("\r\n\t");
