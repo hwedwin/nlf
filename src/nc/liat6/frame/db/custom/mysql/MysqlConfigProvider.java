@@ -1,8 +1,7 @@
-package nc.liat6.frame.db.config.impl;
+package nc.liat6.frame.db.custom.mysql;
 
 import nc.liat6.frame.db.config.DbConfig;
 import nc.liat6.frame.db.config.IDbConfigProvider;
-import nc.liat6.frame.db.config.IMysql;
 
 /**
  * MySql数据库配置提供器

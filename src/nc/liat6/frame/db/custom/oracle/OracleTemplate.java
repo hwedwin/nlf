@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.sql.impl;
+package nc.liat6.frame.db.custom.oracle;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import nc.liat6.frame.db.config.IOracle;
 import nc.liat6.frame.db.entity.Bean;
 import nc.liat6.frame.db.exception.DaoException;
+import nc.liat6.frame.db.sql.impl.CommonTemplate;
 import nc.liat6.frame.locale.L;
 import nc.liat6.frame.locale.LocaleFactory;
 import nc.liat6.frame.log.ILog;

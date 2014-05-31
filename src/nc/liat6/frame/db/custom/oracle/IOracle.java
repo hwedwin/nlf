@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.config;
+package nc.liat6.frame.db.custom.oracle;
 
 /**
  * Oracle½Ó¿Ú

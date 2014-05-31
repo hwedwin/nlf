@@ -1,6 +1,5 @@
-package nc.liat6.frame.db.plugin.impl.sqlserver;
+package nc.liat6.frame.db.custom.sqlserver;
 
-import nc.liat6.frame.db.config.ISqlserver;
 import nc.liat6.frame.db.plugin.IUpdater;
 import nc.liat6.frame.db.plugin.Rule;
 import nc.liat6.frame.db.plugin.impl.CommonUpdater;
