@@ -3,10 +3,12 @@ package nc.liat6.frame.db.custom.csv;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import nc.liat6.frame.csv.CSVFileReader;
 import nc.liat6.frame.db.entity.Bean;
+import nc.liat6.frame.db.entity.BeanComparator;
 import nc.liat6.frame.db.exception.DaoException;
 import nc.liat6.frame.db.plugin.ISelecter;
 import nc.liat6.frame.db.plugin.Rule;
@@ -93,14 +95,14 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
 
 	public ISelecter asc(String... column){
 		for(String c:column){
-			orders.add(c+":asc");
+			orders.add(c+":ASC");
 		}
 		return this;
 	}
 
 	public ISelecter desc(String... column){
 		for(String c:column){
-			orders.add(c+":desc");
+			orders.add(c+":DESC");
 		}
 		return this;
 	}
@@ -153,20 +155,21 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
 						}
 					}
 				}
-				if(cols.size()>0){
-					Bean n = new Bean();
-					for(String k:o.keySet()){
-						if(contains(cols,k)){
-							n.set(k,o.get(k));
-						}
-					}
-					l.add(n);
-				}else{
-					l.add(o);
-				}
+				l.add(o);
 			}
 		}catch(IOException e){
 			throw new DaoException(L.get("sql.file_read_error")+file.getAbsolutePath(),e);
+		}
+		
+		Collections.sort(l,new BeanComparator(BeanComparator.TYPE_MANU,orders));
+		if(cols.size()>0){
+			for(Bean o:l){
+				for(String k:o.keySet()){
+					if(!contains(cols,k)){
+						o.remove(k.toUpperCase());
+					}
+				}
+			}
 		}
 		reset();
 		return l;
