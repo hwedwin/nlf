@@ -60,33 +60,71 @@ public class CsvCounter extends CsvExecuter implements ICounter{
 	}
 
 	public ICounter whereLike(String column,Object value){
-		Logger.getLog().warn(Stringer.print("?? ?",L.get(LocaleFactory.locale,"sql.cond_not_support"),column,"whereLike"));
-		return where(column,value);
+		Rule r = new Rule();
+		r.setColumn(column);
+		r.setOpStart("like");
+		r.setOpEnd("");
+		r.setTag("");
+		conds.add(r);
+		params.add(value);
+		return this;
 	}
 
 	public ICounter whereLeftLike(String column,Object value){
-		Logger.getLog().warn(Stringer.print("?? ?",L.get(LocaleFactory.locale,"sql.cond_not_support"),column,"whereLeftLike"));
-		return where(column,value);
+		Rule r = new Rule();
+		r.setColumn(column);
+		r.setOpStart("left_like");
+		r.setOpEnd("");
+		r.setTag("");
+		conds.add(r);
+		params.add(value);
+		return this;
 	}
 
 	public ICounter whereRightLike(String column,Object value){
-		Logger.getLog().warn(Stringer.print("?? ?",L.get(LocaleFactory.locale,"sql.cond_not_support"),column,"whereRightLike"));
-		return where(column,value);
+		Rule r = new Rule();
+		r.setColumn(column);
+		r.setOpStart("right_like");
+		r.setOpEnd("");
+		r.setTag("");
+		conds.add(r);
+		params.add(value);
+		return this;
 	}
 
 	public ICounter whereNq(String column,Object value){
-		Logger.getLog().warn(Stringer.print("?? ?",L.get(LocaleFactory.locale,"sql.cond_not_support"),column,"whereNq"));
-		return where(column,value);
+		Rule r = new Rule();
+		r.setColumn(column);
+		r.setOpStart("!=");
+		r.setOpEnd("");
+		r.setTag("");
+		conds.add(r);
+		params.add(value);
+		return this;
 	}
 
 	public ICounter whereIn(String column,Object... value){
-		Logger.getLog().warn(Stringer.print("?? ?",L.get(LocaleFactory.locale,"sql.cond_not_support"),column,"whereIn"));
-		return where(column,value);
+		Rule r = new Rule();
+		r.setColumn(column);
+		r.setOpStart("in");
+		r.setOpEnd("");
+		r.setTag("");
+		conds.add(r);
+		List<Object> l = objectsToList(value);
+		params.add(l);
+		return this;
 	}
 
 	public ICounter whereNotIn(String column,Object... value){
-		Logger.getLog().warn(Stringer.print("?? ?",L.get(LocaleFactory.locale,"sql.cond_not_support"),column,"whereNotIn"));
-		return where(column,value);
+		Rule r = new Rule();
+		r.setColumn(column);
+		r.setOpStart("not_in");
+		r.setOpEnd("");
+		r.setTag("");
+		conds.add(r);
+		List<Object> l = objectsToList(value);
+		params.add(l);
+		return this;
 	}
 
 	public void reset(){
@@ -96,28 +134,12 @@ public class CsvCounter extends CsvExecuter implements ICounter{
 	}
 	
 	public int count(){
-		if(null == tableName){
-			throw new DaoException(Stringer.print("??.?",L.get("sql.table_not_found"),template.getConnVar().getAlias(),tableName));
-		}
-		if(null == tableName){
-			throw new DaoException(Stringer.print("??.?",L.get("sql.table_not_found"),template.getConnVar().getAlias(),tableName));
-		}
 		File file = getTableFile();
 		CSVFileReader cr = new CSVFileReader(file);
-		String[] head = null;
-		try{
-			if(cr.getLineCount()>0){
-				head = cr.getLine(0);
-			}
-		}catch(IOException e){
-			throw new DaoException(L.get("sql.file_read_error")+file.getAbsolutePath(),e);
-		}
-		if(null==head){
-			throw new DaoException(L.get("sql.file_read_error")+file.getAbsolutePath());
-		}
-		
 		int count = 0;
+		
 		try{
+			String[] head = readHead(cr,file);
 			outer:for(int i=1;i<cr.getLineCount();i++){
 				String[] data = cr.getLine(i);
 				Bean o = new Bean();
@@ -129,10 +151,57 @@ public class CsvCounter extends CsvExecuter implements ICounter{
 						o.set(s,"");
 					}
 				}
-				for(int j=0;j<conds.size();j++){
+				// 不满足条件的跳过，即不加入计数
+				for(int j = 0;j < conds.size();j++){
 					Rule r = conds.get(j);
-					if("=".equals(r.getOpStart())){
-						if(!o.getString(r.getColumn().toUpperCase(),"").equals(""+params.get(j))){
+					// 操作类型
+					String op = r.getOpStart();
+					// 结果
+					String v = o.getString(r.getColumn().toUpperCase(),"");
+					// 参数
+					String p = params.get(j) + "";
+					if("=".equals(op)){
+						if(!v.equals(p)){
+							continue outer;
+						}
+					}else if("!=".equals(op)){
+						if(v.equals(p)){
+							continue outer;
+						}
+					}else if("like".equalsIgnoreCase(op)){
+						if(v.indexOf(p) < 0){
+							continue outer;
+						}
+					}else if("left_like".equalsIgnoreCase(op)){
+						if(!v.startsWith(p)){
+							continue outer;
+						}
+					}else if("right_like".equalsIgnoreCase(op)){
+						if(!v.endsWith(p)){
+							continue outer;
+						}
+					}else if("in".equalsIgnoreCase(op)){
+						List<?> in = (List<?>)params.get(j);
+						boolean isIn = false;
+						in:for(Object m:in){
+							if(v.equals(m + "")){
+								isIn = true;
+								break in;
+							}
+						}
+						if(!isIn){
+							continue outer;
+						}
+					}else if("not_in".equalsIgnoreCase(op)){
+						List<?> in = (List<?>)params.get(j);
+						boolean isIn = false;
+						in:for(Object m:in){
+							if(v.equals(m + "")){
+								isIn = true;
+								break in;
+							}
+						}
+						if(isIn){
 							continue outer;
 						}
 					}

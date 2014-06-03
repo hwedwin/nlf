@@ -25,9 +25,8 @@ import nc.liat6.frame.util.Stringer;
 public class CsvUpdater extends CsvExecuter implements IUpdater{
 
 	protected List<Rule> cols = new ArrayList<Rule>();
-	protected List<Rule> wheres = new ArrayList<Rule>();
+	protected List<Rule> conds = new ArrayList<Rule>();
 	protected List<Object> paramCols = new ArrayList<Object>();
-	protected List<Object> paramWheres = new ArrayList<Object>();
 
 	public IUpdater table(String tableName){
 		initTable(tableName);
@@ -50,39 +49,77 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
 		r.setOpStart("=");
 		r.setOpEnd("");
 		r.setTag("");
-		wheres.add(r);
-		paramWheres.add(value);
+		conds.add(r);
+		params.add(value);
 		return this;
 	}
 
 	public IUpdater whereLike(String column,Object value){
-		Logger.getLog().warn(Stringer.print("?? ?",L.get(LocaleFactory.locale,"sql.cond_not_support"),column,"whereLike"));
-		return where(column,value);
+		Rule r = new Rule();
+		r.setColumn(column);
+		r.setOpStart("like");
+		r.setOpEnd("");
+		r.setTag("");
+		conds.add(r);
+		params.add(value);
+		return this;
 	}
 
 	public IUpdater whereLeftLike(String column,Object value){
-		Logger.getLog().warn(Stringer.print("?? ?",L.get(LocaleFactory.locale,"sql.cond_not_support"),column,"whereLeftLike"));
-		return where(column,value);
+		Rule r = new Rule();
+		r.setColumn(column);
+		r.setOpStart("left_like");
+		r.setOpEnd("");
+		r.setTag("");
+		conds.add(r);
+		params.add(value);
+		return this;
 	}
 
 	public IUpdater whereRightLike(String column,Object value){
-		Logger.getLog().warn(Stringer.print("?? ?",L.get(LocaleFactory.locale,"sql.cond_not_support"),column,"whereRightLike"));
-		return where(column,value);
+		Rule r = new Rule();
+		r.setColumn(column);
+		r.setOpStart("right_like");
+		r.setOpEnd("");
+		r.setTag("");
+		conds.add(r);
+		params.add(value);
+		return this;
 	}
 
 	public IUpdater whereNq(String column,Object value){
-		Logger.getLog().warn(Stringer.print("?? ?",L.get(LocaleFactory.locale,"sql.cond_not_support"),column,"whereNq"));
-		return where(column,value);
+		Rule r = new Rule();
+		r.setColumn(column);
+		r.setOpStart("!=");
+		r.setOpEnd("");
+		r.setTag("");
+		conds.add(r);
+		params.add(value);
+		return this;
 	}
 
 	public IUpdater whereIn(String column,Object... value){
-		Logger.getLog().warn(Stringer.print("?? ?",L.get(LocaleFactory.locale,"sql.cond_not_support"),column,"whereIn"));
-		return where(column,value);
+		Rule r = new Rule();
+		r.setColumn(column);
+		r.setOpStart("in");
+		r.setOpEnd("");
+		r.setTag("");
+		conds.add(r);
+		List<Object> l = objectsToList(value);
+		params.add(l);
+		return this;
 	}
 
 	public IUpdater whereNotIn(String column,Object... value){
-		Logger.getLog().warn(Stringer.print("?? ?",L.get(LocaleFactory.locale,"sql.cond_not_support"),column,"whereNotIn"));
-		return where(column,value);
+		Rule r = new Rule();
+		r.setColumn(column);
+		r.setOpStart("not_in");
+		r.setOpEnd("");
+		r.setTag("");
+		conds.add(r);
+		List<Object> l = objectsToList(value);
+		params.add(l);
+		return this;
 	}
 
 	public IUpdater set(String column,Object value){
@@ -114,55 +151,113 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
 	}
 
 	public int update(){
-		if(null == tableName){
-			throw new DaoException(Stringer.print("??.?",L.get("sql.table_not_found"),template.getConnVar().getAlias(),tableName));
-		}
 		File file = getTableFile();
 		CSVFileReader cr = new CSVFileReader(file);
-		String[] head = null;
-		try{
-			if(cr.getLineCount() > 0){
-				head = cr.getLine(0);
-			}
-		}catch(IOException e){
-			throw new DaoException(L.get("sql.file_read_error") + file.getAbsolutePath(),e);
-		}
-		if(null == head){
-			throw new DaoException(L.get("sql.file_read_error") + file.getAbsolutePath());
-		}
 		int updated = 0;
 		try{
+			String[] head = readHead(cr,file);
 			File f = new File(file.getAbsolutePath() + ".tmp");
 			CSVWriter cw = new CSVWriter(f);
 			cw.writeLine(head);
-			if(wheres.size() > 0){
-				for(int i = 1;i < cr.getLineCount();i++){
+			if(conds.size() > 0){
+				outer:for(int i = 1;i < cr.getLineCount();i++){
 					String[] data = cr.getLine(i);
-					boolean cond = true;
-					//条件
-					outer:for(int j = 0;j < wheres.size();j++){
-						Rule r = wheres.get(j);
-						for(int k=0;k<head.length;k++){
-							if(head[k].equalsIgnoreCase(r.getColumn())){
-								if("=".equals(r.getOpStart())){
-									if(!(data[k] + "").equals("" + paramWheres.get(j))){
-										cond = false;
-										break outer;
-									}
+					Bean o = new Bean();
+					for(int j = 0;j < head.length;j++){
+						String s = head[j].toUpperCase();
+						if(data.length >= j){
+							o.set(s,data[j]);
+						}else{
+							o.set(s,"");
+						}
+					}
+					// 不满足条件的，直接写入
+					for(int j = 0;j < conds.size();j++){
+						Rule r = conds.get(j);
+						// 操作类型
+						String op = r.getOpStart();
+						// 结果
+						String v = o.getString(r.getColumn().toUpperCase(),"");
+						// 参数
+						String p = params.get(j) + "";
+						if("=".equals(op)){
+							if(!v.equals(p)){
+								cw.writeLine(data);
+								continue outer;
+							}
+						}else if("!=".equals(op)){
+							if(v.equals(p)){
+								cw.writeLine(data);
+								continue outer;
+							}
+						}else if("like".equalsIgnoreCase(op)){
+							if(v.indexOf(p) < 0){
+								cw.writeLine(data);
+								continue outer;
+							}
+						}else if("left_like".equalsIgnoreCase(op)){
+							if(!v.startsWith(p)){
+								cw.writeLine(data);
+								continue outer;
+							}
+						}else if("right_like".equalsIgnoreCase(op)){
+							if(!v.endsWith(p)){
+								cw.writeLine(data);
+								continue outer;
+							}
+						}else if("in".equalsIgnoreCase(op)){
+							List<?> in = (List<?>)params.get(j);
+							boolean isIn = false;
+							in:for(Object m:in){
+								if(v.equals(m + "")){
+									isIn = true;
+									break in;
 								}
+							}
+							if(!isIn){
+								cw.writeLine(data);
+								continue outer;
+							}
+						}else if("not_in".equalsIgnoreCase(op)){
+							List<?> in = (List<?>)params.get(j);
+							boolean isIn = false;
+							in:for(Object m:in){
+								if(v.equals(m + "")){
+									isIn = true;
+									break in;
+								}
+							}
+							if(isIn){
+								cw.writeLine(data);
+								continue outer;
 							}
 						}
 					}
-					if(cond){
-						for(int j = 0;j < cols.size();j++){
-							Rule r = cols.get(j);
-							for(int k=0;k<head.length;k++){
-								if(head[k].equalsIgnoreCase(r.getColumn())){
-									data[k] = paramCols.get(j)+"";
-								}
-							}
+					for(int j = 0;j < cols.size();j++){
+						o.set(cols.get(j).getColumn().toUpperCase(),paramCols.get(j));
+					}
+					for(int j = 0;j < head.length;j++){
+						data[j] = o.getString(head[j].toUpperCase(),"");
+					}
+					cw.writeLine(data);
+				}
+			}else{
+				for(int i = 1;i < cr.getLineCount();i++){
+					String[] data = cr.getLine(i);
+					Bean o = new Bean();
+					for(int j = 0;j < head.length;j++){
+						String s = head[j].toUpperCase();
+						if(data.length >= j){
+							o.set(s,data[j]);
+						}else{
+							o.set(s,"");
 						}
-						updated++;
+					}
+					for(int j = 0;j < cols.size();j++){
+						o.set(cols.get(j).getColumn().toUpperCase(),paramCols.get(j));
+					}
+					for(int j = 0;j < head.length;j++){
+						data[j] = o.getString(head[j].toUpperCase(),"");
 					}
 					cw.writeLine(data);
 				}
@@ -170,7 +265,7 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
 			cr.close();
 			cw.flush();
 			cw.close();
-			
+
 			cw = new CSVWriter(file);
 			cr = new CSVFileReader(f);
 			for(int i = 0;i < cr.getLineCount();i++){
@@ -190,9 +285,8 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
 
 	public void reset(){
 		cols.clear();
-		wheres.clear();
+		conds.clear();
 		paramCols.clear();
-		paramWheres.clear();
 		params.clear();
 	}
 
