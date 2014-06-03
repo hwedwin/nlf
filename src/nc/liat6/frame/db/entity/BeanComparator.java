@@ -42,6 +42,14 @@ public class BeanComparator implements Comparator<Bean>{
 		switch(type){
 			case TYPE_ASC:
 				for(String k:keys){
+					try{
+						double n = o1.getDouble(k,0)-o2.getDouble(k,0); 
+						if(0==n){
+							continue;
+						}else{
+							return n>0?1:-1;
+						}
+					}catch(Exception e){}
 					int n = o1.getString(k,"").compareTo(o2.getString(k,""));
 					if(0 == n){
 						continue;
@@ -52,6 +60,14 @@ public class BeanComparator implements Comparator<Bean>{
 				break;
 			case TYPE_DESC:
 				for(String k:keys){
+					try{
+						double n = o2.getDouble(k,0)-o1.getDouble(k,0); 
+						if(0==n){
+							continue;
+						}else{
+							return n>0?1:-1;
+						}
+					}catch(Exception e){}
 					int n = o2.getString(k,"").compareTo(o1.getString(k,""));
 					if(0 == n){
 						continue;
@@ -68,6 +84,14 @@ public class BeanComparator implements Comparator<Bean>{
 					String key = Stringer.cut(k,"",":");
 					String type = Stringer.cut(k,":");
 					if("ASC".equalsIgnoreCase(type)){
+						try{
+							double n = o1.getDouble(key,0)-o2.getDouble(key,0); 
+							if(0==n){
+								continue;
+							}else{
+								return n>0?1:-1;
+							}
+						}catch(Exception e){}
 						int n = o1.getString(key,"").compareTo(o2.getString(key,""));
 						if(0 == n){
 							continue;
@@ -75,6 +99,14 @@ public class BeanComparator implements Comparator<Bean>{
 							return n;
 						}
 					}else if("DESC".equalsIgnoreCase(type)){
+						try{
+							double n = o2.getDouble(key,0)-o1.getDouble(key,0); 
+							if(0==n){
+								continue;
+							}else{
+								return n>0?1:-1;
+							}
+						}catch(Exception e){}
 						int n = o2.getString(key,"").compareTo(o1.getString(key,""));
 						if(0 == n){
 							continue;
