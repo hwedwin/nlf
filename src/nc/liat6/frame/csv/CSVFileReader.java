@@ -84,5 +84,12 @@ public class CSVFileReader{
 		}
 		return null;
 	}
+	
+	public void close() throws IOException{
+		if(null!=reader){
+			reader.close();
+			reader =  null;
+		}
+	}
 
 }
