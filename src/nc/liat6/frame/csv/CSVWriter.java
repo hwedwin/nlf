@@ -25,15 +25,22 @@ public class CSVWriter{
 
 	/** Ë«ÒýºÅ */
 	public static final String QUOTE = "\"";
+	
+	/** ÊÇ·ñ×·¼Ó */
+	public static boolean APPEND = false;
 
 	private BufferedWriter writer;
 
 	public CSVWriter(OutputStreamWriter writer){
 		this.writer = new BufferedWriter(writer);
 	}
-
+	
 	public CSVWriter(File file) throws IOException{
-		this(new FileWriter(file));
+		this(new FileWriter(file,APPEND));
+	}
+
+	public CSVWriter(File file,boolean append) throws IOException{
+		this(new FileWriter(file,append));
 	}
 
 	/**
