@@ -240,10 +240,14 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
 		Collections.sort(l,new BeanComparator(BeanComparator.TYPE_MANU,orders));
 		if(cols.size() > 0){
 			for(Bean o:l){
+				List<String> removeCols = new ArrayList<String>();
 				for(String k:o.keySet()){
 					if(!contains(cols,k)){
-						o.remove(k.toUpperCase());
+						removeCols.add(k.toUpperCase());
 					}
+				}
+				for(String s:removeCols){
+					o.remove(s);
 				}
 			}
 		}
