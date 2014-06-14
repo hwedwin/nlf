@@ -136,22 +136,21 @@ public class CSVReader{
 		if(!r.contains(QUOTE)){
 			l.addAll(split(r,SPACE));
 		}else{
-			List<String> segs = split(r,SPACE);
-			l.addAll(combin(segs));
-			while(quoted){
+			String t = r.replace(QUOTE + QUOTE,"");
+			int count = t.length()-t.replace(QUOTE,"").length();
+			while(count%2==1){
 				String nextLine = reader.readLine();
 				if(null==nextLine){
-					buffer.append("\"");
-					segs = split(buffer.toString(),SPACE);
-					quoted = false;
-					buffer.delete(0,buffer.length());
-					l.addAll(combin(segs));
-					break;
+					nextLine = "\"";
 				}
-				nextLine = CR+LF+nextLine;
-				segs = split(nextLine,SPACE);
-				l.addAll(combin(segs));
+				r = r +CR+LF+nextLine;
+				String nt = nextLine.replace(QUOTE + QUOTE,"");
+				int ncount = nt.length()-nt.replace(QUOTE,"").length();
+				count += ncount;
 			}
+			
+			List<String> segs = split(r,SPACE);
+			l.addAll(combin(segs));
 		}
 		String[] cols = new String[l.size()];
 		for(int i = 0;i < l.size();i++){
