@@ -35,7 +35,7 @@ I.regist('util.Cookie',function(W,D){
      * @param value 值
      * @param day 有效天数
      */
-    set:function(key,value,day){_set(key,vlaue,day);},
+    set:function(key,value,day){_set(key,value,day);},
     /**
      * 获取Cookie，如果不存在键，返回null
      * @param key 键

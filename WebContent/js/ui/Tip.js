@@ -16,7 +16,7 @@ I.regist('ui.Tip',function(W,D){
   var CFG = {
     bgcolor:'#000',
     fgcolor:'#FFF',
-    msg:'I.ui.Tip',
+    msg:'',
     type:1,
     callback:function(){}
   };
