@@ -1,6 +1,6 @@
 /**
  * I.util.Hide
- * <i>Òş²Ø×Ö·û´®</i>
+ * <i>éšè—å­—ç¬¦ä¸²</i>
  * <u>I.util.Hide.show(s);</u>
  * <u>I.util.Hide.hide(s);</u>
  */
@@ -36,7 +36,7 @@ I.regist('util.Hide',function(W,D){
   };
     
   var _hide = function(s){
-    throw 'I.util.Hide.hide(s) not implemented';
+    throw 'util.Hide.hide(s) not implemented';
   };
     
   return{

@@ -78,7 +78,13 @@
     var k = klass.split('.');
     var name = k.pop();
     var p = initPackage(k);
-    p[name] = eval('('+code+')')(W,D);
+    if(p[name]){
+      return p[name];
+    }else{
+      var o = eval('(false||'+code+')')(W,D);
+      p[name] = o;
+      return o;
+    }
   };
   
   var localLoad = function(c,f){
@@ -126,25 +132,29 @@
         }
       }
       if(mc.length<1){
+        var ro = null;
         for(var i=0;i<c.length;i++){
           var s = c[i];
-          if(!Q[s].l){
-            initClass(s,Q[s].c);
-            Q[s].l = true;
+          var cl = initClass(s,Q[s].c);
+          Q[s].l = true;
+          if(!ro){
+            ro = cl;
           }
         }
         SYN = false;
-        callback.apply(callback);
+        callback.call(callback,ro);
       }else{
         load(mc,function(){
+          var ro = null;
           for(var i=0;i<c.length;i++){
             var s = c[i];
-            if(!Q[s].l){
-              initClass(s,Q[s].c);
-              Q[s].l = true;
+            var cl = initClass(s,Q[s].c);
+            Q[s].l = true;
+            if(!ro){
+              ro = cl;
             }
           }
-          callback.apply(callback);
+          callback.call(callback,ro);
         });
       }
     }
@@ -180,7 +190,7 @@
     D.getElementsByTagName('head')[0].appendChild(o);
   };
   
-  var load = function(c,f){    
+  var load = function(c,f){
     SYN = true;
     var skip = true;
     for(var i=0;i<c.length;i++){
@@ -276,10 +286,17 @@
       preLoad(c,callback);
     }
   };
+  
+  var _get = function(klass,callback){
+    var c = [];
+    c.push(klass);
+    preLoad(c,callback);
+  };
 
   I.regist = function(klass,code){_regist(klass,code);return this;};
   I.dir = function(res){return _dir(res);};
   I.run = function(callback){_run(callback);};
+  I.get = function(klass,callback){_get(klass,callback);};
   
   I.regist('lang.Store',function(w,d){
     var _host = location.hostname;
