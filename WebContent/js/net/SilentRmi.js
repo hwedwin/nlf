@@ -1,3 +1,7 @@
+/**
+ * I.net.SilentRmi
+ * <i>安静的AJAX方法调用，不显示loading</i>
+ */
 I.regist('net.SilentRmi',function(W,D){
   var D = I.ROOT;
   var set = function(k,v){

@@ -1,6 +1,6 @@
 /**
  * I.util.Cookie
- * <i>Cookie²Ù×÷Àà</i>
+ * <i>Cookieæ“ä½œ</i>
  */
 I.regist('util.Cookie',function(W,D){
   var _set = function(key,value,day){
@@ -30,20 +30,20 @@ I.regist('util.Cookie',function(W,D){
   
   return {
     /**
-     * ÉèÖÃCookie
-     * @param key ¼ü
+     * ï¿½ï¿½ï¿½ï¿½Cookie
+     * @param key ï¿½ï¿½
      * @param value Öµ
-     * @param day ÓĞĞ§ÌìÊı
+     * @param day ï¿½ï¿½Ğ§ï¿½ï¿½ï¿½ï¿½
      */
     set:function(key,value,day){_set(key,value,day);},
     /**
-     * »ñÈ¡Cookie£¬Èç¹û²»´æÔÚ¼ü£¬·µ»Ønull
-     * @param key ¼ü
+     * ï¿½ï¿½È¡Cookieï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¼ï¿½ï¿½null
+     * @param key ï¿½ï¿½
      */
     get:function(key){return _get(key);},
     /**
-     * ÒÆ³ıCookie
-     * @param key ¼ü
+     * ï¿½Æ³ï¿½Cookie
+     * @param key ï¿½ï¿½
      */
     remove:function(key){_remove(key);}
   };

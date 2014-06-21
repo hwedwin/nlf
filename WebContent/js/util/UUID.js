@@ -2,6 +2,7 @@
  * I.util.UUID
  * <i>UUID生成器</i>
  * <u>I.util.UUID.next();</u>
+ * 
  */
 I.regist('util.UUID',function(W,D){
   var _next = function(){

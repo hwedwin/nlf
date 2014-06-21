@@ -1,3 +1,7 @@
+/**
+ * I.ui.Tip
+ * <i>提示条</i>
+ */
 I.regist('ui.Tip',function(W,D){
   var _cssState = {};
   var TIME = {

@@ -1,3 +1,7 @@
+/**
+ * I.net.MultiAjax
+ * <i>自动排队请求的AJAX封装</i>
+ */
 I.regist('net.MultiAjax',function(W,D){
   var M = {
     GET:0,

@@ -1,4 +1,8 @@
-﻿I.regist('util.MultiCalendar',function(W,D){
+﻿/**
+ * I.util.MultiCalendar
+ * <i>双日历控件</i>
+ */
+I.regist('util.MultiCalendar',function(W,D){
     var mask = null,layer = null,panel = null,blockL = null,blockR = null,tbar = null,current = null;
     var skin = {
         bg:{

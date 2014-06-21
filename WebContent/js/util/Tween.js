@@ -1,10 +1,10 @@
 /**
  * I.util.Tween
  * <i>缓动算法类</i>
- * t 当前时间
+ * <u>t 当前时间
  * b 初始值
  * c 变化量
- * d 持续时间
+ * d 持续时间</u>
  */
 I.regist('util.Tween',function(W,D){
   var o = {

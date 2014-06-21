@@ -1,6 +1,6 @@
 /**
  * Base64
- * <i>Base64±à½âÂë</i>
+ * <i>Base64ç¼–è§£ç </i>
  * <u>I.util.Base64.encode(s);</u>
  * <u>I.util.Base64.decode(s);</u>
  */

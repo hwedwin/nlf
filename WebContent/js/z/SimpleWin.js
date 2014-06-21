@@ -1,5 +1,6 @@
 /**
- * 自适应大小的简单弹出窗口
+ * I.z.SimpleWin
+ * <i>自适应大小的简单弹出窗口</i>
  */
 I.regist('z.SimpleWin',function(W,D){
   var _cssState = {};

@@ -1,6 +1,6 @@
 /**
  * I.util.Loader
- * <i>资源加载器，可加载js、css资源</i>
+ * <i>资源加载器可加载js、css资源</i>
  * <u>I.util.Loader.load(url,callback);</u>
  */
 I.regist('util.Loader',function(W,D){

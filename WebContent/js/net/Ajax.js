@@ -1,3 +1,7 @@
+/**
+ * I.net.Ajax
+ * <i>AJAX封装</i>
+ */
 I.regist('net.Ajax',function(W,D){
   var Q = [
     function(){return new XMLHttpRequest();},

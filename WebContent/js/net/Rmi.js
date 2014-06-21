@@ -1,3 +1,7 @@
+/**
+ * I.net.Rmi
+ * <i>AJAX方法调用</i>
+ */
 I.regist('net.Rmi',function(W,D){
   var D = I.ROOT;
   var set = function(k,v){

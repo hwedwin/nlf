@@ -1,3 +1,6 @@
+/**
+ * 类加载器
+ */
 (function(W,D){
   W.I = {
     version:'2.0.0',

@@ -1,4 +1,8 @@
-﻿I.regist('util.Thread',function(W,D){
+﻿/**
+ * I.util.Thread
+ * <i>模拟线程</i>
+ */
+I.regist('util.Thread',function(W,D){
   var THREAD = {};
     
   var get = function(name){

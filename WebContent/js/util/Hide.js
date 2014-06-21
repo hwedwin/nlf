@@ -1,6 +1,6 @@
 /**
  * I.util.Hide
- * <i>隐藏字符串</i>
+ * <i>隐藏显示字符串</i>
  * <u>I.util.Hide.show(s);</u>
  * <u>I.util.Hide.hide(s);</u>
  */

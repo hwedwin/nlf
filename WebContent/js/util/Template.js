@@ -1,6 +1,6 @@
 /**
  * I.util.Template
- * <i>模板引擎</i>
+ * <i>js模板引擎</i>
  */
 I.regist('util.Template',function(W,D){
   //配置，不建议修改

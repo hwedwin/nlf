@@ -1,6 +1,6 @@
 /**
  * I.ui.ToolTip
- * <i>提示条</i>
+ * <i>在dom元素上的提示条</i>
  */
 I.regist('ui.ToolTip',function(W,D){
   var _cssState = {};

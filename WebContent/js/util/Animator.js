@@ -1,8 +1,8 @@
 /**
  * I.util.Animator
  * <i>动画制作类</i>
- * var o = I.util.Animator.create();
- * o.change('linear',func,callback,10,1,10);
+ * <u>var o = I.util.Animator.create();
+ * o.change('linear',func,callback,10,1,10);</u>
  */
 I.regist('util.Animator',function(W,D){
   var create = function(){

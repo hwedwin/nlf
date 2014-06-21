@@ -1,14 +1,14 @@
 /**
  * I.util.Sleep
  * <i>延时执行</i>
- * var o = I.util.Sleep.create();
+ * <u>var o = I.util.Sleep.create();
  * o.exec(func);
  * o.exec(function(){
  *  o.lock();
  *  o.unlock();
  * });
  * o.sleep(time);
- * o.exec(func);
+ * o.exec(func);</u>
  */
 I.regist('util.Sleep',function(W,D){
   var create = function(){

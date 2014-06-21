@@ -1,3 +1,7 @@
+/**
+ * I.net.Page
+ * <i>AJAX请求页面</i>
+ */
 I.regist('net.Page',function(W,D){
   var FIND = {
     finding:false,

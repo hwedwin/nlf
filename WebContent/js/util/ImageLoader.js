@@ -1,6 +1,6 @@
 /**
  * I.util.ImageLoader
- * <i>图片加载器</i>
+ * <i>图片预加载器</i>
  */
 I.regist('util.ImageLoader',function(W,D){
   var T = [];

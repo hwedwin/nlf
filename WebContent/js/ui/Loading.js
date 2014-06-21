@@ -1,3 +1,7 @@
+/**
+ * I.ui.Loading
+ * <i>loading条</i>
+ */
 I.regist('ui.Loading',function(W,D){
   var _cssState = {};
   var CSS = function(){/*
