@@ -84,7 +84,7 @@ I.regist('ui.Tip',function(W,D){
               delete Q[''+tip.idx];
           },TIME[cfg.type]);
         }
-        cfg.callback.apply(tip);
+        cfg.callback.apply(tip,cfg);
       },20);
       Q[tip.idx] = 'true';
       obj = tip;

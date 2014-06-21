@@ -8,7 +8,7 @@ I.regist('net.Page',function(W,D){
         try{
           ntgt = FIND_CONTAINER;
         }catch(e){
-          ntgt = document.body;
+          ntgt = D.body;
         }
       }
       var instance = this;
@@ -39,7 +39,7 @@ I.regist('net.Page',function(W,D){
           }
         }
         instance.loadNext();
-      },function(r){
+      },function(){
         instance.finding = false;
         instance.loadNext();
       });

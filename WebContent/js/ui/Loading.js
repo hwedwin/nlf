@@ -32,7 +32,7 @@ I.regist('ui.Loading',function(W,D){
     if(!_cssState[cssName]){
       I.style(_css(cssName,cfg));
       _cssState[cssName] = true;
-    }   
+    }
     var obj = {};
     var instance = {'layer':null,'mask':null,timer:null,percent:0,over:false,config:cfg};
     if(cfg.mask){

@@ -107,7 +107,9 @@
     var o = D.createElement('script');
     o.text = k;
     D.getElementsByTagName('head')[0].appendChild(o);
-    o.parentNode.removeChild(o);
+    try{
+      o.parentNode.removeChild(o);
+    }catch(e){}
     f.apply(f);
   };
   
@@ -263,8 +265,25 @@
     var idx = s.indexOf('I.');
     while(idx>-1){
       s = s.substr(idx+2);
-      var kh = s.indexOf('(');
-      var q = s.substr(0, kh);
+      var kh = [];
+      kh.push(s.indexOf('('));
+      kh.push(s.indexOf('['));
+      kh.push(s.indexOf(';'));
+      var ix = -1;
+      for(var i=0;i<kh.length;i++){
+        if(kh[i]<0){
+          continue;
+        }
+        if(ix<0){
+          ix = kh[i];
+        }else{
+          if(kh[i]<ix){
+            ix = kh[i];
+          }
+        }
+      }
+      
+      var q = s.substr(0, ix);
       if(q.indexOf('.')>-1){
         var k = q.substr(0, q.lastIndexOf('.'));
         if(k.indexOf('.')>-1){
@@ -390,6 +409,7 @@
   }+'');
   
   I.regist('lang.Core',function(W,D){
+    var EACH = {'[object Array]':true,'[object NodeList]':true,'[object HTMLCollection]':true,'[object Arguments]':true};
     var C = [
       function(o,s){o.style.cssText = s;},
       function(o,s){o.setAttribute('style',s);}
@@ -502,35 +522,43 @@
       return {'x':x,'y':y,'width':w,'height':h};
     };
     var _listen = function(o,s,f){
-      for(var i=0;i<E.length;i++){
-        try{
-          E[i]($([o]),s,f);
-          break;
-        }catch(e){}
-      }
+      _each(o,function(m,j){
+        for(var i=0;i<E.length;i++){
+          try{
+            E[i]($([m]),s,f);
+            break;
+          }catch(e){}
+        }
+      });
     };
     var _opacity = function(o,n){
-      for(var i=0;i<P.length;i++){
-        try{
-          P[i](o,n);
-        }catch(e){}
-      }
+      _each(o,function(m,j){
+        for(var i=0;i<P.length;i++){
+          try{
+            P[i]($([m]),n);
+          }catch(e){}
+        }
+      });
     };
     var _css = function(o,s){
-      for(var i=0;i<C.length;i++){
-        try{
-          C[i](o,s);
-          break;
-        }catch(e){}
-      }
+      _each(o,function(m,j){
+        for(var i=0;i<C.length;i++){
+          try{
+            C[i](m,s);
+            break;
+          }catch(e){}
+        }
+      });
     };
     var _cls = function(o,s){
-      for(var i=0;i<S.length;i++){
-        try{
-          S[i](o,s);
-          break;
-        }catch(e){}
-      }
+      _each(o,function(m,j){
+        for(var i=0;i<S.length;i++){
+          try{
+            S[i](m,s);
+            break;
+          }catch(e){}
+        }
+      });
     };
     var _style = function(s){
       for(var i=0;i<STYLE.length;i++){
@@ -538,6 +566,16 @@
           STYLE[i](s);
           break;
         }catch(e){}
+      }
+    };
+    var _each = function(l,f){
+      var tp = Object.prototype.toString.apply(l);
+      if(EACH[tp]||(l.length&&(!l.alert)&&('[object String]'!=tp))){
+        for(var i=0;i<l.length;i++){
+          f(l[i],i);
+        }
+      }else{
+        f(l,0);
       }
     };
    
@@ -550,6 +588,7 @@
     I['listen'] = function(o,s,f){_listen(o,s,f);return f;};
     I['opacity'] = function(o,n){_opacity(o,n);return I;};
     I['style'] = function(s){_style(s);return I;};
+    I['each'] = function(l,f){_each(l,f);return I;};
     
     return {};
   }+'');
