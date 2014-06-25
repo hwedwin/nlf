@@ -1,19 +1,17 @@
 /**
- * I.z.SimpleWin
- * <i>自适应大小的简单弹出窗口</i>
+ * I.z.Win
+ * <i>弹出窗</i>
  */
-I.regist('z.SimpleWin',function(W,D){
+I.regist('z.Win',function(W,D){
   var CFG = {
     skin:'Default',
     mask:true,
-    space:20,
-    width:0,
-    height:0,
+    width:400,
+    height:250,
     shadow_size:6,
     title:'窗口',
     title_height:30,
     content:'',
-    tween:'quadraticOut',
     callback:function(){}
   };
   var _create = function(obj){
@@ -27,7 +25,6 @@ I.regist('z.SimpleWin',function(W,D){
     obj.layer = o;
     obj.closeButton = I.$(o,'class','i-close')[0];
     obj.titleBar = I.$(o,'class','i-title')[0];
-    obj.titleBar.style.cursor = 'default';
     obj.contentPanel = I.$(o,'class','i-content')[0];
     obj.shadow = I.$(o,'class','i-shadow')[0];
     obj.titleBar.innerHTML = cfg.title;
@@ -36,33 +33,16 @@ I.regist('z.SimpleWin',function(W,D){
     I.listen(obj.closeButton,'click',function(m,e){
       obj.close();
     });
-    obj.suit = function(){
-      var inst = this;
-      try{
-        var cf = inst.config;
-        var r = I.region();
-        var wd = cf.width>0?(cf.width+cf.shadow_size+2):(r.width-2*cf.space);
-        var ht = cf.height>0?(cf.height+cf.shadow_size+cf.title_height+2):(r.height-2*cf.space);
-        inst.layer.style.left = (cf.width>0?(r.x+Math.floor((r.width-wd)/2)):(r.x+cf.space))+'px';
-        inst.layer.style.top = (r.y+cf.space)+'px';
-        inst.layer.style.width = wd+'px';
-        inst.layer.style.height = ht+'px';
-        inst.titleBar.style.width = (wd-cf.shadow_size*2-2)+'px';
-        inst.contentPanel.style.width = (wd-cf.shadow_size*2-2)+'px';
-        inst.contentPanel.style.height = (ht-cf.shadow_size*2-cf.title_height-2)+'px';
-      }catch(e){
-      }
-    };
     var r = I.region();
-    var wd = cfg.width>0?(cfg.width+cfg.shadow_size*2+2):(r.width-2*cfg.space);
-    var ht = cfg.height>0?(cfg.height+cfg.shadow_size*2+cfg.title_height+2):(r.height-2*cfg.space);
-    obj.layer.style.left = (cfg.width>0?(r.x+Math.floor((r.width-wd)/2)):(r.x+cfg.space))+'px';
+    var wd = cfg.width+cfg.shadow_size*2+2;
+    var ht = cfg.height+cfg.shadow_size*2+cfg.title_height+2;
+    obj.layer.style.left = (r.x+Math.floor((r.width-wd)/2))+'px';
+    obj.layer.style.top = (r.y+Math.floor((r.height-ht)/2))+'px';
     obj.layer.style.width = wd+'px';
     obj.layer.style.height = ht+'px';
-    obj.layer.style.top = (0-ht)+'px';
     obj.titleBar.style.left = cfg.shadow_size+'px';
     obj.titleBar.style.top = cfg.shadow_size+'px';
-    obj.titleBar.style.width = (wd-cfg.shadow_size*2-2)+'px';
+    obj.titleBar.style.width = cfg.width+'px';
     obj.titleBar.style.height = cfg.title_height+'px';
     obj.titleBar.style.lineHeight = cfg.title_height+'px';
     obj.closeButton.style.right = cfg.shadow_size+'px';
@@ -70,21 +50,11 @@ I.regist('z.SimpleWin',function(W,D){
     obj.closeButton.style.width = cfg.title_height+'px';
     obj.closeButton.style.height = cfg.title_height+'px';
     obj.closeButton.style.lineHeight = cfg.title_height+'px';
-    obj.contentPanel.style.top = (cfg.shadow_size+cfg.title_height+2)+'px';
     obj.contentPanel.style.left = cfg.shadow_size+'px';
-    obj.contentPanel.style.width = (wd-cfg.shadow_size*2-2)+'px';
-    obj.contentPanel.style.height = (ht-cfg.shadow_size*2-cfg.title_height-2)+'px';
-    I.util.Animator.create().change(cfg.tween,function(n){
-      obj.layer.style.top = n+'px';
-    },function(){
-      I.listen(W,'resize',function(m,e){
-        obj.suit();
-      });
-      I.listen(W,'scroll',function(m,e){
-        obj.suit();
-      });
-      obj.suit();
-    },10,0-ht,(r.y+cfg.space));
+    obj.contentPanel.style.top = (cfg.shadow_size+cfg.title_height+2)+'px';
+    obj.contentPanel.style.width = cfg.width+'px';
+    obj.contentPanel.style.height = cfg.height+'px';
+    I.util.Drager.drag(obj.titleBar,obj.layer);
   };
 
   var _prepare = function(config){

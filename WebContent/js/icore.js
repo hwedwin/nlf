@@ -297,10 +297,25 @@
       }
       idx = s.indexOf('I.');
     }
+    s = code;
+    idx = 0;
+    var arr = /skin\s*:\s*['|"]/g.exec(s);
+    while(null!=arr){
+      idx = arr.index;
+      s = s.substr(idx+arr[0].length);
+      var h = arr[0][arr[0].length-1];
+      idx = s.indexOf(h);
+      var skin = s.substr(0,idx);
+      skin = 'skin.'+skin;
+      if(('|'+c.join('|')+'|').indexOf('|'+skin+'|')<0){
+        c.push(skin);
+      }
+      arr = /skin\s*:\s*['|"]/g.exec(s);
+    }
     return c;
   };
   
-  var _run = function(callback){
+  var _want = function(callback){
     var c = _depend(callback+'');
     if(c.length<1){
       callback.apply(callback);
@@ -310,14 +325,12 @@
   };
   
   var _get = function(klass,callback){
-    var c = [];
-    c.push(klass);
-    preLoad(c,callback);
+    preLoad([klass],callback);
   };
 
   I.regist = function(klass,code){_regist(klass,code);return this;};
   I.dir = function(res){return _dir(res);};
-  I.run = function(callback){_run(callback);};
+  I.want = function(callback){_want(callback);};
   I.get = function(klass,callback){_get(klass,callback);};
   
   I.regist('lang.Store',function(w,d){
@@ -581,6 +594,11 @@
         f(l,0);
       }
     };
+    var _delay = function(time,callback){
+      W.setTimeout(function(){
+        callback.call(callback);
+      },time);
+    };
    
     I['$'] = function(){return $(arguments);};
     I['region'] = function(){return _region(arguments);};
@@ -592,6 +610,7 @@
     I['opacity'] = function(o,n){_opacity(o,n);return I;};
     I['style'] = function(s){_style(s);return I;};
     I['each'] = function(l,f){_each(l,f);return I;};
+    I['delay'] = function(time,callback){_delay(time,callback);};
     
     return {};
   }+'');

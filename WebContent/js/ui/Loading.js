@@ -1,107 +1,62 @@
 /**
  * I.ui.Loading
- * <i>loading条</i>
+ * <i>加载进度条</i>
  */
 I.regist('ui.Loading',function(W,D){
-  var _cssState = {};
-  var CSS = function(){/*
-.${skin}{position:absolute;left:0;top:0;width:0;height:${height}px;margin:0;padding:0;overflow:hidden;background-color:${bgcolor};font-size:0;border:0;}
-  */}+'';
   var CFG = {
+    skin:'Default',
     mask:true,
-    mask_color:'#FFF',
-    mask_opacity:5,
-    bgcolor:'#29D',
-    height:1
+    callback:function(){}
   };
-  var _css = function(cssName,cfg){
-    var s = CSS;
-    s = s.substr('function(){/*'.length+1);
-    s = s.substr(0,s.length-'*/}'.length);
-    s = s.replace(/\${skin}/g,cssName);
-    s = s.replace(/\${bgcolor}/g,cfg.bgcolor);
-    s = s.replace(/\${height}/g,cfg.height);
-    return s;
-  };
-  var _create = function(config){
-    var cfg = {};
-    var tcfg = config;
-    if(!tcfg){
-      tcfg = {};
-    }
-    for(var i in CFG){
-      cfg[i] = (undefined!=tcfg[i])?tcfg[i]:CFG[i];
-    }
-    var cssName = ['i-ui-Loading',cfg.bgcolor.replace(/#/g,'')].join('-');
-    if(!_cssState[cssName]){
-      I.style(_css(cssName,cfg));
-      _cssState[cssName] = true;
-    }
-    var obj = {};
-    var instance = {'layer':null,'mask':null,timer:null,percent:0,over:false,config:cfg};
+  var _create = function(obj){
+    var cfg = obj.config;
     if(cfg.mask){
-      var r = I.region();
-      var o = I.insert('div');
-      I.css(o,'position:absolute;left:'+r.x+'px;top:'+r.y+'px;width:'+r.width+'px;height:'+r.height+'px;margin:0;padding:0;font-size:0;background-color:'+cfg.mask_color);
-      o.innerHTML = '<iframe style="margin:0;padding:0" width="100%" height="100%" border="0" frameborder="0" scrolling="no"></iframe>';
-      instance.mask = o;
-      I.opacity(o,cfg.mask_opacity);
+      obj.mask = I.ui.Mask.create({skin:cfg.skin});
     }
-    
-    var q = I.insert('div');
-    I.cls(q,cssName);
-    instance.layer = q;
-    var close = function(){
-      instance.percent = 100;
-      instance.over = true;
-    };
-    obj['close'] = function(){close();};
-    obj['getInstance'] = function(){return instance;};
-    obj['instance'] = instance;
-    I.listen(W,'resize',function(m,e){
-      try{
-        if(obj.instance.mask){
-          var tr = I.region();
-          obj.instance.mask.style.left = tr.x+'px';
-          obj.instance.mask.style.top = tr.y+'px';
-          obj.instance.mask.style.width = tr.width+'px';
-          obj.instance.mask.style.height = tr.height+'px';
-        }
-      }catch(ex){}
-    });
-    I.listen(W,'scroll',function(m,e){
-      try{
-        if(obj.instance.mask){
-          var tr = I.region();
-          obj.instance.mask.style.left = tr.x+'px';
-          obj.instance.mask.style.top = tr.y+'px';
-          obj.instance.mask.style.width = tr.width+'px';
-          obj.instance.mask.style.height = tr.height+'px';
-        }
-      }catch(ex){}
-    });
-    instance.timer = W.setInterval(function(){
-      if(instance.percent<100){
-        instance.percent+=(100-instance.percent)/60;
+    var o = I.insert('div');
+    I.cls(o,obj.className);
+    obj.layer = o;
+    obj.timer = W.setInterval(function(){
+      var inst = obj;
+      if(inst.percent<100){
+        inst.percent+=(100-inst.percent)/60;
       }else{
-        instance.percent = 100;
+        inst.percent = 100;
       }
-      var tr = I.region();
-      instance.layer.style.left = tr.x+'px';
-      instance.layer.style.top = tr.y+'px';
-      instance.layer.style.width = Math.floor(instance.percent/100*tr.width)+'px';
-      if(instance.over){
-        W.clearInterval(instance.timer);
-        instance.timer = null;
-        W.setTimeout(function(){
-          instance.layer.parentNode.removeChild(instance.layer);
-          instance.mask.parentNode.removeChild(instance.mask);
-        },400);
+      var r = I.region();
+      inst.layer.style.left = r.x+'px';
+      inst.layer.style.top = r.y+'px';
+      inst.layer.style.width = Math.floor(inst.percent/100*r.width)+'px';
+      if(inst.over){
+        W.clearInterval(inst.timer);
+        inst.timer = null;
+        I.delay(400,function(){
+          try{
+            inst.close();
+          }catch(e){}
+        });
       }
     },60);
+  };
+  var _prepare = function(config){
+    var obj = {layer:null,mask:null,timer:null,percent:0,over:false,className:null,config:null};
+    var cfg = I.ui.Component.initConfig(config,CFG);
+    obj.config = cfg;
+    obj.className = 'i-ui-Loading-'+cfg.skin;
+    I.util.Skin.init(cfg.skin);
+    _create(obj);
+    obj.close = function(){
+      this.config.callback.call(this);
+      this.percent = 100;
+      this.over = true;
+      try{
+        this.mask.close();
+      }catch(e){}
+      this.layer.parentNode.removeChild(this.layer);
+    };
     return obj;
   };
   return {
-    create:function(cfg){return _create(cfg);}
+    create:function(cfg){return _prepare(cfg);}
   };
 }+'');
