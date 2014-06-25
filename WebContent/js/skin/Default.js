@@ -5,7 +5,7 @@
 I.regist('skin.Default',function(W,D){
   var CSS = function(){/*
 .i-ui-Tip-${skin}{z-index:2147483647;position:absolute;margin:0;padding:0.5em 1em;font-size:1em;left:0;top:0;background-color:#111;color:#FFF;border:1px solid #111;-webkit-border-radius:6px;-moz-border-radius:6px;-ms-border-radius:6px;-o-border-radius:6px;border-radius:6px;}
-.i-ui-Mask-${skin}{z-index:902;position:absolute;margin:0;padding:0;font-size:0;left:0;top:0;background-color:#FFF;border:0;filter:alpha(opacity=30);-moz-opacity:0.3;opacity:0.3;}
+.i-ui-Mask-${skin}{z-index:902;position:absolute;margin:0;padding:0;font-size:0;left:0;top:0;background-color:#FFF;border:0;filter:alpha(opacity=10);-moz-opacity:0.1;opacity:0.1;}
 .i-ui-Loading-${skin}{z-index:992;position:absolute;left:0;top:0;width:0;height:2px;margin:0;padding:0;overflow:hidden;background-color:#0074D9;font-size:0;border:0;}
 
 .i-ui-ToolTip-${skin}{z-index:901;position:absolute;margin:0;padding:0;left:0;top:0;}
