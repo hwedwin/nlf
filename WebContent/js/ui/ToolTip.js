@@ -9,7 +9,13 @@ I.regist('ui.ToolTip',function(W,D){
     content:'',
     callback:function(){}
   };
+  var Q = {};
   var _create = function(obj){
+    var id = 0;
+    while(Q[id+'']){
+      id++;
+    }
+    obj.id = id;
     var cfg = obj.config;
     var o = I.insert('div');
     I.cls(o,obj.className);

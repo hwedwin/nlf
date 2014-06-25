@@ -30,11 +30,9 @@ I.regist('ui.Loading',function(W,D){
       if(inst.over){
         W.clearInterval(inst.timer);
         inst.timer = null;
-        I.delay(400,function(){
-          try{
-            inst.close();
-          }catch(e){}
-        });
+        try{
+          inst.close();
+        }catch(e){}
       }
     },60);
   };
@@ -46,13 +44,16 @@ I.regist('ui.Loading',function(W,D){
     I.util.Skin.init(cfg.skin);
     _create(obj);
     obj.close = function(){
-      this.config.callback.call(this);
-      this.percent = 100;
-      this.over = true;
-      try{
-        this.mask.close();
-      }catch(e){}
-      this.layer.parentNode.removeChild(this.layer);
+      var inst = this;
+      inst.percent = 100;
+      inst.over = true;
+      I.delay(400,function(){
+        inst.config.callback.call(inst);
+        try{
+          inst.mask.close();
+        }catch(e){}
+        inst.layer.parentNode.removeChild(inst.layer);
+      });
     };
     return obj;
   };

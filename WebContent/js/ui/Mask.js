@@ -13,13 +13,11 @@ I.regist('ui.Mask',function(W,D){
     obj.layer = o;
     obj.suit = function(){
       try{
-        if(this.inited){
-          var r = I.region();
-          this.layer.style.left = r.x+'px';
-          this.layer.style.top = r.y+'px';
-          this.layer.style.width = r.width+'px';
-          this.layer.style.height = r.height+'px';
-        }
+        var r = I.region();
+        this.layer.style.left = r.x+'px';
+        this.layer.style.top = r.y+'px';
+        this.layer.style.width = r.width+'px';
+        this.layer.style.height = r.height+'px';
       }catch(e){}
     };
     I.listen(W,'resize',function(m,e){
