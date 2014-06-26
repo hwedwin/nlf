@@ -29,6 +29,8 @@ a.i-ui-Button-${skin}:hover{text-decoration:none;background-color:#FBFBFB;}
 .i-z-Win-${skin} a.i-close{position:absolute;right:0;top:0;margin:0;padding:0;text-decoration:none;border:0;border-top:1px solid gray;border-right:1px solid gray;text-align:center;background-color:gray;color:#FFF;}
 .i-z-Win-${skin} a.i-close:hover{background-color:#C72327;color:#FFF}
 .i-z-Win-${skin} .i-content{position:absolute;left:0;top:0;margin:0;padding:0;overflow:auto;border:1px solid gray;border-top:0;background-color:#FFF}
+
+.i-ui-Notify-${skin}{z-index:2147483647;position:absolute;margin:0;padding:0.5em 1em;font-size:1em;right:0;bottom:0;background-color:#111;color:#FFF;border:1px solid #111;-webkit-border-radius:6px;-moz-border-radius:6px;-ms-border-radius:6px;-o-border-radius:6px;border-radius:6px;}
   */}+'';
   return {
     getCss:function(){return CSS;}
