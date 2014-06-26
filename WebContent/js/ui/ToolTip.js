@@ -55,8 +55,12 @@ I.regist('ui.ToolTip',function(W,D){
     I.util.Skin.init(cfg.skin);
     _create(obj);
     obj.close = function(){
+      try{
+        this.layer.parentNode.removeChild(this.layer);
+      }catch(e){
+        return;
+      }
       this.config.callback.call(this);
-      this.layer.parentNode.removeChild(this.layer);
     };
     return obj;
   };

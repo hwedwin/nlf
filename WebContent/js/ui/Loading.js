@@ -48,11 +48,15 @@ I.regist('ui.Loading',function(W,D){
       inst.percent = 100;
       inst.over = true;
       I.delay(400,function(){
-        inst.config.callback.call(inst);
         try{
           inst.mask.close();
         }catch(e){}
-        inst.layer.parentNode.removeChild(inst.layer);
+        try{
+          inst.layer.parentNode.removeChild(inst.layer);
+        }catch(e){
+          return;
+        }
+        inst.config.callback.call(inst);
       });
     };
     return obj;

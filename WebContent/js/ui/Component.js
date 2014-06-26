@@ -13,6 +13,9 @@ I.regist('ui.Component',function(W,D){
     for(var i in defaultCfg){
       cfg[i] = (undefined!=tcfg[i])?tcfg[i]:defaultCfg[i];
     }
+    for(var i in tcfg){
+      cfg[i] = tcfg[i];
+    }
     return cfg;
   };
 
