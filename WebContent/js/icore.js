@@ -481,7 +481,7 @@
           return o.getElementsByClassName(s);
         }
         var c = [];
-        var els = this['NAME'](o,'*');
+        var els = this['TAG'](o,'*');
         var i = els.length;
         var ss = s.replace(/\-/g, '\\-');
         var pattern = new RegExp('(^|\\s)'+ss+'(\\s|$)');
