@@ -171,25 +171,21 @@
     var src = R+c.replace(/\./g,'/')+'.js?t='+new Date().getTime();
     o.src = src;
     o.onload = function(){
-      var first = false;
       try{
         this.parentNode.removeChild(this);
-        first = true;
-      }catch(e){}
-      if(first){
-        f.apply(f);
+      }catch(e){
+        return;
       }
+      f.apply(f);
     };
     o.onreadystatechange = function(){
       if(/loaded|complete/.test(this.readyState)){
-        var first = false;
         try{
           this.parentNode.removeChild(this);
-          first = true;
-        }catch(e){}
-        if(first){
-          f.apply(f);
+        }catch(e){
+          return;
         }
+        f.apply(f);
       }
     };
     D.getElementsByTagName('head')[0].appendChild(o);
@@ -311,6 +307,20 @@
         c.push(skin);
       }
       arr = /skin\s*:\s*['|"]/g.exec(s);
+    }
+    s = code;
+    arr = /util\.Skin\.init\(['|"]/g.exec(s);
+    while(null!=arr){
+      idx = arr.index;
+      s = s.substr(idx+arr[0].length);
+      var h = arr[0][arr[0].length-1];
+      idx = s.indexOf(h);
+      var skin = s.substr(0,idx);
+      skin = 'skin.'+skin;
+      if(('|'+c.join('|')+'|').indexOf('|'+skin+'|')<0){
+        c.push(skin);
+      }
+      arr = /util\.Skin\.init\(['|"]/g.exec(s);
     }
     return c;
   };
