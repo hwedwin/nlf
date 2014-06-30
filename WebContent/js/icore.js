@@ -124,6 +124,9 @@
         break;
       }
     }
+    if(!SYN){
+      return;
+    }
     if(over){
       var mc = [];
       for(var i=0;i<c.length;i++){
@@ -176,7 +179,7 @@
       }catch(e){
         return;
       }
-      f.apply(f);
+      f.call(f);
     };
     o.onreadystatechange = function(){
       if(/loaded|complete/.test(this.readyState)){
@@ -185,7 +188,7 @@
         }catch(e){
           return;
         }
-        f.apply(f);
+        f.call(f);
       }
     };
     D.getElementsByTagName('head')[0].appendChild(o);
@@ -299,7 +302,8 @@
     while(null!=arr){
       idx = arr.index;
       s = s.substr(idx+arr[0].length);
-      var h = arr[0][arr[0].length-1];
+      var h = arr[0];
+      h = h.substr(h.length-1);
       idx = s.indexOf(h);
       var skin = s.substr(0,idx);
       skin = 'skin.'+skin;
@@ -313,7 +317,8 @@
     while(null!=arr){
       idx = arr.index;
       s = s.substr(idx+arr[0].length);
-      var h = arr[0][arr[0].length-1];
+      var h = arr[0];
+      h = h.substr(h.length-1);
       idx = s.indexOf(h);
       var skin = s.substr(0,idx);
       skin = 'skin.'+skin;
