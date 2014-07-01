@@ -327,7 +327,14 @@
       }
       arr = /util\.Skin\.init\(['|"]/g.exec(s);
     }
-    return c;
+    var z = [];
+    while(c.length>0){
+      var x = c.pop();
+      if(!Q[x]){
+        z.push(x);
+      }
+    }
+    return z;
   };
   
   var _want = function(callback){
