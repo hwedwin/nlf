@@ -243,6 +243,32 @@ public class Stringer{
 		}
 		return sb.toString();
 	}
+	
+	/**
+	 * 16进制字符串转字节数组
+	 * @param hexString 16进制字符串
+	 * @return 字节数组
+	 */
+	public static byte[] hex2Bytes(String hexString){
+		String s = hexString;
+		if(null==s){
+			return null;
+		}
+		if("".equals(s)){
+			return new byte[0];
+		}
+		String chars = "0123456789ABCDEF";
+		s = s.toUpperCase();
+		int length = s.length()/2;
+		byte[] d = new byte[length];
+		for(int i = 0; i < length; i++) {
+			int pos = i*2;
+			String h = s.substring(pos,pos+1);
+			String l = s.substring(pos+1,pos+2);
+			d[i] = (byte) (chars.indexOf(h) << 4 | chars.indexOf(l));
+		}
+		return d;
+	}
 
 	/**
 	 * 读取文件内容到字符串
