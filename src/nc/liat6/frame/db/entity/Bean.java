@@ -4,6 +4,7 @@ import java.beans.BeanInfo;
 import java.beans.PropertyDescriptor;
 import java.io.Serializable;
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
 import java.sql.Blob;
 import java.util.HashMap;
 import java.util.Map;
@@ -256,7 +257,36 @@ public class Bean implements Serializable{
 				if(null != method){
 					try{
 						if(null != values && values.containsKey(name)){
-							method.invoke(o,values.get(name));
+							Class<?> pt = method.getParameterTypes()[0];
+							Object v = values.get(name);
+							if(null==v){
+								method.invoke(o,v);
+							}else{
+								Class<?> vt = v.getClass();
+								if(String.class.equals(pt)){
+									method.invoke(o,v.toString());
+								}else if(BigDecimal.class.equals(vt)){
+									BigDecimal bd = (BigDecimal)v;
+									if(Long.class.equals(pt)||long.class.equals(pt)){
+										method.invoke(o,bd.longValue());
+									}else if(Integer.class.equals(pt)||int.class.equals(pt)){
+										method.invoke(o,bd.intValue());
+									}else if(Double.class.equals(pt)||double.class.equals(pt)){
+										method.invoke(o,bd.doubleValue());
+									}else if(Float.class.equals(pt)||float.class.equals(pt)){
+										method.invoke(o,bd.floatValue());
+									}else if(Short.class.equals(pt)||short.class.equals(pt)){
+										method.invoke(o,bd.shortValue());
+									}else if(Byte.class.equals(pt)||byte.class.equals(pt)){
+										method.invoke(o,bd.byteValue());
+									}
+								}else if(Boolean.class.equals(vt)){
+									Boolean bl = (Boolean)v;
+									method.invoke(o,bl.booleanValue());
+								}else{
+									method.invoke(o,v);
+								}
+							}
 						}else{
 							try{
 								Object arg = desc.getPropertyType().newInstance();
