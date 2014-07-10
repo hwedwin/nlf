@@ -3,9 +3,9 @@
  */
 (function(W,D){
   W.I = {
-    version:'2.0.0',
+    version:'2.0.3',
     ROOT:'auto',
-    debug:false
+    debug:true
   };
   
   var M = 'icore.js';
@@ -352,7 +352,7 @@
        this.instance.clear();
       },
       removeItem:function(k){
-        var inst = this;
+        var inst = this.instance;
         var c = [];
         var l = inst.length;
         switch(k.indexOf('*')){
