@@ -1,8 +1,7 @@
 package nc.liat6.frame.db.custom.mongo;
 
 import java.sql.Connection;
-import nc.liat6.frame.db.connection.ConnVar;
-import nc.liat6.frame.db.connection.IConnection;
+import nc.liat6.frame.db.connection.SuperConnection;
 import nc.liat6.frame.db.exception.DaoException;
 import nc.liat6.frame.locale.L;
 import com.mongodb.DB;
@@ -13,19 +12,9 @@ import com.mongodb.DB;
  * @author 6tail
  * 
  */
-public class MongoConnection implements IConnection{
+public class MongoConnection extends SuperConnection{
 
-  /** 连接变量 */
-  private ConnVar connVar;
   private DB db;
-
-  public ConnVar getConnVar(){
-    return connVar;
-  }
-
-  public void setConnVar(ConnVar connVar){
-    this.connVar = connVar;
-  }
 
   public void close(){}
 

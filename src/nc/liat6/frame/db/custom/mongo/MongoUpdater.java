@@ -1,7 +1,5 @@
 package nc.liat6.frame.db.custom.mongo;
 
-import java.util.ArrayList;
-import java.util.List;
 import nc.liat6.frame.db.entity.Bean;
 import nc.liat6.frame.db.exception.DaoException;
 import nc.liat6.frame.db.plugin.IUpdater;
@@ -20,11 +18,6 @@ import com.mongodb.DBObject;
  * 
  */
 public class MongoUpdater extends MongoExecuter implements IUpdater{
-
-  protected List<Rule> cols = new ArrayList<Rule>();
-  protected List<Rule> wheres = new ArrayList<Rule>();
-  protected List<Object> paramCols = new ArrayList<Object>();
-  protected List<Object> paramWheres = new ArrayList<Object>();
 
   public IUpdater table(String tableName){
     initTable(tableName);
@@ -130,14 +123,6 @@ public class MongoUpdater extends MongoExecuter implements IUpdater{
     reset();
     conn.getDb().getCollection(tableName).findAndModify(query,update);
     return 1;
-  }
-
-  public void reset(){
-    cols.clear();
-    wheres.clear();
-    paramCols.clear();
-    paramWheres.clear();
-    params.clear();
   }
 
   public IUpdater setBean(Bean bean){

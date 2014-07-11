@@ -4,9 +4,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import nc.liat6.frame.db.exception.DaoException;
 
-public class SqlConnection implements IConnection{
+public class SqlConnection extends SuperConnection{
 
-  private ConnVar connVar;
   private Connection conn;
 
   public ConnVar getConnVar(){

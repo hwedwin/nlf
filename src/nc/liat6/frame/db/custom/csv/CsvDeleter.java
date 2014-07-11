@@ -2,7 +2,6 @@ package nc.liat6.frame.db.custom.csv;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import nc.liat6.frame.csv.CSVFileReader;
 import nc.liat6.frame.csv.CSVWriter;
@@ -22,8 +21,6 @@ import nc.liat6.frame.util.Stringer;
  * 
  */
 public class CsvDeleter extends CsvExecuter implements IDeleter{
-
-  protected List<Rule> conds = new ArrayList<Rule>();
 
   public IDeleter table(String tableName){
     initTable(tableName);
@@ -46,8 +43,8 @@ public class CsvDeleter extends CsvExecuter implements IDeleter{
     r.setOpStart("=");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    params.add(value);
+    wheres.add(r);
+    paramWheres.add(value);
     return this;
   }
 
@@ -57,9 +54,8 @@ public class CsvDeleter extends CsvExecuter implements IDeleter{
     r.setOpStart("in");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    List<Object> l = objectsToList(value);
-    params.add(l);
+    wheres.add(r);
+    paramWheres.add(objectsToList(value));
     return this;
   }
 
@@ -69,9 +65,8 @@ public class CsvDeleter extends CsvExecuter implements IDeleter{
     r.setOpStart("not_in");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    List<Object> l = objectsToList(value);
-    params.add(l);
+    wheres.add(r);
+    paramWheres.add(objectsToList(value));
     return this;
   }
 
@@ -84,7 +79,7 @@ public class CsvDeleter extends CsvExecuter implements IDeleter{
       File f = new File(file.getAbsolutePath()+".tmp");
       CSVWriter cw = new CSVWriter(f);
       cw.writeLine(head);
-      if(conds.size()>0){
+      if(wheres.size()>0){
         outer:for(int i = 1;i<cr.getLineCount();i++){
           String[] data = cr.getLine(i);
           Bean o = new Bean();
@@ -97,14 +92,14 @@ public class CsvDeleter extends CsvExecuter implements IDeleter{
             }
           }
           // 满足条件的跳过，即不写入文件
-          for(int j = 0;j<conds.size();j++){
-            Rule r = conds.get(j);
+          for(int j = 0;j<wheres.size();j++){
+            Rule r = wheres.get(j);
             // 操作类型
             String op = r.getOpStart();
             // 结果
             String v = o.getString(r.getColumn().toUpperCase(),"");
             // 参数
-            String p = params.get(j)+"";
+            String p = paramWheres.get(j)+"";
             if("=".equals(op)){
               if(v.equals(p)){
                 continue outer;
@@ -126,7 +121,7 @@ public class CsvDeleter extends CsvExecuter implements IDeleter{
                 continue outer;
               }
             }else if("in".equalsIgnoreCase(op)){
-              List<?> in = (List<?>)params.get(j);
+              List<?> in = (List<?>)paramWheres.get(j);
               boolean isIn = false;
               in:for(Object m:in){
                 if(v.equals(m+"")){
@@ -138,7 +133,7 @@ public class CsvDeleter extends CsvExecuter implements IDeleter{
                 continue outer;
               }
             }else if("not_in".equalsIgnoreCase(op)){
-              List<?> in = (List<?>)params.get(j);
+              List<?> in = (List<?>)paramWheres.get(j);
               boolean isIn = false;
               in:for(Object m:in){
                 if(v.equals(m+"")){
@@ -174,8 +169,4 @@ public class CsvDeleter extends CsvExecuter implements IDeleter{
     return deleted;
   }
 
-  public void reset(){
-    conds.clear();
-    params.clear();
-  }
 }

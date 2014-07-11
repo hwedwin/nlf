@@ -25,10 +25,6 @@ import nc.liat6.frame.util.Stringer;
  */
 public class CsvSelecter extends CsvExecuter implements ISelecter{
 
-  protected List<String> cols = new ArrayList<String>();
-  protected List<String> orders = new ArrayList<String>();
-  protected List<Rule> conds = new ArrayList<Rule>();
-
   public ISelecter table(String tableName){
     initTable(tableName);
     return this;
@@ -36,7 +32,9 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
 
   public ISelecter column(String... column){
     for(String c:column){
-      cols.add(c);
+      Rule rule = new Rule();
+      rule.setColumn(c);
+      cols.add(rule);
     }
     return this;
   }
@@ -57,8 +55,8 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
     r.setOpStart("=");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    params.add(value);
+    wheres.add(r);
+    paramWheres.add(value);
     return this;
   }
 
@@ -68,8 +66,8 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
     r.setOpStart("like");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    params.add(value);
+    wheres.add(r);
+    paramWheres.add(value);
     return this;
   }
 
@@ -79,8 +77,8 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
     r.setOpStart("left_like");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    params.add(value);
+    wheres.add(r);
+    paramWheres.add(value);
     return this;
   }
 
@@ -90,8 +88,8 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
     r.setOpStart("right_like");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    params.add(value);
+    wheres.add(r);
+    paramWheres.add(value);
     return this;
   }
 
@@ -101,8 +99,8 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
     r.setOpStart("!=");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    params.add(value);
+    wheres.add(r);
+    paramWheres.add(value);
     return this;
   }
 
@@ -112,9 +110,8 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
     r.setOpStart("in");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    List<Object> l = objectsToList(value);
-    params.add(l);
+    wheres.add(r);
+    paramWheres.add(objectsToList(value));
     return this;
   }
 
@@ -124,9 +121,8 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
     r.setOpStart("not_in");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    List<Object> l = objectsToList(value);
-    params.add(l);
+    wheres.add(r);
+    paramWheres.add(objectsToList(value));
     return this;
   }
 
@@ -144,9 +140,9 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
     return this;
   }
 
-  private boolean contains(List<String> l,String s){
-    for(String n:l){
-      if(n.equalsIgnoreCase(s)){
+  private boolean contains(List<Rule> l,String s){
+    for(Rule n:l){
+      if(n.getColumn().equalsIgnoreCase(s)){
         return true;
       }
     }
@@ -171,14 +167,14 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
           }
         }
         // 不满足条件的跳过，即不加入结果集
-        for(int j = 0;j<conds.size();j++){
-          Rule r = conds.get(j);
+        for(int j = 0;j<wheres.size();j++){
+          Rule r = wheres.get(j);
           // 操作类型
           String op = r.getOpStart();
           // 结果
           String v = o.getString(r.getColumn().toUpperCase(),"");
           // 参数
-          String p = params.get(j)+"";
+          String p = paramWheres.get(j)+"";
           if("=".equals(op)){
             if(!v.equals(p)){
               continue outer;
@@ -200,7 +196,7 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
               continue outer;
             }
           }else if("in".equalsIgnoreCase(op)){
-            List<?> in = (List<?>)params.get(j);
+            List<?> in = (List<?>)paramWheres.get(j);
             boolean isIn = false;
             in:for(Object m:in){
               if(v.equals(m+"")){
@@ -212,7 +208,7 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
               continue outer;
             }
           }else if("not_in".equalsIgnoreCase(op)){
-            List<?> in = (List<?>)params.get(j);
+            List<?> in = (List<?>)paramWheres.get(j);
             boolean isIn = false;
             in:for(Object m:in){
               if(v.equals(m+"")){
@@ -251,13 +247,6 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
     }
     reset();
     return l;
-  }
-
-  public void reset(){
-    cols.clear();
-    conds.clear();
-    orders.clear();
-    params.clear();
   }
 
   public PageData page(int pageNumber,int pageSize){

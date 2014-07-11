@@ -2,7 +2,6 @@ package nc.liat6.frame.db.custom.csv;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import nc.liat6.frame.csv.CSVFileReader;
 import nc.liat6.frame.db.entity.Bean;
@@ -22,18 +21,12 @@ import nc.liat6.frame.util.Stringer;
  */
 public class CsvCounter extends CsvExecuter implements ICounter{
 
-  protected List<String> cols = new ArrayList<String>();
-  protected List<Rule> conds = new ArrayList<Rule>();
-
   public ICounter table(String tableName){
     initTable(tableName);
     return this;
   }
 
   public ICounter column(String... column){
-    for(String c:column){
-      cols.add(c);
-    }
     return this;
   }
 
@@ -53,8 +46,8 @@ public class CsvCounter extends CsvExecuter implements ICounter{
     r.setOpStart("=");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    params.add(value);
+    wheres.add(r);
+    paramWheres.add(value);
     return this;
   }
 
@@ -64,8 +57,8 @@ public class CsvCounter extends CsvExecuter implements ICounter{
     r.setOpStart("like");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    params.add(value);
+    wheres.add(r);
+    paramWheres.add(value);
     return this;
   }
 
@@ -75,8 +68,8 @@ public class CsvCounter extends CsvExecuter implements ICounter{
     r.setOpStart("left_like");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    params.add(value);
+    wheres.add(r);
+    paramWheres.add(value);
     return this;
   }
 
@@ -86,8 +79,8 @@ public class CsvCounter extends CsvExecuter implements ICounter{
     r.setOpStart("right_like");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    params.add(value);
+    wheres.add(r);
+    paramWheres.add(value);
     return this;
   }
 
@@ -97,8 +90,8 @@ public class CsvCounter extends CsvExecuter implements ICounter{
     r.setOpStart("!=");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    params.add(value);
+    wheres.add(r);
+    paramWheres.add(value);
     return this;
   }
 
@@ -108,9 +101,8 @@ public class CsvCounter extends CsvExecuter implements ICounter{
     r.setOpStart("in");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    List<Object> l = objectsToList(value);
-    params.add(l);
+    wheres.add(r);
+    paramWheres.add(objectsToList(value));
     return this;
   }
 
@@ -120,16 +112,9 @@ public class CsvCounter extends CsvExecuter implements ICounter{
     r.setOpStart("not_in");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    List<Object> l = objectsToList(value);
-    params.add(l);
+    wheres.add(r);
+    paramWheres.add(objectsToList(value));
     return this;
-  }
-
-  public void reset(){
-    cols.clear();
-    conds.clear();
-    params.clear();
   }
 
   public int count(){
@@ -150,14 +135,14 @@ public class CsvCounter extends CsvExecuter implements ICounter{
           }
         }
         // 不满足条件的跳过，即不加入计数
-        for(int j = 0;j<conds.size();j++){
-          Rule r = conds.get(j);
+        for(int j = 0;j<wheres.size();j++){
+          Rule r = wheres.get(j);
           // 操作类型
           String op = r.getOpStart();
           // 结果
           String v = o.getString(r.getColumn().toUpperCase(),"");
           // 参数
-          String p = params.get(j)+"";
+          String p = paramWheres.get(j)+"";
           if("=".equals(op)){
             if(!v.equals(p)){
               continue outer;
@@ -179,7 +164,7 @@ public class CsvCounter extends CsvExecuter implements ICounter{
               continue outer;
             }
           }else if("in".equalsIgnoreCase(op)){
-            List<?> in = (List<?>)params.get(j);
+            List<?> in = (List<?>)paramWheres.get(j);
             boolean isIn = false;
             in:for(Object m:in){
               if(v.equals(m+"")){
@@ -191,7 +176,7 @@ public class CsvCounter extends CsvExecuter implements ICounter{
               continue outer;
             }
           }else if("not_in".equalsIgnoreCase(op)){
-            List<?> in = (List<?>)params.get(j);
+            List<?> in = (List<?>)paramWheres.get(j);
             boolean isIn = false;
             in:for(Object m:in){
               if(v.equals(m+"")){

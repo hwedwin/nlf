@@ -1,8 +1,7 @@
 package nc.liat6.frame.db.custom.csv;
 
 import java.sql.Connection;
-import nc.liat6.frame.db.connection.ConnVar;
-import nc.liat6.frame.db.connection.IConnection;
+import nc.liat6.frame.db.connection.SuperConnection;
 import nc.liat6.frame.db.exception.DaoException;
 import nc.liat6.frame.locale.L;
 
@@ -12,18 +11,7 @@ import nc.liat6.frame.locale.L;
  * @author 6tail
  * 
  */
-public class CsvConnection implements IConnection{
-
-  /** 连接变量 */
-  private ConnVar connVar;
-
-  public ConnVar getConnVar(){
-    return connVar;
-  }
-
-  public void setConnVar(ConnVar connVar){
-    this.connVar = connVar;
-  }
+public class CsvConnection extends SuperConnection{
 
   public void close(){}
 

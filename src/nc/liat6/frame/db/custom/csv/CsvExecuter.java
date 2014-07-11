@@ -2,12 +2,9 @@ package nc.liat6.frame.db.custom.csv;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import nc.liat6.frame.csv.CSVFileReader;
 import nc.liat6.frame.db.exception.DaoException;
-import nc.liat6.frame.db.plugin.IExecuter;
-import nc.liat6.frame.db.sql.ITemplate;
+import nc.liat6.frame.db.plugin.impl.SuperExecuter;
 import nc.liat6.frame.locale.L;
 import nc.liat6.frame.log.Logger;
 import nc.liat6.frame.util.Stringer;
@@ -18,27 +15,19 @@ import nc.liat6.frame.util.Stringer;
  * @author 6tail
  * 
  */
-public abstract class CsvExecuter implements ICsv,IExecuter{
+public abstract class CsvExecuter extends SuperExecuter implements ICsv{
 
   /** 表名 */
   protected String tableName;
-  protected ITemplate template;
-  protected List<Object> params = new ArrayList<Object>();
-
-  public Object[] getParam(){
-    return params.toArray();
-  }
 
   public String getSql(){
     return null;
   }
-
-  public void setTemplate(ITemplate template){
-    this.template = template;
-  }
-
-  public ITemplate getTemplate(){
-    return template;
+  
+  @Override
+  protected void reset(){
+    super.reset();
+    tableName = null;
   }
 
   /**
@@ -69,27 +58,6 @@ public abstract class CsvExecuter implements ICsv,IExecuter{
       }
     }
     return file;
-  }
-
-  /**
-   * 可变长参数转List，Object数组也会转入
-   * 
-   * @param value Object或者Object数组
-   * @return List
-   */
-  protected List<Object> objectsToList(Object... value){
-    List<Object> l = new ArrayList<Object>();
-    for(int i = 0;i<value.length;i++){
-      if(value[i] instanceof Object[]){
-        Object[] ps = (Object[])value[i];
-        for(Object p:ps){
-          l.add(p);
-        }
-      }else{
-        l.add(value[i]);
-      }
-    }
-    return l;
   }
 
   /**

@@ -1,7 +1,5 @@
 package nc.liat6.frame.db.custom.mongo;
 
-import java.util.ArrayList;
-import java.util.List;
 import nc.liat6.frame.db.exception.DaoException;
 import nc.liat6.frame.db.plugin.IDeleter;
 import nc.liat6.frame.db.plugin.Rule;
@@ -19,8 +17,6 @@ import com.mongodb.DBObject;
  * 
  */
 public class MongoDeleter extends MongoExecuter implements IDeleter{
-
-  protected List<Rule> conds = new ArrayList<Rule>();
 
   public IDeleter table(String tableName){
     initTable(tableName);
@@ -43,8 +39,8 @@ public class MongoDeleter extends MongoExecuter implements IDeleter{
     r.setOpStart("");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    params.add(value);
+    wheres.add(r);
+    paramWheres.add(value);
     return this;
   }
 
@@ -64,18 +60,13 @@ public class MongoDeleter extends MongoExecuter implements IDeleter{
     }
     MongoConnection conn = (MongoConnection)template.getConnVar().getConnection();
     DBObject query = new BasicDBObject();
-    for(int i = 0;i<conds.size();i++){
-      Rule r = conds.get(i);
-      Object v = params.get(i);
+    for(int i = 0;i<wheres.size();i++){
+      Rule r = wheres.get(i);
+      Object v = paramWheres.get(i);
       query.put(r.getColumn(),v);
     }
     reset();
     conn.getDb().getCollection(tableName).findAndRemove(query);
     return 1;
-  }
-
-  public void reset(){
-    conds.clear();
-    params.clear();
   }
 }

@@ -24,10 +24,6 @@ import com.mongodb.DBObject;
  */
 public class MongoSelecter extends MongoExecuter implements ISelecter{
 
-  protected List<String> cols = new ArrayList<String>();
-  protected List<String> orders = new ArrayList<String>();
-  protected List<Rule> conds = new ArrayList<Rule>();
-
   public ISelecter table(String tableName){
     initTable(tableName);
     return this;
@@ -35,7 +31,9 @@ public class MongoSelecter extends MongoExecuter implements ISelecter{
 
   public ISelecter column(String... column){
     for(String c:column){
-      cols.add(c);
+      Rule rule = new Rule();
+      rule.setColumn(c);
+      cols.add(rule);
     }
     return this;
   }
@@ -56,8 +54,8 @@ public class MongoSelecter extends MongoExecuter implements ISelecter{
     r.setOpStart("");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    params.add(value);
+    wheres.add(r);
+    paramWheres.add(value);
     return this;
   }
 
@@ -114,11 +112,11 @@ public class MongoSelecter extends MongoExecuter implements ISelecter{
     DBObject keys = new BasicDBObject();
     DBObject orderBy = new BasicDBObject();
     for(int i = 0;i<cols.size();i++){
-      keys.put(cols.get(i),1);
+      keys.put(cols.get(i).getColumn(),1);
     }
-    for(int i = 0;i<conds.size();i++){
-      Rule r = conds.get(i);
-      Object v = params.get(i);
+    for(int i = 0;i<wheres.size();i++){
+      Rule r = wheres.get(i);
+      Object v = paramWheres.get(i);
       ref.put(r.getColumn(),v);
     }
     for(String os:orders){
@@ -137,13 +135,6 @@ public class MongoSelecter extends MongoExecuter implements ISelecter{
     return l;
   }
 
-  public void reset(){
-    cols.clear();
-    conds.clear();
-    orders.clear();
-    params.clear();
-  }
-
   public PageData page(int pageNumber,int pageSize){
     if(null==tableName){
       throw new DaoException(Stringer.print("??.?",L.get("sql.table_not_found"),template.getConnVar().getAlias(),tableName));
@@ -153,11 +144,11 @@ public class MongoSelecter extends MongoExecuter implements ISelecter{
     DBObject keys = new BasicDBObject();
     DBObject orderBy = new BasicDBObject();
     for(int i = 0;i<cols.size();i++){
-      keys.put(cols.get(i),1);
+      keys.put(cols.get(i).getColumn(),1);
     }
-    for(int i = 0;i<conds.size();i++){
-      Rule r = conds.get(i);
-      Object v = params.get(i);
+    for(int i = 0;i<wheres.size();i++){
+      Rule r = wheres.get(i);
+      Object v = paramWheres.get(i);
       ref.put(r.getColumn(),v);
     }
     for(String os:orders){

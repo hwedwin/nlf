@@ -8,7 +8,7 @@ package nc.liat6.frame;
 public class Version{
 
   /** ¿ò¼Ü°æ±¾ºÅ */
-  public static final String version = "1.2.0";
+  public static final String version = "1.2.2";
   /** ¿ò¼Ü°üÃû */
   public static final String PACKAGE = Version.class.getPackage().getName();
 }

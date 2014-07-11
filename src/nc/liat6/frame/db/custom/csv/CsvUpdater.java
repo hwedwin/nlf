@@ -2,7 +2,6 @@ package nc.liat6.frame.db.custom.csv;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import nc.liat6.frame.csv.CSVFileReader;
 import nc.liat6.frame.csv.CSVWriter;
@@ -22,10 +21,6 @@ import nc.liat6.frame.util.Stringer;
  * 
  */
 public class CsvUpdater extends CsvExecuter implements IUpdater{
-
-  protected List<Rule> cols = new ArrayList<Rule>();
-  protected List<Rule> conds = new ArrayList<Rule>();
-  protected List<Object> paramCols = new ArrayList<Object>();
 
   public IUpdater table(String tableName){
     initTable(tableName);
@@ -48,8 +43,8 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
     r.setOpStart("=");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    params.add(value);
+    wheres.add(r);
+    paramWheres.add(value);
     return this;
   }
 
@@ -59,8 +54,8 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
     r.setOpStart("like");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    params.add(value);
+    wheres.add(r);
+    paramWheres.add(value);
     return this;
   }
 
@@ -70,8 +65,8 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
     r.setOpStart("left_like");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    params.add(value);
+    wheres.add(r);
+    paramWheres.add(value);
     return this;
   }
 
@@ -81,8 +76,8 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
     r.setOpStart("right_like");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    params.add(value);
+    wheres.add(r);
+    paramWheres.add(value);
     return this;
   }
 
@@ -92,8 +87,8 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
     r.setOpStart("!=");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    params.add(value);
+    wheres.add(r);
+    paramWheres.add(value);
     return this;
   }
 
@@ -103,9 +98,8 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
     r.setOpStart("in");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    List<Object> l = objectsToList(value);
-    params.add(l);
+    wheres.add(r);
+    paramWheres.add(objectsToList(value));
     return this;
   }
 
@@ -115,9 +109,8 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
     r.setOpStart("not_in");
     r.setOpEnd("");
     r.setTag("");
-    conds.add(r);
-    List<Object> l = objectsToList(value);
-    params.add(l);
+    wheres.add(r);
+    paramWheres.add(objectsToList(value));
     return this;
   }
 
@@ -158,7 +151,8 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
       File f = new File(file.getAbsolutePath()+".tmp");
       CSVWriter cw = new CSVWriter(f);
       cw.writeLine(head);
-      if(conds.size()>0){
+      Object[] params = getParam();
+      if(wheres.size()>0){
         outer:for(int i = 1;i<cr.getLineCount();i++){
           String[] data = cr.getLine(i);
           Bean o = new Bean();
@@ -171,14 +165,14 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
             }
           }
           // 不满足条件的，直接写入
-          for(int j = 0;j<conds.size();j++){
-            Rule r = conds.get(j);
+          for(int j = 0;j<wheres.size();j++){
+            Rule r = wheres.get(j);
             // 操作类型
             String op = r.getOpStart();
             // 结果
             String v = o.getString(r.getColumn().toUpperCase(),"");
             // 参数
-            String p = params.get(j)+"";
+            String p = params[j]+"";
             if("=".equals(op)){
               if(!v.equals(p)){
                 cw.writeLine(data);
@@ -205,7 +199,7 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
                 continue outer;
               }
             }else if("in".equalsIgnoreCase(op)){
-              List<?> in = (List<?>)params.get(j);
+              List<?> in = (List<?>)params[j];
               boolean isIn = false;
               in:for(Object m:in){
                 if(v.equals(m+"")){
@@ -218,7 +212,7 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
                 continue outer;
               }
             }else if("not_in".equalsIgnoreCase(op)){
-              List<?> in = (List<?>)params.get(j);
+              List<?> in = (List<?>)params[j];
               boolean isIn = false;
               in:for(Object m:in){
                 if(v.equals(m+"")){
@@ -279,13 +273,6 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
     }
     reset();
     return updated;
-  }
-
-  public void reset(){
-    cols.clear();
-    conds.clear();
-    paramCols.clear();
-    params.clear();
   }
 
   public IUpdater setBean(Bean bean){

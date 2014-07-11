@@ -1,10 +1,7 @@
 package nc.liat6.frame.db.custom.mongo;
 
-import java.util.ArrayList;
-import java.util.List;
 import nc.liat6.frame.db.entity.Bean;
-import nc.liat6.frame.db.plugin.IExecuter;
-import nc.liat6.frame.db.sql.ITemplate;
+import nc.liat6.frame.db.plugin.impl.SuperExecuter;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
@@ -14,26 +11,18 @@ import com.mongodb.DBObject;
  * @author 6tail
  * 
  */
-public abstract class MongoExecuter implements IMongo,IExecuter{
+public abstract class MongoExecuter extends SuperExecuter implements IMongo{
 
   protected String tableName;
-  protected ITemplate template;
-  protected List<Object> params = new ArrayList<Object>();
-
-  public Object[] getParam(){
-    return params.toArray();
-  }
 
   public String getSql(){
     return null;
   }
-
-  public void setTemplate(ITemplate template){
-    this.template = template;
-  }
-
-  public ITemplate getTemplate(){
-    return template;
+  
+  @Override
+  protected void reset(){
+    super.reset();
+    tableName = null;
   }
 
   protected void initTable(String tableName){
