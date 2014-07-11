@@ -1,335 +1,65 @@
-/***
- * ASM: a very small and fast Java bytecode manipulation framework
- * Copyright (c) 2000-2007 INRIA, France Telecom
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- * 3. Neither the name of the copyright holders nor the names of its
- *    contributors may be used to endorse or promote products derived from
- *    this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
- * THE POSSIBILITY OF SUCH DAMAGE.
- */
 package nc.liat6.frame.lib.org.objectweb.asm;
 
-/**
- * A {@link MethodVisitor} that generates methods in bytecode form. Each visit method of this class
- * appends the bytecode corresponding to the visited instruction to a byte vector, in the order
- * these methods are called.
- * 
- * @author Eric Bruneton
- * @author Eugene Kuleshov
- */
 class MethodWriter implements MethodVisitor{
 
-  /**
-   * Pseudo access flag used to denote constructors.
-   */
   static final int ACC_CONSTRUCTOR = 262144;
-  /**
-   * Frame has exactly the same locals as the previous stack map frame and number of stack items is
-   * zero.
-   */
   static final int SAME_FRAME = 0; // to 63 (0-3f)
-  /**
-   * Frame has exactly the same locals as the previous stack map frame and number of stack items is
-   * 1
-   */
   static final int SAME_LOCALS_1_STACK_ITEM_FRAME = 64; // to 127 (40-7f)
-  /**
-   * Reserved for future use
-   */
   static final int RESERVED = 128;
-  /**
-   * Frame has exactly the same locals as the previous stack map frame and number of stack items is
-   * 1. Offset is bigger then 63;
-   */
   static final int SAME_LOCALS_1_STACK_ITEM_FRAME_EXTENDED = 247; // f7
-  /**
-   * Frame where current locals are the same as the locals in the previous frame, except that the k
-   * last locals are absent. The value of k is given by the formula 251-frame_type.
-   */
   static final int CHOP_FRAME = 248; // to 250 (f8-fA)
-  /**
-   * Frame has exactly the same locals as the previous stack map frame and number of stack items is
-   * zero. Offset is bigger then 63;
-   */
   static final int SAME_FRAME_EXTENDED = 251; // fb
-  /**
-   * Frame where current locals are the same as the locals in the previous frame, except that k
-   * additional locals are defined. The value of k is given by the formula frame_type-251.
-   */
   static final int APPEND_FRAME = 252; // to 254 // fc-fe
-  /**
-   * Full frame
-   */
   static final int FULL_FRAME = 255; // ff
-  /**
-   * Indicates that the stack map frames must be recomputed from scratch. In this case the maximum
-   * stack size and number of local variables is also recomputed from scratch.
-   * 
-   * @see #compute
-   */
   private static final int FRAMES = 0;
-  /**
-   * Indicates that the maximum stack size and number of local variables must be automatically
-   * computed.
-   * 
-   * @see #compute
-   */
   private static final int MAXS = 1;
-  /**
-   * Indicates that nothing must be automatically computed.
-   * 
-   * @see #compute
-   */
   private static final int NOTHING = 2;
-  /**
-   * Next method writer (see {@link ClassWriter#firstMethod firstMethod}).
-   */
   MethodWriter next;
-  /**
-   * The class writer to which this method must be added.
-   */
   final ClassWriter cw;
-  /**
-   * Access flags of this method.
-   */
   private int access;
-  /**
-   * The index of the constant pool item that contains the name of this method.
-   */
   private final int name;
-  /**
-   * The index of the constant pool item that contains the descriptor of this method.
-   */
   private final int desc;
-  /**
-   * The descriptor of this method.
-   */
   private final String descriptor;
-  /**
-   * The signature of this method.
-   */
   String signature;
-  /**
-   * If not zero, indicates that the code of this method must be copied from the ClassReader
-   * associated to this writer in <code>cw.cr</code>. More precisely, this field gives the index of
-   * the first byte to copied from <code>cw.cr.b</code>.
-   */
   int classReaderOffset;
-  /**
-   * If not zero, indicates that the code of this method must be copied from the ClassReader
-   * associated to this writer in <code>cw.cr</code>. More precisely, this field gives the number of
-   * bytes to copied from <code>cw.cr.b</code>.
-   */
   int classReaderLength;
-  /**
-   * Number of exceptions that can be thrown by this method.
-   */
   int exceptionCount;
-  /**
-   * The exceptions that can be thrown by this method. More precisely, this array contains the
-   * indexes of the constant pool items that contain the internal names of these exception classes.
-   */
   int[] exceptions;
-  /**
-   * The annotation default attribute of this method. May be <tt>null</tt>.
-   */
   private ByteVector annd;
-  /**
-   * The runtime visible annotations of this method. May be <tt>null</tt>.
-   */
   private AnnotationWriter anns;
-  /**
-   * The runtime invisible annotations of this method. May be <tt>null</tt>.
-   */
   private AnnotationWriter ianns;
-  /**
-   * The runtime visible parameter annotations of this method. May be <tt>null</tt>.
-   */
   private AnnotationWriter[] panns;
-  /**
-   * The runtime invisible parameter annotations of this method. May be <tt>null</tt>.
-   */
   private AnnotationWriter[] ipanns;
-  /**
-   * The number of synthetic parameters of this method.
-   */
   private int synthetics;
-  /**
-   * The non standard attributes of the method.
-   */
   private Attribute attrs;
-  /**
-   * The bytecode of this method.
-   */
   private ByteVector code = new ByteVector();
-  /**
-   * Maximum stack size of this method.
-   */
   private int maxStack;
-  /**
-   * Maximum number of local variables for this method.
-   */
   private int maxLocals;
-  /**
-   * Number of stack map frames in the StackMapTable attribute.
-   */
   private int frameCount;
-  /**
-   * The StackMapTable attribute.
-   */
   private ByteVector stackMap;
-  /**
-   * The offset of the last frame that was written in the StackMapTable attribute.
-   */
   private int previousFrameOffset;
-  /**
-   * The last frame that was written in the StackMapTable attribute.
-   * 
-   * @see #frame
-   */
   private int[] previousFrame;
-  /**
-   * Index of the next element to be added in {@link #frame}.
-   */
   private int frameIndex;
-  /**
-   * The current stack map frame. The first element contains the offset of the instruction to which
-   * the frame corresponds, the second element is the number of locals and the third one is the
-   * number of stack elements. The local variables start at index 3 and are followed by the operand
-   * stack values. In summary frame[0] = offset, frame[1] = nLocal, frame[2] = nStack, frame[3] =
-   * nLocal. All types are encoded as integers, with the same format as the one used in
-   * {@link Label}, but limited to BASE types.
-   */
   private int[] frame;
-  /**
-   * Number of elements in the exception handler list.
-   */
   private int handlerCount;
-  /**
-   * The first element in the exception handler list.
-   */
   private Handler firstHandler;
-  /**
-   * The last element in the exception handler list.
-   */
   private Handler lastHandler;
-  /**
-   * Number of entries in the LocalVariableTable attribute.
-   */
   private int localVarCount;
-  /**
-   * The LocalVariableTable attribute.
-   */
   private ByteVector localVar;
-  /**
-   * Number of entries in the LocalVariableTypeTable attribute.
-   */
   private int localVarTypeCount;
-  /**
-   * The LocalVariableTypeTable attribute.
-   */
   private ByteVector localVarType;
-  /**
-   * Number of entries in the LineNumberTable attribute.
-   */
   private int lineNumberCount;
-  /**
-   * The LineNumberTable attribute.
-   */
   private ByteVector lineNumber;
-  /**
-   * The non standard attributes of the method's code.
-   */
   private Attribute cattrs;
-  /**
-   * Indicates if some jump instructions are too small and need to be resized.
-   */
   private boolean resize;
-  /**
-   * The number of subroutines in this method.
-   */
   private int subroutines;
-  // ------------------------------------------------------------------------
-  /*
-   * Fields for the control flow graph analysis algorithm (used to compute the maximum stack size).
-   * A control flow graph contains one node per "basic block", and one edge per "jump" from one
-   * basic block to another. Each node (i.e., each basic block) is represented by the Label object
-   * that corresponds to the first instruction of this basic block. Each node also stores the list
-   * of its successors in the graph, as a linked list of Edge objects.
-   */
-  /**
-   * Indicates what must be automatically computed.
-   * 
-   * @see #FRAMES
-   * @see #MAXS
-   * @see #NOTHING
-   */
   private final int compute;
-  /**
-   * A list of labels. This list is the list of basic blocks in the method, i.e. a list of Label
-   * objects linked to each other by their {@link Label#successor} field, in the order they are
-   * visited by {@link MethodVisitor#visitLabel}, and starting with the first basic block.
-   */
   private Label labels;
-  /**
-   * The previous basic block.
-   */
   private Label previousBlock;
-  /**
-   * The current basic block.
-   */
   private Label currentBlock;
-  /**
-   * The (relative) stack size after the last visited instruction. This size is relative to the
-   * beginning of the current basic block, i.e., the true stack size after the last visited
-   * instruction is equal to the {@link Label#inputStackTop beginStackSize} of the current basic
-   * block plus <tt>stackSize</tt>.
-   */
   private int stackSize;
-  /**
-   * The (relative) maximum stack size after the last visited instruction. This size is relative to
-   * the beginning of the current basic block, i.e., the true maximum stack size after the last
-   * visited instruction is equal to the {@link Label#inputStackTop beginStackSize} of the current
-   * basic block plus <tt>stackSize</tt>.
-   */
   private int maxStackSize;
 
-  // ------------------------------------------------------------------------
-  // Constructor
-  // ------------------------------------------------------------------------
-  /**
-   * Constructs a new {@link MethodWriter}.
-   * 
-   * @param cw the class writer in which the method must be added.
-   * @param access the method's access flags (see {@link Opcodes}).
-   * @param name the method's name.
-   * @param desc the method's descriptor (see {@link Type}).
-   * @param signature the method's signature. May be <tt>null</tt>.
-   * @param exceptions the internal names of the method's exceptions. May be <tt>null</tt>.
-   * @param computeMaxs <tt>true</tt> if the maximum stack size and number of local variables must
-   *          be automatically computed.
-   * @param computeFrames <tt>true</tt> if the stack map tables must be recomputed from scratch.
-   */
   MethodWriter(final ClassWriter cw,final int access,final String name,final String desc,final String signature,final String[] exceptions,final boolean computeMaxs,final boolean computeFrames){
     if(cw.firstMethod==null){
       cw.firstMethod = this;
@@ -370,9 +100,6 @@ class MethodWriter implements MethodVisitor{
     }
   }
 
-  // ------------------------------------------------------------------------
-  // Implementation of the MethodVisitor interface
-  // ------------------------------------------------------------------------
   public AnnotationVisitor visitAnnotationDefault(){
     if(!ClassReader.ANNOTATIONS){
       return null;
@@ -689,12 +416,6 @@ class MethodWriter implements MethodVisitor{
       if(compute==FRAMES){
         currentBlock.frame.execute(opcode,0,cw,i);
       }else{
-        /*
-         * computes the stack size variation. In order not to recompute several times this variation
-         * for the same Item, we use the intVal field of this item to store this variation, once it
-         * has been computed. More precisely this intVal field stores the sizes of the arguments and
-         * of the return value corresponding to desc.
-         */
         if(argSize==0){
           // the above sizes have not been computed yet,
           // so we compute them...
@@ -755,15 +476,7 @@ class MethodWriter implements MethodVisitor{
           addSuccessor(stackSize+1,label);
           // creates a Label for the next basic block
           nextInsn = new Label();
-          /*
-           * note that, by construction in this method, a JSR block has at least two successors in
-           * the control flow graph: the first one leads the next instruction after the JSR, while
-           * the second one leads to the JSR target.
-           */
         }else{
-          // updates current stack size (max stack size unchanged
-          // because stack size variation always negative in this
-          // case)
           stackSize += Frame.SIZE[opcode];
           addSuccessor(stackSize,label);
         }
@@ -771,12 +484,6 @@ class MethodWriter implements MethodVisitor{
     }
     // adds the instruction to the bytecode of the method
     if((label.status&Label.RESOLVED)!=0&&label.position-code.length<Short.MIN_VALUE){
-      /*
-       * case of a backward jump with an offset < -32768. In this case we automatically replace GOTO
-       * with GOTO_W, JSR with JSR_W and IFxxx <l> with IFNOTxxx <l'> GOTO_W <l>, where IFNOTxxx is
-       * the "opposite" opcode of IFxxx (i.e., IFNE for IFEQ) and where <l'> designates the
-       * instruction just after the GOTO_W.
-       */
       if(opcode==Opcodes.GOTO){
         code.putByte(200); // GOTO_W
       }else if(opcode==Opcodes.JSR){
@@ -1073,11 +780,6 @@ class MethodWriter implements MethodVisitor{
       Type[] args = Type.getArgumentTypes(descriptor);
       f.initInputFrame(cw,access,args,this.maxLocals);
       visitFrame(f);
-      /*
-       * fix point algorithm: mark the first basic block as 'changed' (i.e. put it in the 'changed'
-       * list) and, while there are changed basic blocks, choose one, mark it as unchanged, and
-       * update its successors (which can be changed in the process).
-       */
       int max = 0;
       Label changed = labels;
       while(changed!=null){
@@ -1170,12 +872,6 @@ class MethodWriter implements MethodVisitor{
         handler = handler.next;
       }
       if(subroutines>0){
-        // completes the control flow graph with the RET successors
-        /*
-         * first step: finds the subroutines. This step determines, for each basic block, to which
-         * subroutine(s) it belongs.
-         */
-        // finds the basic blocks that belong to the "main" subroutine
         int id = 0;
         labels.visitSubroutine(null,1,subroutines);
         // finds the basic blocks that belong to the real subroutines
@@ -1209,14 +905,6 @@ class MethodWriter implements MethodVisitor{
           l = l.successor;
         }
       }
-      /*
-       * control flow analysis algorithm: while the block stack is not empty, pop a block from this
-       * stack, update the max stack size, compute the true (non relative) begin stack size of the
-       * successors of this block, and push these successors onto the stack (unless they have
-       * already been pushed onto the stack). Note: by hypothesis, the {@link Label#inputStackTop}
-       * of the blocks in the block stack are the true (non relative) beginning stack sizes of these
-       * blocks.
-       */
       int max = 0;
       Label stack = labels;
       while(stack!=null){
@@ -1259,15 +947,6 @@ class MethodWriter implements MethodVisitor{
 
   public void visitEnd(){}
 
-  // ------------------------------------------------------------------------
-  // Utility methods: control flow analysis algorithm
-  // ------------------------------------------------------------------------
-  /**
-   * Adds a successor to the {@link #currentBlock currentBlock} block.
-   * 
-   * @param info information about the control flow edge to be added.
-   * @param successor the successor block to be added to the current block.
-   */
   private void addSuccessor(final int info,final Label successor){
     // creates and initializes an Edge object...
     Edge b = new Edge();
@@ -1278,10 +957,6 @@ class MethodWriter implements MethodVisitor{
     currentBlock.successors = b;
   }
 
-  /**
-   * Ends the current basic block. This method must be used in the case where the current basic
-   * block does not have any successor.
-   */
   private void noSuccessor(){
     if(compute==FRAMES){
       Label l = new Label();
@@ -1296,14 +971,6 @@ class MethodWriter implements MethodVisitor{
     currentBlock = null;
   }
 
-  // ------------------------------------------------------------------------
-  // Utility methods: stack map frames
-  // ------------------------------------------------------------------------
-  /**
-   * Visits a frame that has been computed from scratch.
-   * 
-   * @param f the frame that must be visited.
-   */
   private void visitFrame(final Frame f){
     int i,t;
     int nTop = 0;
@@ -1353,13 +1020,6 @@ class MethodWriter implements MethodVisitor{
     endFrame();
   }
 
-  /**
-   * Starts the visit of a stack map frame.
-   * 
-   * @param offset the offset of the instruction to which the frame corresponds.
-   * @param nLocal the number of local variables in the frame.
-   * @param nStack the number of stack elements in the frame.
-   */
   private void startFrame(final int offset,final int nLocal,final int nStack){
     int n = 3+nLocal+nStack;
     if(frame==null||frame.length<n){
@@ -1371,10 +1031,6 @@ class MethodWriter implements MethodVisitor{
     frameIndex = 3;
   }
 
-  /**
-   * Checks if the visit of the current frame {@link #frame} is finished, and if yes, write it in
-   * the StackMapTable attribute.
-   */
   private void endFrame(){
     if(previousFrame!=null){ // do not write the first frame
       if(stackMap==null){
@@ -1387,9 +1043,6 @@ class MethodWriter implements MethodVisitor{
     frame = null;
   }
 
-  /**
-   * Compress and writes the current frame {@link #frame} in the StackMapTable attribute.
-   */
   private void writeFrame(){
     int clocalsSize = frame[1];
     int cstackSize = frame[2];
@@ -1472,14 +1125,6 @@ class MethodWriter implements MethodVisitor{
     }
   }
 
-  /**
-   * Writes some types of the current frame {@link #frame} into the StackMapTableAttribute. This
-   * method converts types from the format used in {@link Label} to the format used in StackMapTable
-   * attributes. In particular, it converts type table indexes to constant pool indexes.
-   * 
-   * @param start index of the first type in {@link #frame} to write.
-   * @param end index of last type in {@link #frame} to write (exclusive).
-   */
   private void writeFrameTypes(final int start,final int end){
     for(int i = start;i<end;++i){
       int t = frame[i];
@@ -1548,14 +1193,6 @@ class MethodWriter implements MethodVisitor{
     }
   }
 
-  // ------------------------------------------------------------------------
-  // Utility methods: dump bytecode array
-  // ------------------------------------------------------------------------
-  /**
-   * Returns the size of the bytecode of this method.
-   * 
-   * @return the size of the bytecode of this method.
-   */
   final int getSize(){
     if(classReaderOffset!=0){
       return 6+classReaderLength;
@@ -1642,11 +1279,6 @@ class MethodWriter implements MethodVisitor{
     return size;
   }
 
-  /**
-   * Puts the bytecode of this method in the given byte vector.
-   * 
-   * @param out the byte vector into which the bytecode of this method must be copied.
-   */
   final void put(final ByteVector out){
     int mask = Opcodes.ACC_DEPRECATED|ClassWriter.ACC_SYNTHETIC_ATTRIBUTE|((access&ClassWriter.ACC_SYNTHETIC_ATTRIBUTE)/(ClassWriter.ACC_SYNTHETIC_ATTRIBUTE/Opcodes.ACC_SYNTHETIC));
     out.putShort(access&~mask).putShort(name).putShort(desc);
@@ -1801,43 +1433,10 @@ class MethodWriter implements MethodVisitor{
     }
   }
 
-  // ------------------------------------------------------------------------
-  // Utility methods: instruction resizing (used to handle GOTO_W and JSR_W)
-  // ------------------------------------------------------------------------
-  /**
-   * Resizes and replaces the temporary instructions inserted by {@link Label#resolve} for wide
-   * forward jumps, while keeping jump offsets and instruction addresses consistent. This may
-   * require to resize other existing instructions, or even to introduce new instructions: for
-   * example, increasing the size of an instruction by 2 at the middle of a method can increases the
-   * offset of an IFEQ instruction from 32766 to 32768, in which case IFEQ 32766 must be replaced
-   * with IFNEQ 8 GOTO_W 32765. This, in turn, may require to increase the size of another jump
-   * instruction, and so on... All these operations are handled automatically by this method.
-   * <p>
-   * <i>This method must be called after all the method that is being built has been visited</i>. In
-   * particular, the {@link Label Label} objects used to construct the method are no longer valid
-   * after this method has been called.
-   */
   private void resizeInstructions(){
     byte[] b = code.data; // bytecode of the method
     int u,v,label; // indexes in b
     int i,j; // loop indexes
-    /*
-     * 1st step: As explained above, resizing an instruction may require to resize another one,
-     * which may require to resize yet another one, and so on. The first step of the algorithm
-     * consists in finding all the instructions that need to be resized, without modifying the code.
-     * This is done by the following "fix point" algorithm: Parse the code to find the jump
-     * instructions whose offset will need more than 2 bytes to be stored (the future offset is
-     * computed from the current offset and from the number of bytes that will be inserted or
-     * removed between the source and target instructions). For each such instruction, adds an entry
-     * in (a copy of) the indexes and sizes arrays (if this has not already been done in a previous
-     * iteration!). If at least one entry has been added during the previous step, go back to the
-     * beginning, otherwise stop. In fact the real algorithm is complicated by the fact that the
-     * size of TABLESWITCH and LOOKUPSWITCH instructions depends on their position in the bytecode
-     * (because of padding). In order to ensure the convergence of the algorithm, the number of
-     * bytes to be added or removed from these instructions is over estimated during the previous
-     * loop, and computed exactly only after the loop is finished (this requires another pass to
-     * parse the bytecode of the method).
-     */
     int[] allIndexes = new int[0]; // copy of indexes
     int[] allSizes = new int[0]; // copy of sizes
     boolean[] resize; // instructions to be resized
@@ -1872,17 +1471,8 @@ class MethodWriter implements MethodVisitor{
             if(newOffset<Short.MIN_VALUE||newOffset>Short.MAX_VALUE){
               if(!resize[u]){
                 if(opcode==Opcodes.GOTO||opcode==Opcodes.JSR){
-                  // two additional bytes will be required to
-                  // replace this GOTO or JSR instruction with
-                  // a GOTO_W or a JSR_W
                   insert = 2;
                 }else{
-                  // five additional bytes will be required to
-                  // replace this IFxxx <l> instruction with
-                  // IFNOTxxx <l'> GOTO_W <l>, where IFNOTxxx
-                  // is the "opposite" opcode of IFxxx (i.e.,
-                  // IFNE for IFEQ) and where <l'> designates
-                  // the instruction just after the GOTO_W.
                   insert = 5;
                 }
                 resize[u] = true;
@@ -1895,19 +1485,9 @@ class MethodWriter implements MethodVisitor{
             break;
           case ClassWriter.TABL_INSN:
             if(state==1){
-              // true number of bytes to be added (or removed)
-              // from this instruction = (future number of padding
-              // bytes - current number of padding byte) -
-              // previously over estimated variation =
-              // = ((3 - newOffset%4) - (3 - u%4)) - u%4
-              // = (-newOffset%4 + u%4) - u%4
-              // = -(newOffset & 3)
               newOffset = getNewOffset(allIndexes,allSizes,0,u);
               insert = -(newOffset&3);
             }else if(!resize[u]){
-              // over estimation of the number of bytes to be
-              // added to this instruction = 3 - current number
-              // of padding bytes = 3 - (3 - u%4) = u%4 = u & 3
               insert = u&3;
               resize[u] = true;
             }
@@ -1977,9 +1557,6 @@ class MethodWriter implements MethodVisitor{
         --state;
       }
     }while(state!=0);
-    // 2nd step:
-    // copies the bytecode of the method into a new bytevector, updates the
-    // offsets, and inserts (or removes) bytes as requested.
     ByteVector newCode = new ByteVector(code.length);
     u = 0;
     while(u<code.length){
@@ -1992,9 +1569,6 @@ class MethodWriter implements MethodVisitor{
           break;
         case ClassWriter.LABEL_INSN:
           if(opcode>201){
-            // changes temporary opcodes 202 to 217 (inclusive), 218
-            // and 219 to IFEQ ... JSR (inclusive), IFNULL and
-            // IFNONNULL
             opcode = opcode<218?opcode-49:opcode-20;
             label = u+readUnsignedShort(b,u+1);
           }else{
@@ -2002,11 +1576,6 @@ class MethodWriter implements MethodVisitor{
           }
           newOffset = getNewOffset(allIndexes,allSizes,u,label);
           if(resize[u]){
-            // replaces GOTO with GOTO_W, JSR with JSR_W and IFxxx
-            // <l> with IFNOTxxx <l'> GOTO_W <l>, where IFNOTxxx is
-            // the "opposite" opcode of IFxxx (i.e., IFNE for IFEQ)
-            // and where <l'> designates the instruction just after
-            // the GOTO_W.
             if(opcode==Opcodes.GOTO){
               newCode.putByte(200); // GOTO_W
             }else if(opcode==Opcodes.JSR){
@@ -2199,74 +1768,26 @@ class MethodWriter implements MethodVisitor{
       }
       attr = attr.next;
     }
-    // replaces old bytecodes with new ones
     code = newCode;
   }
 
-  /**
-   * Reads an unsigned short value in the given byte array.
-   * 
-   * @param b a byte array.
-   * @param index the start index of the value to be read.
-   * @return the read value.
-   */
   static int readUnsignedShort(final byte[] b,final int index){
     return ((b[index]&0xFF)<<8)|(b[index+1]&0xFF);
   }
 
-  /**
-   * Reads a signed short value in the given byte array.
-   * 
-   * @param b a byte array.
-   * @param index the start index of the value to be read.
-   * @return the read value.
-   */
   static short readShort(final byte[] b,final int index){
     return (short)(((b[index]&0xFF)<<8)|(b[index+1]&0xFF));
   }
 
-  /**
-   * Reads a signed int value in the given byte array.
-   * 
-   * @param b a byte array.
-   * @param index the start index of the value to be read.
-   * @return the read value.
-   */
   static int readInt(final byte[] b,final int index){
     return ((b[index]&0xFF)<<24)|((b[index+1]&0xFF)<<16)|((b[index+2]&0xFF)<<8)|(b[index+3]&0xFF);
   }
 
-  /**
-   * Writes a short value in the given byte array.
-   * 
-   * @param b a byte array.
-   * @param index where the first byte of the short value must be written.
-   * @param s the value to be written in the given byte array.
-   */
   static void writeShort(final byte[] b,final int index,final int s){
     b[index] = (byte)(s>>>8);
     b[index+1] = (byte)s;
   }
 
-  /**
-   * Computes the future value of a bytecode offset.
-   * <p>
-   * Note: it is possible to have several entries for the same instruction in the <tt>indexes</tt>
-   * and <tt>sizes</tt>: two entries (index=a,size=b) and (index=a,size=b') are equivalent to a
-   * single entry (index=a,size=b+b').
-   * 
-   * @param indexes current positions of the instructions to be resized. Each instruction must be
-   *          designated by the index of its <i>last</i> byte, plus one (or, in other words, by the
-   *          index of the <i>first</i> byte of the <i>next</i> instruction).
-   * @param sizes the number of bytes to be <i>added</i> to the above instructions. More precisely,
-   *          for each i < <tt>len</tt>, <tt>sizes</tt>[i] bytes will be added at the end of the
-   *          instruction designated by <tt>indexes</tt>[i] or, if <tt>sizes</tt>[i] is negative,
-   *          the <i>last</i> |<tt>sizes[i]</tt>| bytes of the instruction will be removed (the
-   *          instruction size <i>must not</i> become negative or null).
-   * @param begin index of the first byte of the source instruction.
-   * @param end index of the first byte of the target instruction.
-   * @return the future value of the given bytecode offset.
-   */
   static int getNewOffset(final int[] indexes,final int[] sizes,final int begin,final int end){
     int offset = end-begin;
     for(int i = 0;i<indexes.length;++i){
@@ -2281,19 +1802,6 @@ class MethodWriter implements MethodVisitor{
     return offset;
   }
 
-  /**
-   * Updates the offset of the given label.
-   * 
-   * @param indexes current positions of the instructions to be resized. Each instruction must be
-   *          designated by the index of its <i>last</i> byte, plus one (or, in other words, by the
-   *          index of the <i>first</i> byte of the <i>next</i> instruction).
-   * @param sizes the number of bytes to be <i>added</i> to the above instructions. More precisely,
-   *          for each i < <tt>len</tt>, <tt>sizes</tt>[i] bytes will be added at the end of the
-   *          instruction designated by <tt>indexes</tt>[i] or, if <tt>sizes</tt>[i] is negative,
-   *          the <i>last</i> |<tt>sizes[i]</tt>| bytes of the instruction will be removed (the
-   *          instruction size <i>must not</i> become negative or null).
-   * @param label the label whose offset must be updated.
-   */
   static void getNewOffset(final int[] indexes,final int[] sizes,final Label label){
     if((label.status&Label.RESIZED)==0){
       label.position = getNewOffset(indexes,sizes,0,label.position);
