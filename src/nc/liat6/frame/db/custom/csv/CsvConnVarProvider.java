@@ -1,10 +1,8 @@
 package nc.liat6.frame.db.custom.csv;
 
 import java.io.File;
-
 import nc.liat6.frame.db.connection.ConnVar;
 import nc.liat6.frame.db.connection.impl.SuperConnVarProvider;
-import nc.liat6.frame.db.setting.IDbSetting;
 import nc.liat6.frame.locale.L;
 import nc.liat6.frame.locale.LocaleFactory;
 import nc.liat6.frame.log.Logger;
@@ -18,13 +16,6 @@ import nc.liat6.frame.util.Stringer;
  */
 public class CsvConnVarProvider extends SuperConnVarProvider{
 
-	/** CSV¡¨Ω”≈‰÷√ */
-	private CsvSetting setting;
-
-	public IDbSetting getSetting(){
-		return setting;
-	}
-	
 	@Override
 	protected void registDriver(String driver){
 		File dir = new File(this.setting.getDbName());
@@ -32,11 +23,6 @@ public class CsvConnVarProvider extends SuperConnVarProvider{
 			dir.mkdirs();
 			Logger.getLog().debug(Stringer.print("?:?",L.get(LocaleFactory.locale,"db.regist_driver"),dir.getAbsolutePath()));
 		}
-	}
-
-	public void setSetting(IDbSetting setting){
-		this.setting = (CsvSetting)setting;
-		registDriver(this.setting.getDriver());
 	}
 
 	public ConnVar getConnVar(){

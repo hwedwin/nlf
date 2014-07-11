@@ -10,76 +10,71 @@ import nc.liat6.frame.db.setting.IDbSetting;
  */
 public class ConnVar{
 
-	private int level = 0;
+  private int level = 0;
+  /** 连接设置 */
+  private IDbSetting setting;
+  /** 定制连接 */
+  private IConnection connection;
+  /** 数据库类型 */
+  private String dbType;
+  /** 别名 */
+  private String alias;
 
-	/** 连接设置 */
-	private IDbSetting setting;
+  public int getLevel(){
+    return level;
+  }
 
-	/** 定制连接 */
-	private IConnection connection;
+  public void setLevel(int level){
+    this.level = level;
+  }
 
-	/** 数据库类型 */
-	private String dbType;
+  public IDbSetting getSetting(){
+    return setting;
+  }
 
-	/** 别名 */
-	private String alias;
+  public void setSetting(IDbSetting setting){
+    this.setting = setting;
+  }
 
-	public int getLevel(){
-		return level;
-	}
+  public IConnection getConnection(){
+    return connection;
+  }
 
-	public void setLevel(int level){
-		this.level = level;
-	}
+  public void setConnection(IConnection connection){
+    this.connection = connection;
+  }
 
-	public IDbSetting getSetting(){
-		return setting;
-	}
+  public String getDbType(){
+    return dbType;
+  }
 
-	public void setSetting(IDbSetting setting){
-		this.setting = setting;
-	}
+  public void setDbType(String dbType){
+    this.dbType = dbType;
+  }
 
-	public IConnection getConnection(){
-		return connection;
-	}
+  public String getAlias(){
+    return alias;
+  }
 
-	public void setConnection(IConnection connection){
-		this.connection = connection;
-	}
+  public void setAlias(String alias){
+    this.alias = alias;
+  }
 
-	public String getDbType(){
-		return dbType;
-	}
-
-	public void setDbType(String dbType){
-		this.dbType = dbType;
-	}
-
-	public String getAlias(){
-		return alias;
-	}
-
-	public void setAlias(String alias){
-		this.alias = alias;
-	}
-
-	public boolean equals(Object o){
-		if(null == o){
-			return false;
-		}
-		if(!(o instanceof ConnVar)){
-			return false;
-		}
-		ConnVar cv = (ConnVar)o;
-		if(null == cv.getAlias()){
-			if(null == alias){
-				return true;
-			}else{
-				return false;
-			}
-		}
-		return cv.getAlias().equals(alias);
-	}
-
+  public boolean equals(Object o){
+    if(null==o){
+      return false;
+    }
+    if(!(o instanceof ConnVar)){
+      return false;
+    }
+    ConnVar cv = (ConnVar)o;
+    if(null==cv.getAlias()){
+      if(null==alias){
+        return true;
+      }else{
+        return false;
+      }
+    }
+    return cv.getAlias().equals(alias);
+  }
 }

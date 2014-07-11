@@ -5,17 +5,17 @@ import nc.liat6.frame.log.ILogAdapter;
 
 /**
  * Ä¬ÈÏÈÕÖ¾ÊÊÅäÆ÷
+ * 
  * @author 6tail
- *
+ * 
  */
 public class Adapter implements ILogAdapter{
 
-	public ILog getLog(String klass){
-		return new DefaultLog(klass);
-	}
+  public ILog getLog(String klass){
+    return new DefaultLog(klass);
+  }
 
-	public boolean isSupported(){
-		return true;
-	}
-
+  public boolean isSupported(){
+    return true;
+  }
 }

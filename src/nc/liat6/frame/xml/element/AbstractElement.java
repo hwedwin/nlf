@@ -2,7 +2,6 @@ package nc.liat6.frame.xml.element;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import nc.liat6.frame.exception.NlfException;
 import nc.liat6.frame.locale.L;
 
@@ -14,67 +13,64 @@ import nc.liat6.frame.locale.L;
  */
 public abstract class AbstractElement implements IXmlElement{
 
-	private String name;
+  private String name;
+  private String note;
+  private Map<String,String> attributes = new HashMap<String,String>();
+  private static final long serialVersionUID = 2947126141791929934L;
 
-	private String note;
-	
-	private Map<String,String> attributes = new HashMap<String,String>();
+  public XmlMap toXmlMap(){
+    throw new NlfException(L.get("xml.no_map"));
+  }
 
-	private static final long serialVersionUID = 2947126141791929934L;
+  public XmlList toXmlList(){
+    throw new NlfException(L.get("xml.no_list"));
+  }
 
-	public XmlMap toXmlMap(){
-		throw new NlfException(L.get("xml.no_map"));
-	}
+  public XmlBool toXmlBool(){
+    throw new NlfException(L.get("xml.no_bool"));
+  }
 
-	public XmlList toXmlList(){
-		throw new NlfException(L.get("xml.no_list"));
-	}
+  public XmlNumber toXmlNumber(){
+    throw new NlfException(L.get("xml.no_number"));
+  }
 
-	public XmlBool toXmlBool(){
-		throw new NlfException(L.get("xml.no_bool"));
-	}
+  public XmlString toXmlString(){
+    throw new NlfException(L.get("xml.no_string"));
+  }
 
-	public XmlNumber toXmlNumber(){
-		throw new NlfException(L.get("xml.no_number"));
-	}
+  public IXmlElement select(String path){
+    return null;
+  }
 
-	public XmlString toXmlString(){
-		throw new NlfException(L.get("xml.no_string"));
-	}
+  public String getName(){
+    return name;
+  }
 
-	public IXmlElement select(String path){
-		return null;
-	}
+  public void setName(String name){
+    this.name = name;
+  }
 
-	public String getName(){
-		return name;
-	}
+  public String getNote(){
+    return note;
+  }
 
-	public void setName(String name){
-		this.name = name;
-	}
+  public void setNote(String note){
+    this.note = note;
+  }
 
-	public String getNote(){
-		return note;
-	}
+  public Map<String,String> getAttributes(){
+    return attributes;
+  }
 
-	public void setNote(String note){
-		this.note = note;
-	}
+  public void setAttributes(Map<String,String> attributes){
+    this.attributes = attributes;
+  }
 
-	public Map<String,String> getAttributes(){
-		return attributes;
-	}
+  public String getAttribute(String attributeName){
+    return attributes.get(attributeName);
+  }
 
-	public void setAttributes(Map<String,String> attributes){
-		this.attributes = attributes;
-	}
-	
-	public String getAttribute(String attributeName){
-		return attributes.get(attributeName);
-	}
-	
-	public void setAttribute(String attributeName,String value){
-		attributes.put(attributeName,value);
-	}
+  public void setAttribute(String attributeName,String value){
+    attributes.put(attributeName,value);
+  }
 }

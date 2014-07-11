@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import nc.liat6.frame.Version;
 import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.execute.IExecute;
@@ -13,47 +12,45 @@ import nc.liat6.frame.web.upload.UploadStatus;
 
 /**
  * ƒ¨»œWEB≈‰÷√
+ * 
  * @author 6tail
- *
+ * 
  */
 public class WebConfig implements IWebConfig{
 
-	public String getAppRootTag(){
-		return Statics.DEFAULT_APP_ROOT_TAG;
-	}
+  public String getAppRootTag(){
+    return Statics.DEFAULT_APP_ROOT_TAG;
+  }
 
-	public String getErrorPage(){
-		return null;
-	}
+  public String getErrorPage(){
+    return null;
+  }
 
-	public Map<String,Object> getGlobalVars(){
-		return new HashMap<String,Object>();
-	}
+  public Map<String,Object> getGlobalVars(){
+    return new HashMap<String,Object>();
+  }
 
-	public IWebManager getWebManager(){
-		return new WebManager(this);
-	}
+  public IWebManager getWebManager(){
+    return new WebManager(this);
+  }
 
-	public void init(){
-	}
+  public void init(){}
 
-	public List<String> getForbiddenPaths(){
-		List<String> l = new ArrayList<String>();
-		l.add("/"+ Version.PACKAGE);
-		return l;
-	}
+  public List<String> getForbiddenPaths(){
+    List<String> l = new ArrayList<String>();
+    l.add("/"+Version.PACKAGE);
+    return l;
+  }
 
-	public List<String> getAllowPaths(){
-		List<String> l = new ArrayList<String>();
-		l.add("/" + UploadStatus.class.getName());
-		return l;
-	}
+  public List<String> getAllowPaths(){
+    List<String> l = new ArrayList<String>();
+    l.add("/"+UploadStatus.class.getName());
+    return l;
+  }
 
-	public void start(){
-	}
+  public void start(){}
 
-	public IExecute getExecuter(){
-		return new WebExecute();
-	}
-
+  public IExecute getExecuter(){
+    return new WebExecute();
+  }
 }

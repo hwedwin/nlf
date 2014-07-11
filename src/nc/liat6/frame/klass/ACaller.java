@@ -96,14 +96,15 @@ public class ACaller implements ICaller{
 			Method method = desc.getWriteMethod();
 			if(null != method){
 				try{
-					if(null != args && args.containsKey(name)){
-						method.invoke(o,args.get(name));
-					}else{
-						try{
-							Object arg = newInstance(desc.getPropertyType());
-							method.invoke(o,arg);
-						}catch(NlfException ex){}
-					}
+				  if(null!=args){
+				    if(args.containsKey(name)){
+				      method.invoke(o,args.get(name));
+				    }else{
+				      try{
+	              method.invoke(o,newInstance(desc.getPropertyType()));
+	            }catch(NlfException ex){}
+				    }
+				  }
 				}catch(Exception e){
 					throw new NlfException(e);
 				}

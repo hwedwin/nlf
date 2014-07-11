@@ -20,106 +20,100 @@ import nc.liat6.frame.xml.wrapper.XMLWrapper;
  */
 public class XML{
 
-	/** 默认根节点 */
-	public static final String DEFAULT_ROOT_TAG = "data";
+  /** 默认根节点 */
+  public static final String DEFAULT_ROOT_TAG = "data";
+  /** 可设置的全局根节点 */
+  public static String ROOT_TAG = DEFAULT_ROOT_TAG;
+  /** 是否极简（不缩进不换行）的默认设置 */
+  public static final boolean DEFAULT_TINY = true;
+  /** 是否极简（不缩进不换行）的全局设置 */
+  public static boolean TINY = DEFAULT_TINY;
+  /** 默认开启严格模式 */
+  public static final boolean DEFAULT_STRICT = true;
+  /** 是否开启严格模式的全局设置 */
+  public static boolean STRICT = DEFAULT_STRICT;
 
-	/** 可设置的全局根节点 */
-	public static String ROOT_TAG = DEFAULT_ROOT_TAG;
+  private XML(){}
 
-	/** 是否极简（不缩进不换行）的默认设置 */
-	public static final boolean DEFAULT_TINY = true;
+  /**
+   * 采用全局根节点，将对象转换为XML字符串
+   * 
+   * @param o 对象
+   * @return XML字符串
+   */
+  public static String toXML(Object o){
+    return toXML(o,TINY);
+  }
 
-	/** 是否极简（不缩进不换行）的全局设置 */
-	public static boolean TINY = DEFAULT_TINY;
+  /**
+   * 采用全局根节点，将对象转换为XML字符串
+   * 
+   * @param o 对象
+   * @param tiny 是否是极简（不缩进不换行）
+   * @return XML字符串
+   */
+  public static String toXML(Object o,boolean tiny){
+    return toXML(o,tiny,ROOT_TAG);
+  }
 
-	/** 默认开启严格模式 */
-	public static final boolean DEFAULT_STRICT = true;
+  /**
+   * 将对象转换为XML字符串
+   * 
+   * @param o 对象
+   * @param tiny 是否是极简（不缩进不换行）
+   * @param rootTag 自定义根节点
+   * @return XML字符串
+   */
+  public static String toXML(Object o,boolean tiny,String rootTag){
+    return toXML(o,tiny,rootTag,STRICT);
+  }
 
-	/** 是否开启严格模式的全局设置 */
-	public static boolean STRICT = DEFAULT_STRICT;
+  /**
+   * 将对象转换为XML字符串
+   * 
+   * @param o 对象
+   * @param tiny 是否是极简（不缩进不换行）
+   * @param rootTag 自定义根节点
+   * @param strict 是否开启严格模式，开启后非数组父节点强制添加type="bean"属性
+   * @return XML字符串
+   */
+  public static String toXML(Object o,boolean tiny,String rootTag,boolean strict){
+    StringBuilder s = new StringBuilder();
+    s.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+    if(!tiny){
+      s.append("\r\n");
+    }
+    s.append(new XMLWrapper(tiny,strict).wrap(o,rootTag));
+    return s.toString();
+  }
 
-	private XML(){}
+  /**
+   * 将XML字符串转换为对象，可能会丢失节点属性和部分注释
+   * 
+   * @param s XML字符串
+   * @return 对象
+   */
+  public static <T>T toBean(String s){
+    return toBean(fromXML(s));
+  }
 
-	/**
-	 * 采用全局根节点，将对象转换为XML字符串
-	 * 
-	 * @param o 对象
-	 * @return XML字符串
-	 */
-	public static String toXML(Object o){
-		return toXML(o,TINY);
-	}
+  /**
+   * 将XML转换为通用封装
+   * 
+   * @param s XML字符串
+   * @return 对象
+   */
+  public static IXmlElement fromXML(String s){
+    return new XMLParser().parse(s);
+  }
 
-	/**
-	 * 采用全局根节点，将对象转换为XML字符串
-	 * 
-	 * @param o 对象
-	 * @param tiny 是否是极简（不缩进不换行）
-	 * @return XML字符串
-	 */
-	public static String toXML(Object o,boolean tiny){
-		return toXML(o,tiny,ROOT_TAG);
-	}
-
-	/**
-	 * 将对象转换为XML字符串
-	 * 
-	 * @param o 对象
-	 * @param tiny 是否是极简（不缩进不换行）
-	 * @param rootTag 自定义根节点
-	 * @return XML字符串
-	 */
-	public static String toXML(Object o,boolean tiny,String rootTag){
-		return toXML(o,tiny,rootTag,STRICT);
-	}
-
-	/**
-	 * 将对象转换为XML字符串
-	 * 
-	 * @param o 对象
-	 * @param tiny 是否是极简（不缩进不换行）
-	 * @param rootTag 自定义根节点
-	 * @param strict 是否开启严格模式，开启后非数组父节点强制添加type="bean"属性
-	 * @return XML字符串
-	 */
-	public static String toXML(Object o,boolean tiny,String rootTag,boolean strict){
-		StringBuilder s = new StringBuilder();
-		s.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-		if(!tiny){
-			s.append("\r\n");
-		}
-		s.append(new XMLWrapper(tiny,strict).wrap(o,rootTag));
-		return s.toString();
-	}
-
-	/**
-	 * 将XML字符串转换为对象，可能会丢失节点属性和部分注释
-	 * 
-	 * @param s XML字符串
-	 * @return 对象
-	 */
-	public static <T>T toBean(String s){
-		return toBean(fromXML(s));
-	}
-
-	/**
-	 * 将XML转换为通用封装
-	 * 
-	 * @param s XML字符串
-	 * @return 对象
-	 */
-	public static IXmlElement fromXML(String s){
-		return new XMLParser().parse(s);
-	}
-
-	/**
-	 * 将XML通用封装转换为对象，可能会丢失节点属性和部分注释
-	 * 
-	 * @param xe
-	 * @return
-	 */
-	public static <T>T toBean(IXmlElement xe){
-		return new BeanParser().parse(xe);
-	}
-
+  /**
+   * 将XML通用封装转换为对象，可能会丢失节点属性和部分注释
+   * 
+   * @param xe
+   * @return
+   */
+  public static <T>T toBean(IXmlElement xe){
+    return new BeanParser().parse(xe);
+  }
 }

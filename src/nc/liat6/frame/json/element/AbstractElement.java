@@ -11,40 +11,38 @@ import nc.liat6.frame.locale.L;
  */
 public abstract class AbstractElement implements IJsonElement{
 
-	private String note;
+  private String note;
+  private static final long serialVersionUID = 1435775670247849314L;
 
-	private static final long serialVersionUID = 1435775670247849314L;
+  public JsonMap toJsonMap(){
+    throw new NlfException(L.get("json.no_map"));
+  }
 
-	public JsonMap toJsonMap(){
-		throw new NlfException(L.get("json.no_map"));
-	}
+  public JsonList toJsonList(){
+    throw new NlfException(L.get("json.no_list"));
+  }
 
-	public JsonList toJsonList(){
-		throw new NlfException(L.get("json.no_list"));
-	}
+  public JsonBool toJsonBool(){
+    throw new NlfException(L.get("json.no_bool"));
+  }
 
-	public JsonBool toJsonBool(){
-		throw new NlfException(L.get("json.no_bool"));
-	}
+  public JsonNumber toJsonNumber(){
+    throw new NlfException(L.get("json.no_number"));
+  }
 
-	public JsonNumber toJsonNumber(){
-		throw new NlfException(L.get("json.no_number"));
-	}
+  public JsonString toJsonString(){
+    throw new NlfException(L.get("json.no_string"));
+  }
 
-	public JsonString toJsonString(){
-		throw new NlfException(L.get("json.no_string"));
-	}
+  public IJsonElement select(String path){
+    return null;
+  }
 
-	public IJsonElement select(String path){
-		return null;
-	}
+  public String getNote(){
+    return note;
+  }
 
-	public String getNote(){
-		return note;
-	}
-
-	public void setNote(String note){
-		this.note = note;
-	}
-
+  public void setNote(String note){
+    this.note = note;
+  }
 }

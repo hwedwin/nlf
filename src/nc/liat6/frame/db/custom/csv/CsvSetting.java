@@ -1,6 +1,6 @@
 package nc.liat6.frame.db.custom.csv;
 
-import nc.liat6.frame.db.setting.IDbSetting;
+import nc.liat6.frame.db.setting.impl.SuperDbSetting;
 
 /**
  * CSV连接配置
@@ -8,53 +8,19 @@ import nc.liat6.frame.db.setting.IDbSetting;
  * @author 6tail
  * 
  */
-public class CsvSetting implements IDbSetting{
+public class CsvSetting extends SuperDbSetting{
 
-	private static final long serialVersionUID = 8889847573386316725L;
-	private String type = "csv";
-	private String alias;
-	private String driver;
-	private String dbType;
-	private String dbName;
+  private static final long serialVersionUID = 8889847573386316725L;
+  /** 默认连接类型 */
+  public static final String DEFAULT_TYPE = "csv";
+  /** 默认数据库类型 */
+  public static final String DEFAULT_DB_TYPE = "csv";
+  /** 默认驱动程序 */
+  public static final String DEFAULT_DRIVER = CsvDriver.class.getName();
 
-	public String getAlias(){
-		return alias;
-	}
-
-	public void setAlias(String alias){
-		this.alias = alias;
-	}
-
-	public String getDriver(){
-		return driver;
-	}
-
-	public void setDriver(String driver){
-		this.driver = driver;
-	}
-
-	public String getType(){
-		return type;
-	}
-
-	public String getDbType(){
-		return dbType;
-	}
-
-	public void setDbType(String dbType){
-		this.dbType = dbType;
-	}
-
-	public String getDbName(){
-		return dbName;
-	}
-
-	public void setDbName(String dbName){
-		this.dbName = dbName;
-	}
-
-	public void setType(String type){
-		this.type = type;
-	}
-
+  public CsvSetting(){
+    type = DEFAULT_TYPE;
+    dbType = DEFAULT_DB_TYPE;
+    driver = DEFAULT_DRIVER;
+  }
 }

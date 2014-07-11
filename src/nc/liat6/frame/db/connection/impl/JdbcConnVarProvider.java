@@ -3,11 +3,9 @@ package nc.liat6.frame.db.connection.impl;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
 import nc.liat6.frame.db.connection.ConnVar;
 import nc.liat6.frame.db.connection.SqlConnection;
 import nc.liat6.frame.db.exception.DaoException;
-import nc.liat6.frame.db.setting.IDbSetting;
 import nc.liat6.frame.db.setting.impl.JdbcSetting;
 import nc.liat6.frame.locale.L;
 import nc.liat6.frame.locale.LocaleFactory;
@@ -20,18 +18,8 @@ import nc.liat6.frame.log.Logger;
  */
 public class JdbcConnVarProvider extends SuperConnVarProvider {
 	
-	private JdbcSetting setting;
-
-	public IDbSetting getSetting() {
-		return setting;
-	}
-
-	public void setSetting(IDbSetting setting) {
-		this.setting = (JdbcSetting)setting;
-		super.registDriver(this.setting.getDriver());
-	}
-
 	public ConnVar getConnVar() {
+	  JdbcSetting setting = (JdbcSetting)this.setting;
 		ConnVar cv = new ConnVar();
 		cv.setDbType(setting.getDbType());
 		cv.setAlias(setting.getAlias());

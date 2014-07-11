@@ -1,14 +1,11 @@
 package nc.liat6.frame.db.custom.mongo;
 
 import java.net.UnknownHostException;
-
 import nc.liat6.frame.db.connection.ConnVar;
 import nc.liat6.frame.db.connection.impl.SuperConnVarProvider;
 import nc.liat6.frame.db.exception.DaoException;
-import nc.liat6.frame.db.setting.IDbSetting;
 import nc.liat6.frame.locale.L;
 import nc.liat6.frame.util.Stringer;
-
 import com.mongodb.Mongo;
 
 /**
@@ -19,19 +16,8 @@ import com.mongodb.Mongo;
  */
 public class MongoConnVarProvider extends SuperConnVarProvider{
 
-	/** MONGO¡¨Ω”≈‰÷√ */
-	private MongoSetting setting;
-	
-	public IDbSetting getSetting(){
-		return setting;
-	}
-
-	public void setSetting(IDbSetting setting){
-		this.setting = (MongoSetting)setting;
-		super.registDriver(this.setting.getDriver());
-	}
-
 	public ConnVar getConnVar(){
+	  MongoSetting setting = (MongoSetting)this.setting;
 		ConnVar cv = new ConnVar();
 		cv.setDbType(setting.getDbType());
 		cv.setAlias(setting.getAlias());

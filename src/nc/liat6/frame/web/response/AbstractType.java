@@ -8,15 +8,14 @@ package nc.liat6.frame.web.response;
  */
 public abstract class AbstractType extends Json{
 
-	/** UI组件名称 */
-	private String xtype;
+  /** UI组件名称 */
+  private String xtype;
 
-	public AbstractType(String xtype){
-		this.xtype = xtype;
-	}
+  public AbstractType(String xtype){
+    this.xtype = xtype;
+  }
 
-	public String getXtype(){
-		return xtype;
-	}
-
+  public String getXtype(){
+    return xtype;
+  }
 }

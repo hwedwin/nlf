@@ -6,15 +6,15 @@ package nc.liat6.frame.json.element;
  * @author 6tail
  * 
  */
-public enum JsonType {
-	/** 对象 */
-	MAP,
-	/** 列表 */
-	LIST,
-	/** 字符串 */
-	STRING,
-	/** 数字 */
-	NUMBER,
-	/** 布尔值 */
-	BOOL
+public enum JsonType{
+  /** 对象 */
+  MAP,
+  /** 列表 */
+  LIST,
+  /** 字符串 */
+  STRING,
+  /** 数字 */
+  NUMBER,
+  /** 布尔值 */
+  BOOL
 }

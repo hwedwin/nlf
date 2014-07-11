@@ -8,53 +8,49 @@ package nc.liat6.frame.web.response;
  */
 public class Alert extends AbstractType{
 
-	private String title=null;
-	private String content=null;
-	private Integer width=null;
-	private Integer height=null;
-	
+  private String title = null;
+  private String content = null;
+  private Integer width = null;
+  private Integer height = null;
 
-	public Alert(){
-		super("z.Alert");
-	}
-	
-	public Alert(String content){
-		this();
-		setContent(content);
-	}
+  public Alert(){
+    super("z.Alert");
+  }
 
-	public String getTitle(){
-		return title;
-	}
+  public Alert(String content){
+    this();
+    setContent(content);
+  }
 
-	public void setTitle(String title){
-		this.title = title;
-	}
+  public String getTitle(){
+    return title;
+  }
 
-	public String getContent(){
-		return content;
-	}
+  public void setTitle(String title){
+    this.title = title;
+  }
 
-	public void setContent(String content){
-		this.content = content;
-	}
+  public String getContent(){
+    return content;
+  }
 
-	public Integer getWidth(){
-		return width;
-	}
+  public void setContent(String content){
+    this.content = content;
+  }
 
-	public void setWidth(Integer width){
-		this.width = width;
-	}
+  public Integer getWidth(){
+    return width;
+  }
 
-	public Integer getHeight(){
-		return height;
-	}
+  public void setWidth(Integer width){
+    this.width = width;
+  }
 
-	public void setHeight(Integer height){
-		this.height = height;
-	}
-	
-	
+  public Integer getHeight(){
+    return height;
+  }
 
+  public void setHeight(Integer height){
+    this.height = height;
+  }
 }

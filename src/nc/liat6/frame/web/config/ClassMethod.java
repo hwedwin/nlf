@@ -2,29 +2,28 @@ package nc.liat6.frame.web.config;
 
 /**
  * ¿‡&∑Ω∑®
+ * 
  * @author 6tail
- *
+ * 
  */
 public class ClassMethod{
 
-	private String klass;
+  private String klass;
+  private String method;
 
-	private String method;
+  public String getKlass(){
+    return klass;
+  }
 
-	public String getKlass(){
-		return klass;
-	}
+  public void setKlass(String klass){
+    this.klass = klass;
+  }
 
-	public void setKlass(String klass){
-		this.klass = klass;
-	}
+  public String getMethod(){
+    return method;
+  }
 
-	public String getMethod(){
-		return method;
-	}
-
-	public void setMethod(String method){
-		this.method = method;
-	}
-
+  public void setMethod(String method){
+    this.method = method;
+  }
 }

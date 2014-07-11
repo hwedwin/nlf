@@ -1,87 +1,18 @@
 package nc.liat6.frame.db.setting.impl;
 
-import nc.liat6.frame.db.setting.IDbSetting;
-
 /**
  * JDBC连接配置
  * 
  * @author 6tail
  * 
  */
-public class JdbcSetting implements IDbSetting{
+public class JdbcSetting extends SuperDbSetting{
 
-	private static final long serialVersionUID = 5902760339352767337L;
-	private String type = "jdbc";
-	private String alias;
-	private String url;
-	private String user;
-	private String password;
-	private String driver;
-	private String dbType;
-	private String dbName;
+  private static final long serialVersionUID = 5902760339352767337L;
+  /** 默认连接类型 */
+  public static final String DEFAULT_TYPE = "jdbc";
 
-	public String getAlias(){
-		return alias;
-	}
-
-	public void setAlias(String alias){
-		this.alias = alias;
-	}
-
-	public String getUrl(){
-		return url;
-	}
-
-	public void setUrl(String url){
-		this.url = url;
-	}
-
-	public String getUser(){
-		return user;
-	}
-
-	public void setUser(String user){
-		this.user = user;
-	}
-
-	public String getPassword(){
-		return password;
-	}
-
-	public void setPassword(String password){
-		this.password = password;
-	}
-
-	public String getDriver(){
-		return driver;
-	}
-
-	public void setDriver(String driver){
-		this.driver = driver;
-	}
-
-	public String getType(){
-		return type;
-	}
-
-	public String getDbType(){
-		return dbType;
-	}
-
-	public void setDbType(String dbType){
-		this.dbType = dbType;
-	}
-
-	public String getDbName(){
-		return dbName;
-	}
-
-	public void setDbName(String dbName){
-		this.dbName = dbName;
-	}
-
-	public void setType(String type){
-		this.type = type;
-	}
-
+  public JdbcSetting(){
+    type = DEFAULT_TYPE;
+  }
 }

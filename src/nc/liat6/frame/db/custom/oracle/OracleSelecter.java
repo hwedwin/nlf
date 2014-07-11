@@ -16,7 +16,7 @@ public class OracleSelecter extends CommonSelecter implements IOracle{
 		r.setColumn(column);
 		if(null != value){
 			r.setOpStart("=");
-			params.add(value);
+			paramWheres.add(value);
 		}else{
 			r.setOpStart(" IS NULL");
 			r.setTag("");
@@ -30,7 +30,7 @@ public class OracleSelecter extends CommonSelecter implements IOracle{
 		r.setColumn(column);
 		if(null != value){
 			r.setOpStart("!=");
-			params.add(value);
+			paramWheres.add(value);
 		}else{
 			r.setOpStart(" IS NOT NULL");
 			r.setTag("");
