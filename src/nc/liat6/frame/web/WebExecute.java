@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import nc.liat6.frame.context.Context;
 import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.exception.BadException;
@@ -113,12 +114,17 @@ public class WebExecute extends AbstractExecute{
    */
   private void initPagingParam(){
     Request req = Context.get(Statics.REQUEST);
+    HttpSession session = req.find(TAG_SESSION);
     HttpServletRequest oreq = req.find(TAG_REQUEST);
     PagingParam pagingParam = new PagingParam();
     String s = req.get(Request.PAGE_PARAM_VAR);
     try{
       pagingParam = (PagingParam)Objecter.decode(s);
-    }catch(Exception e){}
+    }catch(Exception e){
+      try{
+        pagingParam.setParam(Request.PAGE_SIZE_VAR,session.getAttribute(Request.PAGE_SIZE_VAR)+"");
+      }catch(Exception ex){}
+    }
     for(String key:req.getParams().keySet()){
       if(Request.PAGE_PARAM_VAR.equals(key)){
         continue;
@@ -132,6 +138,7 @@ public class WebExecute extends AbstractExecute{
     }catch(IOException e){
       throw new BadException(e);
     }
+    session.setAttribute(Request.PAGE_SIZE_VAR,pagingParam.getParam(Request.PAGE_SIZE_VAR));
   }
 
   @Override
