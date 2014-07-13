@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+  <tlib-version>1.0</tlib-version>
+  <jsp-version>1.2</jsp-version>
+  <short-name>nlft</short-name>
+  <display-name>nlf core</display-name>
+  <description>nlf tag</description>
+  <tag>
+    <name>page</name>
+    <tag-class>nc.liat6.frame.web.tags.paging.PagingTag</tag-class>
+    <body-content>empty</body-content>
+    <small-icon></small-icon>
+    <large-icon></large-icon>
+    <description>auto paging</description>
+    <attribute>
+      <name>id</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+      <description>id</description>
+    </attribute>
+    <attribute>
+      <name>near</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.Integer</type>
+      <description></description>
+    </attribute>
+    <attribute>
+      <name>dataVar</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+      <description></description>
+    </attribute>
+    <example></example>
+  </tag>
+  <tag>
+    <name>jsbegin</name>
+    <tag-class>nc.liat6.frame.web.tags.script.JavaScriptBeginTag</tag-class>
+    <body-content>JSP</body-content>
+    <small-icon></small-icon>
+    <large-icon></large-icon>
+    <description></description>
+    <example></example>
+  </tag>
+  <tag>
+    <name>tpl</name>
+    <tag-class>nc.liat6.frame.web.tags.tpl.TplTag</tag-class>
+    <body-content>JSP</body-content>
+    <small-icon></small-icon>
+    <large-icon></large-icon>
+    <description></description>
+    <attribute>
+      <name>id</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+      <description>id</description>
+    </attribute>
+    <example></example>
+  </tag>
+</taglib>
