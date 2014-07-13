@@ -12,7 +12,16 @@
     <dispatcher>REQUEST</dispatcher>
     <dispatcher>FORWARD</dispatcher>
   </filter-mapping>
-  
+  <jsp-config>
+    <taglib>
+      <taglib-uri>/nlft</taglib-uri>
+      <taglib-location>/WEB-INF/taglib/nlft.tld</taglib-location>
+    </taglib>
+    <taglib>
+      <taglib-uri>/nlfe</taglib-uri>
+      <taglib-location>/WEB-INF/taglib/nlfe.tld</taglib-location>
+    </taglib>
+  </jsp-config>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
