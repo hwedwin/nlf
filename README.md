@@ -21,12 +21,12 @@ WebContent下有六特尔开发的一个js框架，通过一个核心js文件自
 >/js/test/B.js
 <br />
 html代码：
-><script type="text/javascript" src="/js/icore.js"></script>
-><script type="text/javascript">
+>&lt;script type="text/javascript" src="/js/icore.js"&gt;&lt;/script&gt;
+>&lt;script type="text/javascript"&gt;
 >I.want(function(){
 >  I.test.A.sayHello();
 >});
-></script>
+>&lt;/script&gt;
 <br />
 B.js代码：
 >I.regist('test.B',function(W,D){
