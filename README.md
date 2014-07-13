@@ -1,21 +1,53 @@
-NLF¿ò¼Ü
+NLFæ¡†æž¶
 ===
 
-NLF¿ò¼ÜÊÇÁùÌØ¶û¶À×Ô¿ª·¢µÄÇáÁ¿¼¶java¿ò¼Ü£¬ËüÖ»ÓÐ1¸öjar°ü£¬º¬Ô´´úÂëÔÚÄÚÖ»ÓÐ600+KBµÄ´óÐ¡¡£ËüÎÞÇÖÈë£¬ÎÞÒÀÀµ£¬ÁãÅäÖÃ£¬ÎÞ×¢½â£¬Ö§³ÖAOP£¬×Ô¶¯IOC£¬class¶¯Ì¬¼ÓÔØ£¬Ô­ÉúÖ§³ÖOracle¡¢SQLSERVER¡¢MYSQL¡¢MONGOºÍ¶À´´µÄCSVÊý¾Ý¿â¡£Ê¹ÓÃËüÄã½«»áÌåÑéµ½Ç°ËùÎ´ÓÐµÄ¿ª·¢Ð§ÂÊ£¬²¢ÇÒÄã»á·¢ÏÖ£¬ËüÖ§³ÖjavaseºÍjavaeeÓ¦ÓÃ£¬ÄãÉõÖÁ²»ÐèÒªÆô¶¯Server¾Í¿ÉÒÔ¶ÔwebÓ¦ÓÃºóÌ¨´úÂë½øÐÐµ÷ÊÔ¡£
+NLFæ¡†æž¶æ˜¯å…­ç‰¹å°”ç‹¬è‡ªå¼€å‘çš„è½»é‡çº§javaæ¡†æž¶ï¼Œå®ƒåªæœ‰1ä¸ªjaråŒ…ï¼Œå«æºä»£ç åœ¨å†…åªæœ‰600+KBçš„å¤§å°ã€‚å®ƒæ— ä¾µå…¥ï¼Œæ— ä¾èµ–ï¼Œé›¶é…ç½®ï¼Œæ— æ³¨è§£ï¼Œæ”¯æŒAOPï¼Œè‡ªåŠ¨IOCï¼Œæ”¯æŒè‡ªåŠ¨åˆ†é¡µï¼ŒclassåŠ¨æ€åŠ è½½ï¼ŒåŽŸç”Ÿæ”¯æŒOracleã€SQLSERVERã€MYSQLã€MONGOå’Œç‹¬åˆ›çš„CSVæ•°æ®åº“ã€‚ä½¿ç”¨å®ƒä½ å°†ä¼šä½“éªŒåˆ°å‰æ‰€æœªæœ‰çš„å¼€å‘æ•ˆçŽ‡ï¼Œå¹¶ä¸”ä½ ä¼šå‘çŽ°ï¼Œå®ƒæ”¯æŒjavaseå’Œjavaeeåº”ç”¨ï¼Œä½ ç”šè‡³ä¸éœ€è¦å¯åŠ¨Serverå°±å¯ä»¥å¯¹webåº”ç”¨åŽå°ä»£ç è¿›è¡Œè°ƒè¯•ã€‚
 <br />
 <br />
-ÁùÌØ¶û²¢²»Ô¸ÒâÆäËûÈËÀ´Ö±½ÓÐÞ¸ÄNLF¿ò¼ÜµÄ´úÂë£¬ÒòÎªÁùÌØ¶ûÖÂÁ¦ÓÚ½«Ëü´òÔìÎªÍêÃÀµÄ×÷Æ·£¬ÆäËûÈËÐ´µÄ´úÂë£¬ÊµÔÚÃ»ÓÐ¼ÓÈë½øÀ´µÄÒâÒå¡£
+å…­ç‰¹å°”å¹¶ä¸æ„¿æ„å…¶ä»–äººæ¥ç›´æŽ¥ä¿®æ”¹NLFæ¡†æž¶çš„ä»£ç ï¼Œå› ä¸ºå…­ç‰¹å°”è‡´åŠ›äºŽå°†å®ƒæ‰“é€ ä¸ºå®Œç¾Žçš„ä½œå“ï¼Œå…¶ä»–äººå†™çš„ä»£ç ï¼Œå®žåœ¨æ²¡æœ‰åŠ å…¥è¿›æ¥çš„æ„ä¹‰ã€‚
 <br />
 <br /> 
-µ«ÊÇÄú¿ÉÒÔµ±Ð¡°×Êó£¬ÌáÒâ¼û£¬Ìábug£¬ºÃµÄideaÎÒ»¹ÊÇÔ¸Òâ½ÓÊÜµÄ¡£
+ä½†æ˜¯æ‚¨å¯ä»¥å½“å°ç™½é¼ ï¼Œææ„è§ï¼Œæbugï¼Œå¥½çš„ideaæˆ‘è¿˜æ˜¯æ„¿æ„æŽ¥å—çš„ã€‚
 
 ===
-Äú¿ÉÒÔÔÚÁùÌØ¶û¸öÈËÖ÷Ò³ÉÏÁË½â¹ØÓÚNLF¿ò¼ÜµÄÒ»Ð©ÐÅÏ¢£¬ÍøÖ·£ºhttp://6tail.cn¡£
+WebContentä¸‹æœ‰å…­ç‰¹å°”å¼€å‘çš„ä¸€ä¸ªjsæ¡†æž¶ï¼Œé€šè¿‡ä¸€ä¸ªæ ¸å¿ƒjsæ–‡ä»¶è‡ªåŠ¨æŒ‰éœ€åŠ è½½éœ€è¦çš„ç»„ä»¶ã€‚
 <br />
+è¿™æ˜¯ä¸€ä¸ªå²ä¸Šæœ€æ™ºèƒ½çš„æŒ‰éœ€åŠ è½½jsæ¡†æž¶ï¼Œè¿™å„¿æœ‰ä¸€ä¸ªä½¿ç”¨ä¾‹å­ï¼š
 <br />
-Í¬Ê±£¬ÓÐ±ØÒªÈÃÄúÖªµÀ£¬ÁùÌØ¶û¸öÈËÖ÷Ò³¾ÍÊÇ»ùÓÚNLF¿ò¼Ü¹¹½¨µÄÒ»¸ö¿ªÔ´blog£¬Ãû×Ö½Ðnpress£¬Õâ¸öblogÁ¬Êý¾Ý¿â¶¼²»ÐèÒª£¨ÒòÎª²ÉÓÃÁËNLF¿ò¼Ü×Ô´øµÄCSVÊý¾Ý¿â£©£¬Ö±½Ó²¿ÊðÔËÐÐ¡£
+è¿™æ˜¯jsæ–‡ä»¶è·¯å¾„ï¼š
+>/js
+>/js/icore.js
+>/js/test/A.js
+>/js/test/B.js
 <br />
+htmlä»£ç ï¼š
+><script type="text/javascript" src="/js/icore.js"></script>
+><script type="text/javascript">
+>I.want(function(){
+>  I.test.A.sayHello();
+>});
+></script>
 <br />
-ÄúÒ²¿ÉÒÔÔÚ¸ÃÖ÷Ò³ÉÏÁË½âµ½¹ØÓÚnpressµÄÏà¹ØÐÅÏ¢¡£
+B.jsä»£ç ï¼š
+>I.regist('test.B',function(W,D){
+>  var _say = function(){
+>    W.alert('Hello World!');
+>  };
+>  return {
+>    say:function(){_say();}
+>  };
+>}+'');
+<br />
+A.jsä»£ç ï¼š
+>I.regist('test.A',function(W,D){
+>  var _sayHello = function(){
+>    I.test.B.say();
+>  };
+>  return {
+>    sayHello:function(){_sayHello();}
+>  };
+>}+'');
 
-> NLF¿ò¼Ü¹Ù·½QQÈº£º281471914
+===
+
+> NLFæ¡†æž¶å®˜æ–¹QQç¾¤ï¼š281471914
