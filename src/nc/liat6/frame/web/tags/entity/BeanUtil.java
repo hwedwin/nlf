@@ -4,6 +4,7 @@ import nc.liat6.frame.db.entity.Bean;
 
 /**
  * Bean¹¤¾ß
+ * <i>EL:${nlfe:bean(obj,"key")}</i>
  * 
  * @author 6tail
  * 
@@ -18,12 +19,9 @@ public class BeanUtil{
    * @return Öµ
    */
   public static Object get(Bean bean,String key){
-    if(null==bean)
+    if(null==bean){
       return null;
-    Object r = bean.get(key);
-    // if(r instanceof String){
-    // return ((String)r).replace("<","&lt;").replace(">","&gt;");
-    // }
-    return r;
+    }
+    return bean.get(key);
   }
 }
