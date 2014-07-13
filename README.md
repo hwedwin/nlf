@@ -14,39 +14,39 @@ WebContent下有六特尔开发的一个js框架，通过一个核心js文件自
 <br />
 这是一个史上最智能的按需加载js框架，这儿有一个使用例子：
 <br />
-这是js文件路径：
->/js
->/js/icore.js
->/js/test/A.js
->/js/test/B.js
-<br />
-html代码：
->&lt;script type="text/javascript" src="/js/icore.js"&gt;&lt;/script&gt;
->&lt;script type="text/javascript"&gt;
->I.want(function(){
->  I.test.A.sayHello();
->});
->&lt;/script&gt;
-<br />
-B.js代码：
->I.regist('test.B',function(W,D){
->  var _say = function(){
->    W.alert('Hello World!');
->  };
->  return {
->    say:function(){_say();}
->  };
->}+'');
-<br />
-A.js代码：
->I.regist('test.A',function(W,D){
->  var _sayHello = function(){
->    I.test.B.say();
->  };
->  return {
->    sayHello:function(){_sayHello();}
->  };
->}+'');
+这是js文件路径：<br />
+>/js<br />
+>/js/icore.js<br />
+>/js/test/A.js<br />
+>/js/test/B.js<br />
+<br /><br />
+html代码：<br />
+>&lt;script type="text/javascript" src="/js/icore.js"&gt;&lt;/script&gt;<br />
+>&lt;script type="text/javascript"&gt;<br />
+>I.want(function(){<br />
+>  I.test.A.sayHello();<br />
+>});<br />
+>&lt;/script&gt;<br />
+<br /><br />
+B.js代码：<br />
+>I.regist('test.B',function(W,D){<br />
+>  var _say = function(){<br />
+>    W.alert('Hello World!');<br />
+>  };<br />
+>  return {<br />
+>    say:function(){_say();}<br />
+>  };<br />
+>}+'');<br />
+<br /><br />
+A.js代码：<br />
+>I.regist('test.A',function(W,D){<br />
+>  var _sayHello = function(){<br />
+>    I.test.B.say();<br />
+>  };<br />
+>  return {<br />
+>    sayHello:function(){_sayHello();}<br />
+>  };<br />
+>}+'');<br />
 
 ===
 
