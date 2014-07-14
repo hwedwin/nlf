@@ -38,23 +38,38 @@
   <li><b></b><i></i><input type="checkbox" /><a>二年级</a></li>
   <li><b></b><i></i><input type="checkbox" /><a>三年级</a></li>
 </ul>
-<a id="btnA" class="i-ui-Button-Default">获取选中的</a>
-<a id="btnB" class="i-ui-Button-Default">添加节点</a>
-<a id="btnC" class="i-ui-Button-Default">通过json创建一颗新的树</a>
+<a id="btnA" class="i-ui-Button-Default" href="javascript:void(0);">获取选中的</a>
+<a id="btnB" class="i-ui-Button-Default" href="javascript:void(0);">添加子节点</a>
+<a id="btnD" class="i-ui-Button-Default" href="javascript:void(0);">删除选中节点</a>
+<a id="btnC" class="i-ui-Button-Default" href="javascript:void(0);">通过json创建一颗新的树</a>
 <script type="text/javascript">
 I.want(function(){
-  //渲染tree
+  //渲染树到id为tree的ul上
   var tree = I.ui.Tree.render('tree',{
+    //当点击text的事件响应，who指点击的节点对象
     onClick:function(who){
+      //让点击text的时候，也切换展开和收缩
       if('folder'==who.type){
         who.expand = !who.expand;
+        //注意改变了状态要更新一下
         who.repaint();
       }else{
         window.alert(who.dom.a.innerHTML);
       }
+    },
+    //当点击checkbox的时候的事件响应，who指点击的节点对象
+    onCheck:function(who){
+      //获取子节点
+      var chd = who.getChildren();
+      for(var i=0;i<chd.length;i++){
+        //子节点选中状态保持与父节点一致
+        chd[i].checked = who.checked;
+        //别忘了更新
+        chd[i].repaint();
+      }
     }
   });
-  //按钮事件
+  //按钮事件，弹出选中节点的text
   I.listen('btnA','click',function(m,e){
     var text = [];
     var selected = tree.getSelected();
@@ -64,7 +79,7 @@ I.want(function(){
     window.alert(text.join(','));
   });
   
-  //按钮事件
+  //按钮事件，添加子节点，如果有选中的，在选中的下边添加子节点，否则在根节点下添加子节点
   I.listen('btnB','click',function(m,e){
     var selected = tree.getSelected();
     if(selected.length<1){
@@ -76,7 +91,15 @@ I.want(function(){
     }
   });
   
-  //按钮事件，通过json渲染tree
+  //按钮事件，删除选中节点
+  I.listen('btnD','click',function(m,e){
+    var selected = tree.getSelected();
+    for(var i=0;i<selected.length;i++){
+      tree.remove(selected[i].uuid);
+    }
+  });
+  
+  //按钮事件，通过json渲染树
   I.listen('btnC','click',function(m,e){
     var d = [
       {text:'爷爷',checked:true,expand:false,children:[
@@ -107,8 +130,10 @@ I.want(function(){
       }}
     ];
     var newTree = I.ui.Tree.create({
-      skin:'Blue',
-      data:d,
+      //dom:document.body,
+      skin:'Blue',//皮肤名
+      data:d,//数据
+      //点击text事件
       onClick:function(who){
         window.alert(who.dom.li.getAttribute('gender')+','+who.dom.li.getAttribute('data-id')+','+who.dom.a.innerHTML);
       }
