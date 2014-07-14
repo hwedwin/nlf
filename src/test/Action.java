@@ -16,7 +16,7 @@ public class Action{
     PageData pd = t.getSelecter().table("T006_CITY").page(r.getPageNumber(),r.getPageSize());
     Paging p = new Paging();
     p.setPageData(pd);
-    p.setUri("/paging.jsp");
+    p.setUri("/demo/paging.jsp");
     return p;
   }
 }
