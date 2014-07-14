@@ -15,7 +15,8 @@ I.regist('ui.Tree',function(W,D){
     folder_open_icon:'fa fa-folder-open-o',
     folder_close_icon:'fa fa-folder-o',
     file_icon:'fa fa-file-o',
-    onClick:function(who){}
+    onClick:function(who){},
+    onCheck:function(who){}
   };
 
   var _create = function(obj,ul,cfg,data){
@@ -131,6 +132,25 @@ I.regist('ui.Tree',function(W,D){
       inst.repaint();
       return _bindItem(obj,li,cfg);
     };
+    item.getChildren = function(){
+      var chd = [];
+      var inst = this;
+      var ls = I.$(inst.dom.li,'tag','li');
+      if(!ls){
+        return chd;
+      }
+      if(ls.length<1){
+        return chd;
+      }
+      for(var i=0;i<ls.length;i++){
+        var uuid = ls[i].getAttribute('data-uuid');
+        var q = obj.items[uuid];
+        if(q){
+          chd.push(q);
+        }
+      }
+      return chd;
+    };
     obj.items[item.uuid] = item;
     var tags = I.$(li,'*');
     if(!tags){
@@ -208,6 +228,7 @@ I.regist('ui.Tree',function(W,D){
           return;
         }
         q.checked = this.checked?true:false;
+        cfg.onCheck(q);
       };
     }
     return item;
@@ -246,6 +267,11 @@ I.regist('ui.Tree',function(W,D){
       var li = I.insert('li',obj.layer);
       li.innerHTML = nodeHtml;
       return _bindItem(obj,li,cfg);
+    };
+    obj.remove = function(uuid){
+      var li = this.items[uuid].dom.li;
+      li.parentNode.removeChild(li);
+      delete this.items[uuid];
     };
     I.util.Skin.init(cfg.skin);
     I.cls(obj.layer,obj.className);
