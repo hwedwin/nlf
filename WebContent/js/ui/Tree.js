@@ -155,25 +155,39 @@ I.regist('ui.Tree',function(W,D){
       item.type = 'folder';
       item.expand = true;
       item.repaint();
-      if(item.dom.icon){
-        item.dom.icon.onclick = function(){
-          var p = this.parentNode;
-          var q = obj.items[p.getAttribute('data-uuid')];
-          if(!q){
-            return;
-          }
-          if('folder'!=q.type){
-            return;
-          }
-          q.expand = !q.expand;
-          q.repaint();
-        };
-      }
       _bind(obj,item.dom.ul,cfg);
     }else{
       item.type = 'file';
       item.expand = false;
       item.repaint();
+    }
+    if(item.dom.arrow){
+      item.dom.arrow.onclick = function(){
+        var p = this.parentNode;
+        var q = obj.items[p.getAttribute('data-uuid')];
+        if(!q){
+          return;
+        }
+        if('folder'!=q.type){
+          return;
+        }
+        q.expand = !q.expand;
+        q.repaint();
+      };
+    }
+    if(item.dom.icon){
+      item.dom.icon.onclick = function(){
+        var p = this.parentNode;
+        var q = obj.items[p.getAttribute('data-uuid')];
+        if(!q){
+          return;
+        }
+        if('folder'!=q.type){
+          return;
+        }
+        q.expand = !q.expand;
+        q.repaint();
+      };
     }
     if(item.dom.a){
       item.dom.a.href = 'javascript:void(0);';
