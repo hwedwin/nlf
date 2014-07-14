@@ -232,7 +232,7 @@
       loaded:false,
       code:cd
     };
-    if(0==c.indexOf('lang')){
+    if(0==c.indexOf('lang.')){
       try{
         initClass(c,cd);
       }catch(e){
@@ -307,6 +307,9 @@
     }
     var z = [];
     for(var i in c){
+      if(0==i.indexOf('lang.')){
+        continue;
+      }
       z.push(i);
     }
     return z;
