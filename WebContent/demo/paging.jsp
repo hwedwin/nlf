@@ -10,13 +10,11 @@
 <link type="text/css" rel="stylesheet" href="${PATH}/css/font-awesome.css" />
 <style type="text/css">
 *{font-size:14px;}
-#a{
-  margin:200px;
-}
 </style>
 <script type="text/javascript" src="${PATH}/js/icore.js"></script>
 </head>
 <body>
+<a href="${PATH}/">返回首页</a>
 <table>
   <thead>
     <tr>

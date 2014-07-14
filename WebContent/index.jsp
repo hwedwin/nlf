@@ -7,23 +7,31 @@
 <link type="text/css" rel="stylesheet" href="${PATH}/css/font-awesome.css" />
 <style type="text/css">
 *{font-size:14px;}
-#a{
-  margin:200px;
-}
 </style>
 <script type="text/javascript" src="${PATH}/js/icore.js"></script>
 </head>
 <body>
-<ul>
-<li><a href="${PATH}/test.Action/paging">自动分页示例</a></li>
-<li><a href="${PATH}/demo/tree.jsp">树</a></li>
+<ul id="menu" class="i-ui-Tree-Default">
+  <li><b></b><i></i><a>UI组件</a>
+    <ul><li><b></b><i></i><a data-url="${PATH}/test.Action/paging">自动分页示例</a></li></ul>
+  </li>
+  <li><b></b><i></i><a data-url="${PATH}/demo/tree.jsp">树</a></li>
 </ul>
-some text...
 <ul id="test">
   <li><a class="i-ui-Button-Default fa fa-thumbs-up" href="javascript:void(0);">普通按钮</a></li>
   <li><a class="i-ui-Button-Blue fa fa-thumbs-up" href="javascript:void(0);">蓝色按钮</a></li>
 </ul>
 <script type="text/javascript">
+I.want(function(){
+  I.ui.Tree.render('menu',{
+    onClick:function(who){
+      var url = who.dom.a.getAttribute('data-url');
+      if(url){
+        self.location = url;
+      }
+    }
+  });
+});
 var TOOLTIP = {};
 I.want(function(){
   //加载默认皮肤以自动渲染页面

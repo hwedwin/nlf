@@ -14,6 +14,8 @@
 <script type="text/javascript" src="${PATH}/js/icore.js"></script>
 </head>
 <body>
+<a href="${PATH}/">返回首页</a>
+
 <!-- 通过html渲染tree -->
 <ul id="tree">
   <li><b></b><i></i><input type="checkbox" /><a>一年级</a>
