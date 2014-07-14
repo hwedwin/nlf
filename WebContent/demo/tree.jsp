@@ -10,74 +10,11 @@
 <link type="text/css" rel="stylesheet" href="${PATH}/css/font-awesome.css" />
 <style type="text/css">
 *{font-size:14px;}
-ul.i-ui-Tree-Default{
-  margin:0;
-  padding:0;
-  display:block;
-  -webkit-margin-before:0;
-  -webkit-margin-after:0;
-  -webkit-margin-start:0;
-  -webkit-margin-end:0;
-  -webkit-padding-start:0;
-}
-ul.i-ui-Tree-Default i{
-  font-weight:normal;
-  font-style:normal;
-  font-size:1em;
-  margin:0;
-  padding:0;
-  margin-left:3px;
-  cursor:default;
-  color:#999;
-}
-ul.i-ui-Tree-Default b{
-  font-weight:normal;
-  font-style:normal;
-  font-size:1em;
-  margin:0;
-  padding:0;
-  cursor:default;
-  color:#333;
-}
-ul.i-ui-Tree-Default b.not-visible{
-  filter:alpha(opacity=0);
-  -moz-opacity:0;
-  opacity:0;
-}
-ul.i-ui-Tree-Default a{
-  font-weight:normal;
-  font-style:normal;
-  margin:0;
-  padding:0;
-  margin-left:3px;
-  text-decoration:none;
-  color:#666;
-}
-ul.i-ui-Tree-Default a:hover{
-  background-color:#EEE;
-}
-ul.i-ui-Tree-Default li{
-  list-style:none;
-  display:block;
-  margin:0;
-  padding:0;
-  line-height:1.5em;
-}
-ul.i-ui-Tree-Default ul{
-  margin:0;
-  padding:0;
-  display:block;
-  margin-left:1.5em;
-  -webkit-margin-before:0;
-  -webkit-margin-after:0;
-  -webkit-margin-start:1.5em;
-  -webkit-margin-end:0;
-  -webkit-padding-start:0;
-}
 </style>
 <script type="text/javascript" src="${PATH}/js/icore.js"></script>
 </head>
 <body>
+<!-- 通过html渲染tree -->
 <ul id="tree">
   <li><b></b><i></i><input type="checkbox" /><a>一年级</a>
     <ul>
@@ -102,8 +39,11 @@ ul.i-ui-Tree-Default ul{
   <li><b></b><i></i><input type="checkbox" /><a>三年级</a></li>
 </ul>
 <a id="btnA" class="i-ui-Button-Default">获取选中的</a>
+<a id="btnB" class="i-ui-Button-Default">添加节点</a>
+<a id="btnC" class="i-ui-Button-Default">通过json创建一颗新的树</a>
 <script type="text/javascript">
 I.want(function(){
+  //渲染tree
   var tree = I.ui.Tree.render('tree',{
     onClick:function(who){
       if('folder'==who.type){
@@ -114,6 +54,7 @@ I.want(function(){
       }
     }
   });
+  //按钮事件
   I.listen('btnA','click',function(m,e){
     var text = [];
     var selected = tree.getSelected();
@@ -121,6 +62,57 @@ I.want(function(){
       text.push(selected[i].dom.a.innerHTML);
     }
     window.alert(text.join(','));
+  });
+  
+  //按钮事件
+  I.listen('btnB','click',function(m,e){
+    var selected = tree.getSelected();
+    if(selected.length<1){
+      tree.add('<b></b><i></i><input type="checkbox" /><a>新添加的节点</a>');
+    }else{
+      for(var i=0;i<selected.length;i++){
+        selected[i].add('<b></b><i></i><input type="checkbox" /><a>新添加的节点</a>');
+      }
+    }
+  });
+  
+  //按钮事件，通过json渲染tree
+  I.listen('btnC','click',function(m,e){
+    var d = [
+      {text:'爷爷',checked:true,expand:false,children:[
+        {text:'父亲',children:[
+          {text:'我',attribute:{
+            'data-id':'6',
+            gender:'男'
+          }}
+        ],attribute:{
+          'data-id':'5',
+          gender:'男'
+        }}
+      ],attribute:{
+        'data-id':'1',
+        gender:'男'
+      }},
+      {text:'奶奶',attribute:{
+        'data-id':'2',
+        gender:'女'
+      }},
+      {text:'外公',attribute:{
+        'data-id':'3',
+        gender:'男'
+      }},
+      {text:'外婆',attribute:{
+        'data-id':'4',
+        gender:'女'
+      }}
+    ];
+    var newTree = I.ui.Tree.create({
+      skin:'Blue',
+      data:d,
+      onClick:function(who){
+        window.alert(who.dom.li.getAttribute('gender')+','+who.dom.li.getAttribute('data-id')+','+who.dom.a.innerHTML);
+      }
+    });
   });
 });
 </script>
