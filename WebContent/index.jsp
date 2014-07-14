@@ -14,7 +14,10 @@
 <script type="text/javascript" src="${PATH}/js/icore.js"></script>
 </head>
 <body>
-<a href="${PATH}/test.Action/paging">自动分页示例</a>
+<ul>
+<li><a href="${PATH}/test.Action/paging">自动分页示例</a></li>
+<li><a href="${PATH}/demo/tree.jsp">树</a></li>
+</ul>
 some text...
 <ul id="test">
   <li><a class="i-ui-Button-Default fa fa-thumbs-up" href="javascript:void(0);">普通按钮</a></li>
