@@ -142,20 +142,9 @@ I.regist('ui.Upload',function(W,D){
     };
   };
   var _prepare = function(config){
-    _createFrame();
-    var obj = {layer:null,textLayer:null,form:null,input:null,icon:null,timer:null,uploaded:0,total:0,state:0,className:null,config:null};
-    var cfg = I.ui.Component.initConfig(config,CFG);
-    var div = I.insert('div',cfg.dom);
+    var div = I.insert('div',config.dom?config.dom:CFG.dom);
     div.innerHTML = '<i></i><b></b><form><input type="file" /></form>';
-    obj.layer = div;
-    cfg.dom = obj.layer;
-    obj.config = cfg;
-    obj.className = 'i-ui-Upload-'+cfg.skin;
-    I.util.Skin.init(cfg.skin);
-    I.cls(obj.layer,obj.className);
-    _initObj(obj,cfg);
-    _bind(obj,obj.layer,cfg);
-    return obj;
+    return _render(div,config);
   };
   var _render = function(dom,config){
     _createFrame();

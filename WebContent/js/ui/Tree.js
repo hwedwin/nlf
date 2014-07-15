@@ -89,20 +89,6 @@ I.regist('ui.Tree',function(W,D){
       }
     };
   };
-  var _prepare = function(config){
-    var cfg = I.ui.Component.initConfig(config,CFG);
-    var ul = I.insert('ul',cfg.dom);
-    var obj = {layer:ul,className:null,config:null,items:{}};
-    cfg.dom = obj.layer;
-    obj.config = cfg;
-    obj.className = 'i-ui-Tree-'+cfg.skin;
-    _initObj(obj,cfg);
-    I.util.Skin.init(cfg.skin);
-    I.cls(obj.layer,obj.className);
-    _create(obj,obj.layer,cfg,cfg.data);
-    _bind(obj,obj.layer,cfg);
-    return obj;
-  };
   var _bindItem = function(obj,li,cfg){
     var item = {uuid:null,expand:false,checked:false,type:'file',dom:{ul:null,arrow:null,icon:null,input:null,a:null,li:li}};
     item.uuid = I.util.UUID.next();
@@ -299,6 +285,20 @@ I.regist('ui.Tree',function(W,D){
     _initObj(obj,cfg);
     I.util.Skin.init(cfg.skin);
     I.cls(obj.layer,obj.className);
+    _bind(obj,obj.layer,cfg);
+    return obj;
+  };
+  var _prepare = function(config){
+    var cfg = I.ui.Component.initConfig(config,CFG);
+    var ul = I.insert('ul',cfg.dom);
+    var obj = {layer:ul,className:null,config:null,items:{}};
+    cfg.dom = obj.layer;
+    obj.config = cfg;
+    obj.className = 'i-ui-Tree-'+cfg.skin;
+    _initObj(obj,cfg);
+    I.util.Skin.init(cfg.skin);
+    I.cls(obj.layer,obj.className);
+    _create(obj,obj.layer,cfg,cfg.data);
     _bind(obj,obj.layer,cfg);
     return obj;
   };
