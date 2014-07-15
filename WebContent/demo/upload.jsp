@@ -15,8 +15,8 @@
 </head>
 <body>
 <a href="${PATH}/">返回首页</a>
-<br />
-html渲染：
+<p></p>
+文件上传：
 <div id="myUpload">
   <i></i>
   <b></b>
@@ -25,6 +25,7 @@ html渲染：
   </form>
 </div>
 <script type="text/javascript">
+//通过html渲染的上传组件
 I.want(function(){
   I.ui.Upload.render('myUpload',{
     //skin:'Blue',//皮肤，非必选
@@ -35,9 +36,10 @@ I.want(function(){
   });
 });
 </script>
-<br />
+<p></p>
 <a id="btnA" class="i-ui-Button-Blue" href="javascript:void(0);">动态创建上传组件</a>
 <script type="text/javascript">
+//动态创建的上传组件
 I.want(function(){
   I.util.Skin.init('Blue');
   I.listen('btnA','click',function(){

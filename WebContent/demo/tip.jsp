@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>自动分页</title>
+<title>提示信息</title>
 <link type="text/css" rel="stylesheet" href="${PATH}/css/font-awesome.css" />
 <style type="text/css">
 *{font-size:14px;}
@@ -16,26 +16,19 @@
 <body>
 <a href="${PATH}/">返回首页</a>
 <p></p>
-<table>
-  <thead>
-    <tr>
-      <th>序号</th>
-      <th>三字码</th>
-    </tr>
-  </thead>
-  <tfoot>
-  <tr>
-    <td colspan="2"><nlft:page /></td>
-  </tr>
-  </tfoot>
-  <tbody>
-    <c:forEach items="${nlfPagingData.data}" var="o" varStatus="index">
-    <tr>
-      <td>${index.count}</td>
-      <td>${nlfe:bean(o,'C_CODE')}</td>
-    </tr>
-    </c:forEach>
-  </tbody>
-</table>
+<script type="text/javascript">
+I.want(function(){
+  //创建一个蓝色的按钮
+  I.ui.Button.create({skin:'Blue',label:'显示蓝色的Tip',icon:'phone',callback:function(){
+    //创建蓝色提示信息
+    I.ui.Tip.create({msg:'Hello World!',skin:'Blue'});
+  }});
+  //创建一个默认的按钮
+  I.ui.Button.create({label:'显示默认的Tip',icon:'phone',callback:function(){
+    //创建默认提示信息
+    I.ui.Tip.create({msg:'Hello World!'});
+  }});
+});
+</script>
 </body>
 </html>

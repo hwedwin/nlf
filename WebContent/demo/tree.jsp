@@ -15,7 +15,7 @@
 </head>
 <body>
 <a href="${PATH}/">返回首页</a>
-
+<p></p>
 <!-- 通过html渲染tree -->
 <ul id="tree">
   <li><b></b><i></i><input type="checkbox" /><a>一年级</a>
@@ -46,7 +46,7 @@
 <a id="btnD" class="i-ui-Button-Default" href="javascript:void(0);">删除选中节点</a>
 <a id="btnE" class="i-ui-Button-Default" href="javascript:void(0);">全部展开</a>
 <a id="btnF" class="i-ui-Button-Default" href="javascript:void(0);">全部收缩</a>
-<br />
+<p></p>
 <a id="btnC" class="i-ui-Button-Default" href="javascript:void(0);">通过json创建一颗新的树</a>
 <script type="text/javascript">
 I.want(function(){
