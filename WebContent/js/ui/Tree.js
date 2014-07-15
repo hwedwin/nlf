@@ -48,13 +48,7 @@ I.regist('ui.Tree',function(W,D){
       item.repaint();
     }
   };
-  var _prepare = function(config){
-    var cfg = I.ui.Component.initConfig(config,CFG);
-    var ul = I.insert('ul',cfg.dom);
-    var obj = {layer:ul,className:null,config:null,items:{}};
-    cfg.dom = obj.layer;
-    obj.config = cfg;
-    obj.className = 'i-ui-Tree-'+cfg.skin;
+  var _initObj = function(obj,cfg){
     obj.getSelected = function(){
       var q = [];
       for(var i in this.items){
@@ -70,6 +64,39 @@ I.regist('ui.Tree',function(W,D){
       li.innerHTML = nodeHtml;
       return _bindItem(obj,li,cfg);
     };
+    obj.remove = function(uuid){
+      var li = this.items[uuid].dom.li;
+      li.parentNode.removeChild(li);
+      delete this.items[uuid];
+    };
+    obj.getChildren = function(){
+      var chd = [];
+      for(var i in this.items){
+        chd.push(this.items[i]);
+      }
+      return chd;
+    };
+    obj.open = function(){
+      var chd = this.getChildren();
+      for(var i=0;i<chd.length;i++){
+        chd[i].open();
+      }
+    };
+    obj.close = function(){
+      var chd = this.getChildren();
+      for(var i=0;i<chd.length;i++){
+        chd[i].close();
+      }
+    };
+  };
+  var _prepare = function(config){
+    var cfg = I.ui.Component.initConfig(config,CFG);
+    var ul = I.insert('ul',cfg.dom);
+    var obj = {layer:ul,className:null,config:null,items:{}};
+    cfg.dom = obj.layer;
+    obj.config = cfg;
+    obj.className = 'i-ui-Tree-'+cfg.skin;
+    _initObj(obj,cfg);
     I.util.Skin.init(cfg.skin);
     I.cls(obj.layer,obj.className);
     _create(obj,obj.layer,cfg,cfg.data);
@@ -150,6 +177,22 @@ I.regist('ui.Tree',function(W,D){
         }
       }
       return chd;
+    };
+    item.open = function(){
+      if('folder'==this.type){
+        if(!this.expand){
+          this.expand = true;
+          this.repaint();
+        }
+      }
+    };
+    item.close = function(){
+      if('folder'==this.type){
+        if(this.expand){
+          this.expand = false;
+          this.repaint();
+        }
+      }
     };
     obj.items[item.uuid] = item;
     var tags = I.$(li,'*');
@@ -253,26 +296,7 @@ I.regist('ui.Tree',function(W,D){
     cfg.dom = obj.layer;
     obj.config = cfg;
     obj.className = 'i-ui-Tree-'+cfg.skin;
-    obj.getSelected = function(){
-      var q = [];
-      for(var i in this.items){
-        var o = this.items[i];
-        if(o.checked){
-          q.push(o);
-        }
-      }
-      return q;
-    };
-    obj.add = function(nodeHtml){
-      var li = I.insert('li',obj.layer);
-      li.innerHTML = nodeHtml;
-      return _bindItem(obj,li,cfg);
-    };
-    obj.remove = function(uuid){
-      var li = this.items[uuid].dom.li;
-      li.parentNode.removeChild(li);
-      delete this.items[uuid];
-    };
+    _initObj(obj,cfg);
     I.util.Skin.init(cfg.skin);
     I.cls(obj.layer,obj.className);
     _bind(obj,obj.layer,cfg);
