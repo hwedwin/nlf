@@ -163,6 +163,7 @@ I.want(function(){
     var newTree = I.ui.Tree.create({
       //dom:document.body,
       skin:'Blue',//皮肤名
+      folder_open_icon:'fa fa-car',//文件夹打开的图标
       data:d,//数据
       //点击text事件
       onClick:function(who){
