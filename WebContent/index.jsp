@@ -13,9 +13,12 @@
 <body>
 <ul id="menu" class="i-ui-Tree-Default">
   <li><b></b><i></i><a>UI组件</a>
-    <ul><li><b></b><i></i><a data-url="${PATH}/test.Action/paging">自动分页示例</a></li></ul>
+    <ul>
+      <li><b></b><i></i><a data-url="${PATH}/demo/tree.jsp">树</a></li>
+      <li><b></b><i></i><a data-url="${PATH}/demo/upload.jsp">上传组件</a></li>
+    </ul>
   </li>
-  <li><b></b><i></i><a data-url="${PATH}/demo/tree.jsp">树</a></li>
+  <li><b></b><i></i><a data-url="${PATH}/test.Action/paging">自动分页示例</a></li>
 </ul>
 <ul id="test">
   <li><a class="i-ui-Button-Default fa fa-thumbs-up" href="javascript:void(0);">普通按钮</a></li>
