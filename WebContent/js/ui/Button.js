@@ -36,7 +36,26 @@ I.regist('ui.Button',function(W,D){
     _create(obj);
     return obj;
   };
+  _render = function(dom,config){
+    dom = I.$(dom);
+    var obj = {layer:dom,className:null,config:null};
+    var cfg = I.ui.Component.initConfig(config,CFG);
+    obj.config = cfg;
+    if(cfg.icon){
+      obj.className = 'i-ui-Button-'+cfg.skin+' fa fa-'+cfg.icon;
+    }else{
+      obj.className = 'i-ui-Button-'+cfg.skin;
+    }
+    I.util.Skin.init(cfg.skin);
+    obj.layer.href = 'javascript:void(0);';
+    I.listen(obj.layer,'click',function(m,e){
+      cfg.callback.call(obj);
+    });
+    I.cls(obj.layer,obj.className);
+    return obj;
+  };
   return {
-    create:function(cfg){return _prepare(cfg);}
+    create:function(cfg){return _prepare(cfg);},
+    render:function(dom,cfg){return _render(dom,cfg);}
   };
 }+'');
