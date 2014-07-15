@@ -45,7 +45,7 @@ I.want(function(){
   //创建一个按钮
   I.ui.Button.create({label:'显示Loading...',icon:'phone',callback:function(){
     //显示加载进度条，2秒后关闭
-    var ld = I.ui.Loading.create();
+    var ld = I.ui.Loading.create({color:'red'});
     I.delay(2000,function(){
       ld.close();
     });
