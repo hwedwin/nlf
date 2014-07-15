@@ -14,6 +14,7 @@
 <ul id="menu">
   <li><b></b><i></i><a>UI组件</a>
     <ul>
+      <li><b></b><i></i><a data-url="${PATH}/demo/button.jsp">按钮</a></li>
       <li><b></b><i></i><a data-url="${PATH}/demo/loading.jsp">进度条</a></li>
       <li><b></b><i></i><a data-url="${PATH}/demo/tip.jsp">提示信息</a></li>
       <li><b></b><i></i><a data-url="${PATH}/demo/alert.jsp">Alert</a></li>
@@ -26,6 +27,11 @@
     <ul>
       <li><b></b><i></i><a data-url="${PATH}/test.Action/paging">普通页面的自动分页示例</a></li>
       <li><b></b><i></i><a data-url="${PATH}/demo/paging_ajax.jsp">AJAX请求的自动分页示例</a></li>
+    </ul>
+  </li>
+  <li><b></b><i></i><a>工具</a>
+    <ul>
+      <li><b></b><i></i><a data-url="${PATH}/demo/template.jsp">js模板引擎</a></li>
     </ul>
   </li>
 </ul>
