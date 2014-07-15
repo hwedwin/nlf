@@ -97,6 +97,51 @@ ul.i-ui-Tree-${skin} ul{
   -webkit-margin-end:0;
   -webkit-padding-start:0;
 }
+
+.i-ui-Upload-${skin}{
+  position:relative;
+  margin:0;
+  padding:0;
+  border:1px solid #0074D9;
+  overflow:hidden;
+}
+.i-ui-Upload-${skin} b{
+  position:absolute;
+  margin:0;
+  padding:0;
+  display:block;
+  left:0;
+  top:0;
+  overflow:hidden;
+  color:#666;
+  text-align:center;
+  font-style:normal;
+}
+.i-ui-Upload-${skin} i{
+  position:absolute;
+  margin:0;
+  padding:0;
+  display:block;
+  left:0;
+  top:0;
+  overflow:hidden;
+  color:#0074D9;
+  font-style:normal;
+  text-align:center;
+}
+.i-ui-Upload-${skin} form{
+  position:absolute;
+  margin:0;
+  padding:0;
+  display:block;
+  left:0;
+  top:0;
+}
+.i-ui-Upload-${skin} input{
+  margin:0;
+  padding:0;
+  font-size:1000px;
+}
   */}+'';
   return {
     getCss:function(){return CSS;}
