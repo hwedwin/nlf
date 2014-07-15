@@ -18,12 +18,16 @@
 <br />
 html渲染：
 <div id="myUpload">
-<i></i><b></b><form><input type="file" /></form>
+  <i></i>
+  <b></b>
+  <form>
+    <input type="file" />
+  </form>
 </div>
 <script type="text/javascript">
 I.want(function(){
   I.ui.Upload.render('myUpload',{
-    skin:'Blue',//皮肤，非必选
+    //skin:'Blue',//皮肤，非必选
     url:'${PATH}/test.Action/upload',//上传地址，必选
     onSuccess:function(r){//上传成功后调用
       window.alert('文件上传成功：'+r.data);
@@ -35,6 +39,7 @@ I.want(function(){
 <a id="btnA" class="i-ui-Button-Blue" href="javascript:void(0);">动态创建上传组件</a>
 <script type="text/javascript">
 I.want(function(){
+  I.util.Skin.init('Blue');
   I.listen('btnA','click',function(){
     I.ui.Upload.create({
       skin:'Green',//皮肤，非必选
