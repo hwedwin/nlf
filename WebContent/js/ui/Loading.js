@@ -6,6 +6,7 @@ I.regist('ui.Loading',function(W,D){
   var CFG = {
     skin:'Default',
     mask:true,
+    color:null,
     callback:function(){}
   };
   var _create = function(obj){
@@ -16,6 +17,9 @@ I.regist('ui.Loading',function(W,D){
     var o = I.insert('div');
     I.cls(o,obj.className);
     obj.layer = o;
+    if(obj.config.color){
+      obj.layer.style.backgroundColor = obj.config.color;
+    }
     obj.timer = W.setInterval(function(){
       var inst = obj;
       if(inst.percent<100){
