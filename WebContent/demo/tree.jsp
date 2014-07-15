@@ -42,6 +42,7 @@
 </ul>
 <a id="btnA" class="i-ui-Button-Default" href="javascript:void(0);">获取选中的</a>
 <a id="btnB" class="i-ui-Button-Default" href="javascript:void(0);">添加子节点</a>
+<a id="btnG" class="i-ui-Button-Default" href="javascript:void(0);">来点暴力的添加1000个子节点</a>
 <a id="btnD" class="i-ui-Button-Default" href="javascript:void(0);">删除选中节点</a>
 <a id="btnE" class="i-ui-Button-Default" href="javascript:void(0);">全部展开</a>
 <a id="btnF" class="i-ui-Button-Default" href="javascript:void(0);">全部收缩</a>
@@ -102,6 +103,21 @@ I.want(function(){
     }else{
       for(var i=0;i<selected.length;i++){
         selected[i].add('<b></b><i></i><input type="checkbox" /><a>新添加的节点</a>');
+      }
+    }
+  });
+  //按钮事件，添加1000个子节点
+  I.listen('btnG','click',function(m,e){
+    var selected = tree.getSelected();
+    if(selected.length<1){
+      for(var i=0;i<1000;i++){
+        tree.add('<b></b><i></i><input type="checkbox" /><a>新添加的节点'+i+'</a>');
+      }
+    }else{
+      for(var j=0;j<1000;j++){
+        for(var i=0;i<selected.length;i++){
+          selected[i].add('<b></b><i></i><input type="checkbox" /><a>新添加的节点'+j+'</a>');
+        }
       }
     }
   });
