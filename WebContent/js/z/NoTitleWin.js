@@ -6,20 +6,24 @@ I.regist('z.NoTitleWin',function(W,D){
   var CFG = {
     skin:'Default',
     mask:true,
+    mask_opacity:10,
+    mask_color:'#FFF',
     space:20,
     width:0,
     height:0,
     shadow_size:6,
+    shadow_color:'#000',
+    shadow_opacity:10,
     content:'',
+    content_border_color:'gray',
+    content_background:'#FFF',
     tween:'quadraticOut',
     callback:function(){}
   };
   var _create = function(obj){
     var cfg = obj.config;
     if(cfg.mask){
-      obj.mask = I.ui.Mask.create({skin:cfg.skin});
-      obj.mask.layer.style.backgroundColor = '#000';
-      I.opacity(obj.mask.layer,40);
+      obj.mask = I.ui.Mask.create({skin:cfg.skin,opacity:cfg.mask_opacity,color:cfg.mask_color});
     }
     var o = I.insert('div');
     o.innerHTML = '<i class="i-shadow"></i><i class="i-content"></i>';
@@ -28,7 +32,7 @@ I.regist('z.NoTitleWin',function(W,D){
     obj.contentPanel = I.$(o,'class','i-content')[0];
     obj.shadow = I.$(o,'class','i-shadow')[0];
     obj.contentPanel.innerHTML = cfg.content;
-    obj.contentPanel.style.borderTop = '1px solid gray';
+    obj.shadow.style.backgroundColor = cfg.shadow_color;
     I.opacity(obj.shadow,cfg.shadow_opacity);
     obj.suit = function(){
       var inst = this;
@@ -57,6 +61,8 @@ I.regist('z.NoTitleWin',function(W,D){
     obj.contentPanel.style.left = cfg.shadow_size+'px';
     obj.contentPanel.style.width = (wd-cfg.shadow_size*2-2)+'px';
     obj.contentPanel.style.height = (ht-cfg.shadow_size*2-2)+'px';
+    obj.contentPanel.style.border = '1px solid '+cfg.content_border_color;
+    obj.contentPanel.style.backgroundColor = cfg.content_background;
     I.util.Animator.create().change(cfg.tween,function(n){
       obj.layer.style.top = n+'px';
     },function(){

@@ -47,7 +47,6 @@ I.regist('z.SimpleWin',function(W,D){
     
     obj.titleBar.innerHTML = cfg.title;
     obj.contentPanel.innerHTML = cfg.content;
-    I.opacity(obj.shadow,cfg.shadow_opacity);
     I.listen(obj.closeButton,'click',function(m,e){
       obj.close();
     });
