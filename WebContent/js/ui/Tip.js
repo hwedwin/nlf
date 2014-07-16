@@ -10,6 +10,9 @@ I.regist('ui.Tip',function(W,D){
   };
   var CFG = {
     skin:'Default',
+    background:'#111',
+    color:'#FFF',
+    border:'0',
     msg:'',
     type:1,
     callback:function(){}
@@ -20,6 +23,9 @@ I.regist('ui.Tip',function(W,D){
     I.cls(o,obj.className);
     obj.layer = o;
     o.innerHTML = '<span>'+cfg.msg+'</span>';
+    o.style.backgroundColor = cfg.background;
+    o.style.color = cfg.color;
+    o.style.border = cfg.border;
     var nr = I.region(I.$(o,'*')[0]);
     var pr = I.region();
     o.style.left = Math.max(Math.floor(pr.x+pr.width/2-nr.width/2),0)+'px';

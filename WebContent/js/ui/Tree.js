@@ -9,6 +9,14 @@ I.regist('ui.Tree',function(W,D){
     check:false,
     icon:true,
     arrow:true,
+    arrow_color:'#333',
+    arrow_color_hover:'#333',
+    icon_color:'#999',
+    icon_color_hover:'#000',
+    a_color:'#333',
+    a_color_hover:'#FFF',
+    a_background:'transparent',
+    a_background_hover:'gray',
     folder_open_arrow:'fa fa-caret-down',
     folder_close_arrow:'fa fa-caret-right',
     file_arrow:'fa fa-caret-right not-visible',
@@ -211,6 +219,13 @@ I.regist('ui.Tree',function(W,D){
       item.repaint();
     }
     if(item.dom.arrow){
+      item.dom.arrow.style.color = cfg.arrow_color;
+      item.dom.arrow.onmouseover = function(){
+        this.style.color = cfg.arrow_color_hover;
+      };
+      item.dom.arrow.onmouseout = function(){
+        this.style.color = cfg.arrow_color;
+      };
       item.dom.arrow.onclick = function(){
         var p = this.parentNode;
         var q = obj.items[p.getAttribute('data-uuid')];
@@ -225,6 +240,13 @@ I.regist('ui.Tree',function(W,D){
       };
     }
     if(item.dom.icon){
+      item.dom.icon.style.color = cfg.icon_color;
+      item.dom.icon.onmouseover = function(){
+        this.style.color = cfg.icon_color_hover;
+      };
+      item.dom.icon.onmouseout = function(){
+        this.style.color = cfg.icon_color;
+      };
       item.dom.icon.onclick = function(){
         var p = this.parentNode;
         var q = obj.items[p.getAttribute('data-uuid')];
@@ -240,6 +262,15 @@ I.regist('ui.Tree',function(W,D){
     }
     if(item.dom.a){
       item.dom.a.href = 'javascript:void(0);';
+      item.dom.a.style.color = cfg.a_color;
+      item.dom.a.onmouseover = function(){
+        this.style.color = cfg.a_color_hover;
+        this.style.background = cfg.a_background_hover;
+      };
+      item.dom.a.onmouseout = function(){
+        this.style.color = cfg.a_color;
+        this.style.background = cfg.a_background;
+      };
       item.dom.a.onclick = function(){
         var p = this.parentNode;
         var q = obj.items[p.getAttribute('data-uuid')];

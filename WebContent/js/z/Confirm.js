@@ -5,13 +5,25 @@
 I.regist('z.Confirm',function(W,D){
   var CFG = {
     skin:'Default',
-    mask:true,
     width:400,
     height:150,
-    shadow_size:6,
     title:'提示',
     title_height:30,
     content:'',
+    yes_button_label:'确定',
+    yes_button_border:'1px solid #0074D9',
+    yes_button_border_hover:'1px solid #0074D9',
+    yes_button_background:'#0074D9',
+    yes_button_background_hover:'#0068C3',
+    yes_button_color:'#FFF',
+    yes_button_color_hover:'#FFF',
+    no_button_label:'取消',
+    no_button_border:'1px solid #DDD',
+    no_button_border_hover:'1px solid #999',
+    no_button_background:'#E9E9E9',
+    no_button_background_hover:'#FBFBFB',
+    no_button_color:'#333',
+    no_button_color_hover:'#333',
     callback:function(){},
     yes:function(){},
     no:function(){}
@@ -21,20 +33,49 @@ I.regist('z.Confirm',function(W,D){
     var o = I.insert('div',obj.contentPanel);
     I.css(o,'position:absolute;margin:0;padding:0;left:0;bottom:0;height:40px;overflow:hidden;width:100%;border-top:1px solid #EEE;');
     obj.bottomPanel = o;
-    var btn = I.ui.Button.create({dom:o,skin:obj.config.skin,callback:function(){obj.close();obj.config.yes.call(obj);}});
-    btn.layer.style.position = 'absolute';
-    var r = I.region(btn.layer);
+    var cfg = obj.config;
+    var btn = I.ui.Button.create({
+      dom:o,
+      skin:cfg.skin,
+      label:cfg.yes_button_label,
+      border:cfg.yes_button_border,
+      border_hover:cfg.yes_button_border_hover,
+      background:cfg.yes_button_background,
+      background_hover:cfg.yes_button_background_hover,
+      color:cfg.yes_button_color,
+      color_hover:cfg.yes_button_color_hover,
+      callback:function(){
+        obj.close();
+        obj.config.yes.call(obj);
+      }
+    });
+    btn.dom.style.position = 'absolute';
+    var r = I.region(btn.dom);
     var space = Math.floor((40-r.height)/2);
-    btn.layer.style.right = space+'px';
-    btn.layer.style.top = space+'px';
+    btn.dom.style.right = space+'px';
+    btn.dom.style.top = space+'px';
     obj.buttonYES = btn;
     
-    var btn1 = I.ui.Button.create({dom:o,label:'取消',skin:obj.config.skin,callback:function(){obj.close();obj.config.no.call(obj);}});
-    btn1.layer.style.position = 'absolute';
-    var r1 = I.region(btn1.layer);
+    var btn1 = I.ui.Button.create({
+      dom:o,
+      skin:cfg.skin,
+      label:cfg.no_button_label,
+      border:cfg.no_button_border,
+      border_hover:cfg.no_button_border_hover,
+      background:cfg.no_button_background,
+      background_hover:cfg.no_button_background_hover,
+      color:cfg.no_button_color,
+      color_hover:cfg.no_button_color_hover,
+      callback:function(){
+        obj.close();
+        obj.config.no.call(obj);
+      }
+    });
+    btn1.dom.style.position = 'absolute';
+    var r1 = I.region(btn1.dom);
     var space1 = Math.floor((40-r1.height)/2);
-    btn1.layer.style.right = (space+space1+r.width)+'px';
-    btn1.layer.style.top = space1+'px';
+    btn1.dom.style.right = (space+space1+r.width)+'px';
+    btn1.dom.style.top = space1+'px';
     obj.buttonNO = btn1;
     
     var html = obj.config.content;

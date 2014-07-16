@@ -5,57 +5,65 @@
 I.regist('ui.Button',function(W,D){
   var CFG = {
     skin:'Default',
-    label:'确定',
+    border:'1px solid #DDD',
+    border_hover:'1px solid #999',
+    background:'#E9E9E9',
+    background_hover:'#FBFBFB',
+    color:'#333',
+    color_hover:'#333',
+    label:null,
     icon:null,
     dom:D.body,
     callback:function(){}
   };
-  var _create = function(obj){
+  var _bindEvent = function(obj){
     var cfg = obj.config;
-    var o = I.insert('a',cfg.dom);
-    o.innerHTML = cfg.label;
-    o.href = 'javascript:void(0);';
-    I.listen(o,'click',function(m,e){
+    var dom = obj.dom;
+    dom.style.border = cfg.border;
+    dom.style.backgroundColor = cfg.background;
+    dom.style.color = cfg.color;
+    I.listen(dom,'click',function(m,e){
       cfg.callback.call(obj);
     });
-    I.cls(o,obj.className);
-    obj.layer = o;
-    return obj;
+    I.listen(dom,'mouseover',function(m,e){
+      m.style.border = cfg.border_hover;
+      m.style.backgroundColor = cfg.background_hover;
+      m.style.color = cfg.color_hover;
+    });
+    I.listen(dom,'mouseout',function(m,e){
+      m.style.border = cfg.border;
+      m.style.backgroundColor = cfg.background;
+      m.style.color = cfg.color;
+    });
   };
-    
-  var _prepare = function(config){
-    var obj = {layer:null,className:null,config:null};
-    var cfg = I.ui.Component.initConfig(config,CFG);
-    obj.config = cfg;
-    if(cfg.icon){
-      obj.className = 'i-ui-Button-'+cfg.skin+' fa fa-'+cfg.icon;
-    }else{
-      obj.className = 'i-ui-Button-'+cfg.skin;
-    }
-    I.util.Skin.init(cfg.skin);
-    _create(obj);
-    return obj;
+  var _create = function(config){
+    var dom = I.insert('a',config.dom?config.dom:CFG.dom);
+    return _render(dom,config);
   };
   _render = function(dom,config){
     dom = I.$(dom);
-    var obj = {layer:dom,className:null,config:null};
+    var obj = {dom:dom,className:null,config:null};
     var cfg = I.ui.Component.initConfig(config,CFG);
     obj.config = cfg;
+    if(cfg.label){
+      dom.innerHTML = cfg.label;
+    }
+    obj.className = 'i-ui-Button-'+cfg.skin;
     if(cfg.icon){
-      obj.className = 'i-ui-Button-'+cfg.skin+' fa fa-'+cfg.icon;
-    }else{
-      obj.className = 'i-ui-Button-'+cfg.skin;
+      obj.className += ' '+cfg.icon;
     }
     I.util.Skin.init(cfg.skin);
-    obj.layer.href = 'javascript:void(0);';
-    I.listen(obj.layer,'click',function(m,e){
-      cfg.callback.call(obj);
-    });
-    I.cls(obj.layer,obj.className);
+    if('a'==dom.tagName.toLowerCase()){
+      if(!dom.getAttribute('href')){
+        dom.href = 'javascript:void(0);';
+      }
+    }
+    I.cls(dom,obj.className);
+    _bindEvent(obj);
     return obj;
   };
   return {
-    create:function(cfg){return _prepare(cfg);},
+    create:function(cfg){return _create(cfg);},
     render:function(dom,cfg){return _render(dom,cfg);}
   };
 }+'');

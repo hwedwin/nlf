@@ -16,18 +16,23 @@
 <body>
 <a href="${PATH}/">返回首页</a>
 <p></p>
-第1种方式：a标记渲染
+第1种方式：标签渲染
+<br />
 <a id="btnA">按钮1</a>
-<a id="btnB">按钮2</a>
-<a id="btnC">带事件响应的按钮</a>
+<div id="btnB">按钮2</div>
+<span id="btnC">带事件响应的按钮</span>
 <script type="text/javascript">
 I.want(function(){
   I.ui.Button.render('btnA');
-  I.ui.Button.render('btnB',{skin:'Blue'});
+  I.ui.Button.render('btnB',{
+    background:'#0074D9',
+    background_hover:'#0068C3',
+    color:'#FFF',
+    color_hover:'#FFF'
+  });
   I.ui.Button.render('btnC',{
-    skin:'Green',
     callback:function(){
-      window.alert('点击了按钮');
+      I.z.Alert.create({content:this.dom.innerHTML});
     }
   });
 });
@@ -43,15 +48,13 @@ I.want(function(){
   });
   I.ui.Button.create({
     dom:I.$('buttons'),
-    skin:'Blue',
     label:'动态创建的按钮2'
   });
   I.ui.Button.create({
     dom:I.$('buttons'),
-    skin:'Green',
     label:'动态创建的带事件响应的按钮',
     callback:function(){
-      window.alert('点击了按钮');
+      I.z.Alert.create({content:this.dom.innerHTML});
     }
   });
   I.ui.Button.create({
@@ -59,14 +62,6 @@ I.want(function(){
     icon:'fa fa-car',//带个图标
     label:'动态创建的带图标的按钮2'
   });
-});
-</script>
-<p></p>
-第3种方式：html加css
-<a class="i-ui-Button-Default fa fa-car" href="javascript:void(0);">html+css</a>
-<script type="text/javascript">
-I.want(function(){
-  I.util.Skin.init('Default');
 });
 </script>
 </body>

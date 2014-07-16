@@ -5,11 +5,15 @@
 I.regist('ui.Mask',function(W,D){
   var CFG = {
     skin:'Default',
+    color:'#FFF',
+    opacity:10,
     callback:function(){}
   };
   var _create = function(obj){
     var o = I.insert('div');
     I.cls(o,obj.className);
+    I.opacity(o,obj.config.opacity);
+    o.style.backgroundColor = obj.config.color;
     obj.layer = o;
     obj.suit = function(){
       try{

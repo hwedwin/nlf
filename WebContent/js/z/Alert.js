@@ -5,13 +5,18 @@
 I.regist('z.Alert',function(W,D){
   var CFG = {
     skin:'Default',
-    mask:true,
     width:400,
     height:150,
-    shadow_size:6,
     title:'提示',
     title_height:30,
     content:'',
+    button_label:'确定',
+    button_border:'1px solid #DDD',
+    button_border_hover:'1px solid #999',
+    button_background:'#E9E9E9',
+    button_background_hover:'#FBFBFB',
+    button_color:'#333',
+    button_color_hover:'#333',
     callback:function(){}
   };
   var _create = function(obj){
@@ -19,12 +24,26 @@ I.regist('z.Alert',function(W,D){
     var o = I.insert('div',obj.contentPanel);
     I.css(o,'position:absolute;margin:0;padding:0;left:0;bottom:0;height:40px;overflow:hidden;width:100%;border-top:1px solid #EEE;');
     obj.bottomPanel = o;
-    var btn = I.ui.Button.create({dom:o,skin:obj.config.skin,callback:function(){obj.close();}});
-    btn.layer.style.position = 'absolute';
-    var r = I.region(btn.layer);
+    var cfg = obj.config;
+    var btn = I.ui.Button.create({
+      dom:o,
+      skin:cfg.skin,
+      label:cfg.button_label,
+      border:cfg.button_border,
+      border_hover:cfg.button_border_hover,
+      background:cfg.button_background,
+      background_hover:cfg.button_background_hover,
+      color:cfg.button_color,
+      color_hover:cfg.button_color_hover,
+      callback:function(){
+        obj.close();
+      }
+    });
+    btn.dom.style.position = 'absolute';
+    var r = I.region(btn.dom);
     var space = Math.floor((40-r.height)/2);
-    btn.layer.style.right = space+'px';
-    btn.layer.style.top = space+'px';
+    btn.dom.style.right = space+'px';
+    btn.dom.style.top = space+'px';
     obj.buttonOK = btn;
     
     var html = obj.config.content;

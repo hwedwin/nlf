@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ajax请求的自动分页</title>
+<title>提示条</title>
 <link type="text/css" rel="stylesheet" href="${PATH}/css/font-awesome.css" />
 <style type="text/css">
 *{font-size:14px;}
@@ -16,14 +16,24 @@
 <body>
 <a href="${PATH}/">返回首页</a>
 <p></p>
-<a id="btnA">基于ajax的自动分页</a>
+<a id="btnA">显示ToolTip</a>
 <script type="text/javascript">
 I.want(function(){
-  //蓝色按钮
-  I.ui.Button.render('btnA',{icon:'fa fa-thumbs-up',callback:function(){
-    var ntw = I.z.SimpleWin.create({width:600,height:400,content:'loading'});
-    I.net.Page.find('test.Action/paging',null,ntw.contentPanel);
-  }});
+  var tip = null;
+  I.ui.Button.render('btnA');
+  I.listen('btnA','mouseover',function(){
+    if(tip){
+      tip.close();
+      tip = null;
+    }
+    tip = I.ui.ToolTip.create({dom:'btnA',content:'Hello World!'});
+  });
+  I.listen('btnA','mouseout',function(){
+    if(tip){
+      tip.close();
+      tip = null;
+    }
+  });
 });
 </script>
 </body>

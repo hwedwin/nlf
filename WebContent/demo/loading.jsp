@@ -16,10 +16,12 @@
 <body>
 <a href="${PATH}/">返回首页</a>
 <p></p>
+<a id="btnA">显示红色的进度条</a>
+<a id="btnB">显示默认的进度条</a>
+<a id="btnC">显示深色遮罩的进度条</a>
 <script type="text/javascript">
 I.want(function(){
-  //创建一个按钮
-  I.ui.Button.create({label:'显示红色的进度条',icon:'phone',callback:function(){
+  I.ui.Button.render('btnA',{icon:'fa fa-phone',callback:function(){
     //显示红色的进度条，2秒后关闭
     var ld = I.ui.Loading.create({color:'red'});
     I.delay(2000,function(){
@@ -27,10 +29,20 @@ I.want(function(){
     });
   }});
   
-  //创建一个按钮
-  I.ui.Button.create({label:'显示默认的进度条',icon:'phone',callback:function(){
-    //显示红色的进度条，2秒后关闭
+  I.ui.Button.render('btnB',{icon:'fa fa-car',callback:function(){
+    //显示默认的进度条，2秒后关闭
     var ld = I.ui.Loading.create();
+    I.delay(2000,function(){
+      ld.close();
+    });
+  }});
+  
+  I.ui.Button.render('btnC',{callback:function(){
+    var ld = I.ui.Loading.create({
+      color:'#FFF',
+      mask_color:'#000',
+      mask_opacity:60,
+    });
     I.delay(2000,function(){
       ld.close();
     });

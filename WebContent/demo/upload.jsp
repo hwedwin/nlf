@@ -18,7 +18,7 @@
 <p></p>
 文件上传：
 <div id="myUpload">
-  <i></i>
+  <i>文件上传</i>
   <b></b>
   <form>
     <input type="file" />
@@ -28,7 +28,8 @@
 //通过html渲染的上传组件
 I.want(function(){
   I.ui.Upload.render('myUpload',{
-    //skin:'Blue',//皮肤，非必选
+    width:90,
+    height:30,
     url:'${PATH}/test.Action/upload',//上传地址，必选
     onSuccess:function(r){//上传成功后调用
       window.alert('文件上传成功：'+r.data);
@@ -37,19 +38,19 @@ I.want(function(){
 });
 </script>
 <p></p>
-<a id="btnA" class="i-ui-Button-Blue" href="javascript:void(0);">动态创建上传组件</a>
+<a id="btnA">动态创建上传组件</a>
 <script type="text/javascript">
 //动态创建的上传组件
 I.want(function(){
-  I.util.Skin.init('Blue');
-  I.listen('btnA','click',function(){
-    I.ui.Upload.create({
-      skin:'Green',//皮肤，非必选
-      url:'${PATH}/test.Action/upload',//上传地址，必选
-      onSuccess:function(r){//上传成功后调用
-        window.alert('文件上传成功：'+r.data);
-      }
-    });
+  I.ui.Button.render('btnA',{
+    callback:function(){
+      I.ui.Upload.create({
+        url:'${PATH}/test.Action/upload',//上传地址，必选
+        onSuccess:function(r){//上传成功后调用
+          window.alert('文件上传成功：'+r.data);
+        }
+      });
+    }
   });
 });
 </script>

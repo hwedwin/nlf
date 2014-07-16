@@ -1,9 +1,12 @@
 I.regist('ui.Notify',function(W,D){
   var CFG = {
     skin:'Default',
-    icon:null,
+    icon:'url(\'none\')',
     title:'通知',
     content:'',
+    background:'#111',
+    border:'1px solid #000',
+    color:'#FFF',
     time:6000,
     callback:function(){}
   };
@@ -18,6 +21,9 @@ I.regist('ui.Notify',function(W,D){
       var o = I.insert('div');
       I.cls(o,obj.className);
       obj.layer = o;
+      obj.layer.style.color = obj.config.color;
+      obj.layer.style.background = obj.config.background;
+      obj.layer.style.border = obj.config.border;
       o.innerHTML = obj.config.content;
       var l = 0;
       obj.timer = W.setInterval(function(){

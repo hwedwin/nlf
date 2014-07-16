@@ -9,6 +9,12 @@ I.regist('ui.Upload',function(W,D){
     width:40,
     height:40,
     dom:D.body,
+    border:'1px solid #EEE',
+    border_hover:'1px solid #BBB',
+    background:'transparent',
+    background_hover:'#FBFBFB',
+    color:'#666',
+    color_hover:'#333',
     onUpload:function(cfg){},
     onSuccess:function(result){},
     onFailed:function(result){
@@ -35,6 +41,9 @@ I.regist('ui.Upload',function(W,D){
     obj.input = I.$(div,'tag','input')[0];
     obj.layer.style.width = cfg.width+'px';
     obj.layer.style.height = cfg.height+'px';
+    obj.layer.style.border = cfg.border;
+    obj.layer.style.color = cfg.color;
+    obj.layer.style.background = cfg.background;
     obj.icon.style.width = cfg.width+'px';
     obj.icon.style.height = cfg.height+'px';
     obj.icon.style.lineHeight = cfg.height+'px';
@@ -52,6 +61,16 @@ I.regist('ui.Upload',function(W,D){
     obj.input.onfocus = function(){this.blur();};
     I.listen(obj.input,'change',function(m,e){
       obj.upload(m.value);
+    });
+    I.listen(obj.layer,'mouseover',function(m,e){
+      m.style.border = cfg.border_hover;
+      m.style.color = cfg.color_hover;
+      m.style.background = cfg.background_hover;
+    });
+    I.listen(obj.layer,'mouseout',function(m,e){
+      m.style.border = cfg.border;
+      m.style.color = cfg.color;
+      m.style.background = cfg.background;
     });
     return obj;
   };

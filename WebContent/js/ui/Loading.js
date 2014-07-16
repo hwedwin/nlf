@@ -6,13 +6,15 @@ I.regist('ui.Loading',function(W,D){
   var CFG = {
     skin:'Default',
     mask:true,
+    mask_opacity:10,
+    mask_color:'#FFF',
     color:null,
     callback:function(){}
   };
   var _create = function(obj){
     var cfg = obj.config;
     if(cfg.mask){
-      obj.mask = I.ui.Mask.create({skin:cfg.skin});
+      obj.mask = I.ui.Mask.create({skin:cfg.skin,opacity:cfg.mask_opacity,color:cfg.mask_color});
     }
     var o = I.insert('div');
     I.cls(o,obj.className);

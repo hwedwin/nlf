@@ -16,21 +16,35 @@
 <body>
 <a href="${PATH}/">返回首页</a>
 <p></p>
+<a id="btnA">蓝色Alert</a>
+<a id="btnB">默认Alert</a>
+<a id="btnC">深色遮罩Alert</a>
 <script type="text/javascript">
 I.want(function(){
-  //蓝色按钮点击后显示蓝色Alert
-  I.ui.Button.create({skin:'Blue',label:'蓝色Alert',icon:'thumbs-up',callback:function(){
-    I.z.Alert.create({skin:'Blue',content:'Hello World!'});
+  I.ui.Button.render('btnA',{icon:'fa fa-thumbs-up',callback:function(){
+    I.z.Alert.create({
+      title_background:'#0074D9',
+      title_border_color:'#0074D9',
+      content_border_color:'#0074D9',
+      content:'Hello World!'
+    });
   }});
-  
-  //绿色按钮点击后显示绿色Alert
-  I.ui.Button.create({skin:'Green',label:'绿色Alert',icon:'thumbs-up',callback:function(){
-    I.z.Alert.create({skin:'Green',content:'Hello World!'});
+  I.ui.Button.render('btnB',{icon:'fa fa-thumbs-up',callback:function(){
+    I.z.Alert.create({
+      content:'Hello World!'
+    });
   }});
-  
-  //默认按钮点击后显示默认Alert
-  I.ui.Button.create({label:'默认Alert',icon:'thumbs-up',callback:function(){
-    I.z.Alert.create({content:'Hello World!'});
+  I.ui.Button.render('btnC',{icon:'fa fa-thumbs-up',callback:function(){
+    I.z.Alert.create({
+      mask_opacity:60,
+      mask_color:'#000',
+      shadow_color:'#FFF',
+      shadow_opacity:50,
+      title_background:'#0074D9',
+      title_border_color:'#0074D9',
+      content_border_color:'#0074D9',
+      content:'Hello World!'
+    });
   }});
 });
 </script>

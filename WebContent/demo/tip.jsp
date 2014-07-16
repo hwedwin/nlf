@@ -16,15 +16,15 @@
 <body>
 <a href="${PATH}/">返回首页</a>
 <p></p>
+<a id="btnA">显示蓝色的Tip</a>
+<a id="btnB">显示默认的Tip</a>
 <script type="text/javascript">
 I.want(function(){
-  //创建一个蓝色的按钮
-  I.ui.Button.create({skin:'Blue',label:'显示蓝色的Tip',icon:'phone',callback:function(){
+  I.ui.Button.render('btnA',{icon:'fa fa-phone',callback:function(){
     //创建蓝色提示信息
-    I.ui.Tip.create({msg:'Hello World!',skin:'Blue'});
+    I.ui.Tip.create({msg:'Hello World!',background:'#0074D9',color:'#FFF'});
   }});
-  //创建一个默认的按钮
-  I.ui.Button.create({label:'显示默认的Tip',icon:'phone',callback:function(){
+  I.ui.Button.render('btnB',{icon:'fa fa-car',callback:function(){
     //创建默认提示信息
     I.ui.Tip.create({msg:'Hello World!'});
   }});

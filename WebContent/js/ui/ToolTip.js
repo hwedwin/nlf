@@ -5,6 +5,10 @@
 I.regist('ui.ToolTip',function(W,D){
   var CFG = {
     skin:'Default',
+    border:'1px solid #B1B1B1',
+    arrow_color:'#B1B1B1',
+    background:'#FFF',
+    color:'#333',
     dom:D.body,
     content:'',
     callback:function(){}
@@ -22,7 +26,13 @@ I.regist('ui.ToolTip',function(W,D){
     o.innerHTML = '<b class="n"><b class="arrow-n0">&#9670;</b><b class="arrow-n1">&#9670;</b></b><b class="c"><b class="content"></b></b><b class="s"><b class="arrow-s0">&#9670;</b><b class="arrow-s1">&#9670;</b></b>';
     obj.layer = o;
     I.$(o,'class','content')[0].innerHTML = cfg.content;
-    
+    I.$(o,'class','c')[0].style.border = cfg.border;
+    I.$(o,'class','c')[0].style.background = cfg.background;
+    I.$(o,'class','content')[0].style.color = cfg.color;
+    I.$(o,'class','arrow-s0')[0].style.color = cfg.arrow_color;
+    I.$(o,'class','arrow-s1')[0].style.color = cfg.background;
+    I.$(o,'class','arrow-n0')[0].style.color = cfg.arrow_color;
+    I.$(o,'class','arrow-n1')[0].style.color = cfg.background;
     var pr = I.region(cfg.dom);
     var sl = I.region(o);
     var y = pr.y-sl.height+6;

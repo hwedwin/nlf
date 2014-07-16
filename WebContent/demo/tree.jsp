@@ -40,14 +40,14 @@
   <li><b></b><i></i><input type="checkbox" /><a>二年级</a></li>
   <li><b></b><i></i><input type="checkbox" /><a>三年级</a></li>
 </ul>
-<a id="btnA" class="i-ui-Button-Default" href="javascript:void(0);">获取选中的</a>
-<a id="btnB" class="i-ui-Button-Default" href="javascript:void(0);">添加子节点</a>
-<a id="btnG" class="i-ui-Button-Default" href="javascript:void(0);">来点暴力的添加1000个子节点</a>
-<a id="btnD" class="i-ui-Button-Default" href="javascript:void(0);">删除选中节点</a>
-<a id="btnE" class="i-ui-Button-Default" href="javascript:void(0);">全部展开</a>
-<a id="btnF" class="i-ui-Button-Default" href="javascript:void(0);">全部收缩</a>
+<a id="btnA">获取选中的</a>
+<a id="btnB">添加子节点</a>
+<a id="btnG">来点暴力的添加1000个子节点</a>
+<a id="btnD">删除选中节点</a>
+<a id="btnE">全部展开</a>
+<a id="btnF">全部收缩</a>
 <p></p>
-<a id="btnC" class="i-ui-Button-Default" href="javascript:void(0);">通过json创建一颗新的树</a>
+<a id="btnC">通过json创建一颗新的树</a>
 <script type="text/javascript">
 I.want(function(){
   //渲染树到id为tree的ul上
@@ -77,61 +77,68 @@ I.want(function(){
       }
     }
   });
-  //按钮事件，弹出选中节点的text
-  I.listen('btnA','click',function(m,e){
-    var text = [];
-    var selected = tree.getSelected();
-    for(var i=0;i<selected.length;i++){
-      text.push(selected[i].dom.a.innerHTML);
+  I.ui.Button.render('btnA',{
+    callback:function(){
+      var text = [];
+      var selected = tree.getSelected();
+      for(var i=0;i<selected.length;i++){
+        text.push(selected[i].dom.a.innerHTML);
+      }
+      window.alert(text.join(','));
     }
-    window.alert(text.join(','));
   });
-  //按钮事件，全部展开
-  I.listen('btnE','click',function(m,e){
-    tree.open();
+  I.ui.Button.render('btnE',{
+    callback:function(){
+      tree.open();
+    }
   });
-  //按钮事件，全部收缩
-  I.listen('btnF','click',function(m,e){
-    tree.close();
+  I.ui.Button.render('btnF',{
+    callback:function(){
+      tree.close();
+    }
   });
   
-  //按钮事件，添加子节点，如果有选中的，在选中的下边添加子节点，否则在根节点下添加子节点
-  I.listen('btnB','click',function(m,e){
-    var selected = tree.getSelected();
-    if(selected.length<1){
-      tree.add('<b></b><i></i><input type="checkbox" /><a>新添加的节点</a>');
-    }else{
-      for(var i=0;i<selected.length;i++){
-        selected[i].add('<b></b><i></i><input type="checkbox" /><a>新添加的节点</a>');
+  I.ui.Button.render('btnB',{
+    callback:function(){
+      var selected = tree.getSelected();
+      if(selected.length<1){
+        tree.add('<b></b><i></i><input type="checkbox" /><a>新添加的节点</a>');
+      }else{
+        for(var i=0;i<selected.length;i++){
+          selected[i].add('<b></b><i></i><input type="checkbox" /><a>新添加的节点</a>');
+        }
       }
     }
   });
-  //按钮事件，添加1000个子节点
-  I.listen('btnG','click',function(m,e){
-    var selected = tree.getSelected();
-    if(selected.length<1){
-      for(var i=0;i<1000;i++){
-        tree.add('<b></b><i></i><input type="checkbox" /><a>新添加的节点'+i+'</a>');
-      }
-    }else{
-      for(var j=0;j<1000;j++){
-        for(var i=0;i<selected.length;i++){
-          selected[i].add('<b></b><i></i><input type="checkbox" /><a>新添加的节点'+j+'</a>');
+  I.ui.Button.render('btnG',{
+    callback:function(){
+      var selected = tree.getSelected();
+      if(selected.length<1){
+        for(var i=0;i<1000;i++){
+          tree.add('<b></b><i></i><input type="checkbox" /><a>新添加的节点'+i+'</a>');
+        }
+      }else{
+        for(var j=0;j<1000;j++){
+          for(var i=0;i<selected.length;i++){
+            selected[i].add('<b></b><i></i><input type="checkbox" /><a>新添加的节点'+j+'</a>');
+          }
         }
       }
     }
   });
   
   //按钮事件，删除选中节点
-  I.listen('btnD','click',function(m,e){
-    var selected = tree.getSelected();
-    for(var i=0;i<selected.length;i++){
-      tree.remove(selected[i].uuid);
+  I.ui.Button.render('btnD',{
+    callback:function(){
+      var selected = tree.getSelected();
+      for(var i=0;i<selected.length;i++){
+        tree.remove(selected[i].uuid);
+      }
     }
   });
   
-  //按钮事件，通过json渲染树
-  I.listen('btnC','click',function(m,e){
+  //按钮事件，删除选中节点
+  I.ui.Button.render('btnC',{callback:function(){
     var d = [
       {text:'爷爷',checked:true,expand:false,children:[
         {text:'父亲',children:[
@@ -162,7 +169,6 @@ I.want(function(){
     ];
     var newTree = I.ui.Tree.create({
       //dom:document.body,
-      skin:'Blue',//皮肤名
       folder_open_icon:'fa fa-car',//文件夹打开的图标
       data:d,//数据
       //点击text事件
@@ -170,6 +176,7 @@ I.want(function(){
         window.alert(who.dom.li.getAttribute('gender')+','+who.dom.li.getAttribute('data-id')+','+who.dom.a.innerHTML);
       }
     });
+  }
   });
 });
 </script>
