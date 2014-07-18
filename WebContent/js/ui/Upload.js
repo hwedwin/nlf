@@ -58,7 +58,6 @@ I.regist('ui.Upload',function(W,D){
     obj.form.target = FRAME_TAG;
     obj.form.enctype = 'multipart/form-data';
     obj.input.name = 'iLibUploadFile';
-    obj.input.onfocus = function(){this.blur();};
     I.listen(obj.input,'change',function(m,e){
       obj.upload(m.value);
     });
