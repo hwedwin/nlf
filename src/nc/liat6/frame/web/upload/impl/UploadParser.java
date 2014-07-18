@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import nc.liat6.frame.context.Statics;
@@ -14,8 +13,10 @@ import nc.liat6.frame.exception.BadUploadException;
 import nc.liat6.frame.execute.upload.IProgressListener;
 import nc.liat6.frame.execute.upload.UploadedFile;
 import nc.liat6.frame.locale.L;
+import nc.liat6.frame.util.ByteArray;
 import nc.liat6.frame.util.ID;
 import nc.liat6.frame.util.Mather;
+import nc.liat6.frame.util.Stringer;
 import nc.liat6.frame.web.upload.IParser;
 import nc.liat6.frame.web.upload.bean.UploadRule;
 
@@ -26,9 +27,6 @@ import nc.liat6.frame.web.upload.bean.UploadRule;
  * </p>
  * <p>
  * 由于只获取到整个请求的body总大小，所以文件的上传进度的数值并不是纯粹文件的大小。
- * </p>
- * <p>
- * 上传文件同时post的参数会被忽略。
  * </p>
  * 
  * @author 6tail
@@ -52,10 +50,12 @@ public class UploadParser implements IParser{
   public static final byte[] BOUNDARY_PREFIX = {CR,LF,DASH,DASH};
   /** 临时文件目录 */
   public static final String TEMP_DIR = System.getProperty("java.io.tmpdir");
+  public static final String BOUNDARY_TAG = "boundary=";
+  public static final String FILE_TAG = "filename=\"";
   /** 当前字节 */
   private int c;
   /** 上传进度监听，因暂时没有好的办法获取文件大小，故不是很准确 */
-  private IProgressListener progressListener;
+  private IProgressListener listener;
   private HttpServletRequest request;
   private ServletInputStream reader;
 
@@ -72,10 +72,10 @@ public class UploadParser implements IParser{
     if(!contentType.contains("multipart/form-data")){
       return null;
     }
-    if(!contentType.contains("boundary=")){
+    if(!contentType.contains(BOUNDARY_TAG)){
       return null;
     }
-    return contentType.substring(contentType.indexOf("boundary=")+"boundary=".length());
+    return contentType.substring(contentType.indexOf(BOUNDARY_TAG)+BOUNDARY_TAG.length());
   }
 
   /**
@@ -145,8 +145,6 @@ public class UploadParser implements IParser{
       return null;
     }
     byte[] boundaryBytes = boundary.getBytes();
-    // 结束解析的标识
-    byte[] endBytes = Mather.merge(BOUNDARY_PREFIX,boundaryBytes);
     // 总的数据body大小
     int total = request.getContentLength();
     if(rule.getMaxSize()>-1){
@@ -158,7 +156,7 @@ public class UploadParser implements IParser{
     int uploaded = 0;
     // 是否是文件块
     boolean fileField = false;
-    progressListener.update(uploaded,total);
+    listener.update(uploaded,total);
     UploadedFile uf = new UploadedFile();
     try{
       reader = request.getInputStream();
@@ -170,34 +168,29 @@ public class UploadParser implements IParser{
         String[] heads = new String(headBytes,Statics.ENCODE).split("\r\n");
         for(String s:heads){
           // 文件判断
-          if(s.contains("filename=")){
+          if(s.contains(FILE_TAG)){
             fileField = true;
-            String fileName = s.substring(s.indexOf("filename=\"")+"filename=\"".length());
-            fileName = fileName.substring(0,fileName.indexOf("\""));
-            if(fileName.indexOf("\\")>-1){
-              fileName = fileName.substring(fileName.lastIndexOf("\\")+"\\".length());
+            String fileName = Stringer.cut(s,FILE_TAG,"\"");
+            int index = fileName.lastIndexOf("\\");
+            if(index>-1){
+              fileName = fileName.substring(index+1);
             }
-            if(fileName.indexOf("/")>-1){
-              fileName = fileName.substring(fileName.lastIndexOf("/")+"/".length());
+            index = fileName.lastIndexOf("/");
+            if(index>-1){
+              fileName = fileName.substring(index+1);
             }
             uf.setName(fileName);
-            if(fileName.contains(".")){
-              uf.setSuffix(fileName.substring(fileName.lastIndexOf(".")+".".length()).toLowerCase());
+            index = fileName.lastIndexOf(".");
+            if(index>-1){
+              uf.setSuffix(fileName.substring(index+1).toLowerCase());
             }
             if(rule.getAllows().size()>0){
               if(!rule.getAllows().contains(uf.getSuffix())){
-                StringBuilder sb = new StringBuilder();
-                for(int i = 0;i<rule.getAllows().size();i++){
-                  if(i>0){
-                    sb.append(",");
-                  }
-                  sb.append(rule.getAllows().get(i));
-                }
-                throw new BadUploadException(L.get("upload.formats")+sb.toString());
+                throw new BadUploadException(L.get("upload.formats")+Stringer.join(rule.getAllows(),","));
               }
             }
           }else if(s.contains("Content-Type:")){
-            uf.setContentType(s.split(":")[1].trim());
+            uf.setContentType(Stringer.cut(s,":").trim());
           }
         }
         // 跳过非文件块，以后可修改，处理传递的参数
@@ -205,40 +198,42 @@ public class UploadParser implements IParser{
           uploaded += skipUntil(FIELD_SEPARATOR);
         }
       }
-      int endIndex = 0;
+      // 结束解析的标识
+      byte[] endBytes = Mather.merge(BOUNDARY_PREFIX,boundaryBytes);
+      ByteArray array = new ByteArray();
+      short count = 0;
       byte[] buffer = new byte[BUFFER_SIZE];
       int l = 0;
       File tempFile = new File(TEMP_DIR,ID.next()+"");
       BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(tempFile));
-      ByteArrayOutputStream baos = new ByteArrayOutputStream();
-      out:while((l = reader.read(buffer))!=-1){
-        byte[] b = new byte[l];
-        System.arraycopy(buffer,0,b,0,l);
+      while((l = reader.read(buffer))!=-1){
         uploaded += l;
-        progressListener.update(uploaded,total);
-        for(int i = 0;i<l;i++){
-          if(b[i]==endBytes[endIndex]){
-            baos.write(b[i]);
-            endIndex++;
-            if(endIndex>=endBytes.length){
-              // 后面的全部忽略
-              break out;
-            }
-          }else{
-            endIndex = 0;
-            bos.write(baos.toByteArray());
-            bos.write(b[i]);
-            baos.reset();
+        listener.update(uploaded,total);
+        array.add(buffer);
+        array = array.sub(0,l);
+        if(count>0){
+          int index = array.indexOf(endBytes);
+          if(index>-1){
+            array = array.sub(0,index);
           }
+          count = 0;
+          bos.write(array.toArray());
+          array.clear();
+        }else{
+          count++;
         }
       }
-      baos.close();
+      int index = array.indexOf(endBytes);
+      if(index>-1){
+        array = array.sub(0,index);
+      }
+      bos.write(array.toArray());
+      bos.flush();
       bos.close();
       uf.setSize(tempFile.length());
       // 上传完成，进度修正
-      progressListener.update(total,total);
-      InputStream inputStream = new FileInputStream(tempFile);
-      uf.setInputStream(inputStream);
+      listener.update(total,total);
+      uf.setInputStream(new FileInputStream(tempFile));
     }catch(IOException e){
       throw new BadUploadException(e);
     }
@@ -246,10 +241,10 @@ public class UploadParser implements IParser{
   }
 
   public IProgressListener getProgressListener(){
-    return progressListener;
+    return listener;
   }
 
-  public void setProgressListener(IProgressListener progressListener){
-    this.progressListener = progressListener;
+  public void setProgressListener(IProgressListener listener){
+    this.listener = listener;
   }
 }
