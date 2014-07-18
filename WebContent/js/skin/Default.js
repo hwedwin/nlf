@@ -128,13 +128,43 @@ ul.i-ui-Tree-${skin} ul{
   margin:0;
   padding:0;
   display:block;
-  left:0;
+  right:0;
   top:0;
 }
 .i-ui-Upload-${skin} input{
   margin:0;
   padding:0;
   font-size:1000px;
+}
+.i-ui-Form-${skin}{
+  display:block;
+  margin:0;
+  padding:0;
+  overflow:hidden;
+}
+.i-ui-Form-${skin} ul{
+  clear:both;
+  display:block;
+  margin:1em;
+  padding:0;
+  -webkit-margin-before:1em;
+  -webkit-margin-after:1em;
+  -webkit-margin-start:1em;
+  -webkit-margin-end:1em;
+  -webkit-padding-start:0;
+  zoom:1;
+  overflow:hidden;
+}
+.i-ui-Form-${skin} li{
+  float:left;
+  display:block;
+  overflow:hidden;
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.i-ui-Form-${skin} input{
+  outline:none;
 }
   */}+'';
   return {
