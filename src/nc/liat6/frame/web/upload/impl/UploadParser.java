@@ -209,8 +209,9 @@ public class UploadParser implements IParser{
       while((l = reader.read(buffer))!=-1){
         uploaded += l;
         listener.update(uploaded,total);
-        array.add(buffer);
-        array = array.sub(0,l);
+        ByteArray temp = new ByteArray(buffer);
+        temp = temp.sub(0,l);
+        array.add(temp.toArray());
         if(count>0){
           int index = array.indexOf(endBytes);
           if(index>-1){
@@ -218,6 +219,7 @@ public class UploadParser implements IParser{
           }
           count = 0;
           bos.write(array.toArray());
+          bos.flush();
           array.clear();
         }else{
           count++;
