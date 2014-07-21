@@ -64,13 +64,11 @@ I.regist('z.Win',function(W,D){
     
     obj.closeButton.style.backgroundColor = cfg.title.close_background;
     obj.closeButton.style.color = cfg.close_color;
-    obj.closeButton.style.borderRight = '1px solid '+cfg.close_border_color;
-    obj.closeButton.style.borderTop = '1px solid '+cfg.close_border_color;
-    obj.closeButton.style.right = cfg.shadow_size+'px';
-    obj.closeButton.style.top = cfg.shadow_size+'px';
-    obj.closeButton.style.width = cfg.title_height+'px';
-    obj.closeButton.style.height = cfg.title_height+'px';
-    obj.closeButton.style.lineHeight = cfg.title_height+'px';
+    obj.closeButton.style.right = (cfg.shadow_size+1)+'px';
+    obj.closeButton.style.top = (cfg.shadow_size+1)+'px';
+    obj.closeButton.style.width = (cfg.title_height-1)+'px';
+    obj.closeButton.style.height = (cfg.title_height-1)+'px';
+    obj.closeButton.style.lineHeight = (cfg.title_height-1)+'px';
     obj.contentPanel.style.left = cfg.shadow_size+'px';
     obj.contentPanel.style.top = (cfg.shadow_size+cfg.title_height+2)+'px';
     obj.contentPanel.style.width = cfg.width+'px';
