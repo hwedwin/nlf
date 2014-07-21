@@ -23,15 +23,11 @@ I.regist('ui.Upload',function(W,D){
   };
   var ARG_ID = 'NLF_UPLOAD_ID';
   var FRAME_TAG = 'iLibUploadFrame';
-  var IFRAME = null;
-  var _createFrame = function(){
-    var fr = I.$('name',FRAME_TAG);
-    if(fr.length<1){
-      var o = I.insert('div');
-      o.innerHTML = '<iframe name="'+FRAME_TAG+'" style="display:none;"></iframe>';
-      I.cls(o,'position:absolute;left:-1000px;top:-1000px');
-      IFRAME = I.$(o,'*')[0];
-    }
+  var _createFrame = function(uuid){
+    var o = I.insert('div');
+    o.innerHTML = '<iframe name="'+(FRAME_TAG+'_'+uuid)+'" style="display:none;"></iframe>';
+    I.cls(o,'position:absolute;left:-1000px;top:-1000px');
+    return I.$(o,'*')[0];
   };
   var _bind = function(obj,div,cfg){
     obj.layer = div;
@@ -55,7 +51,6 @@ I.regist('ui.Upload',function(W,D){
     I.cls(obj.icon,cfg.icon);
     I.opacity(obj.form,0);
     obj.form.method = 'post';
-    obj.form.target = FRAME_TAG;
     obj.form.enctype = 'multipart/form-data';
     obj.input.name = 'iLibUploadFile';
     I.listen(obj.input,'change',function(m,e){
@@ -74,15 +69,15 @@ I.regist('ui.Upload',function(W,D){
     return obj;
   };
   var _initObj = function(obj){
-    obj.check = function(uuid){
+    obj.check = function(){
       var inst = this;
-      I.net.SilentRmi.set(ARG_ID,uuid);
+      I.net.SilentRmi.set(ARG_ID,inst.uuid);
       I.net.SilentRmi.call('nc.liat6.frame.web.upload.UploadStatus','getStatus',function(o){
         inst.uploaded = o.uploaded;
         inst.total = o.total;
         if(1==inst.state){
           W.setTimeout(function(){
-            inst.check(uuid);
+            inst.check();
           },1000);
         }
       });
@@ -95,7 +90,9 @@ I.regist('ui.Upload',function(W,D){
       var cfg = inst.config;
       if(inst.timer) return;
       
-      var uuid = I.util.UUID.next();
+      inst.uuid = I.util.UUID.next();
+      inst.iframe = _createFrame(inst.uuid);
+      
       var bindArgs = [];
       if(cfg.args){
         for(var i in cfg.args){
@@ -112,7 +109,7 @@ I.regist('ui.Upload',function(W,D){
         }else{
           formAction += '?';
         }
-        formAction += ARG_ID+'='+uuid;
+        formAction += ARG_ID+'='+inst.uuid;
         for(var i=0;i<bindArgs.length;i++){
           formAction += '&'+bindArgs[i];
         }
@@ -120,7 +117,7 @@ I.regist('ui.Upload',function(W,D){
       
       inst.uploaded=0;
       inst.total=0;
-      IFRAME.contentWindow.document.body.innerHTML = '';
+      inst.iframe.contentWindow.document.body.innerHTML = '';
       inst.state = 1;
       I.opacity(inst.icon,0);
       inst.timer = W.setInterval(function(){
@@ -134,7 +131,7 @@ I.regist('ui.Upload',function(W,D){
         if(inst.total>0){
           inst.textLayer.innerHTML = Math.floor(100*inst.uploaded/inst.total)+'%';
         }
-        var bd = IFRAME.contentWindow.document.body;
+        var bd = inst.iframe.contentWindow.document.body;
         try{
           if(bd){
             var pre = I.$(bd,'*');
@@ -153,8 +150,9 @@ I.regist('ui.Upload',function(W,D){
           cfg.onFailed({success:false,data:null,msg:ex.message});
         }
       },100);
-      inst.check(uuid);
+      inst.check();
       cfg.onUpload(cfg);
+      inst.form.target = FRAME_TAG+'_'+inst.uuid;
       inst.form.action = formAction;
       inst.form.submit();
     };
@@ -167,7 +165,7 @@ I.regist('ui.Upload',function(W,D){
   var _render = function(dom,config){
     _createFrame();
     dom = I.$(dom);
-    var obj = {layer:dom,textLayer:null,form:null,input:null,bar:null,timer:null,uploaded:0,total:0,state:0,className:null,config:null};
+    var obj = {layer:dom,iframe:null,textLayer:null,form:null,input:null,bar:null,timer:null,uploaded:0,total:0,state:0,className:null,config:null};
     var cfg = I.ui.Component.initConfig(config,CFG);
     cfg.dom = obj.layer;
     obj.config = cfg;
