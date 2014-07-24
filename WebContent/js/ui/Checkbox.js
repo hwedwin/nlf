@@ -1,20 +1,40 @@
 /**
- * I.ui.Button
- * <i>按钮组件</i>
+ * I.ui.Checkbox
+ * <i>复选组件</i>
  */
-I.regist('ui.Button',function(W,D){
+I.regist('ui.Checkbox',function(W,D){
   var CFG = {
     skin:'Default',
-    border:'1px solid #DDD',
-    border_hover:'1px solid #999',
-    background:'#E9E9E9',
-    background_hover:'#FBFBFB',
+    border:'0',
+    border_hover:'0',
+    background:'#FBFBFB',
+    background_hover:'#E9E9E9',
     color:'#333',
     color_hover:'#333',
     label:null,
-    icon:null,
+    icon_normal:'fa fa-square-o',
+    icon_checked:'fa fa-check-square-o',
+    value:'',
+    id:'',
+    checked:false,
     dom:D.body,
-    callback:function(){}
+    _callback:function(){
+      var dom = this.dom;
+      var cfg = this.config;
+      var ipt = I.$(dom,'tag','input')[0];
+      if(ipt.checked){
+        ipt.checked = '';
+        I.cls(dom,this.className+' '+cfg.icon_normal);
+        cfg.checked = false;
+      }else{
+        ipt.checked = 'checked';
+        I.cls(dom,this.className+' '+cfg.icon_checked);
+        cfg.checked = true;
+      }
+    },
+    callback:function(){
+      this.config._callback.call(this);
+    }
   };
   var _bindEvent = function(obj){
     var cfg = obj.config;
@@ -35,9 +55,17 @@ I.regist('ui.Button',function(W,D){
       m.style.backgroundColor = cfg.background;
       m.style.color = cfg.color;
     });
+    if(cfg.checked){
+      I.cls(dom,obj.className+' '+cfg.icon_checked);
+    }else{
+      I.cls(dom,obj.className+' '+cfg.icon_normal);
+    }
   };
   var _create = function(config){
     var dom = I.insert('a',config.dom?config.dom:CFG.dom);
+    if(config.label){
+      dom.innerHTML = config.label;
+    }
     return _render(dom,config);
   };
   var _render = function(dom,config){
@@ -45,13 +73,13 @@ I.regist('ui.Button',function(W,D){
     var obj = {dom:dom,className:null,config:null};
     var cfg = I.ui.Component.initConfig(config,CFG);
     obj.config = cfg;
-    if(cfg.label){
-      dom.innerHTML = cfg.label;
+    var ipt = I.$(dom,'tag','input');
+    if(!ipt||ipt.length<1){
+      dom.innerHTML = dom.innerHTML+'<input id="'+cfg.id+'" type="checkbox" />';
+      ipt = I.$(dom,'tag','input');
     }
-    obj.className = 'i-ui-Button-'+cfg.skin;
-    if(cfg.icon){
-      obj.className += ' '+cfg.icon;
-    }
+    ipt[0].value = cfg.value;
+    obj.className = 'i-ui-Checkbox-'+cfg.skin;
     I.util.Skin.init(cfg.skin);
     if('a'==dom.tagName.toLowerCase()){
       if(!dom.getAttribute('href')){
