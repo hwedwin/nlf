@@ -185,6 +185,22 @@ public class Request{
   }
 
   /**
+   * 获取整数参数值，如果获取不到，使用默认值带铁
+   * 
+   * @param key 参数名
+   * @param defaultValue 默认值
+   * @return 参数值
+   */
+  public int getInt(String key,int defaultValue){
+    String v = get(key);
+    try{
+      return Integer.parseInt(v);
+    }catch(Exception e){
+      return defaultValue;
+    }
+  }
+
+  /**
    * 获取长整型参数值
    * 
    * @param key 参数名
@@ -196,6 +212,22 @@ public class Request{
       return Long.parseLong(v);
     }catch(Exception e){
       throw new BadException(Stringer.print("??",L.get("valiadtor.long_integer"),key));
+    }
+  }
+
+  /**
+   * 获取长整型参数值，如果获取不到，使用默认值代替
+   * 
+   * @param key 参数名
+   * @param defaultValue 默认值
+   * @return 参数值
+   */
+  public long getLong(String key,long defaultValue){
+    String v = get(key);
+    try{
+      return Long.parseLong(v);
+    }catch(Exception e){
+      return defaultValue;
     }
   }
 
@@ -215,6 +247,22 @@ public class Request{
   }
 
   /**
+   * 获取数值型参数值，如果获取不到，使用默认值代替
+   * 
+   * @param key 参数名
+   * @param defaultValue 默认值
+   * @return 参数值
+   */
+  public double getDouble(String key,double defaultValue){
+    String v = get(key);
+    try{
+      return Double.parseDouble(v);
+    }catch(Exception e){
+      return defaultValue;
+    }
+  }
+
+  /**
    * 获取浮点型参数值
    * 
    * @param key 参数名
@@ -230,6 +278,22 @@ public class Request{
   }
 
   /**
+   * 获取浮点型参数值，如果获取不到，使用默认值代替
+   * 
+   * @param key 参数名
+   * @param defaultValue 默认值
+   * @return 参数值
+   */
+  public float getFloat(String key,float defaultValue){
+    String v = get(key);
+    try{
+      return Float.parseFloat(v);
+    }catch(Exception e){
+      return defaultValue;
+    }
+  }
+
+  /**
    * 获取布尔型参数值
    * 
    * @param key 参数名
@@ -241,6 +305,22 @@ public class Request{
       return Boolean.parseBoolean(v);
     }catch(Exception e){
       throw new BadException(Stringer.print("??",L.get("valiadtor.bool"),key));
+    }
+  }
+
+  /**
+   * 获取布尔型参数值，如果获取不到，使用默认值代替
+   * 
+   * @param key 参数名
+   * @param defaultValue 默认值
+   * @return 参数值
+   */
+  public boolean getBoolean(String key,boolean defaultValue){
+    String v = get(key);
+    try{
+      return Boolean.parseBoolean(v);
+    }catch(Exception e){
+      return defaultValue;
     }
   }
 
