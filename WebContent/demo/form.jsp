@@ -38,6 +38,10 @@
     <li><input id="email" type="text" /></li>
   </ul>
   <ul>
+    <li data-width="10">日期：</li>
+    <li><input id="date" type="text" /></li>
+  </ul>
+  <ul>
     <li data-width="10">文件上传：</li>
     <li>
       <div id="myUpload">
@@ -86,6 +90,25 @@
     </li>
   </ul>
   <ul>
+    <li data-width="10">学历：</li>
+    <li>
+        <select id="xueli">
+          <option value="0">学前班</option>
+          <option value="1">幼儿园</option>
+          <option value="2">小学</option>
+          <option value="3">初中</option>
+          <option value="4">高中</option>
+          <option value="5">本科</option>
+        </select>
+    </li>
+  </ul>
+  <ul>
+    <li data-width="10">备注：</li>
+    <li>
+        <textarea rows="10"></textarea>
+    </li>
+  </ul>
+  <ul>
     <li></li>
     <li data-width="10"><a id="btn">按钮</a></li>
   </ul>
@@ -113,6 +136,7 @@ I.want(function(){
   I.ui.Checkbox.render('week2');
   I.ui.Checkbox.render('week3');
   I.ui.Checkbox.render('week4');
+  I.util.MultiCalendar.bind('date');
 });
 </script>
 </body>

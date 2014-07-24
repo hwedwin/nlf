@@ -68,6 +68,9 @@ I.regist('ui.Form',function(W,D){
         var chd = I.$(m,'*');
         if(chd.length<1){
           m.style.textAlign = 'right';
+          if(''==I.trim(m.innerHTML)){
+            m.innerHTML = '&nbsp;';
+          }
         }
       }
     }

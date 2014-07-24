@@ -164,8 +164,7 @@ ul.i-ui-Tree-${skin} ul{
   list-style:none;
   margin:0;
   padding:0;
-  height:40px;
-  line-height:40px;
+  line-height:30px;
 }
 .i-ui-Form-${skin} input{
   outline:none;
@@ -175,6 +174,41 @@ ul.i-ui-Tree-${skin} ul{
   font-size:1em;
   height:30px;
   line-height:30px;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+}
+.i-ui-Form-${skin} select{
+  outline:none;
+  width:100%;
+  padding-top:5px;
+  padding-bottom:5px;
+  padding-left:0.5em;
+  padding-right:0.5em;
+  font-size:1em;
+  height:30px;
+  line-height:30px;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+}
+.i-ui-Form-${skin} textarea{
+  outline:none;
+  width:100%;
+  padding-left:0.5em;
+  padding-right:0.5em;
+  font-size:1em;
+  line-height:1.2em;
   -webkit-box-sizing:border-box;
   -moz-box-sizing:border-box;
   box-sizing:border-box;
