@@ -40,7 +40,7 @@ public class ConnVarFactory{
       IConnVarProvider cvp = Factory.getCaller().newInstance(klass);
       if(cvp.support(type)){
         pool.put(type,cvp);
-        cvp.setSetting(setting);
+        cvp.initSetting(setting);
         return cvp.getConnVar();
       }
     }

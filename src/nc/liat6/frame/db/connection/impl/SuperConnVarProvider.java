@@ -27,7 +27,7 @@ public abstract class SuperConnVarProvider implements IConnVarProvider{
     return setting;
   }
 
-  public void setSetting(IDbSetting setting){
+  public void initSetting(IDbSetting setting){
     this.setting = setting;
     registDriver(setting.getDriver());
   }

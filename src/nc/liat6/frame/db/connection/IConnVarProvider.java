@@ -30,5 +30,5 @@ public interface IConnVarProvider{
    * 
    * @param setting ¡¨Ω”…Ë÷√
    */
-  public void setSetting(IDbSetting setting);
+  public void initSetting(IDbSetting setting);
 }

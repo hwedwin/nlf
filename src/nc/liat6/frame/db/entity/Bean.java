@@ -246,61 +246,60 @@ public class Bean implements Serializable{
   public <T>T toObject(Class<?> klass,IBeanRule rule){
     try{
       Object o = klass.newInstance();
+      if(values.size()<1){
+        return (T)o;
+      }
       BeanInfo info = BeanPool.getBeanInfo(klass);
       PropertyDescriptor[] props = info.getPropertyDescriptors();
       for(int i = 0;i<props.length;i++){
         PropertyDescriptor desc = props[i];
         String property = desc.getName();
         Method method = desc.getWriteMethod();
-        if(null!=method){
-          try{
-            if(null!=values){
-              String key = property;
-              if(!values.containsKey(key)){
-                if(null!=rule){
-                  key = rule.getKey(property);
-                }
-              }
-              if(values.containsKey(key)){
-                Class<?> pt = method.getParameterTypes()[0];
-                Object v = values.get(key);
-                if(null==v){
-                  method.invoke(o,v);
-                }else{
-                  Class<?> vt = v.getClass();
-                  if(String.class.equals(pt)){
-                    method.invoke(o,v.toString());
-                  }else if(BigDecimal.class.equals(vt)){
-                    BigDecimal bd = (BigDecimal)v;
-                    if(Long.class.equals(pt)||long.class.equals(pt)){
-                      method.invoke(o,bd.longValue());
-                    }else if(Integer.class.equals(pt)||int.class.equals(pt)){
-                      method.invoke(o,bd.intValue());
-                    }else if(Double.class.equals(pt)||double.class.equals(pt)){
-                      method.invoke(o,bd.doubleValue());
-                    }else if(Float.class.equals(pt)||float.class.equals(pt)){
-                      method.invoke(o,bd.floatValue());
-                    }else if(Short.class.equals(pt)||short.class.equals(pt)){
-                      method.invoke(o,bd.shortValue());
-                    }else if(Byte.class.equals(pt)||byte.class.equals(pt)){
-                      method.invoke(o,bd.byteValue());
-                    }
-                  }else if(Boolean.class.equals(vt)){
-                    Boolean bl = (Boolean)v;
-                    method.invoke(o,bl.booleanValue());
-                  }else{
-                    method.invoke(o,v);
-                  }
-                }
-              }
-            }else{
-              try{
-                method.invoke(o,desc.getPropertyType().newInstance());
-              }catch(NlfException ex){}
+        Class<?> pt = desc.getPropertyType();
+        if(null==method){
+          continue;
+        }
+        try{
+          String key = property;
+          if(!values.containsKey(key)){
+            if(null!=rule){
+              key = rule.getKey(property);
             }
-          }catch(Exception e){
-            throw new NlfException(null==e?null:e.getMessage(),e);
           }
+          if(!values.containsKey(key)){
+            continue;
+          }
+          Object v = values.get(key);
+          if(null==v){
+            method.invoke(o,v);
+          }else{
+            Class<?> vt = v.getClass();
+            if(String.class.equals(pt)){
+              method.invoke(o,v.toString());
+            }else if(BigDecimal.class.equals(vt)){
+              BigDecimal bd = (BigDecimal)v;
+              if(Long.class.equals(pt)||long.class.equals(pt)){
+                method.invoke(o,bd.longValue());
+              }else if(Integer.class.equals(pt)||int.class.equals(pt)){
+                method.invoke(o,bd.intValue());
+              }else if(Double.class.equals(pt)||double.class.equals(pt)){
+                method.invoke(o,bd.doubleValue());
+              }else if(Float.class.equals(pt)||float.class.equals(pt)){
+                method.invoke(o,bd.floatValue());
+              }else if(Short.class.equals(pt)||short.class.equals(pt)){
+                method.invoke(o,bd.shortValue());
+              }else if(Byte.class.equals(pt)||byte.class.equals(pt)){
+                method.invoke(o,bd.byteValue());
+              }
+            }else if(Boolean.class.equals(vt)){
+              Boolean bl = (Boolean)v;
+              method.invoke(o,bl.booleanValue());
+            }else{
+              method.invoke(o,v);
+            }
+          }
+        }catch(Exception e){
+          throw new NlfException(null==e?null:e.getMessage(),e);
         }
       }
       return (T)o;
@@ -308,7 +307,7 @@ public class Bean implements Serializable{
       throw new NlfException(null==e?null:e.getMessage(),e);
     }
   }
-  
+
   public <T>T toObject(Class<?> klass){
     return toObject(klass,null);
   }
