@@ -243,21 +243,27 @@ public class Bean implements Serializable{
   }
 
   @SuppressWarnings("unchecked")
-  public <T>T toObject(Class<?> klass){
+  public <T>T toObject(Class<?> klass,IBeanRule rule){
     try{
       Object o = klass.newInstance();
       BeanInfo info = BeanPool.getBeanInfo(klass);
       PropertyDescriptor[] props = info.getPropertyDescriptors();
       for(int i = 0;i<props.length;i++){
         PropertyDescriptor desc = props[i];
-        String name = desc.getName();
+        String property = desc.getName();
         Method method = desc.getWriteMethod();
         if(null!=method){
           try{
             if(null!=values){
-              if(values.containsKey(name)){
+              String key = property;
+              if(!values.containsKey(key)){
+                if(null!=rule){
+                  key = rule.getKey(property);
+                }
+              }
+              if(values.containsKey(key)){
                 Class<?> pt = method.getParameterTypes()[0];
-                Object v = values.get(name);
+                Object v = values.get(key);
                 if(null==v){
                   method.invoke(o,v);
                 }else{
@@ -293,13 +299,17 @@ public class Bean implements Serializable{
               }catch(NlfException ex){}
             }
           }catch(Exception e){
-            throw new NlfException(e);
+            throw new NlfException(null==e?null:e.getMessage(),e);
           }
         }
       }
       return (T)o;
     }catch(Exception e){
-      throw new NlfException(e);
+      throw new NlfException(null==e?null:e.getMessage(),e);
     }
+  }
+  
+  public <T>T toObject(Class<?> klass){
+    return toObject(klass,null);
   }
 }
