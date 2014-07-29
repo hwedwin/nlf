@@ -307,7 +307,10 @@
     }
     var z = [];
     for(var i in c){
-      if(0==i.indexOf('lang.')){
+      if(i.indexOf('+')>-1){
+        i = i.substr(0,i.indexOf('+'));
+      }
+      if(0==i.indexOf('lang.')||'ROOT'==i||'debug'==i||'version'==i){
         continue;
       }
       z.push(i);
@@ -325,7 +328,15 @@
   };
   
   var _get = function(klass,callback){
-    preLoad([klass],callback);
+    preLoad([klass],function(){
+      var k = klass.split('.');
+      var name = k.pop();
+      var obj = I;
+      for(var i=0;i<k.length;i++){
+        obj = obj[k];
+      }
+      callback.call(obj[name]);
+    });
   };
 
   I.regist = function(klass,code){_regist(klass,code);return this;};

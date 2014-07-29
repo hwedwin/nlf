@@ -6,7 +6,7 @@ I.regist('skin.Default',function(W,D){
   var CSS = function(){/*
 .i-ui-Mask-${skin}{z-index:902;position:absolute;margin:0;padding:0;font-size:0;left:0;top:0;border:0;}
 .i-ui-Loading-${skin}{z-index:992;position:absolute;left:0;top:0;width:0;height:2px;margin:0;padding:0;overflow:hidden;background-color:#0074D9;font-size:0;border:0;}
-.i-ui-Button-${skin}{position:relative;display:inline-block;vertical-align:middle;zoom:1;text-decoration:none;margin:0;padding:0.3em 0.6em;line-height:1.5em;overflow:hidden;font-size:1em;-webkit-border-radius:6px;-moz-border-radius:6px;-ms-border-radius:6px;-o-border-radius:6px;border-radius:6px;cursor:pointer;}
+.i-ui-Button-${skin}{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;position:relative;display:inline-block;vertical-align:middle;zoom:1;text-decoration:none;margin:0;padding:0.3em 0.6em;line-height:1.5em;overflow:hidden;font-size:1em;-webkit-border-radius:6px;-moz-border-radius:6px;-ms-border-radius:6px;-o-border-radius:6px;border-radius:6px;cursor:pointer;text-align:center;}
 .i-ui-Button-${skin}:hover{text-decoration:none;}
 .i-ui-Tip-${skin}{z-index:2147483647;position:absolute;margin:0;padding:0.5em 1em;font-size:1em;left:0;top:0;-webkit-border-radius:6px;-moz-border-radius:6px;-ms-border-radius:6px;-o-border-radius:6px;border-radius:6px;}
 .i-z-Win-${skin}{-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box;z-index:992;position:absolute;left:0;top:0;margin:0;padding:0;overflow:hidden;border:0;}

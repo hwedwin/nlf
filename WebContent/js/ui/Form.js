@@ -71,6 +71,8 @@ I.regist('ui.Form',function(W,D){
           if(''==I.trim(m.innerHTML)){
             m.innerHTML = '&nbsp;';
           }
+        }else if(chd.length==1){
+          chd[0].style.width = '100%';
         }
       }
     }

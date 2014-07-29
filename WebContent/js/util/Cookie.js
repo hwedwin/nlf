@@ -9,9 +9,9 @@ I.regist('util.Cookie',function(W,D){
     if(exp>-1){
       var d = new Date();
       d.setTime(d.getTime()+exp*24*60*60*1000);
-      D.cookie = key+'='+escape(value)+"; expires="+d.toGMTString();
+      D.cookie = key+'='+escape(value)+"; expires="+d.toGMTString()+"; path=/;";
     }else{
-      D.cookie = key+'='+escape(value);
+      D.cookie = key+'='+escape(value)+"; path=/;";
     }
   };
   var _get = function(key){
@@ -30,20 +30,20 @@ I.regist('util.Cookie',function(W,D){
   
   return {
     /**
-     * ����Cookie
-     * @param key ��
-     * @param value ֵ
-     * @param day ��Ч����
+     * 设置Cookie
+     * @param key 键
+     * @param value 值
+     * @param day 过期时间
      */
     set:function(key,value,day){_set(key,value,day);},
     /**
-     * ��ȡCookie�������ڼ��null
-     * @param key ��
+     * 获取Cookie，如果没有，返回null
+     * @param key 键
      */
     get:function(key){return _get(key);},
     /**
-     * �Ƴ�Cookie
-     * @param key ��
+     * 移除Cookie
+     * @param key 键
      */
     remove:function(key){_remove(key);}
   };

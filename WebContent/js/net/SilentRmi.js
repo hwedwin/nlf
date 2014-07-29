@@ -46,19 +46,19 @@ I.regist('net.SilentRmi',function(W,D){
           var o = I.net.Ajax.json(s);
           if(o.xtype){
             if(o.success){
-              I.get(o.xtype,function(oo){
-                oo.create(o);
+              I.get(o.xtype,function(){
+                this.create(o);
               });
               if(f){
                 f(o.data);
               }
             }else{
-              I.get(o.xtype,function(oo){
+              I.get(o.xtype,function(){
                 if(ef){
                   o.callback = ef;
-                  oo.create(o);
+                  this.create(o);
                 }else{
-                  oo.create(o);
+                  this.create(o);
                 }
               });
             }
