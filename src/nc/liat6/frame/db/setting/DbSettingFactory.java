@@ -51,8 +51,7 @@ public class DbSettingFactory{
   /**
    * 获取连接配置
    * 
-   * @param alias
-   *          别名
+   * @param alias 别名
    * @return 连接配置
    */
   public static IDbSetting getSetting(String alias){

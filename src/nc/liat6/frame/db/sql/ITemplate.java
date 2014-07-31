@@ -1,9 +1,9 @@
 package nc.liat6.frame.db.sql;
 
 import java.util.List;
-
 import nc.liat6.frame.db.connection.ConnVar;
 import nc.liat6.frame.db.entity.Bean;
+import nc.liat6.frame.db.transaction.ITrans;
 import nc.liat6.frame.paging.PageData;
 
 /**
@@ -12,6 +12,18 @@ import nc.liat6.frame.paging.PageData;
  *
  */
 public interface ITemplate{
+  
+  /**
+   * 设置事务接口
+   * @param t 事务接口
+   */
+  public void setTrans(ITrans t);
+  
+  /**
+   * 获取事务接口
+   * @return 事务接口
+   */
+  public ITrans getTrans();
 	
 	/**
 	 * 查询一条记录

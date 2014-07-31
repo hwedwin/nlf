@@ -7,6 +7,7 @@ import nc.liat6.frame.db.connection.ConnVar;
 import nc.liat6.frame.db.entity.Bean;
 import nc.liat6.frame.db.exception.DaoException;
 import nc.liat6.frame.db.sql.ITemplate;
+import nc.liat6.frame.db.transaction.ITrans;
 import nc.liat6.frame.locale.L;
 import nc.liat6.frame.paging.PageData;
 
@@ -20,6 +21,18 @@ public class CsvTemplate implements ITemplate,ICsv{
 
   /** 当前连接变量 */
   protected ConnVar cv;
+  /** 事务接口 */
+  protected ITrans trans;
+
+  @Override
+  public void setTrans(ITrans t){
+    trans = t;
+  }
+
+  @Override
+  public ITrans getTrans(){
+    return trans;
+  }
 
   public Object[] one(String sql){
     throw new DaoException(L.get("sql.sql_not_support")+cv.getDbType());
