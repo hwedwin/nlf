@@ -128,6 +128,7 @@ public class Trans implements ITrans{
       throw new DaoException(e);
     }
     o.setAlias(alias);
+    o.setTrans(this);
     return o;
   }
 
