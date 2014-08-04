@@ -264,7 +264,7 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
     PageData pd = new PageData();
     pd.setPageNumber(pageNumber);
     pd.setPageSize(pageSize);
-    pd.setRecordCount(rl.size());
+    pd.setRecordCount(l.size());
     pd.setData(rl);
     return pd;
   }
