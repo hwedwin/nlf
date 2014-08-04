@@ -255,6 +255,7 @@ public class Bean implements Serializable{
         PropertyDescriptor desc = props[i];
         String property = desc.getName();
         Method method = desc.getWriteMethod();
+        //property type 属性类型
         Class<?> pt = desc.getPropertyType();
         if(null==method){
           continue;
@@ -273,9 +274,26 @@ public class Bean implements Serializable{
           if(null==v){
             method.invoke(o,v);
           }else{
+            //value type 值类型
             Class<?> vt = v.getClass();
             if(String.class.equals(pt)){
               method.invoke(o,v.toString());
+            }else if(BigDecimal.class.equals(pt)){
+              method.invoke(o,new BigDecimal(v.toString()));
+            }else if(Long.class.equals(pt)||long.class.equals(pt)){
+              method.invoke(o,Long.parseLong(v.toString()));
+            }else if(Integer.class.equals(pt)||int.class.equals(pt)){
+              method.invoke(o,Integer.parseInt(v.toString()));
+            }else if(Double.class.equals(pt)||double.class.equals(pt)){
+              method.invoke(o,Double.parseDouble(v.toString()));
+            }else if(Float.class.equals(pt)||float.class.equals(pt)){
+              method.invoke(o,Float.parseFloat(v.toString()));
+            }else if(Short.class.equals(pt)||short.class.equals(pt)){
+              method.invoke(o,Short.parseShort(v.toString()));
+            }else if(Byte.class.equals(pt)||byte.class.equals(pt)){
+              method.invoke(o,Byte.parseByte(v.toString()));
+            }else if(Boolean.class.equals(pt)||boolean.class.equals(pt)){
+              method.invoke(o,Boolean.parseBoolean(v.toString()));
             }else if(BigDecimal.class.equals(vt)){
               BigDecimal bd = (BigDecimal)v;
               if(Long.class.equals(pt)||long.class.equals(pt)){
@@ -292,8 +310,7 @@ public class Bean implements Serializable{
                 method.invoke(o,bd.byteValue());
               }
             }else if(Boolean.class.equals(vt)){
-              Boolean bl = (Boolean)v;
-              method.invoke(o,bl.booleanValue());
+              method.invoke(o,((Boolean)v).booleanValue());
             }else{
               method.invoke(o,v);
             }
