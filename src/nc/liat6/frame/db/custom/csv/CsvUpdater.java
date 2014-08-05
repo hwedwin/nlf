@@ -151,7 +151,6 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
       File f = new File(file.getAbsolutePath()+".tmp");
       CSVWriter cw = new CSVWriter(f);
       cw.writeLine(head);
-      Object[] params = getParam();
       if(wheres.size()>0){
         outer:for(int i = 1;i<cr.getLineCount();i++){
           String[] data = cr.getLine(i);
@@ -172,7 +171,7 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
             // 结果
             String v = o.getString(r.getColumn().toUpperCase(),"");
             // 参数
-            String p = params[j]+"";
+            String p = paramWheres.get(j)+"";
             if("=".equals(op)){
               if(!v.equals(p)){
                 cw.writeLine(data);
@@ -199,7 +198,7 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
                 continue outer;
               }
             }else if("in".equalsIgnoreCase(op)){
-              List<?> in = (List<?>)params[j];
+              List<?> in = (List<?>)paramWheres.get(j);
               boolean isIn = false;
               in:for(Object m:in){
                 if(v.equals(m+"")){
@@ -212,7 +211,7 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
                 continue outer;
               }
             }else if("not_in".equalsIgnoreCase(op)){
-              List<?> in = (List<?>)params[j];
+              List<?> in = (List<?>)paramWheres.get(j);
               boolean isIn = false;
               in:for(Object m:in){
                 if(v.equals(m+"")){
