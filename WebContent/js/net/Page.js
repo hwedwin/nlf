@@ -10,7 +10,7 @@ I.regist('net.Page',function(W,D){
       var ntgt = tgt;
       if(!ntgt){
         try{
-          ntgt = FIND_CONTAINER;
+          ntgt = I.$(FIND_CONTAINER);
         }catch(e){
           ntgt = D.body;
         }
