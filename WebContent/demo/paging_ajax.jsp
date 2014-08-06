@@ -21,7 +21,7 @@
 I.want(function(){
   //蓝色按钮
   I.ui.Button.render('btnA',{icon:'fa fa-thumbs-up',callback:function(){
-    var ntw = I.z.SimpleWin.create({width:600,height:400,content:'loading'});
+    var ntw = I.z.SimpleWin.create({width:600,content:'loading'});
     I.net.Page.find('test.Action/paging',null,ntw.contentPanel);
   }});
 });

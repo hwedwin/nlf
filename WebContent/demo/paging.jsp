@@ -20,19 +20,21 @@
   <thead>
     <tr>
       <th>序号</th>
-      <th>三字码</th>
+      <th>姓名</th>
+      <th>年龄</th>
     </tr>
   </thead>
   <tfoot>
   <tr>
-    <td colspan="2"><nlft:page /></td>
+    <td colspan="3"><nlft:page /></td>
   </tr>
   </tfoot>
   <tbody>
     <c:forEach items="${nlfPagingData.data}" var="o" varStatus="index">
     <tr>
       <td>${index.count}</td>
-      <td>${nlfe:bean(o,'C_CODE')}</td>
+      <td>${nlfe:bean(o,'NAME')}</td>
+      <td>${nlfe:bean(o,'AGE')}</td>
     </tr>
     </c:forEach>
   </tbody>
