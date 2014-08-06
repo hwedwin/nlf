@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>自动分页</title>
 <link type="text/css" rel="stylesheet" href="${PATH}/css/font-awesome.css" />
+<link type="text/css" rel="stylesheet" href="${PATH}/css/paging.css" />
 <style type="text/css">
 *{font-size:14px;}
 </style>
