@@ -128,9 +128,8 @@ public class PagingTag extends TagSupport{
       while(uri.startsWith("/")){
         uri = uri.substring(1);
       }
-      uri = "/"+uri;
       if(!ajax){
-        uri = WebContext.CONTEXT_PATH+uri;
+        uri = WebContext.CONTEXT_PATH+"/"+uri;
       }
       html = html.replace("${script}",script);
       html = html.replace("${formId}",formId);
