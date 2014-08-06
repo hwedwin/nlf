@@ -41,6 +41,7 @@
     </ul>
   </li>
 </ul>
+<a id="btnA">插入点数据</a>
 <script type="text/javascript">
 I.want(function(){
   I.ui.Tree.render('menu',{
@@ -56,6 +57,13 @@ I.want(function(){
       if(url){
         self.location = url;
       }
+    }
+  });
+  I.ui.Button.render('btnA',{
+    callback:function(){
+      I.net.Rmi.call('test.Action','addData',function(){
+        
+      });
     }
   });
 });
