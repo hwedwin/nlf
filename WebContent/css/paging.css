@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+.nlfPagingForm{
+  
+}
+.nlfPagingForm input.go{
+  width:40px;
+}
+.nlfPagingForm input.size{
+  width:40px;
+}
+.nlfPagingForm a{
+  margin-left:1em;
+  text-decoration:none;
+}
+.nlfPagingForm a.first{
+}
+.nlfPagingForm a.previous{
+}
+.nlfPagingForm a.number{
+}
+.nlfPagingForm a.ellipsis{
+}
+.nlfPagingForm a.current{
+}
+.nlfPagingForm a.next{
+}
+.nlfPagingForm a.last{
+}
+.nlfPagingForm span.record-prefix{
+  margin-left:1em;
+}
+.nlfPagingForm span.record-count{
+  margin-left:1em;
+}
+.nlfPagingForm span.record-suffix{
+  margin-left:1em;
+}
+.nlfPagingForm span.size-prefix{
+  margin-left:1em;
+}
+.nlfPagingForm span.size-suffix{
+  margin-left:1em;
+}
