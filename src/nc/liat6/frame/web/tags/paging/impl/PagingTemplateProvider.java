@@ -53,10 +53,10 @@ public class PagingTemplateProvider implements IPagingTemplateProvider{
     }
     s.append("<a class=\"next\" href=\"javascript:void(0);\" onclick=\"${script}.goPage('"+pd.getNextPageNumber()+"');\">"+L.get("page.next")+"</a>");
     s.append("<a class=\"last\" href=\"javascript:void(0);\" onclick=\"${script}.goPage('"+pd.getLastPageNumber()+"');\">"+L.get("page.last")+"</a>");
-    s.append("<span class=\"record-prefix\">"+L.get("page.record_prefix"));
+    s.append("<span class=\"record-prefix\">"+L.get("page.record_prefix")+"</span>");
     s.append("<span class=\"record-count\">"+pd.getRecordCount()+"</span>");
     s.append("<span class=\"record-suffix\">"+L.get("page.record_suffix")+"</span>");
-    s.append("<span class=\"size-prefix\">"+L.get("page.size_prefix"));
+    s.append("<span class=\"size-prefix\">"+L.get("page.size_prefix")+"</span>");
     s.append("<input class=\"size\" title=\""+L.get("page.input_size")+"\" type=\"text\" onblur=\"${script}.setPageSize(this.value);\" value=\""+pd.getPageSize()+"\" />");
     s.append("<span class=\"size-suffix\">"+L.get("page.size_suffix")+"</span>");
     return s.toString();
