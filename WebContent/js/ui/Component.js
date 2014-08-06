@@ -11,10 +11,12 @@ I.regist('ui.Component',function(W,D){
       tcfg = {};
     }
     for(var i in defaultCfg){
-      cfg[i] = (undefined!=tcfg[i])?tcfg[i]:defaultCfg[i];
+      cfg[i] = (undefined!=tcfg[i]&&null!=tcfg[i])?tcfg[i]:defaultCfg[i];
     }
     for(var i in tcfg){
-      cfg[i] = tcfg[i];
+      if(null!=tcfg[i]){
+        cfg[i] = tcfg[i];
+      }
     }
     return cfg;
   };
