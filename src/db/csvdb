@@ -1,0 +1,6 @@
+{
+  alias:"nlftest",
+  dbtype:"csv",
+  dbname:"D:\\db\\nlftest",
+  type:"csv"
+}
