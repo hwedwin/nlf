@@ -253,8 +253,17 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
     if(null==tableName){
       throw new DaoException(Stringer.print("??.?",L.get("sql.table_not_found"),template.getConnVar().getAlias(),tableName));
     }
+    if(pageNumber<1){
+      pageNumber = 1;
+    }
     List<Bean> l = select();
+    if(l.size()<pageNumber*pageSize){
+      pageNumber = (int)Math.ceil(l.size()*1D/pageSize);
+    }
     int fromIndex = (pageNumber-1)*pageSize;
+    if(fromIndex<0){
+      fromIndex = 0;
+    }
     int toIndex = fromIndex+pageSize;
     if(toIndex>l.size()){
       toIndex = l.size();
