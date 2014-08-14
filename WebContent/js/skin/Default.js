@@ -144,6 +144,9 @@ ul.i-ui-Tree-${skin} ul{
   margin:0;
   padding:0;
   overflow:hidden;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
 }
 .i-ui-Form-${skin} ul{
   clear:both;
