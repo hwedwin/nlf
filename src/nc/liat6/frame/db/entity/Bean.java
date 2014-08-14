@@ -29,6 +29,27 @@ public class Bean implements Serializable{
   /** 注释对 */
   private Map<String,String> notes = new HashMap<String,String>();
 
+  public Bean(){}
+
+  /**
+   * 将一个对象转为Bean
+   * 
+   * @param object 对象
+   */
+  public Bean(Object object){
+    this(object,null);
+  }
+
+  /**
+   * 将一个对象转为Bean
+   * 
+   * @param object 对象
+   * @param rule 转换规则
+   */
+  public Bean(Object object,IBeanRule rule){
+    fromObject(object,rule);
+  }
+
   /**
    * 是否存在指定键的对象
    * 
@@ -242,6 +263,81 @@ public class Bean implements Serializable{
     return o+"";
   }
 
+  /**
+   * 从对象读取属性到Bean，注意读取前会先清空属性
+   * 
+   * @param object 对象
+   */
+  public void fromObject(Object object){
+    fromObject(object,null);
+  }
+
+  /**
+   * 从对象读取属性到Bean，注意读取前会先清空属性
+   * 
+   * @param object 对象
+   * @param rule 属性转换规则
+   */
+  public void fromObject(Object object,IBeanRule rule){
+    fromObject(object,null,true);
+  }
+
+  /**
+   * 从对象读取属性到Bean
+   * 
+   * @param object 对象
+   * @param rule 属性转换规则
+   * @param clear 读取前是否先清空属性
+   */
+  public void fromObject(Object object,IBeanRule rule,boolean clear){
+    if(null==object){
+      return;
+    }
+    // 清空属性
+    if(clear){
+      clear();
+    }
+    if(object instanceof Bean){
+      Bean o = (Bean)object;
+      for(String p:o.keySet()){
+        String key = null==rule?p:rule.getKey(p);
+        set(null==key?p:key,o.get(p));
+      }
+    }else if(object instanceof Map){
+      Map<?,?> map = (Map<?,?>)object;
+      for(Object o:map.keySet()){
+        String p = o.toString();
+        String key = null==rule?p:rule.getKey(p);
+        set(null==key?p:key,map.get(o));
+      }
+    }else{
+      try{
+        BeanInfo info = BeanPool.getBeanInfo(object.getClass());
+        PropertyDescriptor[] props = info.getPropertyDescriptors();
+        for(int i = 0;i<props.length;i++){
+          PropertyDescriptor desc = props[i];
+          // getter
+          Method method = desc.getReadMethod();
+          if(null==method){
+            continue;
+          }
+          // 属性
+          String p = desc.getName();
+          String key = null==rule?p:rule.getKey(p);
+          set(null==rule?p:key,method.invoke(object));
+        }
+      }catch(Exception e){
+        throw new NlfException(null==e?null:e.getMessage(),e);
+      }
+    }
+  }
+
+  /**
+   * Bean转换为Object
+   * @param klass 类
+   * @param rule 转换规则
+   * @return Object
+   */
   @SuppressWarnings("unchecked")
   public <T>T toObject(Class<?> klass,IBeanRule rule){
     try{
@@ -255,7 +351,7 @@ public class Bean implements Serializable{
         PropertyDescriptor desc = props[i];
         String property = desc.getName();
         Method method = desc.getWriteMethod();
-        //property type 属性类型
+        // property type 属性类型
         Class<?> pt = desc.getPropertyType();
         if(null==method){
           continue;
@@ -274,7 +370,7 @@ public class Bean implements Serializable{
           if(null==v){
             method.invoke(o,v);
           }else{
-            //value type 值类型
+            // value type 值类型
             Class<?> vt = v.getClass();
             if(String.class.equals(pt)){
               method.invoke(o,v.toString());
@@ -325,6 +421,11 @@ public class Bean implements Serializable{
     }
   }
 
+  /**
+   * Bean转换为Object
+   * @param klass 类
+   * @return Object
+   */
   public <T>T toObject(Class<?> klass){
     return toObject(klass,null);
   }
