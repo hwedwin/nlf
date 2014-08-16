@@ -2,6 +2,9 @@
  * 类加载器
  */
 (function(W,D){
+  if(W.I){
+    return;
+  }
   W.I = {
     version:'2.0.3',
     ROOT:'auto',
