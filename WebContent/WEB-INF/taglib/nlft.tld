@@ -37,15 +37,6 @@
     <example></example>
   </tag>
   <tag>
-    <name>jsbegin</name>
-    <tag-class>nc.liat6.frame.web.tags.script.JavaScriptBeginTag</tag-class>
-    <body-content>JSP</body-content>
-    <small-icon></small-icon>
-    <large-icon></large-icon>
-    <description></description>
-    <example></example>
-  </tag>
-  <tag>
     <name>tpl</name>
     <tag-class>nc.liat6.frame.web.tags.tpl.TplTag</tag-class>
     <body-content>JSP</body-content>
