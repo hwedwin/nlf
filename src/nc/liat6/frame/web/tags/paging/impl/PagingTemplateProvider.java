@@ -106,7 +106,7 @@ public class PagingTemplateProvider implements IPagingTemplateProvider{
   @Override
   public String getAjaxTemplate(PageData pd,PagingParam pr,int near){
     StringBuilder s = new StringBuilder();
-    s.append("<textarea style=\"display:none\" name=\"scriptBegin\">\r\n");
+    s.append("<script type=\"text/javascript\">\r\n");
     s.append("var ${script}=(function(W,D){");
     s.append("var args={};");
     Map<?,?> p = pr.getParams();
@@ -139,7 +139,7 @@ public class PagingTemplateProvider implements IPagingTemplateProvider{
     s.append("setPageSize:function(n){setPageSize(n);submit();}");
     s.append("};");
     s.append("})(window,document);\r\n");
-    s.append("</textarea>\r\n");
+    s.append("</script>\r\n");
     s.append("<form id=\"${formId}\" class=\"${class}\" onsubmit=\"return false;\">");
     s.append(getForm(pd,pr,near));
     s.append("</form>");
