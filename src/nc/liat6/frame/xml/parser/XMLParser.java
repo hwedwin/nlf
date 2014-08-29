@@ -70,6 +70,7 @@ public class XMLParser{
       return null;
     }
     s = s.trim();
+    s = s.substring(s.indexOf("<"));
     reader = new StringReader(s);
     while(-1!=c){
       parseElement();
