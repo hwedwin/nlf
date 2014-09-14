@@ -1,4 +1,4 @@
-package nc.liat6.frame.json.parser;
+ï»¿package nc.liat6.frame.json.parser;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -17,31 +17,31 @@ import nc.liat6.frame.json.element.JsonString;
 import nc.liat6.frame.locale.L;
 
 /**
- * JSON×ª»»Æ÷
+ * JSONè½¬æ¢å™¨
  * 
  * @author 6tail
  * 
  */
 public class JsonParser{
 
-  /** ÓÒĞ±¸Ü */
+  /** å³æ–œæ  */
   public static final int RIGHT_SLASH = 92;
-  /** µ±Ç°×Ö·û */
+  /** å½“å‰å­—ç¬¦ */
   private int c;
-  /** Î»ÖÃ */
+  /** ä½ç½® */
   private int pos = 0;
-  /** ´ı½âÎöµÄ×Ö·û´® */
+  /** å¾…è§£æçš„å­—ç¬¦ä¸² */
   private String orgs;
-  /** ×Ö·û¶ÁÈ¡Æ÷ */
+  /** å­—ç¬¦è¯»å–å™¨ */
   private Reader reader;
-  /** ×¢ÊÍ */
+  /** æ³¨é‡Š */
   private String note;
 
   /**
-   * ½«JSON×Ö·û´®×ª»»Îª¶ÔÏó
+   * å°†JSONå­—ç¬¦ä¸²è½¬æ¢ä¸ºå¯¹è±¡
    * 
-   * @param s JSON×Ö·û´®
-   * @return ¶ÔÏó
+   * @param s JSONå­—ç¬¦ä¸²
+   * @return å¯¹è±¡
    */
   public IJsonElement parse(String s){
     orgs = s;
@@ -56,31 +56,31 @@ public class JsonParser{
   private IJsonElement parseElement(){
     skip();
     switch(c){
-      case -1:// ½áÊø
+      case -1:// ç»“æŸ
         return null;
-      case '{':// ¶ÔÏó¿ªÊ¼
+      case '{':// å¯¹è±¡å¼€å§‹
         return parseMap();
-      case '\'':// ×Ö·û´®¿ªÊ¼
+      case '\'':// å­—ç¬¦ä¸²å¼€å§‹
         return parseString();
-      case '"':// ×Ö·û´®¿ªÊ¼
+      case '"':// å­—ç¬¦ä¸²å¼€å§‹
         return parseString();
-      case '[':// Êı×é¿ªÊ¼
+      case '[':// æ•°ç»„å¼€å§‹
         return parseList();
-      default:// ÆäËû£¬ÈçÊı×Ö£¬²¼¶ûÀàĞÍ£¬null
+      default:// å…¶ä»–ï¼Œå¦‚æ•°å­—ï¼Œå¸ƒå°”ç±»å‹ï¼Œnull
         return parseElse();
     }
   }
 
   private JsonString parseString(){
     JsonString o = null;
-    if('\''==c){// µ¥ÒıºÅ¿ªÊ¼µÄ
-      next();// Ìø¹ıÆğÊ¼µÄµ¥ÒıºÅ
+    if('\''==c){// å•å¼•å·å¼€å§‹çš„
+      next();// è·³è¿‡èµ·å§‹çš„å•å¼•å·
       o = new JsonString(readIgnoreSlash('\''));
-    }else if('"'==c){ // Ë«ÒıºÅ¿ªÊ¼µÄ
-      next();// Ìø¹ıÆğÊ¼µÄË«ÒıºÅ
+    }else if('"'==c){ // åŒå¼•å·å¼€å§‹çš„
+      next();// è·³è¿‡èµ·å§‹çš„åŒå¼•å·
       o = new JsonString(readIgnoreSlash('"'));
     }
-    next();// Ìø¹ı½áÊø·ûºÅ
+    next();// è·³è¿‡ç»“æŸç¬¦å·
     if(null!=note&&null!=o){
       o.setNote(note);
       note = null;
@@ -158,32 +158,32 @@ public class JsonParser{
 
   private void parseMapItem(JsonMap o){
     String key = "";
-    skip();// ÏÈÌø¹ıÎŞÒâÒåµÄ×Ö·û
-    if('}'==c){// Èç¹ûÓöµ½¶ÔÏó½ØÖ¹·û£¬¶ÔÏó½âÎöÍê³É·µ»Ø
+    skip();// å…ˆè·³è¿‡æ— æ„ä¹‰çš„å­—ç¬¦
+    if('}'==c){// å¦‚æœé‡åˆ°å¯¹è±¡æˆªæ­¢ç¬¦ï¼Œå¯¹è±¡è§£æå®Œæˆè¿”å›
       return;
     }
-    if('\''==c){ // Èç¹ûÊÇÒÔµ¥ÒıºÅ¿ªÊ¼
-      next(); // Ìø¹ıÆğÊ¼µÄµ¥ÒıºÅ
-      key = readIgnoreSlash('\''); // Ò»Ö±¶Á£¬Ö±µ½Óöµ½¶ÀÁ¢µÄµ¥ÒıºÅ²Å½áÊø
-      next(); // Ìø¹ıµ¥ÒıºÅ
-      skip(); // Ìø¹ıÎŞÒâÒå×Ö·û
-      if(':'!=c){ // ½Ó×ÅÓ¦¸ÃÓĞ¸öÃ°ºÅ
+    if('\''==c){ // å¦‚æœæ˜¯ä»¥å•å¼•å·å¼€å§‹
+      next(); // è·³è¿‡èµ·å§‹çš„å•å¼•å·
+      key = readIgnoreSlash('\''); // ä¸€ç›´è¯»ï¼Œç›´åˆ°é‡åˆ°ç‹¬ç«‹çš„å•å¼•å·æ‰ç»“æŸ
+      next(); // è·³è¿‡å•å¼•å·
+      skip(); // è·³è¿‡æ— æ„ä¹‰å­—ç¬¦
+      if(':'!=c){ // æ¥ç€åº”è¯¥æœ‰ä¸ªå†’å·
         throw new JsonFormatException(L.get("json.need_colon")+(char)c+L.get("json.pos")+pos+"\r\n"+orgs);
       }
-      next(); // Ìø¹ıÃ°ºÅ
-    }else if('"'==c){ // Èç¹ûÊÇÒÔË«ÒıºÅ¿ªÊ¼
-      next(); // Ìø¹ıÆğÊ¼µÄË«ÒıºÅ
-      key = readIgnoreSlash('"'); // Ò»Ö±¶Á£¬Ö±µ½Óöµ½¶ÀÁ¢µÄË«ÒıºÅ²Å½áÊø
-      next(); // Ìø¹ıË«ÒıºÅ
-      skip(); // Ìø¹ıÎŞÒâÒåµÄ×Ö·û
-      if(':'!=c){ // ½Ó×ÅÓ¦¸ÃÓĞ¸öÃ°ºÅ
+      next(); // è·³è¿‡å†’å·
+    }else if('"'==c){ // å¦‚æœæ˜¯ä»¥åŒå¼•å·å¼€å§‹
+      next(); // è·³è¿‡èµ·å§‹çš„åŒå¼•å·
+      key = readIgnoreSlash('"'); // ä¸€ç›´è¯»ï¼Œç›´åˆ°é‡åˆ°ç‹¬ç«‹çš„åŒå¼•å·æ‰ç»“æŸ
+      next(); // è·³è¿‡åŒå¼•å·
+      skip(); // è·³è¿‡æ— æ„ä¹‰çš„å­—ç¬¦
+      if(':'!=c){ // æ¥ç€åº”è¯¥æœ‰ä¸ªå†’å·
         throw new JsonFormatException(L.get("json.need_colon")+(char)c+L.get("json.pos")+pos+"\r\n"+orgs);
       }
-      next(); // Ìø¹ıÃ°ºÅ
-    }else{ // Èç¹ûÖ±½Ó¿ªÊ¼
-      key = readUntil(':'); // Ò»Ö±¶Á£¬Ö±µ½Óöµ½Ã°ºÅ²Å½áÊø
+      next(); // è·³è¿‡å†’å·
+    }else{ // å¦‚æœç›´æ¥å¼€å§‹
+      key = readUntil(':'); // ä¸€ç›´è¯»ï¼Œç›´åˆ°é‡åˆ°å†’å·æ‰ç»“æŸ
       key = key.trim();
-      next();// Ìø¹ıÃ°ºÅ
+      next();// è·³è¿‡å†’å·
     }
     IJsonElement el = parseElement();
     if(null!=note&&null!=el){
@@ -199,18 +199,18 @@ public class JsonParser{
       o.setNote(note);
       note = null;
     }
-    next();// Ìø¹ıÆğÊ¼·ûºÅ{
-    parseMapItem(o);// ½âÎö¶ÔÏóµÄµÚÒ»¸öÊôĞÔ£¬Èç¹ûÓĞµÄ»°
+    next();// è·³è¿‡èµ·å§‹ç¬¦å·{
+    parseMapItem(o);// è§£æå¯¹è±¡çš„ç¬¬ä¸€ä¸ªå±æ€§ï¼Œå¦‚æœæœ‰çš„è¯
     skip();
-    while(','==c){// Èç¹û»¹ÓĞĞÖµÜ½ãÃÃ
-      next();// Ìø¹ı¼ä¸ô·ûºÅ,
+    while(','==c){// å¦‚æœè¿˜æœ‰å…„å¼Ÿå§å¦¹
+      next();// è·³è¿‡é—´éš”ç¬¦å·,
       parseMapItem(o);
       skip();
     }
-    if('}'!=c){ // ½Ó×ÅÓ¦¸ÃÓĞ¸ö½áÊø·û}
+    if('}'!=c){ // æ¥ç€åº”è¯¥æœ‰ä¸ªç»“æŸç¬¦}
       throw new JsonFormatException(L.get("json.need_right_brace")+(char)c+L.get("json.pos")+pos+"\r\n"+orgs);
     }
-    next();// Ìø¹ı½áÊø·û}
+    next();// è·³è¿‡ç»“æŸç¬¦}
     return o;
   }
 
@@ -225,7 +225,7 @@ public class JsonParser{
       l.setNote(note);
       note = null;
     }
-    next();// Ìø¹ıÆğÊ¼·ûºÅ[
+    next();// è·³è¿‡èµ·å§‹ç¬¦å·[
     skip();
     if(']'==c){
       next();
@@ -233,17 +233,17 @@ public class JsonParser{
     }
     parseListItem(l);
     skip();
-    while(','==c){// Èç¹û»¹ÓĞĞÖµÜ½ãÃÃ
-      next();// Ìø¹ı¼ä¸ô·ûºÅ,
+    while(','==c){// å¦‚æœè¿˜æœ‰å…„å¼Ÿå§å¦¹
+      next();// è·³è¿‡é—´éš”ç¬¦å·,
       parseListItem(l);
       skip();
     }
-    next();// Ìø¹ı½áÊø·ûºÅ]
+    next();// è·³è¿‡ç»“æŸç¬¦å·]
     return l;
   }
 
   /**
-   * ¶ÁÈ¡ÏÂÒ»¸ö×Ö·û
+   * è¯»å–ä¸‹ä¸€ä¸ªå­—ç¬¦
    */
   private void next(){
     try{
@@ -255,16 +255,16 @@ public class JsonParser{
   }
 
   /**
-   * Ìø¹ıÎŞÒâÒå×Ö·ûºÍ×¢ÊÍ
+   * è·³è¿‡æ— æ„ä¹‰å­—ç¬¦å’Œæ³¨é‡Š
    */
   private void skip(){
     if(-1==c)
       return;
-    if(0<=c&&32>=c){ // ºöÂÔ0µ½32Ö®¼äµÄ
+    if(0<=c&&32>=c){ // å¿½ç•¥0åˆ°32ä¹‹é—´çš„
       next();
       skip();
     }
-    if(127==c||'\r'==c||'\n'==c){ // ºöÂÔDEL¼°»Ø³µ»»ĞĞ
+    if(127==c||'\r'==c||'\n'==c){ // å¿½ç•¥DELåŠå›è½¦æ¢è¡Œ
       next();
       skip();
     }
@@ -272,7 +272,7 @@ public class JsonParser{
       next();
       if(-1==c)
         return;
-      if('/'==c){ // ºöÂÔµ¥ĞĞ×¢ÊÍ
+      if('/'==c){ // å¿½ç•¥å•è¡Œæ³¨é‡Š
         StringBuilder s = new StringBuilder();
         do{
           next();
@@ -281,7 +281,7 @@ public class JsonParser{
         note = s.toString();
         note = note.substring(0,note.length()-1);
         skip();
-      }else if('*'==c){ // ºöÂÔ¶àĞĞ×¢ÊÍ
+      }else if('*'==c){ // å¿½ç•¥å¤šè¡Œæ³¨é‡Š
         StringBuilder s = new StringBuilder();
         while(-1!=c){
           next();

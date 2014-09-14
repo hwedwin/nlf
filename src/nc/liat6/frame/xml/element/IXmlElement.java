@@ -1,10 +1,10 @@
-package nc.liat6.frame.xml.element;
+ï»¿package nc.liat6.frame.xml.element;
 
 import java.io.Serializable;
 import java.util.Map;
 
 /**
- * XML¶ÔÏó½Ó¿Ú
+ * XMLå¯¹è±¡æ¥å£
  * 
  * @author 6tail
  * 
@@ -12,112 +12,112 @@ import java.util.Map;
 public interface IXmlElement extends Serializable{
 
   /**
-   * ÀàĞÍ
+   * ç±»å‹
    * 
-   * @return ÀàĞÍ
+   * @return ç±»å‹
    */
   public XmlType type();
 
   /**
-   * ×ª»»Îª{}ÀàĞÍ
+   * è½¬æ¢ä¸º{}ç±»å‹
    * 
    * @return
    */
   public XmlMap toXmlMap();
 
   /**
-   * ×ª»»Îª[]ÀàĞÍ
+   * è½¬æ¢ä¸º[]ç±»å‹
    * 
    * @return
    */
   public XmlList toXmlList();
 
   /**
-   * ×ª»»Îª²¼¶ûÖµ
+   * è½¬æ¢ä¸ºå¸ƒå°”å€¼
    * 
    * @return
    */
   public XmlBool toXmlBool();
 
   /**
-   * ×ª»»ÎªÊı×ÖÀàĞÍ
+   * è½¬æ¢ä¸ºæ•°å­—ç±»å‹
    * 
    * @return
    */
   public XmlNumber toXmlNumber();
 
   /**
-   * ×ª»»Îª×Ö·û´®ÀàĞÍ
+   * è½¬æ¢ä¸ºå­—ç¬¦ä¸²ç±»å‹
    * 
    * @return
    */
   public XmlString toXmlString();
 
   /**
-   * ¸ù¾İÂ·¾¶»ñÈ¡½ÚµãÖµ,Ö»ÓĞXmlMapºÍXmlList²ÅÊµÏÖ¸Ã·½·¨
+   * æ ¹æ®è·¯å¾„è·å–èŠ‚ç‚¹å€¼,åªæœ‰XmlMapå’ŒXmlListæ‰å®ç°è¯¥æ–¹æ³•
    * 
    * @param path 
-   *          Â·¾¶£¬Èç<a><b>1</b></a>£¬select("a.b")½á¹ûÎª1£¬Èç<as><a>1</a><a>2</a></as>£¬select("0")½á¹ûÎª1£¬Èç¹ûÎŞ·¨ÕÒµ½Ö¸¶¨½Úµã
-   *          £¬·µ»Ønull
-   * @return ½ÚµãÖµ
+   *          è·¯å¾„ï¼Œå¦‚<a><b>1</b></a>ï¼Œselect("a.b")ç»“æœä¸º1ï¼Œå¦‚<as><a>1</a><a>2</a></as>ï¼Œselect("0")ç»“æœä¸º1ï¼Œå¦‚æœæ— æ³•æ‰¾åˆ°æŒ‡å®šèŠ‚ç‚¹
+   *          ï¼Œè¿”å›null
+   * @return èŠ‚ç‚¹å€¼
    */
   public IXmlElement select(String path);
 
   /**
-   * »ñµÃ½ÚµãÃû³Æ
+   * è·å¾—èŠ‚ç‚¹åç§°
    * 
-   * @return ½ÚµãÃû³Æ
+   * @return èŠ‚ç‚¹åç§°
    */
   public String getName();
 
   /**
-   * ÉèÖÃ½ÚµãÃû³Æ
+   * è®¾ç½®èŠ‚ç‚¹åç§°
    * 
-   * @param name ½ÚµãÃû³Æ
+   * @param name èŠ‚ç‚¹åç§°
    */
   public void setName(String name);
 
   /**
-   * »ñÈ¡½Úµã×¢ÊÍ
+   * è·å–èŠ‚ç‚¹æ³¨é‡Š
    * 
-   * @return ×¢ÊÍ
+   * @return æ³¨é‡Š
    */
   public String getNote();
 
   /**
-   * ÉèÖÃ½Úµã×¢ÊÍ
+   * è®¾ç½®èŠ‚ç‚¹æ³¨é‡Š
    * 
-   * @param note ×¢ÊÍ
+   * @param note æ³¨é‡Š
    */
   public void setNote(String note);
 
   /**
-   * »ñÈ¡½ÚµãÊôĞÔ£¬Èç¹û²»´æÔÚÊôĞÔÃû£¬·µ»Ønull
+   * è·å–èŠ‚ç‚¹å±æ€§ï¼Œå¦‚æœä¸å­˜åœ¨å±æ€§åï¼Œè¿”å›null
    * 
-   * @param attributeName ÊôĞÔÃû
-   * @return ÊôĞÔÖµ
+   * @param attributeName å±æ€§å
+   * @return å±æ€§å€¼
    */
   public String getAttribute(String attributeName);
 
   /**
-   * ÉèÖÃ½ÚµãÊôĞÔ
+   * è®¾ç½®èŠ‚ç‚¹å±æ€§
    * 
-   * @param attributeName ÊôĞÔÃû
-   * @param value ÊôĞÔÖµ
+   * @param attributeName å±æ€§å
+   * @param value å±æ€§å€¼
    */
   public void setAttribute(String attributeName,String value);
 
   /**
-   * »ñÈ¡½ÚµãËùÓĞÊôĞÔ
+   * è·å–èŠ‚ç‚¹æ‰€æœ‰å±æ€§
    * 
-   * @return ËùÓĞÊôĞÔ
+   * @return æ‰€æœ‰å±æ€§
    */
   public Map<String,String> getAttributes();
 
   /**
-   * ¸²¸Ç½ÚµãËùÓĞÊôĞÔ
+   * è¦†ç›–èŠ‚ç‚¹æ‰€æœ‰å±æ€§
    * 
-   * @param attributes ËùÓĞÊôĞÔ
+   * @param attributes æ‰€æœ‰å±æ€§
    */
   public void setAttributes(Map<String,String> attributes);
 }

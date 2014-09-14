@@ -1,7 +1,7 @@
-package nc.liat6.frame.json.wrapper;
+ï»¿package nc.liat6.frame.json.wrapper;
 
 /**
- * °ü×°½Ó¿Ú
+ * åŒ…è£…æ¥å£
  * 
  * @author 6tail
  * 
@@ -9,11 +9,11 @@ package nc.liat6.frame.json.wrapper;
 public interface IWrapper{
 
   /**
-   * °ü×°
+   * åŒ…è£…
    * 
-   * @param o ¶ÔÏó
-   * @param level ²ã¼¶
-   * @return ×Ö·û´®
+   * @param o å¯¹è±¡
+   * @param level å±‚çº§
+   * @return å­—ç¬¦ä¸²
    */
   public String wrap(Object o,int level);
 }

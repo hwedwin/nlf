@@ -1,4 +1,4 @@
-package nc.liat6.frame.execute;
+ï»¿package nc.liat6.frame.execute;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,88 +12,88 @@ import nc.liat6.frame.util.Pair;
 import nc.liat6.frame.util.Stringer;
 
 /**
- * ÇëÇó
+ * è¯·æ±‚
  * 
  * @author 6tail
  * 
  */
 public class Request{
 
-  /** ·ÖÒ³Ò³Âë±êÊ¶ */
+  /** åˆ†é¡µé¡µç æ ‡è¯† */
   public static final String PAGE_NUMBER_VAR = "nlfPagingNumber";
-  /** ·ÖÒ³Ã¿Ò³´óĞ¡±êÊ¶ */
+  /** åˆ†é¡µæ¯é¡µå¤§å°æ ‡è¯† */
   public static final String PAGE_SIZE_VAR = "nlfPagingSize";
-  /** ·ÖÒ³²ÎÊı±êÊ¶ */
+  /** åˆ†é¡µå‚æ•°æ ‡è¯† */
   public static final String PAGE_PARAM_VAR = "nlfPagingParam";
-  /** ÅÅĞò²ÎÊı±êÊ¶ */
+  /** æ’åºå‚æ•°æ ‡è¯† */
   public static final String PAGE_SORT_VAR = "nlfSort";
-  /** Ä¬ÈÏ·ÖÒ³´óĞ¡ */
+  /** é»˜è®¤åˆ†é¡µå¤§å° */
   public static final int DEFAULT_PAGE_SIZE = 20;
-  /** ÇëÇóµÄ²ÎÊı */
+  /** è¯·æ±‚çš„å‚æ•° */
   private Map<String,String> params = new HashMap<String,String>();
-  /** °ó¶¨±äÁ¿ */
+  /** ç»‘å®šå˜é‡ */
   private Map<String,Object> bundle = new HashMap<String,Object>();
-  /** ·ÖÒ³²ÎÊı */
+  /** åˆ†é¡µå‚æ•° */
   private PagingParam pagingParam;
-  /** ¿Í»§¶ËÀàĞÍ£ºµçÄÔ */
+  /** å®¢æˆ·ç«¯ç±»å‹ï¼šç”µè„‘ */
   public static final int CLIENT_TYPE_COMPUTER = 0;
-  /** ¿Í»§¶ËÀàĞÍ£ºÒÆ¶¯Éè±¸ */
+  /** å®¢æˆ·ç«¯ç±»å‹ï¼šç§»åŠ¨è®¾å¤‡ */
   public static final int CLIENT_TYPE_MOBILE = 1;
-  /** ¿Í»§¶ËÀàĞÍ */
+  /** å®¢æˆ·ç«¯ç±»å‹ */
   private int clientType = CLIENT_TYPE_COMPUTER;
 
   /**
-   * »ñÈ¡¿Í»§¶ËÀàĞÍ
+   * è·å–å®¢æˆ·ç«¯ç±»å‹
    * 
-   * @return ¿Í»§¶ËÀàĞÍ
+   * @return å®¢æˆ·ç«¯ç±»å‹
    */
   public int getClientType(){
     return clientType;
   }
 
   /**
-   * ÉèÖÃ¿Í»§¶ËÀàĞÍ
+   * è®¾ç½®å®¢æˆ·ç«¯ç±»å‹
    * 
-   * @param clientType ¿Í»§¶ËÀàĞÍ
+   * @param clientType å®¢æˆ·ç«¯ç±»å‹
    */
   public void setClientType(int clientType){
     this.clientType = clientType;
   }
 
   /**
-   * ÉèÖÃ²ÎÊı
+   * è®¾ç½®å‚æ•°
    * 
-   * @param params ²ÎÊı
+   * @param params å‚æ•°
    */
   public void setParams(Map<String,String> params){
     this.params = params;
   }
 
   /**
-   * ÉèÖÃ²ÎÊı
+   * è®¾ç½®å‚æ•°
    * 
-   * @param key ¼ü
-   * @param value Öµ
+   * @param key é”®
+   * @param value å€¼
    */
   public void setParam(String key,String value){
     params.put(key,value);
   }
 
   /**
-   * °ó¶¨±äÁ¿
+   * ç»‘å®šå˜é‡
    * 
-   * @param key ¼ü
-   * @param value Öµ
+   * @param key é”®
+   * @param value å€¼
    */
   public void bind(String key,Object value){
     bundle.put(key,value);
   }
 
   /**
-   * »ñÈ¡°ó¶¨±äÁ¿
+   * è·å–ç»‘å®šå˜é‡
    * 
-   * @param key ¼ü
-   * @return Öµ
+   * @param key é”®
+   * @return å€¼
    */
   @SuppressWarnings("unchecked")
   public <T>T find(String key){
@@ -101,7 +101,7 @@ public class Request{
   }
 
   /**
-   * ²ÎÊı×ª»»ÎªBean£¬²ÎÊıÈ«²¿È¥Á½¶Ë¿Õ¸ñ
+   * å‚æ•°è½¬æ¢ä¸ºBeanï¼Œå‚æ•°å…¨éƒ¨å»ä¸¤ç«¯ç©ºæ ¼
    * 
    * @return Bean
    */
@@ -110,9 +110,9 @@ public class Request{
   }
 
   /**
-   * ²ÎÊı×ª»»ÎªBean
+   * å‚æ•°è½¬æ¢ä¸ºBean
    * 
-   * @param trim ²ÎÊıÊÇ·ñÈ¥Á½¶Ë¿Õ¸ñ
+   * @param trim å‚æ•°æ˜¯å¦å»ä¸¤ç«¯ç©ºæ ¼
    * @return Bean
    */
   public Bean toBean(boolean trim){
@@ -125,42 +125,42 @@ public class Request{
   }
 
   /**
-   * ²ÎÊı×ª»»Îª¶ÔÏó£¬²ÎÊıÈ«²¿È¥Á½¶Ë¿Õ¸ñ
+   * å‚æ•°è½¬æ¢ä¸ºå¯¹è±¡ï¼Œå‚æ•°å…¨éƒ¨å»ä¸¤ç«¯ç©ºæ ¼
    * 
-   * @param klass Àà
-   * @return ¶ÔÏó
+   * @param klass ç±»
+   * @return å¯¹è±¡
    */
   public <T>T toObject(Class<?> klass){
     return toObject(klass,true);
   }
 
   /**
-   * ²ÎÊı×ª»»Îª¶ÔÏó
+   * å‚æ•°è½¬æ¢ä¸ºå¯¹è±¡
    * 
-   * @param klass Àà
-   * @param trim ²ÎÊıÊÇ·ñÈ«²¿È¥Á½¶Ë¿Õ¸ñ
-   * @return ¶ÔÏó
+   * @param klass ç±»
+   * @param trim å‚æ•°æ˜¯å¦å…¨éƒ¨å»ä¸¤ç«¯ç©ºæ ¼
+   * @return å¯¹è±¡
    */
   public <T>T toObject(Class<?> klass,boolean trim){
     return toBean(trim).toObject(klass);
   }
 
   /**
-   * »ñÈ¡È¥µôÁ½¶Ë¿Õ¸ñºóµÄ²ÎÊıÖµ
+   * è·å–å»æ‰ä¸¤ç«¯ç©ºæ ¼åçš„å‚æ•°å€¼
    * 
-   * @param key ¼ü
-   * @return Öµ
+   * @param key é”®
+   * @return å€¼
    */
   public String get(String key){
     return get(key,true);
   }
 
   /**
-   * »ñÈ¡²ÎÊıÖµ
+   * è·å–å‚æ•°å€¼
    * 
-   * @param key ¼ü
-   * @param trim Öµ
-   * @return ÊÇ·ñÈ¥µôÁ½¶Ë¿Õ¸ñ
+   * @param key é”®
+   * @param trim å€¼
+   * @return æ˜¯å¦å»æ‰ä¸¤ç«¯ç©ºæ ¼
    */
   public String get(String key,boolean trim){
     String value = params.get(key);
@@ -170,10 +170,10 @@ public class Request{
   }
 
   /**
-   * »ñÈ¡ÕûÊı²ÎÊıÖµ
+   * è·å–æ•´æ•°å‚æ•°å€¼
    * 
-   * @param key ²ÎÊıÃû
-   * @return ²ÎÊıÖµ
+   * @param key å‚æ•°å
+   * @return å‚æ•°å€¼
    */
   public int getInt(String key){
     String v = get(key);
@@ -185,11 +185,11 @@ public class Request{
   }
 
   /**
-   * »ñÈ¡ÕûÊı²ÎÊıÖµ£¬Èç¹û»ñÈ¡²»µ½£¬Ê¹ÓÃÄ¬ÈÏÖµ´øÌú
+   * è·å–æ•´æ•°å‚æ•°å€¼ï¼Œå¦‚æœè·å–ä¸åˆ°ï¼Œä½¿ç”¨é»˜è®¤å€¼å¸¦é“
    * 
-   * @param key ²ÎÊıÃû
-   * @param defaultValue Ä¬ÈÏÖµ
-   * @return ²ÎÊıÖµ
+   * @param key å‚æ•°å
+   * @param defaultValue é»˜è®¤å€¼
+   * @return å‚æ•°å€¼
    */
   public int getInt(String key,int defaultValue){
     String v = get(key);
@@ -201,10 +201,10 @@ public class Request{
   }
 
   /**
-   * »ñÈ¡³¤ÕûĞÍ²ÎÊıÖµ
+   * è·å–é•¿æ•´å‹å‚æ•°å€¼
    * 
-   * @param key ²ÎÊıÃû
-   * @return ²ÎÊıÖµ
+   * @param key å‚æ•°å
+   * @return å‚æ•°å€¼
    */
   public long getLong(String key){
     String v = get(key);
@@ -216,11 +216,11 @@ public class Request{
   }
 
   /**
-   * »ñÈ¡³¤ÕûĞÍ²ÎÊıÖµ£¬Èç¹û»ñÈ¡²»µ½£¬Ê¹ÓÃÄ¬ÈÏÖµ´úÌæ
+   * è·å–é•¿æ•´å‹å‚æ•°å€¼ï¼Œå¦‚æœè·å–ä¸åˆ°ï¼Œä½¿ç”¨é»˜è®¤å€¼ä»£æ›¿
    * 
-   * @param key ²ÎÊıÃû
-   * @param defaultValue Ä¬ÈÏÖµ
-   * @return ²ÎÊıÖµ
+   * @param key å‚æ•°å
+   * @param defaultValue é»˜è®¤å€¼
+   * @return å‚æ•°å€¼
    */
   public long getLong(String key,long defaultValue){
     String v = get(key);
@@ -232,10 +232,10 @@ public class Request{
   }
 
   /**
-   * »ñÈ¡ÊıÖµĞÍ²ÎÊıÖµ
+   * è·å–æ•°å€¼å‹å‚æ•°å€¼
    * 
-   * @param key ²ÎÊıÃû
-   * @return ²ÎÊıÖµ
+   * @param key å‚æ•°å
+   * @return å‚æ•°å€¼
    */
   public double getDouble(String key){
     String v = get(key);
@@ -247,11 +247,11 @@ public class Request{
   }
 
   /**
-   * »ñÈ¡ÊıÖµĞÍ²ÎÊıÖµ£¬Èç¹û»ñÈ¡²»µ½£¬Ê¹ÓÃÄ¬ÈÏÖµ´úÌæ
+   * è·å–æ•°å€¼å‹å‚æ•°å€¼ï¼Œå¦‚æœè·å–ä¸åˆ°ï¼Œä½¿ç”¨é»˜è®¤å€¼ä»£æ›¿
    * 
-   * @param key ²ÎÊıÃû
-   * @param defaultValue Ä¬ÈÏÖµ
-   * @return ²ÎÊıÖµ
+   * @param key å‚æ•°å
+   * @param defaultValue é»˜è®¤å€¼
+   * @return å‚æ•°å€¼
    */
   public double getDouble(String key,double defaultValue){
     String v = get(key);
@@ -263,10 +263,10 @@ public class Request{
   }
 
   /**
-   * »ñÈ¡¸¡µãĞÍ²ÎÊıÖµ
+   * è·å–æµ®ç‚¹å‹å‚æ•°å€¼
    * 
-   * @param key ²ÎÊıÃû
-   * @return ²ÎÊıÖµ
+   * @param key å‚æ•°å
+   * @return å‚æ•°å€¼
    */
   public float getFloat(String key){
     String v = get(key);
@@ -278,11 +278,11 @@ public class Request{
   }
 
   /**
-   * »ñÈ¡¸¡µãĞÍ²ÎÊıÖµ£¬Èç¹û»ñÈ¡²»µ½£¬Ê¹ÓÃÄ¬ÈÏÖµ´úÌæ
+   * è·å–æµ®ç‚¹å‹å‚æ•°å€¼ï¼Œå¦‚æœè·å–ä¸åˆ°ï¼Œä½¿ç”¨é»˜è®¤å€¼ä»£æ›¿
    * 
-   * @param key ²ÎÊıÃû
-   * @param defaultValue Ä¬ÈÏÖµ
-   * @return ²ÎÊıÖµ
+   * @param key å‚æ•°å
+   * @param defaultValue é»˜è®¤å€¼
+   * @return å‚æ•°å€¼
    */
   public float getFloat(String key,float defaultValue){
     String v = get(key);
@@ -294,10 +294,10 @@ public class Request{
   }
 
   /**
-   * »ñÈ¡²¼¶ûĞÍ²ÎÊıÖµ
+   * è·å–å¸ƒå°”å‹å‚æ•°å€¼
    * 
-   * @param key ²ÎÊıÃû
-   * @return ²ÎÊıÖµ
+   * @param key å‚æ•°å
+   * @return å‚æ•°å€¼
    */
   public boolean getBoolean(String key){
     String v = get(key);
@@ -309,11 +309,11 @@ public class Request{
   }
 
   /**
-   * »ñÈ¡²¼¶ûĞÍ²ÎÊıÖµ£¬Èç¹û»ñÈ¡²»µ½£¬Ê¹ÓÃÄ¬ÈÏÖµ´úÌæ
+   * è·å–å¸ƒå°”å‹å‚æ•°å€¼ï¼Œå¦‚æœè·å–ä¸åˆ°ï¼Œä½¿ç”¨é»˜è®¤å€¼ä»£æ›¿
    * 
-   * @param key ²ÎÊıÃû
-   * @param defaultValue Ä¬ÈÏÖµ
-   * @return ²ÎÊıÖµ
+   * @param key å‚æ•°å
+   * @param defaultValue é»˜è®¤å€¼
+   * @return å‚æ•°å€¼
    */
   public boolean getBoolean(String key,boolean defaultValue){
     String v = get(key);
@@ -325,19 +325,19 @@ public class Request{
   }
 
   /**
-   * »ñÈ¡ËùÓĞ²ÎÊı
+   * è·å–æ‰€æœ‰å‚æ•°
    * 
-   * @return ËùÓĞ²ÎÊı
+   * @return æ‰€æœ‰å‚æ•°
    */
   public Map<String,String> getParams(){
     return getParams(true);
   }
 
   /**
-   * »ñÈ¡ËùÓĞ²ÎÊı
+   * è·å–æ‰€æœ‰å‚æ•°
    * 
-   * @param trim ÊÇ·ñÈ¥µôÁ½¶Ë¿Õ¸ñ
-   * @return ËùÓĞ²ÎÊı
+   * @param trim æ˜¯å¦å»æ‰ä¸¤ç«¯ç©ºæ ¼
+   * @return æ‰€æœ‰å‚æ•°
    */
   public Map<String,String> getParams(boolean trim){
     Map<String,String> ps = new HashMap<String,String>();
@@ -348,9 +348,9 @@ public class Request{
   }
 
   /**
-   * »ñÈ¡µ±Ç°Ò³Ò³Âë
+   * è·å–å½“å‰é¡µé¡µç 
    * 
-   * @return µ±Ç°Ò³Ò³Âë
+   * @return å½“å‰é¡µé¡µç 
    */
   public int getPageNumber(){
     try{
@@ -361,9 +361,9 @@ public class Request{
   }
 
   /**
-   * »ñÈ¡·ÖÒ³´óĞ¡
+   * è·å–åˆ†é¡µå¤§å°
    * 
-   * @return ·ÖÒ³´óĞ¡
+   * @return åˆ†é¡µå¤§å°
    */
   public int getPageSize(){
     try{
@@ -374,9 +374,9 @@ public class Request{
   }
 
   /**
-   * »ñÈ¡±íÍ·ÅÅĞòÏîÁĞ±í
+   * è·å–è¡¨å¤´æ’åºé¡¹åˆ—è¡¨
    * 
-   * @return ÁĞ±í£¬¼´Ê¹Îª¿ÕÒ²²»»á·µ»Ønull
+   * @return åˆ—è¡¨ï¼Œå³ä½¿ä¸ºç©ºä¹Ÿä¸ä¼šè¿”å›null
    */
   public List<Pair> getSorts(){
     List<Pair> l = new ArrayList<Pair>();
@@ -402,18 +402,18 @@ public class Request{
   }
 
   /**
-   * »ñÈ¡·ÖÒ³²ÎÊı
+   * è·å–åˆ†é¡µå‚æ•°
    * 
-   * @return ·ÖÒ³²ÎÊı
+   * @return åˆ†é¡µå‚æ•°
    */
   public PagingParam getPagingParam(){
     return pagingParam;
   }
 
   /**
-   * ÉèÖÃ·ÖÒ³²ÎÊı
+   * è®¾ç½®åˆ†é¡µå‚æ•°
    * 
-   * @param pagingParam ·ÖÒ³²ÎÊı
+   * @param pagingParam åˆ†é¡µå‚æ•°
    */
   public void setPagingParam(PagingParam pagingParam){
     this.pagingParam = pagingParam;

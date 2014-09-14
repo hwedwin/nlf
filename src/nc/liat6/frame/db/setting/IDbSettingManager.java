@@ -1,9 +1,9 @@
-package nc.liat6.frame.db.setting;
+ï»¿package nc.liat6.frame.db.setting;
 
 import java.util.List;
 
 /**
- * Êı¾İ¿âÁ¬½ÓÉèÖÃ¹ÜÀí½Ó¿Ú
+ * æ•°æ®åº“è¿æ¥è®¾ç½®ç®¡ç†æ¥å£
  * 
  * @author 6tail
  * 

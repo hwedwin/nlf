@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.custom.mongo;
+ï»¿package nc.liat6.frame.db.custom.mongo;
 
 import nc.liat6.frame.db.entity.Bean;
 import nc.liat6.frame.db.exception.DaoException;
@@ -9,7 +9,7 @@ import nc.liat6.frame.log.Logger;
 import nc.liat6.frame.util.Stringer;
 
 /**
- * MONG²åÈëÆ÷
+ * MONGæ’å…¥å™¨
  * 
  * @author 6tail
  * 

@@ -1,11 +1,11 @@
-package nc.liat6.frame.db.plugin;
+ï»¿package nc.liat6.frame.db.plugin;
 
 import java.util.List;
 import nc.liat6.frame.db.entity.Bean;
 import nc.liat6.frame.paging.PageData;
 
 /**
- * ²éÑ¯½Ó¿Ú
+ * æŸ¥è¯¢æ¥å£
  * 
  * @author 6tail
  * 
@@ -13,137 +13,137 @@ import nc.liat6.frame.paging.PageData;
 public interface ISelecter extends IExecuter{
 
   /**
-   * ÉèÖÃ±íÃû
+   * è®¾ç½®è¡¨å
    * 
-   * @param tableName ±íÃû
-   * @return µ±Ç°²éÑ¯½Ó¿Ú
+   * @param tableName è¡¨å
+   * @return å½“å‰æŸ¥è¯¢æ¥å£
    */
   public ISelecter table(String tableName);
 
   /**
-   * Òª·µ»ØµÄÁĞÃû
+   * è¦è¿”å›çš„åˆ—å
    * 
-   * @param column ÁĞ
-   * @return ²éÑ¯½Ó¿Ú
+   * @param column åˆ—
+   * @return æŸ¥è¯¢æ¥å£
    */
   public ISelecter column(String... column);
 
   /**
-   * SQLÌõ¼ş
+   * SQLæ¡ä»¶
    * 
-   * @param sql SQLÓï¾ä
-   * @return ²éÑ¯½Ó¿Ú
+   * @param sql SQLè¯­å¥
+   * @return æŸ¥è¯¢æ¥å£
    */
   public ISelecter where(String sql);
 
   /**
-   * ´ø²ÎÊıµÄSQLÌõ¼ş
+   * å¸¦å‚æ•°çš„SQLæ¡ä»¶
    * 
-   * @param sql SQLÓï¾ä
-   * @param values °ó¶¨±äÁ¿
-   * @return ²éÑ¯½Ó¿Ú
+   * @param sql SQLè¯­å¥
+   * @param values ç»‘å®šå˜é‡
+   * @return æŸ¥è¯¢æ¥å£
    */
   public ISelecter whereSql(String sql,Object[] values);
 
   /**
-   * Ìõ¼ş
+   * æ¡ä»¶
    * 
-   * @param column ÁĞ
-   * @param value °ó¶¨±äÁ¿
-   * @return ²éÑ¯½Ó¿Ú
+   * @param column åˆ—
+   * @param value ç»‘å®šå˜é‡
+   * @return æŸ¥è¯¢æ¥å£
    */
   public ISelecter where(String column,Object value);
 
   /**
-   * Ä£ºı²éÑ¯ like %value%
+   * æ¨¡ç³ŠæŸ¥è¯¢ like %value%
    * 
-   * @param column ÁĞ
-   * @param value °ó¶¨±äÁ¿
-   * @return ²éÑ¯½Ó¿Ú
+   * @param column åˆ—
+   * @param value ç»‘å®šå˜é‡
+   * @return æŸ¥è¯¢æ¥å£
    */
   public ISelecter whereLike(String column,Object value);
 
   /**
-   * Ä£ºı²éÑ¯ like value%
+   * æ¨¡ç³ŠæŸ¥è¯¢ like value%
    * 
-   * @param column ÁĞ
-   * @param value °ó¶¨±äÁ¿
-   * @return ²éÑ¯½Ó¿Ú
+   * @param column åˆ—
+   * @param value ç»‘å®šå˜é‡
+   * @return æŸ¥è¯¢æ¥å£
    */
   public ISelecter whereLeftLike(String column,Object value);
 
   /**
-   * Ä£ºı²éÑ¯ like %value
+   * æ¨¡ç³ŠæŸ¥è¯¢ like %value
    * 
-   * @param column ÁĞ
-   * @param value °ó¶¨±äÁ¿
-   * @return ²éÑ¯½Ó¿Ú
+   * @param column åˆ—
+   * @param value ç»‘å®šå˜é‡
+   * @return æŸ¥è¯¢æ¥å£
    */
   public ISelecter whereRightLike(String column,Object value);
 
   /**
-   * Ìõ¼şcolumn != value
+   * æ¡ä»¶column != value
    * 
-   * @param column ÁĞ
-   * @param value °ó¶¨±äÁ¿
-   * @return ²éÑ¯½Ó¿Ú
+   * @param column åˆ—
+   * @param value ç»‘å®šå˜é‡
+   * @return æŸ¥è¯¢æ¥å£
    */
   public ISelecter whereNq(String column,Object value);
 
   /**
-   * Ìõ¼ş column in (...)
+   * æ¡ä»¶ column in (...)
    * 
-   * @param column ÁĞ
-   * @param value °ó¶¨±äÁ¿
-   * @return ²éÑ¯½Ó¿Ú
+   * @param column åˆ—
+   * @param value ç»‘å®šå˜é‡
+   * @return æŸ¥è¯¢æ¥å£
    */
   public ISelecter whereIn(String column,Object... value);
 
   /**
-   * Ìõ¼ş column not in (...)
+   * æ¡ä»¶ column not in (...)
    * 
-   * @param column ÁĞ
-   * @param value °ó¶¨±äÁ¿
-   * @return ²éÑ¯½Ó¿Ú
+   * @param column åˆ—
+   * @param value ç»‘å®šå˜é‡
+   * @return æŸ¥è¯¢æ¥å£
    */
   public ISelecter whereNotIn(String column,Object... value);
 
   /**
-   * ½á¹ûÉıĞò
+   * ç»“æœå‡åº
    * 
-   * @param column ÁĞ
-   * @return ²éÑ¯½Ó¿Ú
+   * @param column åˆ—
+   * @return æŸ¥è¯¢æ¥å£
    */
   public ISelecter asc(String... column);
 
   /**
-   * ½á¹û½µĞò
+   * ç»“æœé™åº
    * 
-   * @param column ÁĞ
-   * @return ²éÑ¯½Ó¿Ú
+   * @param column åˆ—
+   * @return æŸ¥è¯¢æ¥å£
    */
   public ISelecter desc(String... column);
 
   /**
-   * ·µ»ØÁĞ±í
+   * è¿”å›åˆ—è¡¨
    * 
-   * @return ÁĞ±í
+   * @return åˆ—è¡¨
    */
   public List<Bean> select();
 
   /**
-   * ·ÖÒ³²éÑ¯
+   * åˆ†é¡µæŸ¥è¯¢
    * 
-   * @param pageNumber Ò³Âë
-   * @param pageSize Ã¿Ò³¼ÇÂ¼Êı
-   * @return ·ÖÒ³Êı¾İ
+   * @param pageNumber é¡µç 
+   * @param pageSize æ¯é¡µè®°å½•æ•°
+   * @return åˆ†é¡µæ•°æ®
    */
   public PageData page(int pageNumber,int pageSize);
 
   /**
-   * »ñÈ¡µ¥¸ö¼ÇÂ¼
+   * è·å–å•ä¸ªè®°å½•
    * 
-   * @return µ¥¼ÇÂ¼¶ÔÏó
+   * @return å•è®°å½•å¯¹è±¡
    */
   public Bean one();
 }

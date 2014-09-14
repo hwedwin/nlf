@@ -1,4 +1,4 @@
-package nc.liat6.frame.execute;
+ï»¿package nc.liat6.frame.execute;
 
 import java.util.Map;
 import nc.liat6.frame.Factory;
@@ -10,7 +10,7 @@ import nc.liat6.frame.execute.impl.AppExecute;
 import nc.liat6.frame.log.Logger;
 
 /**
- * Ó¦ÓÃµ÷¶ÈÆ÷
+ * åº”ç”¨è°ƒåº¦å™¨
  * 
  * @author 6tail
  * 
@@ -31,12 +31,12 @@ public class AppDispatcher{
   }
 
   /**
-   * Ö´ĞĞ
+   * æ‰§è¡Œ
    * 
-   * @param klass ÀàÃû
-   * @param method ·½·¨Ãû
-   * @param args ²ÎÊı
-   * @return Ö´ĞĞ½á¹û
+   * @param klass ç±»å
+   * @param method æ–¹æ³•å
+   * @param args å‚æ•°
+   * @return æ‰§è¡Œç»“æœ
    */
   public Object execute(String klass,String method,Map<String,String> args){
     Context.set(AbstractExecute.EXECUTE_ARGS,args);

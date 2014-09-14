@@ -1,7 +1,7 @@
-package nc.liat6.frame.web.config;
+ï»¿package nc.liat6.frame.web.config;
 
 /**
- * WEB¹ÜÀíÆ÷½Ó¿Ú
+ * WEBç®¡ç†å™¨æ¥å£
  * 
  * @author 6tail
  * 
@@ -9,28 +9,28 @@ package nc.liat6.frame.web.config;
 public interface IWebManager{
 
   /**
-   * Ö´ĞĞÊ§°ÜÊ±µÄ´¦Àí
+   * æ‰§è¡Œå¤±è´¥æ—¶çš„å¤„ç†
    * 
-   * @param e Òì³£
-   * @return ·µ»Ø½á¹û
+   * @param e å¼‚å¸¸
+   * @return è¿”å›ç»“æœ
    */
   public Object failed(Throwable e);
 
   /**
-   * Ö´ĞĞÇ°´¦Àí
+   * æ‰§è¡Œå‰å¤„ç†
    * 
-   * @param path ÇëÇóÂ·¾¶
-   * @return Àà&·½·¨
+   * @param path è¯·æ±‚è·¯å¾„
+   * @return ç±»&æ–¹æ³•
    */
   public ClassMethod before(String path);
 
   /**
-   * Ö´ĞĞ³É¹¦ºó´¦Àí
+   * æ‰§è¡ŒæˆåŠŸåå¤„ç†
    */
   public void after();
 
   /**
-   * ·µ»Ø½á¹ûµÄ¹ıÂË
+   * è¿”å›ç»“æœçš„è¿‡æ»¤
    */
   public void filter();
 }

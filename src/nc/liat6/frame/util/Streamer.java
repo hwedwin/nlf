@@ -1,11 +1,11 @@
-package nc.liat6.frame.util;
+ï»¿package nc.liat6.frame.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Á÷´¦Àí
+ * æµå¤„ç†
  * 
  * @author 6tail
  * 
@@ -17,10 +17,10 @@ public class Streamer{
   private Streamer(){}
 
   /**
-   * ½«ÊäÈëÁ÷×ª»»ÎªbyteÊı×é
+   * å°†è¾“å…¥æµè½¬æ¢ä¸ºbyteæ•°ç»„
    * 
-   * @param is ÊäÈëÁ÷
-   * @return byteÊı×é
+   * @param is è¾“å…¥æµ
+   * @return byteæ•°ç»„
    * @throws IOException
    */
   public static byte[] toByte(InputStream is) throws IOException{
@@ -28,11 +28,11 @@ public class Streamer{
   }
 
   /**
-   * ½«ÊäÈëÁ÷×ª»»ÎªbyteÊı×é
+   * å°†è¾“å…¥æµè½¬æ¢ä¸ºbyteæ•°ç»„
    * 
-   * @param is ÊäÈëÁ÷
-   * @param bufferSize »º³åÇø´óĞ¡
-   * @return byteÊı×é
+   * @param is è¾“å…¥æµ
+   * @param bufferSize ç¼“å†²åŒºå¤§å°
+   * @return byteæ•°ç»„
    * @throws IOException
    */
   public static byte[] toByte(InputStream is,int bufferSize) throws IOException{

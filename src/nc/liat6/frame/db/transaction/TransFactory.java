@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.transaction;
+ï»¿package nc.liat6.frame.db.transaction;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,53 +17,53 @@ import nc.liat6.frame.log.Logger;
 import nc.liat6.frame.util.Stringer;
 
 /**
- * ÊÂÎñ¹¤³§
+ * äº‹åŠ¡å·¥å‚
  * 
  * @author 6tail
  * 
  */
 public class TransFactory{
 
-  /** ½Ó¿ÚÊµÏÖÀà»º´æ */
+  /** æ¥å£å®ç°ç±»ç¼“å­˜ */
   private static final Map<String,Class<?>> pool = new HashMap<String,Class<?>>();
 
   private TransFactory(){}
 
   /**
-   * »ñÈ¡ÊÂÎñ£¬¿ò¼Ü×Ô¶¯ÅĞ¶ÏÊÇ·ñĞÂ¿ªÁ¬½Ó
+   * è·å–äº‹åŠ¡ï¼Œæ¡†æ¶è‡ªåŠ¨åˆ¤æ–­æ˜¯å¦æ–°å¼€è¿æ¥
    * 
-   * @return ÊÂÎñ
+   * @return äº‹åŠ¡
    */
   public static ITrans getTrans(){
     return getTrans(null,false);
   }
 
   /**
-   * ¸ù¾İ±ğÃû»ñÈ¡ÊÂÎñ,¿ò¼Ü×Ô¶¯ÅĞ¶ÏÊÇ·ñĞÂ¿ªÁ¬½Ó
+   * æ ¹æ®åˆ«åè·å–äº‹åŠ¡,æ¡†æ¶è‡ªåŠ¨åˆ¤æ–­æ˜¯å¦æ–°å¼€è¿æ¥
    * 
-   * @param alias ±ğÃû
-   * @return ÊÂÎñ
+   * @param alias åˆ«å
+   * @return äº‹åŠ¡
    */
   public static ITrans getTrans(String alias){
     return getTrans(alias,false);
   }
 
   /**
-   * »ñÈ¡ÊÂÎñ
+   * è·å–äº‹åŠ¡
    * 
-   * @param newConnection ÊÇ·ñÇ¿ÖÆĞÂ¿ªÁ¬½Ó£¬trueÇ¿ÖÆĞÂ¿ª,false¿ò¼Ü×Ô¶¯ÅĞ¶Ï
-   * @return ÊÂÎñ
+   * @param newConnection æ˜¯å¦å¼ºåˆ¶æ–°å¼€è¿æ¥ï¼Œtrueå¼ºåˆ¶æ–°å¼€,falseæ¡†æ¶è‡ªåŠ¨åˆ¤æ–­
+   * @return äº‹åŠ¡
    */
   public static ITrans getTrans(boolean newConnection){
     return getTrans(null,newConnection);
   }
 
   /**
-   * ¸ù¾İ±ğÃû»ñÈ¡ÊÂÎñ
+   * æ ¹æ®åˆ«åè·å–äº‹åŠ¡
    * 
-   * @param alias ±ğÃû
-   * @param newConnection ÊÇ·ñÇ¿ÖÆĞÂ¿ªÁ¬½Ó£¬trueÇ¿ÖÆĞÂ¿ª,false¿ò¼Ü×Ô¶¯ÅĞ¶Ï
-   * @return ÊÂÎñ
+   * @param alias åˆ«å
+   * @param newConnection æ˜¯å¦å¼ºåˆ¶æ–°å¼€è¿æ¥ï¼Œtrueå¼ºåˆ¶æ–°å¼€,falseæ¡†æ¶è‡ªåŠ¨åˆ¤æ–­
+   * @return äº‹åŠ¡
    */
   public static ITrans getTrans(String alias,boolean newConnection){
     String actAlias = alias;

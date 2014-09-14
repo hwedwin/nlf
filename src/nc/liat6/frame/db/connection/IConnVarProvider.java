@@ -1,9 +1,9 @@
-package nc.liat6.frame.db.connection;
+ï»¿package nc.liat6.frame.db.connection;
 
 import nc.liat6.frame.db.setting.IDbSetting;
 
 /**
- * Á¬½Ó±äÁ¿Ìá¹©Æ÷½Ó¿Ú
+ * è¿æ¥å˜é‡æä¾›å™¨æ¥å£
  * 
  * @author 6tail
  * 
@@ -11,24 +11,24 @@ import nc.liat6.frame.db.setting.IDbSetting;
 public interface IConnVarProvider{
 
   /**
-   * ÊÇ·ñÖ§³ÖÖ¸¶¨Á¬½ÓÀàĞÍ
+   * æ˜¯å¦æ”¯æŒæŒ‡å®šè¿æ¥ç±»å‹
    * 
-   * @param connType Á¬½ÓÀàĞÍ
-   * @return true/false Ö§³Ö/²»Ö§³Ö
+   * @param connType è¿æ¥ç±»å‹
+   * @return true/false æ”¯æŒ/ä¸æ”¯æŒ
    */
   public boolean support(String connType);
 
   /**
-   * »ñÈ¡Á¬½Ó±äÁ¿
+   * è·å–è¿æ¥å˜é‡
    * 
-   * @return Á¬½Ó±äÁ¿
+   * @return è¿æ¥å˜é‡
    */
   public ConnVar getConnVar();
 
   /**
-   * ÉèÖÃÁ¬½ÓÉèÖÃ
+   * è®¾ç½®è¿æ¥è®¾ç½®
    * 
-   * @param setting Á¬½ÓÉèÖÃ
+   * @param setting è¿æ¥è®¾ç½®
    */
   public void initSetting(IDbSetting setting);
 }

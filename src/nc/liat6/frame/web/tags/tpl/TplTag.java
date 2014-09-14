@@ -1,4 +1,4 @@
-package nc.liat6.frame.web.tags.tpl;
+﻿package nc.liat6.frame.web.tags.tpl;
 
 import java.io.IOException;
 import javax.servlet.jsp.JspException;
@@ -6,7 +6,7 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 
 /**
- * TPLģ��α�ǩ
+ * TPL模板段标签
  * 
  * @author 6tail
  * 

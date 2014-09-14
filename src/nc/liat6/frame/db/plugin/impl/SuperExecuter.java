@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.plugin.impl;
+ï»¿package nc.liat6.frame.db.plugin.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,28 +7,28 @@ import nc.liat6.frame.db.plugin.Rule;
 import nc.liat6.frame.db.sql.ITemplate;
 
 /**
- * Ö´ĞĞÆ÷³¬Àà
+ * æ‰§è¡Œå™¨è¶…ç±»
  * 
  * @author 6tail
  * 
  */
 public abstract class SuperExecuter implements IExecuter{
 
-  /** Ö´ĞĞÄ£°å */
+  /** æ‰§è¡Œæ¨¡æ¿ */
   protected ITemplate template;
-  /** SQLÓï¾ä */
+  /** SQLè¯­å¥ */
   protected StringBuffer sql = new StringBuffer();
-  /** ÁĞ°ó¶¨±äÁ¿ */
+  /** åˆ—ç»‘å®šå˜é‡ */
   protected List<Object> paramCols = new ArrayList<Object>();
-  /** where°ó¶¨±äÁ¿ */
+  /** whereç»‘å®šå˜é‡ */
   protected List<Object> paramWheres = new ArrayList<Object>();
-  /** ÁĞ */
+  /** åˆ— */
   protected List<Rule> cols = new ArrayList<Rule>();
-  /** ±í */
+  /** è¡¨ */
   protected List<String> tables = new ArrayList<String>();
-  /** Ìõ¼ş */
+  /** æ¡ä»¶ */
   protected List<Rule> wheres = new ArrayList<Rule>();
-  /** ÅÅĞò */
+  /** æ’åº */
   protected List<String> orders = new ArrayList<String>();
 
   public SuperExecuter(){}
@@ -53,7 +53,7 @@ public abstract class SuperExecuter implements IExecuter{
   }
 
   /**
-   * È«²¿ÖØÖÃ
+   * å…¨éƒ¨é‡ç½®
    */
   protected void reset(){
     resetSql();
@@ -93,9 +93,9 @@ public abstract class SuperExecuter implements IExecuter{
   }
 
   /**
-   * ¿É±ä³¤²ÎÊı×ªList£¬ObjectÊı×éÒ²»á×ªÈë
+   * å¯å˜é•¿å‚æ•°è½¬Listï¼ŒObjectæ•°ç»„ä¹Ÿä¼šè½¬å…¥
    * 
-   * @param value Object»òÕßObjectÊı×é
+   * @param value Objectæˆ–è€…Objectæ•°ç»„
    * @return List
    */
   protected List<Object> objectsToList(Object... value){

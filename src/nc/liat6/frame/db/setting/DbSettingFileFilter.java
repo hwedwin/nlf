@@ -1,10 +1,10 @@
-package nc.liat6.frame.db.setting;
+锘縫ackage nc.liat6.frame.db.setting;
 
 import java.io.File;
 import java.io.FileFilter;
 
 /**
- * 配置文件过滤
+ * 閰嶇疆鏂囦欢杩囨护
  * 
  * @author 6tail
  * 

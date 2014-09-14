@@ -1,10 +1,10 @@
-package nc.liat6.frame.util;
+ï»¿package nc.liat6.frame.util;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * MIMEÀàĞÍ
+ * MIMEç±»å‹
  * 
  * @author 6tail
  * 
@@ -43,10 +43,10 @@ public class ContentTypes{
   private ContentTypes(){}
 
   /**
-   * ¸ù¾İÎÄ¼şÃûºó×º»ñÈ¡MIMEÀàĞÍ
+   * æ ¹æ®æ–‡ä»¶ååç¼€è·å–MIMEç±»å‹
    * 
-   * @param suffix ºó×ºÃû£¬²»°üÀ¨µãºÅ
-   * @return MIMEÀàĞÍÃû
+   * @param suffix åç¼€åï¼Œä¸åŒ…æ‹¬ç‚¹å·
+   * @return MIMEç±»å‹å
    */
   public static String getContenType(String suffix){
     String type = TYPES.get(suffix);

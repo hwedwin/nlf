@@ -1,18 +1,18 @@
-package nc.liat6.frame.web.response;
+锘縫ackage nc.liat6.frame.web.response;
 
 /**
- * 返回 - JSON
+ * 杩斿洖 - JSON
  * 
  * @author liat6
  * 
  */
 public class Json{
 
-  /** 是否成功 */
+  /** 鏄惁鎴愬姛 */
   private boolean success = true;
-  /** 数据对象 */
+  /** 鏁版嵁瀵硅薄 */
   private Object data;
-  /** 消息内容 */
+  /** 娑堟伅鍐呭 */
   private String msg;
 
   public Json(){}
@@ -33,36 +33,36 @@ public class Json{
   }
 
   /**
-   * 设置数据对象
+   * 璁剧疆鏁版嵁瀵硅薄
    * 
-   * @param data 数据对象
+   * @param data 鏁版嵁瀵硅薄
    */
   public void setData(Object data){
     this.data = data;
   }
 
   /**
-   * 获取数据对象
+   * 鑾峰彇鏁版嵁瀵硅薄
    * 
-   * @return 数据对象
+   * @return 鏁版嵁瀵硅薄
    */
   public Object getData(){
     return data;
   }
 
   /**
-   * 设置成功标识
+   * 璁剧疆鎴愬姛鏍囪瘑
    * 
-   * @param success 是否成功
+   * @param success 鏄惁鎴愬姛
    */
   public void setSuccess(boolean success){
     this.success = success;
   }
 
   /**
-   * 获取成功标识
+   * 鑾峰彇鎴愬姛鏍囪瘑
    * 
-   * @return 是否成功
+   * @return 鏄惁鎴愬姛
    */
   public boolean isSuccess(){
     return success;
@@ -73,18 +73,18 @@ public class Json{
   }
 
   /**
-   * 获取消息内容
+   * 鑾峰彇娑堟伅鍐呭
    * 
-   * @return 消息内容
+   * @return 娑堟伅鍐呭
    */
   public String getMsg(){
     return msg;
   }
 
   /**
-   * 设置消息内容
+   * 璁剧疆娑堟伅鍐呭
    * 
-   * @param msg 消息内容
+   * @param msg 娑堟伅鍐呭
    */
   public void setMsg(String msg){
     this.msg = msg;

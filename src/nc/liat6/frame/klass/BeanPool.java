@@ -1,4 +1,4 @@
-package nc.liat6.frame.klass;
+ï»¿package nc.liat6.frame.klass;
 
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
@@ -9,7 +9,7 @@ import nc.liat6.frame.exception.NlfException;
 
 public class BeanPool{
 
-  /** »º´æ */
+  /** ç¼“å­˜ */
   private static Map<Class<?>,Map<Class<?>,BeanInfo>> STOP_INFO_MAP = new HashMap<Class<?>,Map<Class<?>,BeanInfo>>();
 
   private BeanPool(){}

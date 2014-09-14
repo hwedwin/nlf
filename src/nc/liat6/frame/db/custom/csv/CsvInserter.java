@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.custom.csv;
+ï»¿package nc.liat6.frame.db.custom.csv;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import nc.liat6.frame.log.Logger;
 import nc.liat6.frame.util.Stringer;
 
 /**
- * CSV²åÈëÆ÷
+ * CSVæ’å…¥å™¨
  * 
  * @author 6tail
  * 
@@ -128,7 +128,7 @@ public class CsvInserter extends CsvExecuter implements IInserter{
       throw new DaoException(L.get("sql.file_read_error")+file.getAbsolutePath(),e);
     }
     try{
-      if(null==head){// µÚÒ»´Î²åÈë
+      if(null==head){// ç¬¬ä¸€æ¬¡æ’å…¥
         head = new String[row.keySet().size()];
         int idx = 0;
         for(String k:row.keySet()){

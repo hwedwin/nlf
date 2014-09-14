@@ -1,4 +1,4 @@
-package nc.liat6.frame.xml.wrapper;
+ï»¿package nc.liat6.frame.xml.wrapper;
 
 import java.beans.BeanInfo;
 import java.beans.PropertyDescriptor;
@@ -12,7 +12,7 @@ import nc.liat6.frame.xml.element.XmlList;
 import nc.liat6.frame.xml.element.XmlMap;
 
 /**
- * ¶ÔÏóXML°ü×°Æ÷
+ * å¯¹è±¡XMLåŒ…è£…å™¨
  * 
  * @author 6tail
  * 

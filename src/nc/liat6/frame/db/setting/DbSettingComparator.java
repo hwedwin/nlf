@@ -1,9 +1,9 @@
-package nc.liat6.frame.db.setting;
+锘縫ackage nc.liat6.frame.db.setting;
 
 import java.util.Comparator;
 
 /**
- * 连接配置比较器，按别名alias比较，越大的越前
+ * 杩炴帴閰嶇疆姣旇緝鍣紝鎸夊埆鍚峚lias姣旇緝锛岃秺澶х殑瓒婂墠
  * 
  * @author 6tail
  * 

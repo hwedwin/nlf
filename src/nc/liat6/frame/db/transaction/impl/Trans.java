@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.transaction.impl;
+ï»¿package nc.liat6.frame.db.transaction.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import nc.liat6.frame.db.transaction.ITrans;
 import nc.liat6.frame.db.transaction.TransFactory;
 
 /**
- * ÊÂÎñ½Ó¿ÚµÄÄ¬ÈÏÊµÏÖ£¬Ä¬ÈÏ¿ªÆôÅúÁ¿¸üĞÂ¹¦ÄÜ
+ * äº‹åŠ¡æ¥å£çš„é»˜è®¤å®ç°ï¼Œé»˜è®¤å¼€å¯æ‰¹é‡æ›´æ–°åŠŸèƒ½
  */
 public class Trans implements ITrans{
 

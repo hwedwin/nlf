@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.custom.mongo;
+ï»¿package nc.liat6.frame.db.custom.mongo;
 
 import nc.liat6.frame.db.exception.DaoException;
 import nc.liat6.frame.db.plugin.ICounter;
@@ -12,7 +12,7 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 
 /**
- * MONGO¼ÆÊýÆ÷
+ * MONGOè®¡æ•°å™¨
  * 
  * @author 6tail
  * 

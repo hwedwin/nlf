@@ -1,10 +1,10 @@
-package nc.liat6.frame.rmi.server.exception;
+Ôªøpackage nc.liat6.frame.rmi.server.exception;
 
 import nc.liat6.frame.exception.NlfException;
 import nc.liat6.frame.locale.L;
 
 /**
- * «Î«Û≤ª∆•≈‰“Ï≥£
+ * ËØ∑Ê±Ç‰∏çÂåπÈÖçÂºÇÂ∏∏
  * 
  * @author 6tail
  * 

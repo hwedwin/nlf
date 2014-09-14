@@ -1,11 +1,11 @@
-package nc.liat6.frame.xml.element;
+ï»¿package nc.liat6.frame.xml.element;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 /**
- * XML Map¶ÔÏóÀàĞÍ½Úµã
+ * XML Mapå¯¹è±¡ç±»å‹èŠ‚ç‚¹
  * 
  * @author 6tail
  * 
@@ -16,29 +16,29 @@ public class XmlMap extends AbstractElement{
   private Map<String,IXmlElement> o = new HashMap<String,IXmlElement>();
 
   /**
-   * ¸ù¾İÃû³Æ»ñÈ¡×Ó½Úµã£¬Èç¹û²»´æÔÚ£¬·µ»Ønull
+   * æ ¹æ®åç§°è·å–å­èŠ‚ç‚¹ï¼Œå¦‚æœä¸å­˜åœ¨ï¼Œè¿”å›null
    * 
-   * @param key ×Ó½ÚµãÃû³Æ
-   * @return ×Ó½Úµã
+   * @param key å­èŠ‚ç‚¹åç§°
+   * @return å­èŠ‚ç‚¹
    */
   public IXmlElement get(String key){
     return o.get(key);
   }
 
   /**
-   * ÉèÖÃ×Ó½Úµã£¬Èç¹û´æÔÚÖ¸¶¨Ãû³Æ£¬Ôò¸²¸Ç¸Ã×Ó½Úµã£¬·ñÔòÌí¼Ó×Ó½Úµã
+   * è®¾ç½®å­èŠ‚ç‚¹ï¼Œå¦‚æœå­˜åœ¨æŒ‡å®šåç§°ï¼Œåˆ™è¦†ç›–è¯¥å­èŠ‚ç‚¹ï¼Œå¦åˆ™æ·»åŠ å­èŠ‚ç‚¹
    * 
-   * @param key ×Ó¼¸µãÃû³Æ
-   * @param value ×Ó½Úµã
+   * @param key å­å‡ ç‚¹åç§°
+   * @param value å­èŠ‚ç‚¹
    */
   public void set(String key,IXmlElement value){
     o.put(key,value);
   }
 
   /**
-   * »ñÈ¡×Ó½ÚµãÃû³ÆSet
+   * è·å–å­èŠ‚ç‚¹åç§°Set
    * 
-   * @return ×Ó½ÚµãÃû³ÆSet
+   * @return å­èŠ‚ç‚¹åç§°Set
    */
   public Set<String> keySet(){
     return o.keySet();

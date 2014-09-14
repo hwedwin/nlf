@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.connection.impl;
+ï»¿package nc.liat6.frame.db.connection.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,16 +11,16 @@ import nc.liat6.frame.log.Logger;
 import nc.liat6.frame.util.Stringer;
 
 /**
- * Á¬½ÓÌá¹©Æ÷¸¸Àà
+ * è¿æ¥æä¾›å™¨çˆ¶ç±»
  * 
  * @author 6tail
  * 
  */
 public abstract class SuperConnVarProvider implements IConnVarProvider{
 
-  /** ÒÑ×¢²áÇı¶¯ */
+  /** å·²æ³¨å†Œé©±åŠ¨ */
   private static final List<String> REGIST_DRIVERS = new ArrayList<String>();
-  /** Á¬½ÓÉèÖÃ */
+  /** è¿æ¥è®¾ç½® */
   protected IDbSetting setting;
 
   public IDbSetting getSetting(){
@@ -33,7 +33,7 @@ public abstract class SuperConnVarProvider implements IConnVarProvider{
   }
 
   /**
-   * Çı¶¯×¢²á
+   * é©±åŠ¨æ³¨å†Œ
    * 
    * @param driver
    */

@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.custom.csv;
+ï»¿package nc.liat6.frame.db.custom.csv;
 
 import java.sql.Connection;
 import nc.liat6.frame.db.connection.SuperConnection;
@@ -6,7 +6,7 @@ import nc.liat6.frame.db.exception.DaoException;
 import nc.liat6.frame.locale.L;
 
 /**
- * CSVÊı¾İ¿âÁ¬½Ó
+ * CSVæ•°æ®åº“è¿æ¥
  * 
  * @author 6tail
  * 

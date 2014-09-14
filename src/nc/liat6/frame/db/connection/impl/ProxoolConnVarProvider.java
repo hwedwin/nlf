@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.connection.impl;
+ï»¿package nc.liat6.frame.db.connection.impl;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,14 +13,14 @@ import nc.liat6.frame.log.Logger;
 import nc.liat6.frame.util.Reflector;
 
 /**
- * PROXOOLÁ¬½Ó±äÁ¿Ìá¹©Æ÷
+ * PROXOOLè¿æ¥å˜é‡æä¾›å™¨
  * 
  * @author 6tail
  * 
  */
 public class ProxoolConnVarProvider extends SuperConnVarProvider{
 
-  /** Ä¬ÈÏ²âÊÔSQLÓï¾ä */
+  /** é»˜è®¤æµ‹è¯•SQLè¯­å¥ */
   private static final String DEFAULT_TEST_SQL = "SELECT 1";
 
   public ConnVar getConnVar(){

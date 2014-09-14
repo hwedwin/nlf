@@ -1,10 +1,10 @@
-package nc.liat6.frame.db.custom.sqlserver;
+锘縫ackage nc.liat6.frame.db.custom.sqlserver;
 
 import nc.liat6.frame.db.config.DbConfig;
 import nc.liat6.frame.db.config.IDbConfigProvider;
 
 /**
- * SqlServer数据库配置提供器
+ * SqlServer鏁版嵁搴撻厤缃彁渚涘櫒
  * @author 6tail
  *
  */

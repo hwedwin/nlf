@@ -1,9 +1,9 @@
-package nc.liat6.frame.validate.rule;
+ï»¿package nc.liat6.frame.validate.rule;
 
 import nc.liat6.frame.validate.RegUtil;
 
 /**
- * µç×ÓÓÊ¼ş
+ * ç”µå­é‚®ä»¶
  * 
  * @author 6tail
  * 

@@ -1,9 +1,9 @@
-package nc.liat6.frame.db.setting.impl;
+ï»¿package nc.liat6.frame.db.setting.impl;
 
 import nc.liat6.frame.db.setting.IDbSetting;
 
 /**
- * Á¬½ÓÅäÖÃ³éÏó
+ * è¿æ¥é…ç½®æŠ½è±¡
  * 
  * @author 6tail
  * 
@@ -12,64 +12,64 @@ public abstract class SuperDbSetting implements IDbSetting{
 
   private static final long serialVersionUID = 2192392729884362173L;
   
-  /** Á¬½ÓÀàĞÍ£¬Èçjdbc¡¢proxool¡¢csv¡¢mongo */
+  /** è¿æ¥ç±»å‹ï¼Œå¦‚jdbcã€proxoolã€csvã€mongo */
   protected String type;
   
-  /** Á¬½Ó±ğÃû */
+  /** è¿æ¥åˆ«å */
   protected String alias;
   
-  /** Á¬½ÓURL */
+  /** è¿æ¥URL */
   protected String url;
   
-  /** ÓÃ»§Ãû */
+  /** ç”¨æˆ·å */
   protected String user;
   
-  /** ÃÜÂë */
+  /** å¯†ç  */
   protected String password;
   
-  /** Çı¶¯Àà */
+  /** é©±åŠ¨ç±» */
   protected String driver;
   
-  /** Êı¾İ¿âÀàĞÍ£¬Èçoracle¡¢mysql¡¢sqlserver */
+  /** æ•°æ®åº“ç±»å‹ï¼Œå¦‚oracleã€mysqlã€sqlserver */
   protected String dbType;
   
-  /** Êı¾İ¿âÊµÀıÃû */
+  /** æ•°æ®åº“å®ä¾‹å */
   protected String dbName;
 
   /**
-   * »ñÈ¡Á¬½ÓÀàĞÍ
-   * @return Á¬½ÓÀàĞÍ£¬Èçjdbc¡¢proxool¡¢csv¡¢mongo
+   * è·å–è¿æ¥ç±»å‹
+   * @return è¿æ¥ç±»å‹ï¼Œå¦‚jdbcã€proxoolã€csvã€mongo
    */
   public String getType(){
     return type;
   }
 
   /**
-   * ÉèÖÃÁ¬½ÓÀàĞÍ
-   * @param type Á¬½ÓÀàĞÍ£¬Èçjdbc¡¢proxool¡¢csv¡¢mongo
+   * è®¾ç½®è¿æ¥ç±»å‹
+   * @param type è¿æ¥ç±»å‹ï¼Œå¦‚jdbcã€proxoolã€csvã€mongo
    */
   public void setType(String type){
     this.type = type;
   }
 
   /**
-   * »ñÈ¡Á¬½Ó±ğÃû
-   * @return Á¬½Ó±ğÃû
+   * è·å–è¿æ¥åˆ«å
+   * @return è¿æ¥åˆ«å
    */
   public String getAlias(){
     return alias;
   }
 
   /**
-   * ÉèÖÃÁ¬½Ó±ğÃû
-   * @param alias Á¬½Ó±ğÃû
+   * è®¾ç½®è¿æ¥åˆ«å
+   * @param alias è¿æ¥åˆ«å
    */
   public void setAlias(String alias){
     this.alias = alias;
   }
 
   /**
-   * »ñÈ¡Á¬½ÓURL
+   * è·å–è¿æ¥URL
    * @return url
    */
   public String getUrl(){
@@ -77,87 +77,87 @@ public abstract class SuperDbSetting implements IDbSetting{
   }
 
   /**
-   * ÉèÖÃÁ¬½ÓURL
-   * @param url Á¬½Óurl
+   * è®¾ç½®è¿æ¥URL
+   * @param url è¿æ¥url
    */
   public void setUrl(String url){
     this.url = url;
   }
 
   /**
-   * »ñÈ¡ÓÃ»§Ãû
-   * @return ÓÃ»§Ãû
+   * è·å–ç”¨æˆ·å
+   * @return ç”¨æˆ·å
    */
   public String getUser(){
     return user;
   }
 
   /**
-   * ÉèÖÃÓÃ»§Ãû
-   * @param user ÓÃ»§Ãû
+   * è®¾ç½®ç”¨æˆ·å
+   * @param user ç”¨æˆ·å
    */
   public void setUser(String user){
     this.user = user;
   }
 
   /**
-   * »ñÈ¡ÃÜÂë
-   * @return ÃÜÂë
+   * è·å–å¯†ç 
+   * @return å¯†ç 
    */
   public String getPassword(){
     return password;
   }
 
   /**
-   * ÉèÖÃÃÜÂë
-   * @param password ÃÜÂë
+   * è®¾ç½®å¯†ç 
+   * @param password å¯†ç 
    */
   public void setPassword(String password){
     this.password = password;
   }
 
   /**
-   * »ñÈ¡Çı¶¯³ÌĞò
-   * @return Çı¶¯³ÌĞò
+   * è·å–é©±åŠ¨ç¨‹åº
+   * @return é©±åŠ¨ç¨‹åº
    */
   public String getDriver(){
     return driver;
   }
 
   /**
-   * ÉèÖÃÇı¶¯³ÌĞò
-   * @param driver Çı¶¯³ÌĞò
+   * è®¾ç½®é©±åŠ¨ç¨‹åº
+   * @param driver é©±åŠ¨ç¨‹åº
    */
   public void setDriver(String driver){
     this.driver = driver;
   }
 
   /**
-   * »ñÈ¡Êı¾İ¿âÀàĞÍ
-   * @return Êı¾İ¿âÀàĞÍ£¬Èçoracle¡¢mysql¡¢sqlserver
+   * è·å–æ•°æ®åº“ç±»å‹
+   * @return æ•°æ®åº“ç±»å‹ï¼Œå¦‚oracleã€mysqlã€sqlserver
    */
   public String getDbType(){
     return dbType;
   }
 
   /**
-   * ÉèÖÃÊı¾İ¿âÀàĞÍ
-   * @param dbType Êı¾İ¿âÀàĞÍ£¬Èçoracle¡¢mysql¡¢sqlserver
+   * è®¾ç½®æ•°æ®åº“ç±»å‹
+   * @param dbType æ•°æ®åº“ç±»å‹ï¼Œå¦‚oracleã€mysqlã€sqlserver
    */
   public void setDbType(String dbType){
     this.dbType = dbType;
   }
 
   /**
-   * »ñÈ¡Êı¾İ¿âÊµÀıÃû
-   * @return Êı¾İ¿âÊµÀıÃû
+   * è·å–æ•°æ®åº“å®ä¾‹å
+   * @return æ•°æ®åº“å®ä¾‹å
    */
   public String getDbName(){
     return dbName;
   }
 
   /**
-   * ÉèÖÃÊı¾İ¿âÊµÀıÃû
+   * è®¾ç½®æ•°æ®åº“å®ä¾‹å
    * @param dbName
    */
   public void setDbName(String dbName){

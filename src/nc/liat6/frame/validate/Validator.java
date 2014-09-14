@@ -1,9 +1,9 @@
-package nc.liat6.frame.validate;
+ï»¿package nc.liat6.frame.validate;
 
 import nc.liat6.frame.exception.BadException;
 
 /**
- * ÑéÖ¤Æ÷
+ * éªŒè¯å™¨
  * 
  * @author 6tail
  * 
@@ -11,11 +11,11 @@ import nc.liat6.frame.exception.BadException;
 public class Validator{
 
   /**
-   * ¼ì²é£¬ÑéÖ¤Ê§°Ü£¬Å×³öBadException
+   * æ£€æŸ¥ï¼ŒéªŒè¯å¤±è´¥ï¼ŒæŠ›å‡ºBadException
    * 
-   * @param s ¼ì²éµÄÖµ
-   * @param rd °ó¶¨Êı¾İ£¬ÓÃÓÚ·µ»Ø
-   * @param rule ÑéÖ¤¹æÔò£¬¿ÉÒÔ¶à¸ö
+   * @param s æ£€æŸ¥çš„å€¼
+   * @param rd ç»‘å®šæ•°æ®ï¼Œç”¨äºè¿”å›
+   * @param rule éªŒè¯è§„åˆ™ï¼Œå¯ä»¥å¤šä¸ª
    */
   public static void check(String s,Object rd,IValidatorRule... rule){
     for(IValidatorRule r:rule){
@@ -28,10 +28,10 @@ public class Validator{
   }
 
   /**
-   * ¼ì²é£¬ÑéÖ¤Ê§°Ü£¬Å×³öBadException
+   * æ£€æŸ¥ï¼ŒéªŒè¯å¤±è´¥ï¼ŒæŠ›å‡ºBadException
    * 
-   * @param s ¼ì²éµÄÖµ
-   * @param rule ÑéÖ¤¹æÔò£¬¿ÉÒÔ¶à¸ö
+   * @param s æ£€æŸ¥çš„å€¼
+   * @param rule éªŒè¯è§„åˆ™ï¼Œå¯ä»¥å¤šä¸ª
    */
   public static void check(String s,IValidatorRule... rule){
     check(s,null,rule);

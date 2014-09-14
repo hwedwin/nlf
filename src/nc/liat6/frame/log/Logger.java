@@ -1,17 +1,17 @@
-package nc.liat6.frame.log;
+ï»¿package nc.liat6.frame.log;
 
 import java.util.List;
 import nc.liat6.frame.Factory;
 
 /**
- * ÈÕÖ¾¹¤³§
+ * æ—¥å¿—å·¥å‚
  * 
  * @author 6tail
  * 
  */
 public class Logger{
 
-  /** ÊÊÅäÆ÷ */
+  /** é€‚é…å™¨ */
   private static ILogAdapter adapter;
   static{
     List<String> l = Factory.getImpls(ILogAdapter.class.getName());
@@ -29,9 +29,9 @@ public class Logger{
   private Logger(){}
 
   /**
-   * »ñÈ¡ÈÕÖ¾½Ó¿Ú
+   * è·å–æ—¥å¿—æ¥å£
    * 
-   * @return ÈÕÖ¾½Ó¿Ú
+   * @return æ—¥å¿—æ¥å£
    */
   public static ILog getLog(){
     StackTraceElement[] sts = Thread.currentThread().getStackTrace();
@@ -39,20 +39,20 @@ public class Logger{
   }
 
   /**
-   * »ñÈ¡ÈÕÖ¾½Ó¿Ú
+   * è·å–æ—¥å¿—æ¥å£
    * 
-   * @param klass ÀàÃû
-   * @return ÈÕÖ¾½Ó¿Ú
+   * @param klass ç±»å
+   * @return æ—¥å¿—æ¥å£
    */
   public static ILog getLog(String klass){
     return adapter.getLog(klass);
   }
 
   /**
-   * »ñÈ¡ÈÕÖ¾½Ó¿Ú
+   * è·å–æ—¥å¿—æ¥å£
    * 
-   * @param c Àà
-   * @return ÈÕÖ¾½Ó¿Ú
+   * @param c ç±»
+   * @return æ—¥å¿—æ¥å£
    */
   public static ILog getLog(Class<?> c){
     return adapter.getLog(c.getName());

@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.custom.csv;
+ï»¿package nc.liat6.frame.db.custom.csv;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,14 +10,14 @@ import nc.liat6.frame.log.Logger;
 import nc.liat6.frame.util.Stringer;
 
 /**
- * CSVÖ´ĞĞÆ÷
+ * CSVæ‰§è¡Œå™¨
  * 
  * @author 6tail
  * 
  */
 public abstract class CsvExecuter extends SuperExecuter implements ICsv{
 
-  /** ±íÃû */
+  /** è¡¨å */
   protected String tableName;
 
   public String getSql(){
@@ -31,9 +31,9 @@ public abstract class CsvExecuter extends SuperExecuter implements ICsv{
   }
 
   /**
-   * ³õÊ¼»¯±í
+   * åˆå§‹åŒ–è¡¨
    * 
-   * @param tableName ±íÃû
+   * @param tableName è¡¨å
    */
   protected void initTable(String tableName){
     tableName = tableName.toUpperCase();
@@ -42,9 +42,9 @@ public abstract class CsvExecuter extends SuperExecuter implements ICsv{
   }
 
   /**
-   * »ñÈ¡±íÎÄ¼ş£¬Èç¹û²»´æÔÚ£¬×Ô¶¯´´½¨
+   * è·å–è¡¨æ–‡ä»¶ï¼Œå¦‚æœä¸å­˜åœ¨ï¼Œè‡ªåŠ¨åˆ›å»º
    * 
-   * @return ±íÎÄ¼ş
+   * @return è¡¨æ–‡ä»¶
    */
   protected File getTableFile(){
     File dir = new File(template.getConnVar().getSetting().getDbName());
@@ -61,10 +61,10 @@ public abstract class CsvExecuter extends SuperExecuter implements ICsv{
   }
 
   /**
-   * ¶ÁÈ¡ÁĞÃû
+   * è¯»å–åˆ—å
    * 
    * @param cr
-   * @return ÁĞÃû
+   * @return åˆ—å
    * @throws IOException
    */
   protected String[] readHead(CSVFileReader cr,File file) throws IOException{

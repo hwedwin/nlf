@@ -1,7 +1,7 @@
-package nc.liat6.frame.xml.element;
+ï»¿package nc.liat6.frame.xml.element;
 
 /**
- * XML²¼¶ûÀàĞÍ½Úµã
+ * XMLå¸ƒå°”ç±»å‹èŠ‚ç‚¹
  * 
  * @author 6tail
  * 
@@ -28,7 +28,7 @@ public class XmlBool extends AbstractElement{
   }
 
   /**
-   * ÉèÖÃ½ÚµãÖµ
+   * è®¾ç½®èŠ‚ç‚¹å€¼
    * 
    * @param o true/false
    */
@@ -37,7 +37,7 @@ public class XmlBool extends AbstractElement{
   }
 
   /**
-   * »ñÈ¡½ÚµãÖµ
+   * è·å–èŠ‚ç‚¹å€¼
    * 
    * @return true/false
    */

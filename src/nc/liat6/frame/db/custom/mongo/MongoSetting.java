@@ -1,9 +1,9 @@
-package nc.liat6.frame.db.custom.mongo;
+锘縫ackage nc.liat6.frame.db.custom.mongo;
 
 import nc.liat6.frame.db.setting.impl.SuperDbSetting;
 
 /**
- * MONGO连接配置
+ * MONGO杩炴帴閰嶇疆
  * 
  * @author 6tail
  * 
@@ -12,7 +12,7 @@ public class MongoSetting extends SuperDbSetting{
 
   private static final long serialVersionUID = 5902769339352767337L;
 
-  /** 默认连接类型 */
+  /** 榛樿杩炴帴绫诲瀷 */
   public static final String DEFAULT_TYPE = "mongo";
   
   public MongoSetting(){

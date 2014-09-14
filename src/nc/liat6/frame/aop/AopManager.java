@@ -1,9 +1,9 @@
-package nc.liat6.frame.aop;
+ï»¿package nc.liat6.frame.aop;
 
 import java.lang.reflect.Method;
 
 /**
- * AOP¹ÜÀíÆ÷¸¸Àà
+ * AOPç®¡ç†å™¨çˆ¶ç±»
  * 
  * @author liat6
  * 
@@ -36,7 +36,7 @@ public abstract class AopManager extends AbstractManager{
     boolean need = false;
     String klassName = o.getClass().getName();
     String methodName = m.getName();
-    // ´¦Àí´úÀíÀà
+    // å¤„ç†ä»£ç†ç±»
     if(klassName.indexOf("$")>-1)
       klassName = klassName.substring(0,klassName.indexOf("$"));
     if("finalize".equals(methodName))

@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.custom.mongo;
+ï»¿package nc.liat6.frame.db.custom.mongo;
 
 import nc.liat6.frame.db.exception.DaoException;
 import nc.liat6.frame.db.plugin.IDeleter;
@@ -11,7 +11,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
 /**
- * MONGOÉ¾³ýÆ÷
+ * MONGOåˆ é™¤å™¨
  * 
  * @author 6tail
  * 

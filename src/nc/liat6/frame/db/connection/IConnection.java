@@ -1,9 +1,9 @@
-package nc.liat6.frame.db.connection;
+锘縫ackage nc.liat6.frame.db.connection;
 
 import java.sql.Connection;
 
 /**
- * 定制连接
+ * 瀹氬埗杩炴帴
  * 
  * @author 6tail
  * 

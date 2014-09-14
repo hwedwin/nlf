@@ -1,7 +1,7 @@
-package nc.liat6.frame.db.custom.csv;
+ï»¿package nc.liat6.frame.db.custom.csv;
 
 /**
- * CSVÇý¶¯
+ * CSVé©±åŠ¨
  * 
  * @author 6tail
  * 

@@ -1,7 +1,7 @@
-package nc.liat6.frame.db.custom.mysql;
+﻿package nc.liat6.frame.db.custom.mysql;
 
 /**
- * MYSQL�ӿ�
+ * MYSQL接口
  * @author 6tail
  *
  */

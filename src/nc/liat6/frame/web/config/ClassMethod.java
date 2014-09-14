@@ -1,7 +1,7 @@
-package nc.liat6.frame.web.config;
+Ôªøpackage nc.liat6.frame.web.config;
 
 /**
- * ¿‡&∑Ω∑®
+ * Á±ª&ÊñπÊ≥ï
  * 
  * @author 6tail
  * 

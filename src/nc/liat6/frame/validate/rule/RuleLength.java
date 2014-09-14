@@ -1,9 +1,9 @@
-package nc.liat6.frame.validate.rule;
+ï»¿package nc.liat6.frame.validate.rule;
 
 import nc.liat6.frame.locale.L;
 
 /**
- * ×Ö·ûÊıÏŞÖÆ£¨Ä¬ÈÏ×î´ó×Ö·ûÊıÏŞÖÆ£¬¼´²»ÄÜ³¬¹ı¶àÉÙ¸ö×Ö·û£©
+ * å­—ç¬¦æ•°é™åˆ¶ï¼ˆé»˜è®¤æœ€å¤§å­—ç¬¦æ•°é™åˆ¶ï¼Œå³ä¸èƒ½è¶…è¿‡å¤šå°‘ä¸ªå­—ç¬¦ï¼‰
  * 
  * @author 6tail
  * 
@@ -30,7 +30,7 @@ public class RuleLength extends AbstractRule{
     return key.length()<=length;
   }
   /**
-   * Ö»ÄÜµÈÓÚÏŞ¶¨×Ö·ûÊı
+   * åªèƒ½ç­‰äºé™å®šå­—ç¬¦æ•°
    * 
    * @author 6tail
    * 
@@ -58,7 +58,7 @@ public class RuleLength extends AbstractRule{
     }
   }
   /**
-   * Ö»ÄÜ´óÓÚ»òµÈÓÚÏŞ¶¨×Ö·ûÊı
+   * åªèƒ½å¤§äºæˆ–ç­‰äºé™å®šå­—ç¬¦æ•°
    * 
    * @author 6tail
    * 
@@ -86,7 +86,7 @@ public class RuleLength extends AbstractRule{
     }
   }
   /**
-   * Ö»ÄÜ´óÓÚÏŞ¶¨×Ö·ûÊı
+   * åªèƒ½å¤§äºé™å®šå­—ç¬¦æ•°
    * 
    * @author 6tail
    * 

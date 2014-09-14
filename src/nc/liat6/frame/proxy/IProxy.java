@@ -1,39 +1,39 @@
-package nc.liat6.frame.proxy;
+ï»¿package nc.liat6.frame.proxy;
 
 import nc.liat6.frame.aop.IAopInterceptor;
 
 /**
- * ¶¯Ì¬´úÀí½Ó¿Ú
+ * åŠ¨æ€ä»£ç†æ¥å£
  * 
  * @author 6tail
  * 
  */
 public interface IProxy{
 
-  /** AOPÀ¹½ØÆ÷Ãû³Æ */
+  /** AOPæ‹¦æˆªå™¨åç§° */
   public static final String AOP_INTERCEPTOR_LIST_NAME = "$NlfAopInterceptors";
-  /** ´úÀíÀàºó×º */
+  /** ä»£ç†ç±»åç¼€ */
   public static final String SUFFIX = "$NlfProxy";
 
   /**
-   * Éú³ÉÖ¸¶¨ÀàµÄ´úÀí¶ÔÏó
+   * ç”ŸæˆæŒ‡å®šç±»çš„ä»£ç†å¯¹è±¡
    * 
-   * @param superClass ¸¸Àà
-   * @return ´úÀí¶ÔÏó
+   * @param superClass çˆ¶ç±»
+   * @return ä»£ç†å¯¹è±¡
    */
   public <T>T create(Class<?> superClass);
 
   /**
-   * »ñÈ¡Ô­¶ÔÏó
+   * è·å–åŸå¯¹è±¡
    * 
-   * @return Ô­¶ÔÏó
+   * @return åŸå¯¹è±¡
    */
   public <T>T getOBean();
 
   /**
-   * Ìí¼ÓAOPÀ¹½ØÆ÷
+   * æ·»åŠ AOPæ‹¦æˆªå™¨
    * 
-   * @param ai AOPÀ¹½ØÆ÷
+   * @param ai AOPæ‹¦æˆªå™¨
    */
   public void addAopInterceptor(IAopInterceptor ai);
 }

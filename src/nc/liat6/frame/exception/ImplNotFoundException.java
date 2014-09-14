@@ -1,9 +1,9 @@
-package nc.liat6.frame.exception;
+锘縫ackage nc.liat6.frame.exception;
 
 import nc.liat6.frame.locale.L;
 
 /**
- * 找不到接口的实现异常
+ * 鎵句笉鍒版帴鍙ｇ殑瀹炵幇寮傚父
  * 
  * @author 6tail
  * 

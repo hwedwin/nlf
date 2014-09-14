@@ -1,9 +1,9 @@
-package nc.liat6.frame.db.custom.csv;
+ï»¿package nc.liat6.frame.db.custom.csv;
 
 import nc.liat6.frame.db.setting.impl.SuperDbSetting;
 
 /**
- * CSVÁ¬½ÓÅäÖÃ
+ * CSVè¿æ¥é…ç½®
  * 
  * @author 6tail
  * 
@@ -11,11 +11,11 @@ import nc.liat6.frame.db.setting.impl.SuperDbSetting;
 public class CsvSetting extends SuperDbSetting{
 
   private static final long serialVersionUID = 8889847573386316725L;
-  /** Ä¬ÈÏÁ¬½ÓÀàĞÍ */
+  /** é»˜è®¤è¿æ¥ç±»å‹ */
   public static final String DEFAULT_TYPE = "csv";
-  /** Ä¬ÈÏÊı¾İ¿âÀàĞÍ */
+  /** é»˜è®¤æ•°æ®åº“ç±»å‹ */
   public static final String DEFAULT_DB_TYPE = "csv";
-  /** Ä¬ÈÏÇı¶¯³ÌĞò */
+  /** é»˜è®¤é©±åŠ¨ç¨‹åº */
   public static final String DEFAULT_DRIVER = CsvDriver.class.getName();
 
   public CsvSetting(){

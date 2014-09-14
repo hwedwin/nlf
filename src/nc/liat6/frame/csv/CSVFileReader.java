@@ -1,24 +1,24 @@
-package nc.liat6.frame.csv;
+ï»¿package nc.liat6.frame.csv;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * CSVÎÄ¼ş¶ÁÈ¡
+ * CSVæ–‡ä»¶è¯»å–
  * 
  * @author 6tail
  * 
  */
 public class CSVFileReader{
 
-  /** ÎÄ¼şĞĞÊı£¬ÊÇ°´CSV¸ñÊ½½âÎöºóµÄĞĞÊı£¬²»Ò»¶¨ÊÇÎÄ±¾ĞĞÊı */
+  /** æ–‡ä»¶è¡Œæ•°ï¼Œæ˜¯æŒ‰CSVæ ¼å¼è§£æåçš„è¡Œæ•°ï¼Œä¸ä¸€å®šæ˜¯æ–‡æœ¬è¡Œæ•° */
   private int lineCount = -1;
-  /** ½âÎöµ½µÄµ±Ç°ĞĞÊı */
+  /** è§£æåˆ°çš„å½“å‰è¡Œæ•° */
   private int lineNumber = 0;
-  /** ¶ÁÈ¡µÄÎÄ¼ş */
+  /** è¯»å–çš„æ–‡ä»¶ */
   private File file;
-  /** CSVÊäÈëÁ÷¶ÁÈ¡ */
+  /** CSVè¾“å…¥æµè¯»å– */
   private CSVReader reader = null;
 
   public CSVFileReader(File file){
@@ -26,9 +26,9 @@ public class CSVFileReader{
   }
 
   /**
-   * »ñÈ¡CSVÎÄ¼şÖĞµÄÊı¾İĞĞÊı£¬ÒòÊı¾İ¿ÉÄÜÓĞ»»ĞĞ£¬¹ÊÕâÀïµÄĞĞÊı²»Ò»¶¨ÓëÎÄ±¾ĞĞÊıÏàÍ¬
+   * è·å–CSVæ–‡ä»¶ä¸­çš„æ•°æ®è¡Œæ•°ï¼Œå› æ•°æ®å¯èƒ½æœ‰æ¢è¡Œï¼Œæ•…è¿™é‡Œçš„è¡Œæ•°ä¸ä¸€å®šä¸æ–‡æœ¬è¡Œæ•°ç›¸åŒ
    * 
-   * @return ĞĞÊı
+   * @return è¡Œæ•°
    * @throws IOException
    */
   public int getLineCount() throws IOException{
@@ -58,10 +58,10 @@ public class CSVFileReader{
   }
 
   /**
-   * ¶ÁÈ¡Ö¸¶¨ĞĞµÄÊı¾İ£¬ÒÑÓÅ»¯Ğø¶ÁËã·¨ÒÔÌá¸ßĞ§ÂÊ
+   * è¯»å–æŒ‡å®šè¡Œçš„æ•°æ®ï¼Œå·²ä¼˜åŒ–ç»­è¯»ç®—æ³•ä»¥æé«˜æ•ˆç‡
    * 
-   * @param index ĞĞÊı£¬´Ó0¿ªÊ¼
-   * @return ĞĞÊı¾İ
+   * @param index è¡Œæ•°ï¼Œä»0å¼€å§‹
+   * @return è¡Œæ•°æ®
    * @throws IOException
    */
   public String[] getLine(int index) throws IOException{

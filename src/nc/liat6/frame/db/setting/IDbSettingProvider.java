@@ -1,9 +1,9 @@
-package nc.liat6.frame.db.setting;
+ï»¿package nc.liat6.frame.db.setting;
 
 import nc.liat6.frame.db.entity.Bean;
 
 /**
- * Á¬½ÓÉèÖÃÌá¹©½Ó¿Ú
+ * è¿æ¥è®¾ç½®æä¾›æ¥å£
  * 
  * @author 6tail
  * 
@@ -11,18 +11,18 @@ import nc.liat6.frame.db.entity.Bean;
 public interface IDbSettingProvider{
 
   /**
-   * ÊÇ·ñÖ§³ÖÖ¸¶¨Á¬½ÓÀàĞÍ
+   * æ˜¯å¦æ”¯æŒæŒ‡å®šè¿æ¥ç±»å‹
    * 
-   * @param type Á¬½ÓÀàĞÍ
-   * @return true/false Ö§³Ö/²»Ö§³Ö
+   * @param type è¿æ¥ç±»å‹
+   * @return true/false æ”¯æŒ/ä¸æ”¯æŒ
    */
   public boolean support(String type);
 
   /**
-   * »ñÈ¡Á¬½ÓÅäÖÃ
+   * è·å–è¿æ¥é…ç½®
    * 
-   * @param o ÅäÖÃÎÄ¼ş×ª»»µÄBean
-   * @return Á¬½ÓÅäÖÃ
+   * @param o é…ç½®æ–‡ä»¶è½¬æ¢çš„Bean
+   * @return è¿æ¥é…ç½®
    */
   public IDbSetting getDbSetting(Bean o);
 }

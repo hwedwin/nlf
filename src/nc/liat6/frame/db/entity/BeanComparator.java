@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.entity;
+ï»¿package nc.liat6.frame.db.entity;
 
 import java.util.Comparator;
 import java.util.List;
@@ -6,26 +6,26 @@ import java.util.List;
 import nc.liat6.frame.util.Stringer;
 
 /**
- * BEAN±È½ÏÆ÷
+ * BEANæ¯”è¾ƒå™¨
  * 
  * @author 6tail
  * 
  */
 public class BeanComparator implements Comparator<Bean>{
 
-	/** Ä¬ÈÏÅÅĞò */
+	/** é»˜è®¤æ’åº */
 	public static final int TYPE_DEFAULT = 0;
 
-	/** ASCÅÅĞò */
+	/** ASCæ’åº */
 	public static final int TYPE_ASC = 1;
 
-	/** DESCÅÅĞò */
+	/** DESCæ’åº */
 	public static final int TYPE_DESC = 2;
 
-	/** keysÖ¸¶¨ÅÅĞò£¬ÀıÈçcol0:asc,col1:desc */
+	/** keysæŒ‡å®šæ’åºï¼Œä¾‹å¦‚col0:asc,col1:desc */
 	public static final int TYPE_MANU = 3;
 
-	/** ÅÅĞò·½Ê½ */
+	/** æ’åºæ–¹å¼ */
 	private int type = TYPE_DEFAULT;
 
 	private List<String> keys;

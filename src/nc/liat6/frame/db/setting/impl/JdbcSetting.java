@@ -1,7 +1,7 @@
-package nc.liat6.frame.db.setting.impl;
+锘縫ackage nc.liat6.frame.db.setting.impl;
 
 /**
- * JDBC连接配置
+ * JDBC杩炴帴閰嶇疆
  * 
  * @author 6tail
  * 
@@ -9,7 +9,7 @@ package nc.liat6.frame.db.setting.impl;
 public class JdbcSetting extends SuperDbSetting{
 
   private static final long serialVersionUID = 5902760339352767337L;
-  /** 默认连接类型 */
+  /** 榛樿杩炴帴绫诲瀷 */
   public static final String DEFAULT_TYPE = "jdbc";
 
   public JdbcSetting(){

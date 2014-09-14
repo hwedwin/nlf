@@ -1,9 +1,9 @@
-package nc.liat6.frame.web.tags.entity;
+ï»¿package nc.liat6.frame.web.tags.entity;
 
 import nc.liat6.frame.db.entity.Bean;
 
 /**
- * Bean¹¤¾ß
+ * Beanå·¥å…·
  * <i>EL:${nlfe:bean(obj,"key")}</i>
  * 
  * @author 6tail
@@ -12,11 +12,11 @@ import nc.liat6.frame.db.entity.Bean;
 public class BeanUtil{
 
   /**
-   * »ñÈ¡BeanµÄÖµ
+   * è·å–Beançš„å€¼
    * 
-   * @param bean Bean¶ÔÏó
-   * @param key ¼ü
-   * @return Öµ
+   * @param bean Beanå¯¹è±¡
+   * @param key é”®
+   * @return å€¼
    */
   public static Object get(Bean bean,String key){
     if(null==bean){

@@ -1,11 +1,11 @@
-package nc.liat6.frame.validate;
+ï»¿package nc.liat6.frame.validate;
 
 import java.util.HashMap;
 import java.util.Map;
 import nc.liat6.frame.locale.L;
 
 /**
- * Æ¥Åä½áÂÛ
+ * åŒ¹é…ç»“è®º
  * 
  * @author 6tail
  * 

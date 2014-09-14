@@ -1,28 +1,28 @@
-package nc.liat6.frame.util;
+ï»¿package nc.liat6.frame.util;
 
 import java.math.BigDecimal;
 
 /**
- * ¼ÇÂ¼IDÉú³ÉÆ÷
- * <p>Ö§³ÖÃ¿ÃëÉú³ÉÒ»°ÙÍò¸öID£¬²»Ö§³Ö·Ö²¼Ê½Ó¦ÓÃ</p>
+ * è®°å½•IDç”Ÿæˆå™¨
+ * <p>æ”¯æŒæ¯ç§’ç”Ÿæˆä¸€ç™¾ä¸‡ä¸ªIDï¼Œä¸æ”¯æŒåˆ†å¸ƒå¼åº”ç”¨</p>
  * 
- * @author ÁùÌØ¶û
+ * @author å…­ç‰¹å°”
  */
 public class ID{
 
-  /** ×ÔÔöĞòÁĞ */
+  /** è‡ªå¢åºåˆ— */
   private static int serial = 0;
-  /** µ±Ç°Ê±¼ä */
+  /** å½“å‰æ—¶é—´ */
   private static long time = 0;
-  /** ×ÔÔöĞòÁĞÎ»Êı */
+  /** è‡ªå¢åºåˆ—ä½æ•° */
   private static final int DIGIT = 3;
 
   private ID(){}
 
   /**
-   * »ñÈ¡Ò»¸öĞÂµÄ²»ÖØ¸´µÄID
+   * è·å–ä¸€ä¸ªæ–°çš„ä¸é‡å¤çš„ID
    * 
-   * @return ³¤ÕûĞÍÊı×Ö
+   * @return é•¿æ•´å‹æ•°å­—
    */
   public synchronized static BigDecimal next(){
     String s = "";

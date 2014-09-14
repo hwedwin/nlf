@@ -1,4 +1,4 @@
-package nc.liat6.frame.web.response;
+ï»¿package nc.liat6.frame.web.response;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,7 +8,7 @@ import nc.liat6.frame.exception.NlfException;
 import nc.liat6.frame.util.ContentTypes;
 
 /**
- * Á÷Ê½Êä³ö
+ * æµå¼è¾“å‡º
  * 
  * @author 6tail
  * 

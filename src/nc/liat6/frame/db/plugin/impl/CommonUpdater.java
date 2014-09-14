@@ -1,11 +1,11 @@
-package nc.liat6.frame.db.plugin.impl;
+ï»¿package nc.liat6.frame.db.plugin.impl;
 
 import nc.liat6.frame.db.entity.Bean;
 import nc.liat6.frame.db.plugin.IUpdater;
 import nc.liat6.frame.db.plugin.Rule;
 
 /**
- * Í¨ÓÃ¸üĞÂÆ÷
+ * é€šç”¨æ›´æ–°å™¨
  * 
  * @author 6tail
  * 
@@ -20,7 +20,7 @@ public class CommonUpdater extends SuperExecuter implements IUpdater{
   public IUpdater where(String sql){
     Rule r = new Rule();
     r.setColumn(sql);
-    // ¿Õ×Ö·û´®Ìæ»»Õ¼Î»·û
+    // ç©ºå­—ç¬¦ä¸²æ›¿æ¢å ä½ç¬¦
     r.setTag("");
     wheres.add(r);
     return this;
@@ -29,7 +29,7 @@ public class CommonUpdater extends SuperExecuter implements IUpdater{
   public IUpdater whereSql(String sql,Object[] values){
     Rule r = new Rule();
     r.setColumn(sql);
-    // ¿Õ×Ö·û´®Ìæ»»Õ¼Î»·û
+    // ç©ºå­—ç¬¦ä¸²æ›¿æ¢å ä½ç¬¦
     r.setTag("");
     wheres.add(r);
     for(Object v:values){
@@ -48,7 +48,7 @@ public class CommonUpdater extends SuperExecuter implements IUpdater{
   }
 
   public IUpdater set(String column,Object value){
-    // Èç¹ûÓĞÖØ¸´µÄ£¬Ìæ»»Öµ
+    // å¦‚æœæœ‰é‡å¤çš„ï¼Œæ›¿æ¢å€¼
     for(int i = 0;i<cols.size();i++){
       if(cols.get(i).getColumn().equalsIgnoreCase(column)){
         paramCols.set(i,value);
@@ -66,7 +66,7 @@ public class CommonUpdater extends SuperExecuter implements IUpdater{
   public IUpdater set(String sql){
     Rule r = new Rule();
     r.setColumn(sql);
-    // ¿Õ×Ö·û´®Ìæ»»Õ¼Î»·û
+    // ç©ºå­—ç¬¦ä¸²æ›¿æ¢å ä½ç¬¦
     r.setTag("");
     cols.add(r);
     return this;
@@ -75,7 +75,7 @@ public class CommonUpdater extends SuperExecuter implements IUpdater{
   public IUpdater setSql(String sql,Object[] values){
     Rule r = new Rule();
     r.setColumn(sql);
-    // ¿Õ×Ö·û´®Ìæ»»Õ¼Î»·û
+    // ç©ºå­—ç¬¦ä¸²æ›¿æ¢å ä½ç¬¦
     r.setTag("");
     cols.add(r);
     for(Object v:values){
@@ -92,9 +92,9 @@ public class CommonUpdater extends SuperExecuter implements IUpdater{
   }
 
   public String getSql(){
-    // ÖØÖÃSQL
+    // é‡ç½®SQL
     resetSql();
-    // ÖØĞÂ¹¹Ôì
+    // é‡æ–°æ„é€ 
     sql.append(" UPDATE");
     int l = tables.size();
     for(int i = 0;i<l;i++){

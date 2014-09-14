@@ -1,11 +1,11 @@
-package nc.liat6.frame.json.element;
+锘縫ackage nc.liat6.frame.json.element;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 /**
- * JSON Map对象类型节点
+ * JSON Map瀵硅薄绫诲瀷鑺傜偣
  * 
  * @author 6tail
  * 

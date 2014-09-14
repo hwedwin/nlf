@@ -1,4 +1,4 @@
-package nc.liat6.frame.execute.impl;
+ï»¿package nc.liat6.frame.execute.impl;
 
 import nc.liat6.frame.context.Context;
 import nc.liat6.frame.context.Statics;
@@ -7,7 +7,7 @@ import nc.liat6.frame.rmi.server.request.RmiIPFetcher;
 import nc.liat6.frame.rmi.server.request.RmiRequest;
 
 /**
- * Ó¦ÓÃÖ´ĞĞÊµÏÖ
+ * åº”ç”¨æ‰§è¡Œå®ç°
  * 
  * @author 6tail
  * 
@@ -15,9 +15,9 @@ import nc.liat6.frame.rmi.server.request.RmiRequest;
 public class AppExecute extends AbstractExecute{
 
   public static final String RMI_REQUEST = "NLF_RMI_REQUEST";
-  /** ÓÃÓÚ»ñÈ¡Ô­Ê¼RequestµÄ±êÊ¶·û */
+  /** ç”¨äºè·å–åŸå§‹Requestçš„æ ‡è¯†ç¬¦ */
   public static final String TAG_REQUEST = Statics.TAG_ORG_REQUEST;
-  /** ÓÃÓÚ»ñÈ¡IP»ñÈ¡Æ÷µÄ±êÊ¶·û */
+  /** ç”¨äºè·å–IPè·å–å™¨çš„æ ‡è¯†ç¬¦ */
   public static final String TAG_IP_FETCHER = Statics.TAG_IP_FETCHER;
 
   @Override

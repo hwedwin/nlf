@@ -1,4 +1,4 @@
-package nc.liat6.frame.rmi.server;
+ï»¿package nc.liat6.frame.rmi.server;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,9 +20,9 @@ import nc.liat6.frame.log.Logger;
 import nc.liat6.frame.util.Stringer;
 
 /**
- * Ô¶³Ìµ÷ÓÃ·şÎñ
+ * è¿œç¨‹è°ƒç”¨æœåŠ¡
  * <p>
- * Æô¶¯·şÎñ¶Ëµ÷ÓÃ£ºNlfServer.getInstance().start();
+ * å¯åŠ¨æœåŠ¡ç«¯è°ƒç”¨ï¼šNlfServer.getInstance().start();
  * </p>
  * 
  * @author 6tail
@@ -30,39 +30,39 @@ import nc.liat6.frame.util.Stringer;
  */
 public class NlfServer implements Runnable{
 
-  /** ÊÇ·ñ¿ªÆô·şÎñÈÕÖ¾ */
+  /** æ˜¯å¦å¼€å¯æœåŠ¡æ—¥å¿— */
   static boolean enableLog = true;
-  /** ÇëÇó±êÊ¶ */
+  /** è¯·æ±‚æ ‡è¯† */
   static final String REQ_TAG = "nlfreq";
-  /** ÏìÓ¦±êÊ¶ */
+  /** å“åº”æ ‡è¯† */
   static final String RSP_TAG = "nlfrsp";
-  /** ÅäÖÃÎÄ¼şÃû³Æ */
+  /** é…ç½®æ–‡ä»¶åç§° */
   public static final String SETTING_FILE_NAME = "server";
-  /** Ä¬ÈÏ¶Ë¿Ú */
+  /** é»˜è®¤ç«¯å£ */
   public static final int DEFAULT_PORT = 9999;
-  /** Ä¬ÈÏÏß³Ì³Ø´óĞ¡ */
+  /** é»˜è®¤çº¿ç¨‹æ± å¤§å° */
   public static final int DEFAULT_POOL_SIZE = 100;
-  /** Ä¬ÈÏ»º³åÇø´óĞ¡ */
+  /** é»˜è®¤ç¼“å†²åŒºå¤§å° */
   public static final int DEFAULT_BUFFER_SIZE = 40960;
-  /** ¶Ë¿Ú */
+  /** ç«¯å£ */
   public static int PORT = DEFAULT_PORT;
-  /** Ïß³Ì³Ø´óĞ¡ */
+  /** çº¿ç¨‹æ± å¤§å° */
   public static int POOL_SIZE = DEFAULT_POOL_SIZE;
-  /** »º³åÇø´óĞ¡ */
+  /** ç¼“å†²åŒºå¤§å° */
   public static int BUFFER_SIZE = DEFAULT_BUFFER_SIZE;
-  /** ÊµÀı */
+  /** å®ä¾‹ */
   private static NlfServer instance = null;
-  /** ÈÕÖ¾ */
+  /** æ—¥å¿— */
   private static ILog log = Logger.getLog();
-  /** Ïß³Ì³Ø */
+  /** çº¿ç¨‹æ±  */
   private ExecutorService pool;
-  /** ¼àÌısocket */
+  /** ç›‘å¬socket */
   private ServerSocket serverSocket;
-  /** ¼àÌıÏß³Ì */
+  /** ç›‘å¬çº¿ç¨‹ */
   private Thread t = null;
-  /** ÔÊĞí·ÃÎÊµÄÂ·¾¶ */
+  /** å…è®¸è®¿é—®çš„è·¯å¾„ */
   public static final List<String> allow = new ArrayList<String>();
-  /** ½ûÖ¹·ÃÎÊµÄÂ·¾¶ */
+  /** ç¦æ­¢è®¿é—®çš„è·¯å¾„ */
   public static final List<String> forbid = new ArrayList<String>();
 
   private NlfServer(){

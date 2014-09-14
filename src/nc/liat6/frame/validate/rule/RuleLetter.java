@@ -1,9 +1,9 @@
-package nc.liat6.frame.validate.rule;
+﻿package nc.liat6.frame.validate.rule;
 
 import nc.liat6.frame.validate.RegUtil;
 
 /**
- * Ӣ����ĸ
+ * 英文字母
  * 
  * @author 6tail
  * 
@@ -18,7 +18,7 @@ public class RuleLetter extends RuleRegex{
     this("");
   }
   /**
-   * ��д��ĸ
+   * 大写字母
    * 
    * @author 6tail
    * 
@@ -34,7 +34,7 @@ public class RuleLetter extends RuleRegex{
     }
   }
   /**
-   * Сд��ĸ
+   * 小写字母
    * 
    * @author 6tail
    * 

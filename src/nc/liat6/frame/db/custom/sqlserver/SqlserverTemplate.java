@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.custom.sqlserver;
+锘縫ackage nc.liat6.frame.db.custom.sqlserver;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,7 +17,7 @@ import nc.liat6.frame.paging.PageData;
 import nc.liat6.frame.util.Stringer;
 
 /**
- * SQL执行模板的SqlServer实现
+ * SQL鎵ц妯℃澘鐨凷qlServer瀹炵幇
  * 
  * @author 6tail
  * 

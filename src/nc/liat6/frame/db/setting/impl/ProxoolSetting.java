@@ -1,7 +1,7 @@
-package nc.liat6.frame.db.setting.impl;
+ï»¿package nc.liat6.frame.db.setting.impl;
 
 /**
- * PROXOOLÁ¬½Ó³ØÅäÖÃ
+ * PROXOOLè¿æ¥æ± é…ç½®
  * 
  * @author 6tail
  * 
@@ -9,7 +9,7 @@ package nc.liat6.frame.db.setting.impl;
 public class ProxoolSetting extends SuperDbSetting{
 
   private static final long serialVersionUID = -1965324522415398901L;
-  /** Ä¬ÈÏÁ¬½ÓÀàĞÍ */
+  /** é»˜è®¤è¿æ¥ç±»å‹ */
   public static final String DEFAULT_TYPE = "proxool";
   private int prototypeCount = -1;
   private int houseKeepingSleepTime = -1;

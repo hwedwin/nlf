@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.custom.csv;
+ï»¿package nc.liat6.frame.db.custom.csv;
 
 import java.io.File;
 import nc.liat6.frame.db.connection.ConnVar;
@@ -9,7 +9,7 @@ import nc.liat6.frame.log.Logger;
 import nc.liat6.frame.util.Stringer;
 
 /**
- * CSVÁ¬½Ó±äÁ¿Ìá¹©Æ÷
+ * CSVè¿æ¥å˜é‡æä¾›å™¨
  * 
  * @author 6tail
  * 

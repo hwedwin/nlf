@@ -1,9 +1,9 @@
-package nc.liat6.frame.aop;
+ï»¿package nc.liat6.frame.aop;
 
 import java.lang.reflect.Method;
 
 /**
- * AOP·½·¨³É¹¦ºó¹ÜÀíÆ÷
+ * AOPæ–¹æ³•æˆåŠŸåç®¡ç†å™¨
  * 
  * @author liat6
  * 
@@ -15,11 +15,11 @@ public abstract class AopSucceedManager extends AopManager{
   }
 
   /**
-   * ·½·¨Ö´ĞĞ³É¹¦ºóµ÷ÓÃ
+   * æ–¹æ³•æ‰§è¡ŒæˆåŠŸåè°ƒç”¨
    * 
-   * @param o ¶ÔÏó
-   * @param m ·½·¨
-   * @param args ²ÎÊı
+   * @param o å¯¹è±¡
+   * @param m æ–¹æ³•
+   * @param args å‚æ•°
    */
   public abstract void execute(Object o,Method m,Object[] args);
 

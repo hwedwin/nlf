@@ -1,4 +1,4 @@
-package nc.liat6.frame.util;
+ï»¿package nc.liat6.frame.util;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -21,14 +21,14 @@ import com.sun.image.codec.jpeg.JPEGEncodeParam;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
 /**
- * Í¼Ïñ´¦Àí¹¤¾ßÀà
+ * å›¾åƒå¤„ç†å·¥å…·ç±»
  * 
  * @author 6tail
  * 
  */
 public class ImageHelper{
 
-  /** Ä¬ÈÏÍ¸Ã÷¶È */
+  /** é»˜è®¤é€æ˜åº¦ */
   public static final int DEFAULT_ALPHA = 255;
   public static final int DEFAULT_BG = -1;
   public static final int DEFAULT_FG = -16777216;
@@ -36,45 +36,45 @@ public class ImageHelper{
   private ImageHelper(){}
 
   /**
-   * ÓÉr,g,bÖµ¹¹³ÉÄ¬ÈÏÍ¸Ã÷¶ÈµÄÏñµã
+   * ç”±r,g,bå€¼æ„æˆé»˜è®¤é€æ˜åº¦çš„åƒç‚¹
    * 
    * @param r R
    * @param g G
    * @param b B
-   * @return Ïñµã
+   * @return åƒç‚¹
    */
   public static int toInt(int r,int g,int b){
     return toInt(DEFAULT_ALPHA,r,g,b);
   }
 
   /**
-   * ÓÉÍ¸Ã÷¶È£¬r,g,bÖµ¹¹³ÉÏñµã
+   * ç”±é€æ˜åº¦ï¼Œr,g,bå€¼æ„æˆåƒç‚¹
    * 
-   * @param alpha Í¸Ã÷¶È
+   * @param alpha é€æ˜åº¦
    * @param r R
    * @param g G
    * @param b B
-   * @return Ïñµã
+   * @return åƒç‚¹
    */
   public static int toInt(int alpha,int r,int g,int b){
     return alpha<<24|r<<16|g<<8|b;
   }
 
   /**
-   * »ñÈ¡ÏñµãµÄÍ¸Ã÷¶È
+   * è·å–åƒç‚¹çš„é€æ˜åº¦
    * 
-   * @param pixel Ïñµã
-   * @return Í¸Ã÷¶È
+   * @param pixel åƒç‚¹
+   * @return é€æ˜åº¦
    */
   public static int alpha(int pixel){
     return (pixel&0xff000000)>>24;
   }
 
   /**
-   * »ñÈ¡ÏñµãµÄr,g,bÖµ
+   * è·å–åƒç‚¹çš„r,g,bå€¼
    * 
-   * @param pixel Ïñµã
-   * @return r,g,bÖµ
+   * @param pixel åƒç‚¹
+   * @return r,g,bå€¼
    */
   public static int[] rgb(int pixel){
     int r = (pixel&0xff0000)>>16;
@@ -85,24 +85,24 @@ public class ImageHelper{
   }
 
   /**
-   * ´ÓÁ÷¶ÁÈ¡Í¼Ïñ
+   * ä»æµè¯»å–å›¾åƒ
    * 
-   * @param stream ÊäÈëÁ÷
-   * @return Í¼Ïñ
+   * @param stream è¾“å…¥æµ
+   * @return å›¾åƒ
    */
   public static BufferedImage image(InputStream stream){
     try{
       return ImageIO.read(stream);
     }catch(IOException e){
-      throw new RuntimeException("stream×ª»»Ê§°Ü"+e);
+      throw new RuntimeException("streamè½¬æ¢å¤±è´¥"+e);
     }
   }
 
   /**
-   * ×Ö½ÚÊı×é×ªÍ¼Ïñ
+   * å­—èŠ‚æ•°ç»„è½¬å›¾åƒ
    * 
-   * @param bytes ×Ö½ÚÊı×é
-   * @return Í¼Ïñ
+   * @param bytes å­—èŠ‚æ•°ç»„
+   * @return å›¾åƒ
    */
   public static BufferedImage image(byte[] bytes){
     InputStream is = new ByteArrayInputStream(bytes);
@@ -110,12 +110,12 @@ public class ImageHelper{
   }
 
   /**
-   * ÏñµãÊı×é×ªÍ¼Ïñ
+   * åƒç‚¹æ•°ç»„è½¬å›¾åƒ
    * 
-   * @param pixels ÏñµãÊı×é
-   * @param width ¿í¶È
-   * @param height ¸ß¶È
-   * @return Í¼Ïñ
+   * @param pixels åƒç‚¹æ•°ç»„
+   * @param width å®½åº¦
+   * @param height é«˜åº¦
+   * @return å›¾åƒ
    */
   public static BufferedImage image(int[] pixels,int width,int height){
     Image image = Toolkit.getDefaultToolkit().createImage(new MemoryImageSource(width,height,pixels,0,width));
@@ -126,10 +126,10 @@ public class ImageHelper{
   }
 
   /**
-   * Í¼Ïñ×ª×Ö½ÚÊı×é
+   * å›¾åƒè½¬å­—èŠ‚æ•°ç»„
    * 
-   * @param image Ô­Í¼Ïñ
-   * @return ×Ö½ÚÊı×é
+   * @param image åŸå›¾åƒ
+   * @return å­—èŠ‚æ•°ç»„
    * @throws IOException
    * @throws ImageFormatException
    */
@@ -141,10 +141,10 @@ public class ImageHelper{
   }
 
   /**
-   * Í¼Ïñ×ªÏñµãÊı×é
+   * å›¾åƒè½¬åƒç‚¹æ•°ç»„
    * 
-   * @param image Ô­Í¼Ïñ
-   * @return ÏñµãÊı×é
+   * @param image åŸå›¾åƒ
+   * @return åƒç‚¹æ•°ç»„
    */
   public static int[] pixels(BufferedImage image){
     int iw = image.getWidth();
@@ -154,19 +154,19 @@ public class ImageHelper{
     try{
       pg.grabPixels();
     }catch(InterruptedException e){
-      throw new RuntimeException("pixels×ª»»Ê§°Ü"+e);
+      throw new RuntimeException("pixelsè½¬æ¢å¤±è´¥"+e);
     }
     return pixels;
   }
 
   /**
-   * Ëõ·ÅÍ¼Ïñ£¬¿É¿ØÖÆÊÇ·ñ´ø±ß¿ò
+   * ç¼©æ”¾å›¾åƒï¼Œå¯æ§åˆ¶æ˜¯å¦å¸¦è¾¹æ¡†
    * 
-   * @param o Ô­Í¼Ïñ
-   * @param width Ëõ·Åºó¿í¶È
-   * @param height Ëõ·Åºó¸ß¶È
-   * @param border ÊÇ·ñ´ø±ß¿ò
-   * @return Ëõ·ÅºóÍ¼Ïñ
+   * @param o åŸå›¾åƒ
+   * @param width ç¼©æ”¾åå®½åº¦
+   * @param height ç¼©æ”¾åé«˜åº¦
+   * @param border æ˜¯å¦å¸¦è¾¹æ¡†
+   * @return ç¼©æ”¾åå›¾åƒ
    */
   public static BufferedImage resize(BufferedImage o,int width,int height,boolean border){
     if(width<=1||height<=1){
@@ -224,22 +224,22 @@ public class ImageHelper{
   }
 
   /**
-   * Í¼ÏñËõ·Å£¬²»´ø±ß¿ò
+   * å›¾åƒç¼©æ”¾ï¼Œä¸å¸¦è¾¹æ¡†
    * 
-   * @param o Ô­Í¼Ïñ
-   * @param width Ëõ·Åºó¿í¶È
-   * @param height Ëõ·Åºó¸ß¶È
-   * @return Ëõ·ÅºóÍ¼Ïñ
+   * @param o åŸå›¾åƒ
+   * @param width ç¼©æ”¾åå®½åº¦
+   * @param height ç¼©æ”¾åé«˜åº¦
+   * @return ç¼©æ”¾åå›¾åƒ
    */
   public static BufferedImage resize(BufferedImage o,int width,int height){
     return resize(o,width,height,false);
   }
 
   /**
-   * Êä³öÎªJPGÎÄ¼ş
+   * è¾“å‡ºä¸ºJPGæ–‡ä»¶
    * 
-   * @param o Í¼Ïñ
-   * @param output Êä³öÎÄ¼ş
+   * @param o å›¾åƒ
+   * @param output è¾“å‡ºæ–‡ä»¶
    * @throws IOException
    */
   public static void writeJPG(BufferedImage o,File output) throws IOException{

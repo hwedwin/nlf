@@ -1,4 +1,4 @@
-package nc.liat6.frame.execute.impl;
+ï»¿package nc.liat6.frame.execute.impl;
 
 import java.util.Map;
 import nc.liat6.frame.context.Context;
@@ -8,16 +8,16 @@ import nc.liat6.frame.execute.Request;
 import nc.liat6.frame.execute.Response;
 
 /**
- * Ö´ĞĞ³éÏó
+ * æ‰§è¡ŒæŠ½è±¡
  * 
  * @author 6tail
  * 
  */
 public abstract class AbstractExecute implements IExecute{
 
-  /** ÓÃÓÚ»ñÈ¡ÉÏÏÂÎÄÖĞ´æ·ÅµÄ·µ»ØÖµµÄ±êÊ¶·û */
+  /** ç”¨äºè·å–ä¸Šä¸‹æ–‡ä¸­å­˜æ”¾çš„è¿”å›å€¼çš„æ ‡è¯†ç¬¦ */
   public static final String EXECUTE_RETURN = "NLF_EXECUTE_RETURN";
-  /** ÓÃÓÚ»ñÈ¡ÉÏÏÂÎÄÖĞ´æ·ÅµÄ²ÎÊıµÄ±êÊ¶·û */
+  /** ç”¨äºè·å–ä¸Šä¸‹æ–‡ä¸­å­˜æ”¾çš„å‚æ•°çš„æ ‡è¯†ç¬¦ */
   public static final String EXECUTE_ARGS = "NLF_EXECUTE_ARGS";
 
   public void begin(){
@@ -37,12 +37,12 @@ public abstract class AbstractExecute implements IExecute{
   }
 
   /**
-   * ÇëÇó
+   * è¯·æ±‚
    */
   public abstract void request();
 
   /**
-   * ÏìÓ¦
+   * å“åº”
    */
   public abstract void response();
 }

@@ -1,7 +1,7 @@
-package nc.liat6.frame.db.custom.mongo;
+﻿package nc.liat6.frame.db.custom.mongo;
 
 /**
- * MONGODB�ӿ�
+ * MONGODB接口
  * 
  * @author 6tail
  * 

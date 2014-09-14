@@ -1,4 +1,4 @@
-package nc.liat6.frame.log.impl;
+ï»¿package nc.liat6.frame.log.impl;
 
 import nc.liat6.frame.locale.L;
 import nc.liat6.frame.locale.LocaleFactory;
@@ -6,7 +6,7 @@ import nc.liat6.frame.util.Dater;
 import nc.liat6.frame.util.Stringer;
 
 /**
- * Ä¬ÈÏÈÕÖ¾
+ * é»˜è®¤æ—¥å¿—
  * 
  * @author 6tail
  * 

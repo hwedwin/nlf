@@ -1,4 +1,4 @@
-package nc.liat6.frame.xml.parser;
+ï»¿package nc.liat6.frame.xml.parser;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -18,13 +18,13 @@ import nc.liat6.frame.xml.element.XmlString;
 import nc.liat6.frame.xml.element.XmlType;
 
 /**
- * XML½âÎöÆ÷
+ * XMLè§£æå™¨
  * <p>
- * ²»×ñÑ­ÒÔÏÂÔ¼¶¨µÄXML¿ÉÄÜ»á½âÎöÊ§°Ü£º
+ * ä¸éµå¾ªä»¥ä¸‹çº¦å®šçš„XMLå¯èƒ½ä¼šè§£æå¤±è´¥ï¼š
  * <ul>
- * <li>×Ó½ÚµãÎªÊôĞÔµÄ£¬¸¸½Úµã½¨ÒéÉèÖÃtype="bean"ÊôĞÔ¡£</li>
- * <li>×Ó½ÚµãÎªÊı×éµÄ£¬¸¸½Úµã±ØĞëÉèÖÃtype="list"ÊôĞÔ¡£</li>
- * <li>×Ö·û´®ÖĞ°üº¬&lt;ºÍ&gt;±ØĞëÊ¹ÓÃ&lt;![CDATA[ºÍ]]&gt;°ü×°¡£</li>
+ * <li>å­èŠ‚ç‚¹ä¸ºå±æ€§çš„ï¼Œçˆ¶èŠ‚ç‚¹å»ºè®®è®¾ç½®type="bean"å±æ€§ã€‚</li>
+ * <li>å­èŠ‚ç‚¹ä¸ºæ•°ç»„çš„ï¼Œçˆ¶èŠ‚ç‚¹å¿…é¡»è®¾ç½®type="list"å±æ€§ã€‚</li>
+ * <li>å­—ç¬¦ä¸²ä¸­åŒ…å«&lt;å’Œ&gt;å¿…é¡»ä½¿ç”¨&lt;![CDATA[å’Œ]]&gt;åŒ…è£…ã€‚</li>
  * </ul>
  * </p>
  * 
@@ -33,36 +33,36 @@ import nc.liat6.frame.xml.element.XmlType;
  */
 public class XMLParser{
 
-  /** CDATAÆğÊ¼·û */
+  /** CDATAèµ·å§‹ç¬¦ */
   public static final String CDATA_PREFIX = "![CDATA[";
-  /** CDATA½áÊø·û */
+  /** CDATAç»“æŸç¬¦ */
   public static final String CDATA_SUFFIX = "]]";
-  /** ×¢ÊÍÆğÊ¼·û */
+  /** æ³¨é‡Šèµ·å§‹ç¬¦ */
   public static final String ANNO_PREFIX = "!--";
-  /** ×¢ÊÍ½áÊø·û */
+  /** æ³¨é‡Šç»“æŸç¬¦ */
   public static final String ANNO_SUFFIX = "--";
-  /** BEAN½ÚµãÀàĞÍ */
+  /** BEANèŠ‚ç‚¹ç±»å‹ */
   public static final int TYPE_BEAN = 1;
-  /** LIST½ÚµãÀàĞÍ */
+  /** LISTèŠ‚ç‚¹ç±»å‹ */
   public static final int TYPE_LIST = 2;
-  /** ÆäËû½ÚµãÀàĞÍ£¨×Ö·û´®£© */
+  /** å…¶ä»–èŠ‚ç‚¹ç±»å‹ï¼ˆå­—ç¬¦ä¸²ï¼‰ */
   public static final int TYPE_OTHER = 0;
-  /** ½Úµã»º´æÕ» */
+  /** èŠ‚ç‚¹ç¼“å­˜æ ˆ */
   private List<IXmlElement> stack = new ArrayList<IXmlElement>();
-  /** µ±Ç°×Ö·û */
+  /** å½“å‰å­—ç¬¦ */
   private int c;
-  /** ´ı½âÎöµÄ×Ö·û´® */
+  /** å¾…è§£æçš„å­—ç¬¦ä¸² */
   private String orgs;
-  /** ×Ö·û¶ÁÈ¡Æ÷ */
+  /** å­—ç¬¦è¯»å–å™¨ */
   private Reader reader;
-  /** ×¢ÊÍ */
+  /** æ³¨é‡Š */
   private String note;
 
   /**
-   * ½«XML×Ö·û´®×ª»»Îª¶ÔÏó
+   * å°†XMLå­—ç¬¦ä¸²è½¬æ¢ä¸ºå¯¹è±¡
    * 
-   * @param s XML×Ö·û´®
-   * @return ¶ÔÏó
+   * @param s XMLå­—ç¬¦ä¸²
+   * @return å¯¹è±¡
    */
   public IXmlElement parse(String s){
     orgs = s;
@@ -81,7 +81,7 @@ public class XMLParser{
   private void parseElement(){
     skip();
     switch(c){
-      case '<':// ¶ÔÏó¿ªÊ¼
+      case '<':// å¯¹è±¡å¼€å§‹
         parseNode();
         break;
       default:
@@ -106,7 +106,7 @@ public class XMLParser{
       case '!':
         String s = readUntil('>').trim();
         String us = s.toUpperCase();
-        if(us.startsWith(CDATA_PREFIX)){// ´¦ÀíCDATA
+        if(us.startsWith(CDATA_PREFIX)){// å¤„ç†CDATA
           while(!us.endsWith(CDATA_SUFFIX)){
             next();
             if(-1==c){
@@ -122,8 +122,8 @@ public class XMLParser{
             IXmlElement p = stack.get(stack.size()-1);
             p.toXmlString().set(s);
           }
-        }else if(us.startsWith(ANNO_PREFIX)){// ´¦Àí×¢ÊÍ
-          StringBuffer n = new StringBuffer();// ×¢ÊÍ
+        }else if(us.startsWith(ANNO_PREFIX)){// å¤„ç†æ³¨é‡Š
+          StringBuffer n = new StringBuffer();// æ³¨é‡Š
           n.append(s);
           while(!us.endsWith(ANNO_SUFFIX)){
             next();
@@ -147,7 +147,7 @@ public class XMLParser{
         if(stack.size()<2){
           break;
         }
-        // ×îºóÒ»¸ö½Úµã
+        // æœ€åä¸€ä¸ªèŠ‚ç‚¹
         IXmlElement el = stack.remove(stack.size()-1);
         IXmlElement p = stack.get(stack.size()-1);
         switch(p.type()){
@@ -256,10 +256,10 @@ public class XMLParser{
   }
 
   /**
-   * Ò»Ö±¶ÁÈ¡£¬Ö±µ½Óöµ½Ö¸¶¨×Ö·û£¬²»°üÀ¨Ö¸¶¨×Ö·û
+   * ä¸€ç›´è¯»å–ï¼Œç›´åˆ°é‡åˆ°æŒ‡å®šå­—ç¬¦ï¼Œä¸åŒ…æ‹¬æŒ‡å®šå­—ç¬¦
    * 
-   * @param endTag Ö¸¶¨×Ö·û
-   * @return ¶ÁÈ¡µ½µÄ×Ö·û´®
+   * @param endTag æŒ‡å®šå­—ç¬¦
+   * @return è¯»å–åˆ°çš„å­—ç¬¦ä¸²
    */
   private String readUntil(int endTag){
     StringBuilder s = new StringBuilder();
@@ -271,7 +271,7 @@ public class XMLParser{
   }
 
   /**
-   * ¶ÁÈ¡ÏÂÒ»¸ö×Ö·û
+   * è¯»å–ä¸‹ä¸€ä¸ªå­—ç¬¦
    */
   private void next(){
     try{
@@ -282,16 +282,16 @@ public class XMLParser{
   }
 
   /**
-   * Ìø¹ıÎŞÒâÒå×Ö·ûºÍ×¢ÊÍ
+   * è·³è¿‡æ— æ„ä¹‰å­—ç¬¦å’Œæ³¨é‡Š
    */
   private void skip(){
     if(-1==c)
       return;
-    if(0<=c&&32>=c){ // ºöÂÔ0µ½32Ö®¼äµÄ
+    if(0<=c&&32>=c){ // å¿½ç•¥0åˆ°32ä¹‹é—´çš„
       next();
       skip();
     }
-    if(127==c||'\r'==c||'\n'==c){ // ºöÂÔDEL¼°»Ø³µ»»ĞĞ
+    if(127==c||'\r'==c||'\n'==c){ // å¿½ç•¥DELåŠå›è½¦æ¢è¡Œ
       next();
       skip();
     }

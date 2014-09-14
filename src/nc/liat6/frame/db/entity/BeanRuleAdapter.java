@@ -1,7 +1,7 @@
-package nc.liat6.frame.db.entity;
+ï»¿package nc.liat6.frame.db.entity;
 
 /**
- * Bean×ª»»¹æÔòÊÊÅäÆ÷
+ * Beanè½¬æ¢è§„åˆ™é€‚é…å™¨
  * @author 6tail
  *
  */

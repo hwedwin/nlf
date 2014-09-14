@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.custom.mongo;
+ï»¿package nc.liat6.frame.db.custom.mongo;
 
 import nc.liat6.frame.db.entity.Bean;
 import nc.liat6.frame.db.exception.DaoException;
@@ -12,7 +12,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
 /**
- * MONGO¸üĞÂÆ÷
+ * MONGOæ›´æ–°å™¨
  * 
  * @author 6tail
  * 
@@ -76,7 +76,7 @@ public class MongoUpdater extends MongoExecuter implements IUpdater{
   }
 
   public IUpdater set(String column,Object value){
-    // Èç¹ûÓĞÖØ¸´µÄ£¬Ìæ»»Öµ
+    // å¦‚æœæœ‰é‡å¤çš„ï¼Œæ›¿æ¢å€¼
     for(int i = 0;i<cols.size();i++){
       if(cols.get(i).getColumn().equals(column)){
         paramCols.set(i,value);

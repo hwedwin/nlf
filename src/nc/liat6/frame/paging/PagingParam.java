@@ -1,73 +1,73 @@
-package nc.liat6.frame.paging;
+ï»¿package nc.liat6.frame.paging;
 
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * ·ÖÒ³ÇëÇó·â×°
+ * åˆ†é¡µè¯·æ±‚å°è£…
  * 
- * @author ÁùÌØ¶û
+ * @author å…­ç‰¹å°”
  * 
  */
 public class PagingParam implements Serializable{
 
   private static final long serialVersionUID = -7580050759495785747L;
-  /** µ±Ç°¿ØÖÆÆ÷µØÖ· */
+  /** å½“å‰æ§åˆ¶å™¨åœ°å€ */
   private String uri;
-  /** Ò³Ãæ²ÎÊı¶Ô */
+  /** é¡µé¢å‚æ•°å¯¹ */
   private Map<String,String> params = new HashMap<String,String>();
 
   /**
-   * »ñÈ¡µ±Ç°¿ØÖÆÆ÷µØÖ·
+   * è·å–å½“å‰æ§åˆ¶å™¨åœ°å€
    * 
-   * @return µ±Ç°¿ØÖÆÆ÷µØÖ·
+   * @return å½“å‰æ§åˆ¶å™¨åœ°å€
    */
   public String getUri(){
     return uri;
   }
 
   /**
-   * ÉèÖÃµ±Ç°¿ØÖÆÆ÷µØÖ·
+   * è®¾ç½®å½“å‰æ§åˆ¶å™¨åœ°å€
    * 
-   * @param uri µ±Ç°¿ØÖÆÆ÷µØÖ·
+   * @param uri å½“å‰æ§åˆ¶å™¨åœ°å€
    */
   public void setUri(String uri){
     this.uri = uri;
   }
 
   /**
-   * »ñÈ¡Ò³Ãæ²ÎÊı¶Ô
+   * è·å–é¡µé¢å‚æ•°å¯¹
    * 
-   * @return Ò³Ãæ²ÎÊı¶Ô
+   * @return é¡µé¢å‚æ•°å¯¹
    */
   public Map<String,String> getParams(){
     return params;
   }
 
   /**
-   * ÉèÖÃÒ³Ãæ²ÎÊı¶Ô
+   * è®¾ç½®é¡µé¢å‚æ•°å¯¹
    * 
-   * @param params Ò³Ãæ²ÎÊı¶Ô
+   * @param params é¡µé¢å‚æ•°å¯¹
    */
   public void setParams(Map<String,String> params){
     this.params = params;
   }
 
   /**
-   * ÉèÖÃÒ³Ãæ²ÎÊı
+   * è®¾ç½®é¡µé¢å‚æ•°
    * 
-   * @param k ¼ü
-   * @param v Öµ
+   * @param k é”®
+   * @param v å€¼
    */
   public void setParam(String k,String v){
     params.put(k,v);
   }
 
   /**
-   * »ñÈ¡Ò³Ãæ²ÎÊı
+   * è·å–é¡µé¢å‚æ•°
    * 
-   * @param k ¼ü
+   * @param k é”®
    */
   public String getParam(String k){
     return params.get(k);

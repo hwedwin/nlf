@@ -1,10 +1,10 @@
-package nc.liat6.frame.json;
+锘縫ackage nc.liat6.frame.json;
 
 import nc.liat6.frame.exception.NlfException;
 import nc.liat6.frame.locale.L;
 
 /**
- * 不支持的JSON格式
+ * 涓嶆敮鎸佺殑JSON鏍煎紡
  * 
  * @author 6tail
  * 

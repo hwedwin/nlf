@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.setting;
+ï»¿package nc.liat6.frame.db.setting;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,16 +14,16 @@ import nc.liat6.frame.log.Logger;
 import nc.liat6.frame.util.Stringer;
 
 /**
- * Á¬½ÓÉèÖÃ¹¤³§
+ * è¿æ¥è®¾ç½®å·¥å‚
  * 
  * @author 6tail
  * 
  */
 public class DbSettingFactory{
 
-  /** Á¬½ÓÅäÖÃÓ³Éä */
+  /** è¿æ¥é…ç½®æ˜ å°„ */
   private static final Map<String,IDbSetting> SETTING_POOL = new HashMap<String,IDbSetting>();
-  /** Á¬½ÓÅäÖÃÁĞ±í£¬ÓëÓ³Éä¶ÔÓ¦ */
+  /** è¿æ¥é…ç½®åˆ—è¡¨ï¼Œä¸æ˜ å°„å¯¹åº” */
   private static final List<IDbSetting> SETTING_LIST = new ArrayList<IDbSetting>();
 
   private DbSettingFactory(){}
@@ -32,7 +32,7 @@ public class DbSettingFactory{
   }
 
   /**
-   * ³õÊ¼»¯
+   * åˆå§‹åŒ–
    */
   private synchronized static void init(){
     IDbSettingManager dsm = Factory.getCaller().newInstance(IDbSettingManager.class);
@@ -44,15 +44,15 @@ public class DbSettingFactory{
     if(l.size()>0){
       Logger.getLog().debug(Stringer.print("??",L.get(LocaleFactory.locale,"db.load_config"),JSON.toJson(l,false,false)));
     }
-    // ÅÅĞò
+    // æ’åº
     Collections.sort(SETTING_LIST,new DbSettingComparator());
   }
 
   /**
-   * »ñÈ¡Á¬½ÓÅäÖÃ
+   * è·å–è¿æ¥é…ç½®
    * 
-   * @param alias ±ğÃû
-   * @return Á¬½ÓÅäÖÃ
+   * @param alias åˆ«å
+   * @return è¿æ¥é…ç½®
    */
   public static IDbSetting getSetting(String alias){
     if(SETTING_POOL.containsKey(alias)){
@@ -62,18 +62,18 @@ public class DbSettingFactory{
   }
 
   /**
-   * ×ÜÁ¬½ÓÅäÖÃÊı
+   * æ€»è¿æ¥é…ç½®æ•°
    * 
-   * @return ×ÜÁ¬½ÓÅäÖÃÊı
+   * @return æ€»è¿æ¥é…ç½®æ•°
    */
   public static int size(){
     return SETTING_POOL.size();
   }
 
   /**
-   * »ñÈ¡Ä¬ÈÏÁ¬½ÓÅäÖÃ£¬Èç¹ûÓĞ¶à¸öÁ¬½ÓÅäÖÃÎÄ¼ş£¬·µ»Ø±ğÃûalias×î´óµÄÅäÖÃ
+   * è·å–é»˜è®¤è¿æ¥é…ç½®ï¼Œå¦‚æœæœ‰å¤šä¸ªè¿æ¥é…ç½®æ–‡ä»¶ï¼Œè¿”å›åˆ«åaliasæœ€å¤§çš„é…ç½®
    * 
-   * @return Ä¬ÈÏÁ¬½ÓÅäÖÃ£¬Èç¹ûÓĞ¶à¸öÁ¬½ÓÅäÖÃÎÄ¼ş£¬·µ»Ø±ğÃûalias×î´óµÄÅäÖÃ
+   * @return é»˜è®¤è¿æ¥é…ç½®ï¼Œå¦‚æœæœ‰å¤šä¸ªè¿æ¥é…ç½®æ–‡ä»¶ï¼Œè¿”å›åˆ«åaliasæœ€å¤§çš„é…ç½®
    */
   public static IDbSetting getDefaultSetting(){
     if(SETTING_LIST.size()<1){

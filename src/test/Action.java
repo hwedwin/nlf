@@ -15,14 +15,14 @@ import nc.liat6.frame.web.response.Paging;
 import nc.liat6.frame.web.upload.FileUploader;
 
 /**
- * Ê¾Àý
+ * ç¤ºä¾‹
  * @author 6tail
  *
  */
 public class Action{
 
   /**
-   * ×Ô¶¯·ÖÒ³
+   * è‡ªåŠ¨åˆ†é¡µ
    * 
    * @return
    */
@@ -39,7 +39,7 @@ public class Action{
   }
 
   /**
-   * ÎÄ¼þÉÏ´«
+   * æ–‡ä»¶ä¸Šä¼ 
    * 
    * @return
    * @throws IOException
@@ -54,10 +54,10 @@ public class Action{
   public Object addData(){
     ITrans t = TransFactory.getTrans();
     for(int i=0;i<20;i++){
-      t.getInserter().table("TABLE_USER").set("NAME","ÕÅÈý"+i).set("AGE",1+(int)(Math.random()*100)).insert();
+      t.getInserter().table("TABLE_USER").set("NAME","å¼ ä¸‰"+i).set("AGE",1+(int)(Math.random()*100)).insert();
     }
     t.commit();
     t.close();
-    return new Alert("Êý¾Ý²åÈë³É¹¦£¡");
+    return new Alert("æ•°æ®æ’å…¥æˆåŠŸï¼");
   }
 }

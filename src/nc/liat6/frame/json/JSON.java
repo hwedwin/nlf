@@ -1,4 +1,4 @@
-package nc.liat6.frame.json;
+ï»¿package nc.liat6.frame.json;
 
 import nc.liat6.frame.json.element.IJsonElement;
 import nc.liat6.frame.json.parser.BeanParser;
@@ -6,113 +6,113 @@ import nc.liat6.frame.json.parser.JsonParser;
 import nc.liat6.frame.json.wrapper.JsonWrapper;
 
 /**
- * JSON×ª»»Æ÷
+ * JSONè½¬æ¢å™¨
  * 
  * @author 6tail
  * 
  */
 public class JSON{
 
-  /** µ¥ÒıºÅÄ£Ê½ */
+  /** å•å¼•å·æ¨¡å¼ */
   public static final String QUOTE_SINGLE = "'";
-  /** Ë«ÒıºÅÄ£Ê½ */
+  /** åŒå¼•å·æ¨¡å¼ */
   public static final String QUOTE_MULTIPLE = "\"";
-  /** Ä¬ÈÏÒıºÅÄ£Ê½ */
+  /** é»˜è®¤å¼•å·æ¨¡å¼ */
   public static final String QUOTE_DEFAULT = QUOTE_MULTIPLE;
-  /** Êı×ÖÊÇ·ñÊ¹ÓÃÒıºÅµÄÄ¬ÈÏÉèÖÃ */
+  /** æ•°å­—æ˜¯å¦ä½¿ç”¨å¼•å·çš„é»˜è®¤è®¾ç½® */
   public static final boolean DEFAULT_NUMBER_QUOTED = true;
-  /** Êı×ÖÊÇ·ñÊ¹ÓÃÒıºÅ */
+  /** æ•°å­—æ˜¯å¦ä½¿ç”¨å¼•å· */
   public static final boolean NUMBER_QUOTED = DEFAULT_NUMBER_QUOTED;
-  /** ÊÇ·ñ¼«¼ò£¨²»Ëõ½ø²»»»ĞĞ£©µÄÄ¬ÈÏÉèÖÃ */
+  /** æ˜¯å¦æç®€ï¼ˆä¸ç¼©è¿›ä¸æ¢è¡Œï¼‰çš„é»˜è®¤è®¾ç½® */
   public static final boolean DEFAULT_TINY = true;
-  /** ÊÇ·ñ¼«¼ò£¨²»Ëõ½ø²»»»ĞĞ£©µÄÈ«¾ÖÉèÖÃ */
+  /** æ˜¯å¦æç®€ï¼ˆä¸ç¼©è¿›ä¸æ¢è¡Œï¼‰çš„å…¨å±€è®¾ç½® */
   public static boolean TINY = DEFAULT_TINY;
 
   private JSON(){}
 
   /**
-   * ½«¶ÔÏó×ª»»ÎªJSON×Ö·û´®£¬²ÉÓÃÈ«¾Ö¼«¼òÉèÖÃ
+   * å°†å¯¹è±¡è½¬æ¢ä¸ºJSONå­—ç¬¦ä¸²ï¼Œé‡‡ç”¨å…¨å±€æç®€è®¾ç½®
    * 
-   * @param o ¶ÔÏó
-   * @return JSON×Ö·û´®
+   * @param o å¯¹è±¡
+   * @return JSONå­—ç¬¦ä¸²
    */
   public static String toJson(Object o){
     return toJson(o,TINY);
   }
 
   /**
-   * ½«¶ÔÏó×ª»»ÎªJSON×Ö·û´®
+   * å°†å¯¹è±¡è½¬æ¢ä¸ºJSONå­—ç¬¦ä¸²
    * 
-   * @param o ¶ÔÏó
-   * @param tiny ÊÇ·ñÊÇ¼«¼ò£¨²»Ëõ½ø²»»»ĞĞ£©
-   * @return JSON×Ö·û´®
+   * @param o å¯¹è±¡
+   * @param tiny æ˜¯å¦æ˜¯æç®€ï¼ˆä¸ç¼©è¿›ä¸æ¢è¡Œï¼‰
+   * @return JSONå­—ç¬¦ä¸²
    */
   public static String toJson(Object o,boolean tiny){
     return toJson(o,tiny,QUOTE_DEFAULT);
   }
 
   /**
-   * ½«¶ÔÏó×ª»»ÎªJSON×Ö·û´®
+   * å°†å¯¹è±¡è½¬æ¢ä¸ºJSONå­—ç¬¦ä¸²
    * 
-   * @param o ¶ÔÏó
-   * @param tiny ÊÇ·ñÊÇ¼«¼ò£¨²»Ëõ½ø²»»»ĞĞ£©
-   * @param quote ×Ö·û´®Ê×Î²ÒıºÅ
-   * @return JSON×Ö·û´®
+   * @param o å¯¹è±¡
+   * @param tiny æ˜¯å¦æ˜¯æç®€ï¼ˆä¸ç¼©è¿›ä¸æ¢è¡Œï¼‰
+   * @param quote å­—ç¬¦ä¸²é¦–å°¾å¼•å·
+   * @return JSONå­—ç¬¦ä¸²
    */
   public static String toJson(Object o,boolean tiny,String quote){
     return toJson(o,tiny,QUOTE_DEFAULT,NUMBER_QUOTED);
   }
 
   /**
-   * ½«¶ÔÏó×ª»»ÎªJSON×Ö·û´®
+   * å°†å¯¹è±¡è½¬æ¢ä¸ºJSONå­—ç¬¦ä¸²
    * 
-   * @param o ¶ÔÏó
-   * @param tiny ÊÇ·ñÊÇ¼«¼ò£¨²»Ëõ½ø²»»»ĞĞ£©
-   * @param numberQuoted Êı×ÖÀàĞÍÊÇ·ñÊ¹ÓÃÒıºÅ
-   * @return JSON×Ö·û´®
+   * @param o å¯¹è±¡
+   * @param tiny æ˜¯å¦æ˜¯æç®€ï¼ˆä¸ç¼©è¿›ä¸æ¢è¡Œï¼‰
+   * @param numberQuoted æ•°å­—ç±»å‹æ˜¯å¦ä½¿ç”¨å¼•å·
+   * @return JSONå­—ç¬¦ä¸²
    */
   public static String toJson(Object o,boolean tiny,boolean numberQuoted){
     return toJson(o,tiny,QUOTE_DEFAULT,numberQuoted);
   }
 
   /**
-   * ½«¶ÔÏó×ª»»ÎªJSON×Ö·û´®
+   * å°†å¯¹è±¡è½¬æ¢ä¸ºJSONå­—ç¬¦ä¸²
    * 
-   * @param o ¶ÔÏó
-   * @param tiny ÊÇ·ñÊÇ¼«¼ò£¨²»Ëõ½ø²»»»ĞĞ£©
-   * @param quote ×Ö·û´®Ê×Î²ÒıºÅ
-   * @param numberQuoted Êı×ÖÀàĞÍÊÇ·ñÊ¹ÓÃÒıºÅ
-   * @return JSON×Ö·û´®
+   * @param o å¯¹è±¡
+   * @param tiny æ˜¯å¦æ˜¯æç®€ï¼ˆä¸ç¼©è¿›ä¸æ¢è¡Œï¼‰
+   * @param quote å­—ç¬¦ä¸²é¦–å°¾å¼•å·
+   * @param numberQuoted æ•°å­—ç±»å‹æ˜¯å¦ä½¿ç”¨å¼•å·
+   * @return JSONå­—ç¬¦ä¸²
    */
   public static String toJson(Object o,boolean tiny,String quote,boolean numberQuoted){
     return new JsonWrapper(tiny,quote,numberQuoted).wrap(o);
   }
 
   /**
-   * ½«JSON×Ö·û´®×ª»»ÎªÍ¨ÓÃ·â×°
+   * å°†JSONå­—ç¬¦ä¸²è½¬æ¢ä¸ºé€šç”¨å°è£…
    * 
-   * @param s JSON×Ö·û´®
-   * @return Í¨ÓÃ·â×°
+   * @param s JSONå­—ç¬¦ä¸²
+   * @return é€šç”¨å°è£…
    */
   public static IJsonElement fromJson(String s){
     return new JsonParser().parse(s);
   }
 
   /**
-   * ½«JSON×Ö·û´®×ª»»Îª¶ÔÏó
+   * å°†JSONå­—ç¬¦ä¸²è½¬æ¢ä¸ºå¯¹è±¡
    * 
-   * @param s JSON×Ö·û´®
-   * @return ¶ÔÏó
+   * @param s JSONå­—ç¬¦ä¸²
+   * @return å¯¹è±¡
    */
   public static <T>T toBean(String s){
     return toBean(fromJson(s));
   }
 
   /**
-   * ½«Í¨ÓÃ·â×°×ª»»Îª¶ÔÏó
+   * å°†é€šç”¨å°è£…è½¬æ¢ä¸ºå¯¹è±¡
    * 
-   * @param je Í¨ÓÃ·â×°
-   * @return ¶ÔÏó
+   * @param je é€šç”¨å°è£…
+   * @return å¯¹è±¡
    */
   public static <T>T toBean(IJsonElement je){
     return new BeanParser().parse(je);

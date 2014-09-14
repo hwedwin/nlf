@@ -1,4 +1,4 @@
-package nc.liat6.frame.log.impl;
+﻿package nc.liat6.frame.log.impl;
 
 import nc.liat6.frame.util.Reflector;
 

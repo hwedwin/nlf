@@ -1,4 +1,4 @@
-package nc.liat6.frame.web.config;
+ï»¿package nc.liat6.frame.web.config;
 
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +19,7 @@ import nc.liat6.frame.web.response.Tip;
 import nc.liat6.frame.web.upload.FileUploader;
 
 /**
- * WEB¹ÜÀíÆ÷Ä¬ÈÏÊµÏÖ
+ * WEBç®¡ç†å™¨é»˜è®¤å®ç°
  * 
  * @author 6tail
  * 
@@ -43,14 +43,14 @@ public class WebManager extends AbstractWebManager{
     HttpServletRequest oreq = req.find("request");
     String headAjax = oreq.getHeader("x-requested-with");
     if(null==headAjax){
-      // ÎÄ¼şÉÏ´«Òì³££¬×ª»»ÎªJSON·µ»Ø
+      // æ–‡ä»¶ä¸Šä¼ å¼‚å¸¸ï¼Œè½¬æ¢ä¸ºJSONè¿”å›
       if(cause instanceof BadUploadException){
         Json json = new Json(r);
         json.setMsg(r);
         json.setSuccess(false);
         return json;
       }
-      // ÎÄ¼şÉÏ´«£¬×Ô¶¯×ª»»ÎªJSON·µ»Ø
+      // æ–‡ä»¶ä¸Šä¼ ï¼Œè‡ªåŠ¨è½¬æ¢ä¸ºJSONè¿”å›
       if(!"".equals(req.get(FileUploader.ARG_ID))){
         Json json = new Json(r);
         json.setMsg(r);
@@ -100,7 +100,7 @@ public class WebManager extends AbstractWebManager{
   }
 
   public ClassMethod before(String path){
-    // Æ¥ÅäÂ·¾¶£¬pkg.Klass/method
+    // åŒ¹é…è·¯å¾„ï¼Œpkg.Klass/method
     if(!path.matches("[/].{1,}[/]\\w{1,}")){
       return null;
     }

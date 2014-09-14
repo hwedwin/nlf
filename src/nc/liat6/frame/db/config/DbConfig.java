@@ -1,22 +1,22 @@
-package nc.liat6.frame.db.config;
+ï»¿package nc.liat6.frame.db.config;
 
 /**
- * Êı¾İ¿âÅäÖÃ
+ * æ•°æ®åº“é…ç½®
  * 
  * @author 6tail
  * 
  */
 public class DbConfig{
 
-  /** Êı¾İ¿âÀàĞÍ */
+  /** æ•°æ®åº“ç±»å‹ */
   private String dbType;
-  /** Çı¶¯ÀàÃû */
+  /** é©±åŠ¨ç±»å */
   private String driverClassName;
-  /** ³¬¼¶½Ó¿ÚÃû */
+  /** è¶…çº§æ¥å£å */
   private String superInterfaceName;
-  /** Á¬½Ó×Ö·û´® */
+  /** è¿æ¥å­—ç¬¦ä¸² */
   private String url;
-  /** ÓÃÓÚ²âÊÔµÄSQLÓï¾ä */
+  /** ç”¨äºæµ‹è¯•çš„SQLè¯­å¥ */
   private String testSql;
 
   public String getDbType(){

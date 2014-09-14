@@ -1,4 +1,4 @@
-package nc.liat6.frame.json.wrapper;
+ï»¿package nc.liat6.frame.json.wrapper;
 
 import java.text.SimpleDateFormat;
 import java.util.Collection;
@@ -8,7 +8,7 @@ import java.util.Map;
 import nc.liat6.frame.json.JSON;
 
 /**
- * JSON°ü×°Æ÷
+ * JSONåŒ…è£…å™¨
  * 
  * @author 6tail
  * 

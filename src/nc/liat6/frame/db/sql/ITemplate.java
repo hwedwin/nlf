@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.sql;
+ï»¿package nc.liat6.frame.db.sql;
 
 import java.util.List;
 import nc.liat6.frame.db.connection.ConnVar;
@@ -7,179 +7,179 @@ import nc.liat6.frame.db.transaction.ITrans;
 import nc.liat6.frame.paging.PageData;
 
 /**
- * SQLÖ´ĞĞÄ£°å½Ó¿Ú
+ * SQLæ‰§è¡Œæ¨¡æ¿æ¥å£
  * @author 6tail
  *
  */
 public interface ITemplate{
   
   /**
-   * ÉèÖÃÊÂÎñ½Ó¿Ú
-   * @param t ÊÂÎñ½Ó¿Ú
+   * è®¾ç½®äº‹åŠ¡æ¥å£
+   * @param t äº‹åŠ¡æ¥å£
    */
   public void setTrans(ITrans t);
   
   /**
-   * »ñÈ¡ÊÂÎñ½Ó¿Ú
-   * @return ÊÂÎñ½Ó¿Ú
+   * è·å–äº‹åŠ¡æ¥å£
+   * @return äº‹åŠ¡æ¥å£
    */
   public ITrans getTrans();
 	
 	/**
-	 * ²éÑ¯Ò»Ìõ¼ÇÂ¼
-	 * @param sql SQLÓï¾ä
-	 * @return ÁĞÖµÊı×é
+	 * æŸ¥è¯¢ä¸€æ¡è®°å½•
+	 * @param sql SQLè¯­å¥
+	 * @return åˆ—å€¼æ•°ç»„
 	 */
 	public Object[] one(String sql);
 
 	/**
-	 * ´ø²ÎÊıµÄ²éÑ¯Ò»Ìõ¼ÇÂ¼
-	 * @param sql SQLÓï¾ä
-	 * @param param °ó¶¨±äÁ¿£¬¿ÉÒÔÊÇÊı×é£¬Ò²¿ÉÒÔÊÇµ¥Öµ
-	 * @return ÁĞÖµÊı×é
+	 * å¸¦å‚æ•°çš„æŸ¥è¯¢ä¸€æ¡è®°å½•
+	 * @param sql SQLè¯­å¥
+	 * @param param ç»‘å®šå˜é‡ï¼Œå¯ä»¥æ˜¯æ•°ç»„ï¼Œä¹Ÿå¯ä»¥æ˜¯å•å€¼
+	 * @return åˆ—å€¼æ•°ç»„
 	 */
 	public Object[] one(String sql,Object param);
 
 	/**
-	 * ²éÑ¯ÁĞ±í
-	 * @param sql SQLÓï¾ä
-	 * @return °üº¬ÁĞÖµÊı×éµÄÁĞ±í
+	 * æŸ¥è¯¢åˆ—è¡¨
+	 * @param sql SQLè¯­å¥
+	 * @return åŒ…å«åˆ—å€¼æ•°ç»„çš„åˆ—è¡¨
 	 */
 	public List<Object[]> query(String sql);
 
 	/**
-	 * ²éÑ¯ÁĞ±í
-	 * @param sql SQLÓï¾ä
-	 * @param param °ó¶¨±äÁ¿£¬¿ÉÒÔÊÇÊı×é£¬Ò²¿ÉÒÔÊÇµ¥Öµ
-	 * @return °üº¬ÁĞÖµÊı×éµÄÁĞ±í
+	 * æŸ¥è¯¢åˆ—è¡¨
+	 * @param sql SQLè¯­å¥
+	 * @param param ç»‘å®šå˜é‡ï¼Œå¯ä»¥æ˜¯æ•°ç»„ï¼Œä¹Ÿå¯ä»¥æ˜¯å•å€¼
+	 * @return åŒ…å«åˆ—å€¼æ•°ç»„çš„åˆ—è¡¨
 	 */
 	public List<Object[]> query(String sql,Object param);
 
 	/**
-	 * ²éÑ¯ÊµÌåÁĞ±í
-	 * @param sql SQLÓï¾ä
-	 * @return °üº¬BeanµÄÁĞ±í
+	 * æŸ¥è¯¢å®ä½“åˆ—è¡¨
+	 * @param sql SQLè¯­å¥
+	 * @return åŒ…å«Beançš„åˆ—è¡¨
 	 */
 	public List<Bean> queryEntity(String sql);
 
 	/**
-	 * ²éÑ¯ÊµÌåÁĞ±í
-	 * @param sql SQLÓï¾ä
-	 * @param param °ó¶¨±äÁ¿£¬¿ÉÒÔÊÇÊı×é£¬Ò²¿ÉÒÔÊÇµ¥Öµ
-	 * @return °üº¬BeanµÄÁĞ±í
+	 * æŸ¥è¯¢å®ä½“åˆ—è¡¨
+	 * @param sql SQLè¯­å¥
+	 * @param param ç»‘å®šå˜é‡ï¼Œå¯ä»¥æ˜¯æ•°ç»„ï¼Œä¹Ÿå¯ä»¥æ˜¯å•å€¼
+	 * @return åŒ…å«Beançš„åˆ—è¡¨
 	 */
 	public List<Bean> queryEntity(String sql,Object param);
 
 	/**
-	 * ²éÑ¯µ¥¸öÊµÌå
-	 * @param sql SQLÓï¾ä
+	 * æŸ¥è¯¢å•ä¸ªå®ä½“
+	 * @param sql SQLè¯­å¥
 	 * @return Bean
 	 */
 	public Bean oneEntity(String sql);
 
 	/**
-	 * ´ø²ÎÊı²éÑ¯µ¥¸öÊµÌå
-	 * @param sql SQLÓï¾ä
-	 * @param param °ó¶¨±äÁ¿
+	 * å¸¦å‚æ•°æŸ¥è¯¢å•ä¸ªå®ä½“
+	 * @param sql SQLè¯­å¥
+	 * @param param ç»‘å®šå˜é‡
 	 * @return Bean
 	 */
 	public Bean oneEntity(String sql,Object param);
 
 	/**
-	 * »ñÈ¡¼ÇÂ¼Êı
-	 * @param sql SQLÓï¾ä
-	 * @return ¼ÇÂ¼Êı
+	 * è·å–è®°å½•æ•°
+	 * @param sql SQLè¯­å¥
+	 * @return è®°å½•æ•°
 	 */
 	public int count(String sql);
 
 	/**
-	 * »ñÈ¡¼ÇÂ¼Êı
-	 * @param sql SQLÓï¾ä
-	 * @param param °ó¶¨±äÁ¿£¬¿ÉÒÔÊÇÊı×é£¬Ò²¿ÉÒÔÊÇµ¥Öµ
-	 * @return ¼ÇÂ¼Êı
+	 * è·å–è®°å½•æ•°
+	 * @param sql SQLè¯­å¥
+	 * @param param ç»‘å®šå˜é‡ï¼Œå¯ä»¥æ˜¯æ•°ç»„ï¼Œä¹Ÿå¯ä»¥æ˜¯å•å€¼
+	 * @return è®°å½•æ•°
 	 */
 	public int count(String sql,Object param);
 
 	/**
-	 * Êı¾İ¸üĞÂ
-	 * @param sql SQLÓï¾ä
-	 * @return ¸üĞÂµÄ¼ÇÂ¼Êı
+	 * æ•°æ®æ›´æ–°
+	 * @param sql SQLè¯­å¥
+	 * @return æ›´æ–°çš„è®°å½•æ•°
 	 */
 	public int update(String sql);
 
 	/**
-	 * ´ø²ÎÊıµÄÊı¾İ¸üĞÂ
-	 * @param sql SQLÓï¾ä
-	 * @param param °ó¶¨±äÁ¿£¬¿ÉÒÔÊÇÊı×é£¬Ò²¿ÉÒÔÊÇµ¥Öµ
-	 * @return ¸üĞÂµÄ¼ÇÂ¼Êı
+	 * å¸¦å‚æ•°çš„æ•°æ®æ›´æ–°
+	 * @param sql SQLè¯­å¥
+	 * @param param ç»‘å®šå˜é‡ï¼Œå¯ä»¥æ˜¯æ•°ç»„ï¼Œä¹Ÿå¯ä»¥æ˜¯å•å€¼
+	 * @return æ›´æ–°çš„è®°å½•æ•°
 	 */
 	public int update(String sql,Object param);
 
 	/**
-	 * ·ÖÒ³²éÑ¯
-	 * @param sql SQLÓï¾ä
-	 * @param pageNumber Ò³Âë£¬´Ó1¿ªÊ¼
-	 * @param pageSize Ã¿Ò³¼ÇÂ¼Êı
-	 * @return ·ÖÒ³Êı¾İ·â×°
+	 * åˆ†é¡µæŸ¥è¯¢
+	 * @param sql SQLè¯­å¥
+	 * @param pageNumber é¡µç ï¼Œä»1å¼€å§‹
+	 * @param pageSize æ¯é¡µè®°å½•æ•°
+	 * @return åˆ†é¡µæ•°æ®å°è£…
 	 */
 	public PageData query(String sql,int pageNumber,int pageSize);
 
 	/**
-	 * ´ø²ÎÊıµÄ·ÖÒ³²éÑ¯
-	 * @param sql SQLÓï¾ä
-	 * @param pageNumber Ò³Âë£¬´Ó1¿ªÊ¼
-	 * @param pageSize Ã¿Ò³¼ÇÂ¼Êı
-	 * @param param °ó¶¨±äÁ¿£¬¿ÉÒÔÊÇÊı×é£¬Ò²¿ÉÒÔÊÇµ¥Öµ
-	 * @return ·ÖÒ³Êı¾İ·â×°
+	 * å¸¦å‚æ•°çš„åˆ†é¡µæŸ¥è¯¢
+	 * @param sql SQLè¯­å¥
+	 * @param pageNumber é¡µç ï¼Œä»1å¼€å§‹
+	 * @param pageSize æ¯é¡µè®°å½•æ•°
+	 * @param param ç»‘å®šå˜é‡ï¼Œå¯ä»¥æ˜¯æ•°ç»„ï¼Œä¹Ÿå¯ä»¥æ˜¯å•å€¼
+	 * @return åˆ†é¡µæ•°æ®å°è£…
 	 */
 	public PageData query(String sql,int pageNumber,int pageSize,Object param);
 
 	/**
-	 * ÊµÌå·ÖÒ³²éÑ¯
-	 * @param sql SQLÓï¾ä
-	 * @param pageNumber Ò³Âë£¬´Ó1¿ªÊ¼
-	 * @param pageSize Ã¿Ò³¼ÇÂ¼Êı
-	 * @return ÊµÌå·ÖÒ³Êı¾İ·â×°
+	 * å®ä½“åˆ†é¡µæŸ¥è¯¢
+	 * @param sql SQLè¯­å¥
+	 * @param pageNumber é¡µç ï¼Œä»1å¼€å§‹
+	 * @param pageSize æ¯é¡µè®°å½•æ•°
+	 * @return å®ä½“åˆ†é¡µæ•°æ®å°è£…
 	 */
 	public PageData queryEntity(String sql,int pageNumber,int pageSize);
 
 	/**
-	 * ´ø²ÎÊıµÄÊµÌå·ÖÒ³²éÑ¯
-	 * @param sql SQLÓï¾ä
-	 * @param pageNumber Ò³Âë£¬´Ó1¿ªÊ¼
-	 * @param pageSize Ã¿Ò³¼ÇÂ¼Êı
-	 * @param param °ó¶¨±äÁ¿£¬¿ÉÒÔÊÇÊı×é£¬Ò²¿ÉÒÔÊÇµ¥Öµ
-	 * @return ÊµÌå·ÖÒ³Êı¾İ·â×°
+	 * å¸¦å‚æ•°çš„å®ä½“åˆ†é¡µæŸ¥è¯¢
+	 * @param sql SQLè¯­å¥
+	 * @param pageNumber é¡µç ï¼Œä»1å¼€å§‹
+	 * @param pageSize æ¯é¡µè®°å½•æ•°
+	 * @param param ç»‘å®šå˜é‡ï¼Œå¯ä»¥æ˜¯æ•°ç»„ï¼Œä¹Ÿå¯ä»¥æ˜¯å•å€¼
+	 * @return å®ä½“åˆ†é¡µæ•°æ®å°è£…
 	 */
 	public PageData queryEntity(String sql,int pageNumber,int pageSize,Object param);
 
 	/**
-	 * »ñÈ¡Á¬½Ó±äÁ¿
-	 * @return Á¬½Ó±äÁ¿
+	 * è·å–è¿æ¥å˜é‡
+	 * @return è¿æ¥å˜é‡
 	 */
 	public ConnVar getConnVar();
 	
 	/**
-	 * ÅúÁ¿Ìá½»
+	 * æ‰¹é‡æäº¤
 	 */
 	public int[] flush();
 	
 	/**
-	 * ÉèÖÃÊ¹ÓÃµÄÁ¬½Ó±ğÃû
-	 * @param alias Á¬½Ó±ğÃû
+	 * è®¾ç½®ä½¿ç”¨çš„è¿æ¥åˆ«å
+	 * @param alias è¿æ¥åˆ«å
 	 */
 	public void setAlias(String alias);
 	
 	/**
-	 * µ÷ÓÃÓĞ²Î´æ´¢¹ı³Ì£¬²»·µ»Ø½á¹û£¬ÈçĞè´ø·µ»ØµÄ£¬Çë»ñÈ¡ConnectionÖ´ĞĞ´æ´¢¹ı³Ì
-	 * @param procName ´æ´¢¹ı³ÌÃû³Æ
-	 * @param param ²ÎÊı£¬¿ÉÒÔÊÇµ¥¸ö£¬Ò²¿ÉÒÔ¶à¸ö£¬ÈçÓĞ¶à¸ö²ÎÊı£¬´«ÈëObject[]Êı×é
+	 * è°ƒç”¨æœ‰å‚å­˜å‚¨è¿‡ç¨‹ï¼Œä¸è¿”å›ç»“æœï¼Œå¦‚éœ€å¸¦è¿”å›çš„ï¼Œè¯·è·å–Connectionæ‰§è¡Œå­˜å‚¨è¿‡ç¨‹
+	 * @param procName å­˜å‚¨è¿‡ç¨‹åç§°
+	 * @param param å‚æ•°ï¼Œå¯ä»¥æ˜¯å•ä¸ªï¼Œä¹Ÿå¯ä»¥å¤šä¸ªï¼Œå¦‚æœ‰å¤šä¸ªå‚æ•°ï¼Œä¼ å…¥Object[]æ•°ç»„
 	 */
 	public void call(String procName,Object param);
 	
 	/**
-	 * µ÷ÓÃÎŞ²Î´æ´¢¹ı³Ì£¬²»·µ»Ø½á¹û£¬ÈçĞè´ø·µ»ØµÄ£¬Çë»ñÈ¡ConnectionÖ´ĞĞ´æ´¢¹ı³Ì
-	 * @param procName ´æ´¢¹ı³ÌÃû³Æ
+	 * è°ƒç”¨æ— å‚å­˜å‚¨è¿‡ç¨‹ï¼Œä¸è¿”å›ç»“æœï¼Œå¦‚éœ€å¸¦è¿”å›çš„ï¼Œè¯·è·å–Connectionæ‰§è¡Œå­˜å‚¨è¿‡ç¨‹
+	 * @param procName å­˜å‚¨è¿‡ç¨‹åç§°
 	 */
 	public void call(String procName);
 

@@ -1,4 +1,4 @@
-package nc.liat6.frame.proxy.impl;
+ï»¿package nc.liat6.frame.proxy.impl;
 
 import java.io.IOException;
 import java.lang.reflect.Constructor;
@@ -75,19 +75,19 @@ class ChangeToChildConstructorAdapter extends NormalMethodAdapter{
 }
 
 /**
- * ASM´úÀí
+ * ASMä»£ç†
  * 
  * @author 6tail
  * 
  */
 public class AsmProxy implements IProxy,Opcodes{
 
-  /** ´úÀíÀà»º´æ */
+  /** ä»£ç†ç±»ç¼“å­˜ */
   private static final Map<String,Class<?>> CLASS_POOL = new HashMap<String,Class<?>>();
   private static long id = 0;
-  /** AOPÀ¹½ØÆ÷ÁĞ±í */
+  /** AOPæ‹¦æˆªå™¨åˆ—è¡¨ */
   private static final List<IAopInterceptor> ais = new ArrayList<IAopInterceptor>();
-  /** Ô­Ê¼¶ÔÏó */
+  /** åŸå§‹å¯¹è±¡ */
   private Object oBean;
   private ClassWriter cw;
 

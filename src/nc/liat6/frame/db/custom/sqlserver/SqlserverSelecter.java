@@ -1,9 +1,9 @@
-package nc.liat6.frame.db.custom.sqlserver;
+ï»¿package nc.liat6.frame.db.custom.sqlserver;
 
 import nc.liat6.frame.db.custom.oracle.OracleSelecter;
 
 /**
- * SQLSERVERÊı¾İ¿â²éÑ¯Æ÷
+ * SQLSERVERæ•°æ®åº“æŸ¥è¯¢å™¨
  * 
  * @author 6tail
  * 

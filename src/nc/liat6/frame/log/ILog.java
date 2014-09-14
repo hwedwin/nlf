@@ -1,7 +1,7 @@
-package nc.liat6.frame.log;
+锘縫ackage nc.liat6.frame.log;
 
 /**
- * 日志接口
+ * 鏃ュ織鎺ュ彛
  * 
  * @author 6tail
  * 

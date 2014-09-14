@@ -1,9 +1,9 @@
-package nc.liat6.frame.json.wrapper;
+ï»¿package nc.liat6.frame.json.wrapper;
 
 import nc.liat6.frame.json.JSON;
 
 /**
- * ×Ö·û´®°ü×°Æ÷
+ * å­—ç¬¦ä¸²åŒ…è£…å™¨
  * 
  * @author 6tail
  * 

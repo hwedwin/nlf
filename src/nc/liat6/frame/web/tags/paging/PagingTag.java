@@ -1,4 +1,4 @@
-package nc.liat6.frame.web.tags.paging;
+ï»¿package nc.liat6.frame.web.tags.paging;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspWriter;
@@ -15,7 +15,7 @@ import nc.liat6.frame.web.WebContext;
 import nc.liat6.frame.web.WebExecute;
 
 /**
- * ·ÖÒ³±êÇ©
+ * åˆ†é¡µæ ‡ç­¾
  * 
  * @author liat6
  * 
@@ -23,54 +23,54 @@ import nc.liat6.frame.web.WebExecute;
 public class PagingTag extends TagSupport{
 
   private static final long serialVersionUID = -5416287822609137922L;
-  /** ·ÖÒ³Êı¾İ±êÊ¶ */
+  /** åˆ†é¡µæ•°æ®æ ‡è¯† */
   public static final String PAGE_DATA_VAR = "nlfPagingData";
-  /** ·ÖÒ³±íµ¥±êÊ¶ */
+  /** åˆ†é¡µè¡¨å•æ ‡è¯† */
   public static final String PAGE_FORM_VAR = "nlfPagingForm";
   public static final String FIND_UUID_VAR = "_find_uuid";
   public static final String FIND_MAPPER_VAR = "_find_mapper";
-  /** Ä¬ÈÏÏàÁÚÒ³Êı */
+  /** é»˜è®¤ç›¸é‚»é¡µæ•° */
   public static int DEFAULT_NEAR = 3;
-  /** ·ÖÒ³±íµ¥ID */
+  /** åˆ†é¡µè¡¨å•ID */
   private String id;
-  /** ÏàÁÚÒ³Êı */
+  /** ç›¸é‚»é¡µæ•° */
   private Integer near;
-  /** ÊÇ·ñÆÕÍ¨Ò³Ãæ */
+  /** æ˜¯å¦æ™®é€šé¡µé¢ */
   private Boolean normal;
-  /** ·ÖÒ³Êı¾İkey */
+  /** åˆ†é¡µæ•°æ®key */
   private String dataVar;
 
   /**
-   * »ñÈ¡·ÖÒ³±íµ¥ID
+   * è·å–åˆ†é¡µè¡¨å•ID
    * 
-   * @return ·ÖÒ³±íµ¥ID
+   * @return åˆ†é¡µè¡¨å•ID
    */
   public String getId(){
     return id;
   }
 
   /**
-   * ÉèÖÃ·ÖÒ³±íµ¥ID
+   * è®¾ç½®åˆ†é¡µè¡¨å•ID
    * 
-   * @param id ·ÖÒ³±íµ¥ID
+   * @param id åˆ†é¡µè¡¨å•ID
    */
   public void setId(String id){
     this.id = id;
   }
 
   /**
-   * »ñÈ¡ÏàÁÚÒ³Êı
+   * è·å–ç›¸é‚»é¡µæ•°
    * 
-   * @return ÏàÁÚÒ³Êı
+   * @return ç›¸é‚»é¡µæ•°
    */
   public Integer getNear(){
     return (null==near||near<1)?DEFAULT_NEAR:near;
   }
 
   /**
-   * ÉèÖÃÏàÁÚÒ³Êı
+   * è®¾ç½®ç›¸é‚»é¡µæ•°
    * 
-   * @param near ÏàÁÚÒ³Êı
+   * @param near ç›¸é‚»é¡µæ•°
    */
   public void setNear(Integer near){
     this.near = near;
@@ -110,7 +110,7 @@ public class PagingTag extends TagSupport{
       String script = "NLFPAGING_"+formId;
       String html = null;
       boolean ajax = false;
-      // »ñÈ¡AJAXÇëÇó±êÊ¶
+      // è·å–AJAXè¯·æ±‚æ ‡è¯†
       String headAjax = originRequest.getHeader("x-requested-with");
       if(null==headAjax){
         if("NlfHttpRequest".equals(originRequest.getHeader("nlf-requested-with"))){

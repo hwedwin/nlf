@@ -1,16 +1,16 @@
-package nc.liat6.frame.db.entity;
+锘縫ackage nc.liat6.frame.db.entity;
 
 
 /**
- * Bean转换规则接口
+ * Bean杞崲瑙勫垯鎺ュ彛
  * @author 6tail
  *
  */
 public interface IBeanRule{
   
   /**
-   * 获取指定属性名对应的key
-   * @param property 属性名
+   * 鑾峰彇鎸囧畾灞炴�у悕瀵瑰簲鐨刱ey
+   * @param property 灞炴�у悕
    * @return key
    */
   public String getKey(String property);

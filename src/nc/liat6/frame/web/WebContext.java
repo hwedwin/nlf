@@ -1,7 +1,7 @@
-package nc.liat6.frame.web;
+锘縫ackage nc.liat6.frame.web;
 
 /**
- * WEB应用变量
+ * WEB搴旂敤鍙橀噺
  * 
  * @author 6tail
  * 
@@ -9,10 +9,10 @@ package nc.liat6.frame.web;
 public class WebContext{
 
   protected WebContext(){}
-  /** 应用虚拟路径 */
+  /** 搴旂敤铏氭嫙璺緞 */
   public static String CONTEXT_PATH = "";
-  /** 应用真实路径 */
+  /** 搴旂敤鐪熷疄璺緞 */
   public static String REAL_PATH = "";
-  /** 是否已配置为WEB应用 */
+  /** 鏄惁宸查厤缃负WEB搴旂敤 */
   public static boolean isWebApp = false;
 }

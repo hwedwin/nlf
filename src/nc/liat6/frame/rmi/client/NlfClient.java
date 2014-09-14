@@ -1,4 +1,4 @@
-package nc.liat6.frame.rmi.client;
+ï»¿package nc.liat6.frame.rmi.client;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -13,24 +13,24 @@ import nc.liat6.frame.json.element.IJsonElement;
 import nc.liat6.frame.util.Base64Coder;
 
 /**
- * Ô¶³Ìµ÷ÓÃ¿Í»§¶Ë
+ * è¿œç¨‹è°ƒç”¨å®¢æˆ·ç«¯
  * 
  * @author 6tail
  * 
  */
 public class NlfClient implements INlfCaller{
 
-  /** ÇëÇó±êÊ¶ */
+  /** è¯·æ±‚æ ‡è¯† */
   static final String REQ_TAG = "nlfreq";
-  /** ÏìÓ¦±êÊ¶ */
+  /** å“åº”æ ‡è¯† */
   static final String RSP_TAG = "nlfrsp";
-  /** »º³åÇø´óĞ¡ */
+  /** ç¼“å†²åŒºå¤§å° */
   static int BUFFER_SIZE = 20480;
-  /** Á¬½ÓÌ×½Ó×Ö */
+  /** è¿æ¥å¥—æ¥å­— */
   private Socket socket = null;
 
   /**
-   * Á¬½Ó
+   * è¿æ¥
    * 
    * @throws IOException
    */
@@ -41,7 +41,7 @@ public class NlfClient implements INlfCaller{
   }
 
   /**
-   * ¶Ï¿ª
+   * æ–­å¼€
    */
   private void disconnect(){
     if(null!=socket){
@@ -98,7 +98,7 @@ public class NlfClient implements INlfCaller{
           bo.write(c);
         }
       }
-      // Êı¾İÄÚÈİ
+      // æ•°æ®å†…å®¹
       byte[] d = bo.toByteArray();
       IJsonElement r = JSON.fromJson(new String(Base64Coder.decode(new String(d))));
       bo.close();

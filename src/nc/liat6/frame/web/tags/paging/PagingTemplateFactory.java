@@ -1,11 +1,11 @@
-package nc.liat6.frame.web.tags.paging;
+锘縫ackage nc.liat6.frame.web.tags.paging;
 
 import nc.liat6.frame.Factory;
 import nc.liat6.frame.paging.PageData;
 import nc.liat6.frame.paging.PagingParam;
 
 /**
- * 分页模板工厂
+ * 鍒嗛〉妯℃澘宸ュ巶
  * 
  * @author 6tail
  * 

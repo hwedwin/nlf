@@ -1,7 +1,7 @@
-package nc.liat6.frame.web.response;
+锘縫ackage nc.liat6.frame.web.response;
 
 /**
- * 返回 - TIP消息
+ * 杩斿洖 - TIP娑堟伅
  * 
  * @author liat6
  * 
@@ -11,7 +11,7 @@ public class Tip extends AbstractType{
   public static final int LONG = 0;
   public static final int NORMAL = 1;
   public static final int SHORT = 2;
-  /** 消息类型 */
+  /** 娑堟伅绫诲瀷 */
   private int type = NORMAL;
 
   public Tip(){

@@ -1,4 +1,4 @@
-package nc.liat6.frame.web;
+ï»¿package nc.liat6.frame.web;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,7 +36,7 @@ import nc.liat6.frame.web.response.Tip;
 import nc.liat6.frame.web.upload.FileUploader;
 
 /**
- * WEBÓ¦ÓÃÖ´ĞĞÆ÷
+ * WEBåº”ç”¨æ‰§è¡Œå™¨
  * 
  * @author 6tail
  * 
@@ -47,29 +47,29 @@ public class WebExecute extends AbstractExecute{
   static final String HTTP_SERVLET_RESPONSE = "NLF_HTTP_SERVLET_RESPONSE";
   static final String HTTP_FILTERCHAIN = "NLF_HTTP_FILTERCHAIN";
   static final String[] MOBILE_AGENT = {"iphone","ipad","android","phone","mobile","wap","netfront","java","opera mobi","opera mini","ucweb","windows ce","symbian","series","webos","sony","blackberry","dopod","nokia","samsung","palmsource","xda","pieplus","meizu","midp","cldc","motorola","foma","docomo","up.browser","up.link","blazer","helio","hosin","huawei","novarra","coolpad","webos","techfaith","palmsource","alcatel","amoi","ktouch","nexian","ericsson","philips","sagem","wellcom","bunjalloo","maui","smartphone","iemobile","spice","bird","zte-","longcos","pantech","gionee","portalmmm","jig browser","hiptop","benq","haier","^lct","320x320","240x320","176x220","w3c ","acs-","alav","alca","amoi","audi","avan","benq","bird","blac","blaz","brew","cell","cldc","cmd-","dang","doco","eric","hipt","inno","ipaq","java","jigs","kddi","keji","leno","lg-c","lg-d","lg-g","lge-","maui","maxo","midp","mits","mmef","mobi","mot-","moto","mwbp","nec-","newt","noki","oper","palm","pana","pant","phil","play","port","prox","qwap","sage","sams","sany","sch-","sec-","send","seri","sgh-","shar","sie-","siem","smal","smar","sony","sph-","symb","t-mo","teli","tim-","tsm-","upg1","upsi","vk-v","voda","wap-","wapa","wapi","wapp","wapr","webc","winw","winw","xda","xda-","Googlebot-Mobile"};
-  /** ÓÃÓÚ»ñÈ¡HttpServletRequestµÄ±êÊ¶·û */
+  /** ç”¨äºè·å–HttpServletRequestçš„æ ‡è¯†ç¬¦ */
   public static final String TAG_REQUEST = Statics.TAG_ORG_REQUEST;
-  /** ÓÃÓÚ»ñÈ¡HttpServletResponseµÄ±êÊ¶·û */
+  /** ç”¨äºè·å–HttpServletResponseçš„æ ‡è¯†ç¬¦ */
   public static final String TAG_RESPONSE = "response";
-  /** ÓÃÓÚ»ñÈ¡HttpSessionµÄ±êÊ¶·û */
+  /** ç”¨äºè·å–HttpSessionçš„æ ‡è¯†ç¬¦ */
   public static final String TAG_SESSION = "session";
-  /** ÓÃÓÚ»ñÈ¡ÎÄ¼şÉÏ´«×é¼şµÄ±êÊ¶·û */
+  /** ç”¨äºè·å–æ–‡ä»¶ä¸Šä¼ ç»„ä»¶çš„æ ‡è¯†ç¬¦ */
   public static final String TAG_UPLOADER = "uploader";
-  /** ÓÃÓÚ»ñÈ¡IP»ñÈ¡Æ÷µÄ±êÊ¶·û */
+  /** ç”¨äºè·å–IPè·å–å™¨çš„æ ‡è¯†ç¬¦ */
   public static final String TAG_IP_FETCHER = Statics.TAG_IP_FETCHER;
-  /** ÓÃÓÚ»ñÈ¡locale»ñÈ¡Æ÷µÄ±êÊ¶·û */
+  /** ç”¨äºè·å–localeè·å–å™¨çš„æ ‡è¯†ç¬¦ */
   public static final String TAG_LOCALE_FETCHER = Statics.TAG_LOCALE_FETCHER;
   private StringBuffer logs = new StringBuffer();
 
   /**
-   * ³õÊ¼»¯²ÎÊı
+   * åˆå§‹åŒ–å‚æ•°
    */
   private void initParam(){
     Request req = Context.get(Statics.REQUEST);
     HttpServletRequest oreq = req.find(TAG_REQUEST);
-    // »ñÈ¡AJAXÇëÇó±êÊ¶
+    // è·å–AJAXè¯·æ±‚æ ‡è¯†
     String headAjax = oreq.getHeader("x-requested-with");
-    // ÅĞ¶ÏÒÆ¶¯ä¯ÀÀÆ÷
+    // åˆ¤æ–­ç§»åŠ¨æµè§ˆå™¨
     String userAgent = oreq.getHeader("User-Agent");
     if(null!=userAgent){
       for(String ma:MOBILE_AGENT){
@@ -79,7 +79,7 @@ public class WebExecute extends AbstractExecute{
         }
       }
     }
-    // ÇëÇó·½Ê½£ºGET¡¢POSTµÈ
+    // è¯·æ±‚æ–¹å¼ï¼šGETã€POSTç­‰
     String reqMethod = oreq.getMethod();
     Map<String,String> args = req.getParams();
     logs.append(L.get(LocaleFactory.locale,"web.req_path")+oreq.getServletPath()+"\r\n");
@@ -110,7 +110,7 @@ public class WebExecute extends AbstractExecute{
   }
 
   /**
-   * ³õÊ¼»¯·ÖÒ³²ÎÊı
+   * åˆå§‹åŒ–åˆ†é¡µå‚æ•°
    */
   private void initPagingParam(){
     Request req = Context.get(Statics.REQUEST);

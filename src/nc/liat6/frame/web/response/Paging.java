@@ -1,10 +1,10 @@
-package nc.liat6.frame.web.response;
+锘縫ackage nc.liat6.frame.web.response;
 
 import nc.liat6.frame.paging.PageData;
 import nc.liat6.frame.web.tags.paging.PagingTag;
 
 /**
- * 返回 - 分页
+ * 杩斿洖 - 鍒嗛〉
  * 
  * @author liat6
  * 
@@ -25,9 +25,9 @@ public class Paging extends Page{
   }
 
   /**
-   * 设置分页数据
+   * 璁剧疆鍒嗛〉鏁版嵁
    * 
-   * @param pd 分页数据对象
+   * @param pd 鍒嗛〉鏁版嵁瀵硅薄
    */
   public void setPageData(PageData pd){
     set(PagingTag.PAGE_DATA_VAR,pd);

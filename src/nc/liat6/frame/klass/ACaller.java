@@ -1,4 +1,4 @@
-package nc.liat6.frame.klass;
+ï»¿package nc.liat6.frame.klass;
 
 import java.beans.BeanInfo;
 import java.beans.PropertyDescriptor;
@@ -68,7 +68,7 @@ public class ACaller implements ICaller{
       if(null==impls||impls.size()<1){
         throw new ImplNotFoundException(className);
       }
-      // Èç¹ûÓÐ¶à¸öÊµÏÖ£¬ÔòÈ¡ÀàÃû×î´óµÄÀà×÷ÎªÊµÏÖÀà
+      // å¦‚æžœæœ‰å¤šä¸ªå®žçŽ°ï¼Œåˆ™å–ç±»åæœ€å¤§çš„ç±»ä½œä¸ºå®žçŽ°ç±»
       try{
         cls = Class.forName(impls.get(0));
       }catch(ClassNotFoundException e){
@@ -99,13 +99,13 @@ public class ACaller implements ICaller{
       }
       try{
         if(null==args){
-          //Èç¹ûÊÇ½Ó¿Ú£¬×Ô¶¯×¢ÈëÊµÏÖÀà
+          //å¦‚æžœæ˜¯æŽ¥å£ï¼Œè‡ªåŠ¨æ³¨å…¥å®žçŽ°ç±»
           if(pt.isInterface()){
             method.invoke(o,newInstance(pt));
           }
           continue;
         }
-        //Èç¹ûÓÐ´«Èë²ÎÊý£¬°ó¶¨µ½¶ÔÓ¦ÊôÐÔ
+        //å¦‚æžœæœ‰ä¼ å…¥å‚æ•°ï¼Œç»‘å®šåˆ°å¯¹åº”å±žæ€§
         if(args.containsKey(property)){
           Object v = args.get(property);
           if(null==v){
@@ -137,7 +137,7 @@ public class ACaller implements ICaller{
             }
           }
         }else{
-          //Èç¹ûÊÇ½Ó¿Ú£¬×Ô¶¯×¢ÈëÊµÏÖÀà
+          //å¦‚æžœæ˜¯æŽ¥å£ï¼Œè‡ªåŠ¨æ³¨å…¥å®žçŽ°ç±»
           if(pt.isInterface()){
             method.invoke(o,newInstance(pt));
           }

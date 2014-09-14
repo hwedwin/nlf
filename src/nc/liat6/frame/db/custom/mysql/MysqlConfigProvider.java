@@ -1,10 +1,10 @@
-package nc.liat6.frame.db.custom.mysql;
+锘縫ackage nc.liat6.frame.db.custom.mysql;
 
 import nc.liat6.frame.db.config.DbConfig;
 import nc.liat6.frame.db.config.IDbConfigProvider;
 
 /**
- * MySql数据库配置提供器
+ * MySql鏁版嵁搴撻厤缃彁渚涘櫒
  * @author 6tail
  *
  */

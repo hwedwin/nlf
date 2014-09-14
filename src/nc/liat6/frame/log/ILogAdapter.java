@@ -1,7 +1,7 @@
-package nc.liat6.frame.log;
+ï»¿package nc.liat6.frame.log;
 
 /**
- * ÈÕÖ¾ÊÊÅäÆ÷½Ó¿Ú
+ * æ—¥å¿—é€‚é…å™¨æ¥å£
  * 
  * @author 6tail
  * 
@@ -9,17 +9,17 @@ package nc.liat6.frame.log;
 public interface ILogAdapter{
 
   /**
-   * ÊÇ·ñÖ§³Ö¸ÃÈÕÖ¾¹¤¾ß
+   * æ˜¯å¦æ”¯æŒè¯¥æ—¥å¿—å·¥å…·
    * 
-   * @return true/false Ö§³Ö/²»Ö§³Ö
+   * @return true/false æ”¯æŒ/ä¸æ”¯æŒ
    */
   public boolean isSupported();
 
   /**
-   * »ñÈ¡ÈÕÖ¾¼ÇÂ¼Æ÷
+   * è·å–æ—¥å¿—è®°å½•å™¨
    * 
-   * @param klass ÀàÃû
-   * @return ÈÕÖ¾¼ÇÂ¼½Ó¿Ú
+   * @param klass ç±»å
+   * @return æ—¥å¿—è®°å½•æ¥å£
    */
   public ILog getLog(String klass);
 }

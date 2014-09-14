@@ -1,9 +1,9 @@
-package nc.liat6.frame.aop;
+ï»¿package nc.liat6.frame.aop;
 
 import java.lang.reflect.Method;
 
 /**
- * AOP·½·¨À¹½Ø½Ó¿Ú
+ * AOPæ–¹æ³•æ‹¦æˆªæ¥å£
  * 
  * @author liat6
  * 
@@ -11,47 +11,47 @@ import java.lang.reflect.Method;
 public interface IAopInterceptor{
 
   /**
-   * ·½·¨³öÎÊÌâºóÖ´ĞĞ
+   * æ–¹æ³•å‡ºé—®é¢˜åæ‰§è¡Œ
    * 
-   * @param o ¶ÔÏó
-   * @param m ·½·¨
-   * @param args ²ÎÊı
+   * @param o å¯¹è±¡
+   * @param m æ–¹æ³•
+   * @param args å‚æ•°
    */
   public void failed(Object o,Method m,Object[] args,Throwable e);
 
   /**
-   * ·½·¨Ö´ĞĞ³É¹¦ºóÖ´ĞĞ
+   * æ–¹æ³•æ‰§è¡ŒæˆåŠŸåæ‰§è¡Œ
    * 
-   * @param o ¶ÔÏó
-   * @param m ·½·¨
-   * @param args ²ÎÊı
+   * @param o å¯¹è±¡
+   * @param m æ–¹æ³•
+   * @param args å‚æ•°
    */
   public void succeed(Object o,Method m,Object[] args);
 
   /**
-   * ·½·¨Ö´ĞĞÇ°Ö´ĞĞ
+   * æ–¹æ³•æ‰§è¡Œå‰æ‰§è¡Œ
    * 
-   * @param o ¶ÔÏó
-   * @param m ·½·¨
-   * @param args ²ÎÊı
+   * @param o å¯¹è±¡
+   * @param m æ–¹æ³•
+   * @param args å‚æ•°
    */
   public void before(Object o,Method m,Object[] args);
 
   /**
-   * ·½·¨Ö´ĞĞºóÖ´ĞĞ
+   * æ–¹æ³•æ‰§è¡Œåæ‰§è¡Œ
    * 
-   * @param o ¶ÔÏó
-   * @param m ·½·¨
-   * @param args ²ÎÊı
+   * @param o å¯¹è±¡
+   * @param m æ–¹æ³•
+   * @param args å‚æ•°
    */
   public void after(Object o,Method m,Object[] args);
 
   /**
-   * ÊÇ·ñÂú×ãÖ´ĞĞÌõ¼ş
+   * æ˜¯å¦æ»¡è¶³æ‰§è¡Œæ¡ä»¶
    * 
-   * @param o ¶ÔÏó
-   * @param m ·½·¨
-   * @return true/false Âú×ã/²»Âú×ã
+   * @param o å¯¹è±¡
+   * @param m æ–¹æ³•
+   * @return true/false æ»¡è¶³/ä¸æ»¡è¶³
    */
   public boolean check(Object o,Method m);
 }

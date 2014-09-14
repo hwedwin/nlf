@@ -1,11 +1,11 @@
-package nc.liat6.frame.validate.rule;
+ï»¿package nc.liat6.frame.validate.rule;
 
 import java.text.ParseException;
 import nc.liat6.frame.locale.L;
 import nc.liat6.frame.util.Dater;
 
 /**
- * Äê-ÔÂ-ÈÕĞÎÊ½
+ * å¹´-æœˆ-æ—¥å½¢å¼
  * 
  * @author 6tail
  * 

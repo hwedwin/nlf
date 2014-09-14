@@ -1,7 +1,7 @@
-package nc.liat6.frame.db.plugin;
+ï»¿package nc.liat6.frame.db.plugin;
 
 /**
- * Êı¾İÉ¾³ı½Ó¿Ú
+ * æ•°æ®åˆ é™¤æ¥å£
  * 
  * @author 6tail
  * 
@@ -9,61 +9,61 @@ package nc.liat6.frame.db.plugin;
 public interface IDeleter extends IExecuter{
 
   /**
-   * ÉèÖÃ±í
+   * è®¾ç½®è¡¨
    * 
-   * @param tableName ±íÃû
-   * @return Êı¾İÉ¾³ı½Ó¿Ú
+   * @param tableName è¡¨å
+   * @return æ•°æ®åˆ é™¤æ¥å£
    */
   public IDeleter table(String tableName);
 
   /**
-   * SQLÌõ¼ş
+   * SQLæ¡ä»¶
    * 
-   * @param sql SQLÓï¾ä
-   * @return Êı¾İÉ¾³ı½Ó¿Ú
+   * @param sql SQLè¯­å¥
+   * @return æ•°æ®åˆ é™¤æ¥å£
    */
   public IDeleter where(String sql);
 
   /**
-   * ´ø²ÎÊıµÄSQLÌõ¼ş
+   * å¸¦å‚æ•°çš„SQLæ¡ä»¶
    * 
-   * @param sql SQLÓï¾ä
-   * @param values °ó¶¨±äÁ¿
-   * @return Êı¾İÉ¾³ı½Ó¿Ú
+   * @param sql SQLè¯­å¥
+   * @param values ç»‘å®šå˜é‡
+   * @return æ•°æ®åˆ é™¤æ¥å£
    */
   public IDeleter whereSql(String sql,Object[] values);
 
   /**
-   * É¾³ıÌõ¼ş
+   * åˆ é™¤æ¡ä»¶
    * 
-   * @param column ÁĞ
-   * @param value °ó¶¨±äÁ¿
-   * @return Êı¾İÉ¾³ı½Ó¿Ú
+   * @param column åˆ—
+   * @param value ç»‘å®šå˜é‡
+   * @return æ•°æ®åˆ é™¤æ¥å£
    */
   public IDeleter where(String column,Object value);
 
   /**
-   * É¾³ıÌõ¼şcolumn in (...)
+   * åˆ é™¤æ¡ä»¶column in (...)
    * 
-   * @param column ÁĞ
-   * @param value °ó¶¨±äÁ¿
-   * @return Êı¾İÉ¾³ı½Ó¿Ú
+   * @param column åˆ—
+   * @param value ç»‘å®šå˜é‡
+   * @return æ•°æ®åˆ é™¤æ¥å£
    */
   public IDeleter whereIn(String column,Object... value);
 
   /**
-   * É¾³ıÌõ¼şcolumn not in (...)
+   * åˆ é™¤æ¡ä»¶column not in (...)
    * 
-   * @param column ÁĞ
-   * @param value °ó¶¨±äÁ¿
-   * @return Êı¾İÉ¾³ı½Ó¿Ú
+   * @param column åˆ—
+   * @param value ç»‘å®šå˜é‡
+   * @return æ•°æ®åˆ é™¤æ¥å£
    */
   public IDeleter whereNotIn(String column,Object... value);
 
   /**
-   * É¾³ı²Ù×÷£¬×îºóµ÷ÓÃ
+   * åˆ é™¤æ“ä½œï¼Œæœ€åè°ƒç”¨
    * 
-   * @return É¾³ıµÄ¼ÇÂ¼Êı
+   * @return åˆ é™¤çš„è®°å½•æ•°
    */
   public int delete();
 }

@@ -1,7 +1,7 @@
-package nc.liat6.frame.db.plugin;
+ï»¿package nc.liat6.frame.db.plugin;
 
 /**
- * Êı¾İ¼ÆÊı½Ó¿Ú
+ * æ•°æ®è®¡æ•°æ¥å£
  * 
  * @author 6tail
  * 
@@ -9,105 +9,105 @@ package nc.liat6.frame.db.plugin;
 public interface ICounter extends IExecuter{
 
   /**
-   * ÉèÖÃ±í
+   * è®¾ç½®è¡¨
    * 
-   * @param tableName ±íÃû
-   * @return Êı¾İ¼ÆÊı½Ó¿Ú
+   * @param tableName è¡¨å
+   * @return æ•°æ®è®¡æ•°æ¥å£
    */
   public ICounter table(String tableName);
 
   /**
-   * countÁĞ
+   * countåˆ—
    * 
-   * @param column ÁĞ
-   * @return Êı¾İ¼ÆÊı½Ó¿Ú
+   * @param column åˆ—
+   * @return æ•°æ®è®¡æ•°æ¥å£
    */
   public ICounter column(String... column);
 
   /**
-   * SQLÌõ¼ş
+   * SQLæ¡ä»¶
    * 
-   * @param sql SQLÓï¾ä
-   * @return Êı¾İ¼ÆÊı½Ó¿Ú
+   * @param sql SQLè¯­å¥
+   * @return æ•°æ®è®¡æ•°æ¥å£
    */
   public ICounter where(String sql);
 
   /**
-   * ´ø²ÎÊıµÄSQLÌõ¼ş
+   * å¸¦å‚æ•°çš„SQLæ¡ä»¶
    * 
-   * @param sql SQLÓï¾ä
-   * @param values °ó¶¨±äÁ¿
-   * @return Êı¾İ¼ÆÊı½Ó¿Ú
+   * @param sql SQLè¯­å¥
+   * @param values ç»‘å®šå˜é‡
+   * @return æ•°æ®è®¡æ•°æ¥å£
    */
   public ICounter whereSql(String sql,Object[] values);
 
   /**
-   * Ìõ¼ş
+   * æ¡ä»¶
    * 
-   * @param column ÁĞ
-   * @param value °ó¶¨±äÁ¿
-   * @return Êı¾İ¼ÆÊı½Ó¿Ú
+   * @param column åˆ—
+   * @param value ç»‘å®šå˜é‡
+   * @return æ•°æ®è®¡æ•°æ¥å£
    */
   public ICounter where(String column,Object value);
 
   /**
-   * Ä£ºıÌõ¼ş like %value%
+   * æ¨¡ç³Šæ¡ä»¶ like %value%
    * 
-   * @param column ÁĞ
-   * @param value °ó¶¨±äÁ¿
-   * @return Êı¾İ¼ÆÊı½Ó¿Ú
+   * @param column åˆ—
+   * @param value ç»‘å®šå˜é‡
+   * @return æ•°æ®è®¡æ•°æ¥å£
    */
   public ICounter whereLike(String column,Object value);
 
   /**
-   * Ä£ºıÌõ¼ş like value%
+   * æ¨¡ç³Šæ¡ä»¶ like value%
    * 
-   * @param column ÁĞ
-   * @param value °ó¶¨±äÁ¿
-   * @return Êı¾İ¼ÆÊı½Ó¿Ú
+   * @param column åˆ—
+   * @param value ç»‘å®šå˜é‡
+   * @return æ•°æ®è®¡æ•°æ¥å£
    */
   public ICounter whereLeftLike(String column,Object value);
 
   /**
-   * Ä£ºıÌõ¼ş like %value
+   * æ¨¡ç³Šæ¡ä»¶ like %value
    * 
-   * @param column ÁĞ
-   * @param value °ó¶¨±äÁ¿
-   * @return Êı¾İ¼ÆÊı½Ó¿Ú
+   * @param column åˆ—
+   * @param value ç»‘å®šå˜é‡
+   * @return æ•°æ®è®¡æ•°æ¥å£
    */
   public ICounter whereRightLike(String column,Object value);
 
   /**
-   * Ìõ¼ş col!=value
+   * æ¡ä»¶ col!=value
    * 
-   * @param column ÁĞ
-   * @param value °ó¶¨±äÁ¿
-   * @return Êı¾İ¼ÆÊı½Ó¿Ú
+   * @param column åˆ—
+   * @param value ç»‘å®šå˜é‡
+   * @return æ•°æ®è®¡æ•°æ¥å£
    */
   public ICounter whereNq(String column,Object value);
 
   /**
-   * Ìõ¼ş col in (...)
+   * æ¡ä»¶ col in (...)
    * 
-   * @param column ÁĞ
-   * @param value °ó¶¨±äÁ¿
-   * @return Êı¾İ¼ÆÊı½Ó¿Ú
+   * @param column åˆ—
+   * @param value ç»‘å®šå˜é‡
+   * @return æ•°æ®è®¡æ•°æ¥å£
    */
   public ICounter whereIn(String column,Object... value);
 
   /**
-   * Ìõ¼ş col not in (...)
+   * æ¡ä»¶ col not in (...)
    * 
-   * @param column ÁĞ
-   * @param value °ó¶¨±äÁ¿
-   * @return Êı¾İ¼ÆÊı½Ó¿Ú
+   * @param column åˆ—
+   * @param value ç»‘å®šå˜é‡
+   * @return æ•°æ®è®¡æ•°æ¥å£
    */
   public ICounter whereNotIn(String column,Object... value);
 
   /**
-   * ¼ÆÊı
+   * è®¡æ•°
    * 
-   * @return ¼ÇÂ¼Êı
+   * @return è®°å½•æ•°
    */
   public int count();
 }

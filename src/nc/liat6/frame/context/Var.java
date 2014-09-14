@@ -1,60 +1,60 @@
-package nc.liat6.frame.context;
+ï»¿package nc.liat6.frame.context;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * ÉÏÏÂÎÄ±äÁ¿
+ * ä¸Šä¸‹æ–‡å˜é‡
  * 
  * @author liat6
  * 
  */
 final class Var{
 
-  /** Öµ */
+  /** å€¼ */
   private Map<Object,Object> value = new HashMap<Object,Object>();
 
   /**
-   * ÉèÖÃ
+   * è®¾ç½®
    * 
-   * @param k ¼ü
-   * @param v Öµ
+   * @param k é”®
+   * @param v å€¼
    */
   void set(Object k,Object v){
     value.put(k,v);
   }
 
   /**
-   * »ñÈ¡
+   * è·å–
    * 
-   * @param k ¼ü
-   * @return Öµ
+   * @param k é”®
+   * @return å€¼
    */
   Object get(Object k){
     return value.get(k);
   }
 
   /**
-   * ÒÆ³ı
+   * ç§»é™¤
    * 
-   * @param k ¼ü
+   * @param k é”®
    */
   void remove(Object k){
     value.remove(k);
   }
 
   /**
-   * Çå¿Õ
+   * æ¸…ç©º
    */
   void clear(){
     value.clear();
   }
 
   /**
-   * ÊÇ·ñ´æÔÚ
+   * æ˜¯å¦å­˜åœ¨
    * 
-   * @param k ¼ü
-   * @return true/false ÊÇ/·ñ
+   * @param k é”®
+   * @return true/false æ˜¯/å¦
    */
   boolean contains(Object k){
     return value.containsKey(k);

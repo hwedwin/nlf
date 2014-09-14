@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.transaction;
+ï»¿package nc.liat6.frame.db.transaction;
 
 import nc.liat6.frame.db.plugin.ICounter;
 import nc.liat6.frame.db.plugin.IDeleter;
@@ -8,7 +8,7 @@ import nc.liat6.frame.db.plugin.IUpdater;
 import nc.liat6.frame.db.sql.ITemplate;
 
 /**
- * ÊÂÎñ½Ó¿Ú
+ * äº‹åŠ¡æ¥å£
  * 
  * @author 6tail
  * 
@@ -16,88 +16,88 @@ import nc.liat6.frame.db.sql.ITemplate;
 public interface ITrans{
 
   /**
-   * ³õÊ¼»¯
+   * åˆå§‹åŒ–
    * 
-   * @param alias Á¬½Ó±ğÃû
+   * @param alias è¿æ¥åˆ«å
    */
   public void init(String alias);
 
   /**
-   * »ñÈ¡Ö´ĞĞÆ÷
+   * è·å–æ‰§è¡Œå™¨
    * 
-   * @return Ö´ĞĞÆ÷
+   * @return æ‰§è¡Œå™¨
    */
   public IUpdater getUpdater();
 
   /**
-   * »ñÈ¡É¾³ıÆ÷
+   * è·å–åˆ é™¤å™¨
    * 
-   * @return É¾³ıÆ÷
+   * @return åˆ é™¤å™¨
    */
   public IDeleter getDeleter();
 
   /**
-   * »ñÈ¡²åÈëÆ÷
+   * è·å–æ’å…¥å™¨
    * 
-   * @return ²åÈëÆ÷
+   * @return æ’å…¥å™¨
    */
   public IInserter getInserter();
 
   /**
-   * »ñÈ¡²éÑ¯Æ÷
+   * è·å–æŸ¥è¯¢å™¨
    * 
-   * @return ²éÑ¯Æ÷
+   * @return æŸ¥è¯¢å™¨
    */
   public ISelecter getSelecter();
 
   /**
-   * »ñÈ¡¼ÆÊıÆ÷
+   * è·å–è®¡æ•°å™¨
    * 
-   * @return ¼ÆÊıÆ÷
+   * @return è®¡æ•°å™¨
    */
   public ICounter getCounter();
 
   /**
-   * »ñÈ¡SQLÖ´ĞĞÄ£°å
+   * è·å–SQLæ‰§è¡Œæ¨¡æ¿
    * 
-   * @return SQLÖ´ĞĞÄ£°å
+   * @return SQLæ‰§è¡Œæ¨¡æ¿
    */
   public ITemplate getTemplate();
 
   /**
-   * Ìá½»ÊÂÎñ
+   * æäº¤äº‹åŠ¡
    */
   public void commit();
 
   /**
-   * »Ø¹öÊÂÎñ
+   * å›æ»šäº‹åŠ¡
    */
   public void rollback();
 
   /**
-   * ¹Ø±ÕÁ¬½Ó
+   * å…³é—­è¿æ¥
    */
   public void close();
 
   /**
-   * »ñÈ¡Êı¾İ¿âÀàĞÍ
+   * è·å–æ•°æ®åº“ç±»å‹
    * 
-   * @return Êı¾İ¿âÀàĞÍ
+   * @return æ•°æ®åº“ç±»å‹
    */
   public String getDbType();
 
   /**
-   * ¹Ø±ÕÅúÁ¿¸üĞÂ¹¦ÄÜ
+   * å…³é—­æ‰¹é‡æ›´æ–°åŠŸèƒ½
    */
   public void disableBatch();
 
   /**
-   * ¿ªÆôÅúÁ¿¸üĞÂ¹¦ÄÜ
+   * å¼€å¯æ‰¹é‡æ›´æ–°åŠŸèƒ½
    */
   public void enableBatch();
   
   /**
-   * ÊÇ·ñ¿ªÆôÅúÁ¿¸üĞÂ¹¦ÄÜ
+   * æ˜¯å¦å¼€å¯æ‰¹é‡æ›´æ–°åŠŸèƒ½
    * @return true/false
    */
   public boolean isBatchEnabled();

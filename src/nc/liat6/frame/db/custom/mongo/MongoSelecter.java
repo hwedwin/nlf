@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.custom.mongo;
+ï»¿package nc.liat6.frame.db.custom.mongo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 
 /**
- * MONGO²éÑ¯Æ÷
+ * MONGOæŸ¥è¯¢å™¨
  * 
  * @author 6tail
  * 

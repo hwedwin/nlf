@@ -1,10 +1,10 @@
-package nc.liat6.frame.rmi.client;
+ï»¿package nc.liat6.frame.rmi.client;
 
 import java.util.Map;
 import nc.liat6.frame.json.element.IJsonElement;
 
 /**
- * Ô¶³Ìµ÷ÓÃ¿Í»§¶Ë½Ó¿Ú
+ * è¿œç¨‹è°ƒç”¨å®¢æˆ·ç«¯æ¥å£
  * 
  * @author 6tail
  * 
@@ -12,14 +12,14 @@ import nc.liat6.frame.json.element.IJsonElement;
 public interface INlfCaller{
 
   /**
-   * µ÷ÓÃ
+   * è°ƒç”¨
    * 
-   * @param ip ·şÎñÆ÷µØÖ·
-   * @param port ¶Ë¿Ú
-   * @param klass µ÷ÓÃÀà
-   * @param method µ÷ÓÃ·½·¨
-   * @param args ²ÎÊı
-   * @return ·µ»Ø½á¹û
+   * @param ip æœåŠ¡å™¨åœ°å€
+   * @param port ç«¯å£
+   * @param klass è°ƒç”¨ç±»
+   * @param method è°ƒç”¨æ–¹æ³•
+   * @param args å‚æ•°
+   * @return è¿”å›ç»“æœ
    */
   public IJsonElement call(String ip,int port,String klass,String method,Map<String,String> args);
 }

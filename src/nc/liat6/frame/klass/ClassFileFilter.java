@@ -1,11 +1,11 @@
-package nc.liat6.frame.klass;
+锘縫ackage nc.liat6.frame.klass;
 
 import java.io.File;
 import java.io.FileFilter;
 import nc.liat6.frame.locale.LocaleFactory;
 
 /**
- * 类文件过滤，允许.class文件和文件夹
+ * 绫绘枃浠惰繃婊わ紝鍏佽.class鏂囦欢鍜屾枃浠跺す
  * 
  * @author 6tail
  * 

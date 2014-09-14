@@ -1,4 +1,4 @@
-package nc.liat6.frame.json.parser;
+锘縫ackage nc.liat6.frame.json.parser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import nc.liat6.frame.json.element.JsonList;
 import nc.liat6.frame.json.element.JsonMap;
 
 /**
- * 对象解析器，用于将IJsonElement转换为Bean
+ * 瀵硅薄瑙ｆ瀽鍣紝鐢ㄤ簬灏咺JsonElement杞崲涓築ean
  * 
  * @author 6tail
  * 
@@ -16,7 +16,7 @@ import nc.liat6.frame.json.element.JsonMap;
 public class BeanParser{
 
   /**
-   * 解析Map类型
+   * 瑙ｆ瀽Map绫诲瀷
    * 
    * @param jm
    * @return
@@ -51,7 +51,7 @@ public class BeanParser{
   }
 
   /**
-   * 解析List类型
+   * 瑙ｆ瀽List绫诲瀷
    * 
    * @param jm
    * @return

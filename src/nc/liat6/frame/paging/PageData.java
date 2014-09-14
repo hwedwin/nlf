@@ -1,4 +1,4 @@
-package nc.liat6.frame.paging;
+ï»¿package nc.liat6.frame.paging;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import nc.liat6.frame.db.entity.Bean;
 import nc.liat6.frame.util.Pair;
 
 /**
- * ·ÖÒ³µ±Ç°Ò³Êı¾İ·â×°
+ * åˆ†é¡µå½“å‰é¡µæ•°æ®å°è£…
  * 
  * @author 6tail
  * 
@@ -15,15 +15,15 @@ import nc.liat6.frame.util.Pair;
 public class PageData implements Serializable{
 
   private static final long serialVersionUID = -5088644434609874737L;
-  /** Ã¿Ò³¼ÇÂ¼Êı */
+  /** æ¯é¡µè®°å½•æ•° */
   private int pageSize;
-  /** ×Ü¼ÇÂ¼Êı */
+  /** æ€»è®°å½•æ•° */
   private int recordCount;
-  /** µÚ¼¸Ò³ */
+  /** ç¬¬å‡ é¡µ */
   private int pageNumber;
-  /** ÅÅĞò×Ö¶Î£¬ÖµÎªASC»òDESC£¬´óĞ´£¬ÈçNAME=ASC */
+  /** æ’åºå­—æ®µï¼Œå€¼ä¸ºASCæˆ–DESCï¼Œå¤§å†™ï¼Œå¦‚NAME=ASC */
   private List<Pair> sorts = new ArrayList<Pair>();
-  /** ¸ÃÒ³Êı¾İ */
+  /** è¯¥é¡µæ•°æ® */
   private List<?> data;
 
   public PageData(){}
@@ -36,91 +36,91 @@ public class PageData implements Serializable{
   }
 
   /**
-   * »ñÈ¡Ã¿Ò³¼ÇÂ¼Êı
+   * è·å–æ¯é¡µè®°å½•æ•°
    * 
-   * @return Ã¿Ò³¼ÇÂ¼Êı
+   * @return æ¯é¡µè®°å½•æ•°
    */
   public int getPageSize(){
     return pageSize;
   }
 
   /**
-   * ÉèÖÃÃ¿Ò³¼ÇÂ¼Êı
+   * è®¾ç½®æ¯é¡µè®°å½•æ•°
    * 
-   * @param pageSize Ã¿Ò³¼ÇÂ¼Êı
+   * @param pageSize æ¯é¡µè®°å½•æ•°
    */
   public void setPageSize(int pageSize){
     this.pageSize = pageSize<1?1:pageSize;
   }
 
   /**
-   * »ñÈ¡×Ü¼ÇÂ¼Êı
+   * è·å–æ€»è®°å½•æ•°
    * 
-   * @return ×Ü¼ÇÂ¼Êı
+   * @return æ€»è®°å½•æ•°
    */
   public int getRecordCount(){
     return recordCount;
   }
 
   /**
-   * ÉèÖÃ×Ü¼ÇÂ¼Êı
+   * è®¾ç½®æ€»è®°å½•æ•°
    * 
-   * @param recordCount ×Ü¼ÇÂ¼Êı
+   * @param recordCount æ€»è®°å½•æ•°
    */
   public void setRecordCount(int recordCount){
     this.recordCount = recordCount<0?0:recordCount;
   }
 
   /**
-   * »ñÈ¡×ÜÒ³Êı
+   * è·å–æ€»é¡µæ•°
    * 
-   * @return ×ÜÒ³Êı
+   * @return æ€»é¡µæ•°
    */
   public int getPageCount(){
     return (recordCount<1||pageSize<1)?1:(int)Math.ceil(recordCount*1D/pageSize);
   }
 
   /**
-   * »ñÈ¡Ç°Ò»Ò³Ò³Âë
+   * è·å–å‰ä¸€é¡µé¡µç 
    * 
-   * @return Ç°Ò»Ò³Ò³Âë
+   * @return å‰ä¸€é¡µé¡µç 
    */
   public int getPreviousPageNumber(){
     return pageNumber-1<1?1:pageNumber-1;
   }
 
   /**
-   * »ñÈ¡ºóÒ»Ò³Ò³Âë
+   * è·å–åä¸€é¡µé¡µç 
    * 
-   * @return Ò³Âë
+   * @return é¡µç 
    */
   public int getNextPageNumber(){
     return pageNumber+1>getPageCount()?getPageCount():pageNumber+1;
   }
 
   /**
-   * »ñÈ¡µÚÒ»Ò³Ò³Âë
+   * è·å–ç¬¬ä¸€é¡µé¡µç 
    * 
-   * @return Ò³Âë
+   * @return é¡µç 
    */
   public int getFirstPageNumber(){
     return 1;
   }
 
   /**
-   * »ñÈ¡×îºóÒ³Ò³Âë
+   * è·å–æœ€åé¡µé¡µç 
    * 
-   * @return Ò³Âë
+   * @return é¡µç 
    */
   public int getLastPageNumber(){
     return getPageCount();
   }
 
   /**
-   * »ñÈ¡ÏàÁÚµÄÒ³Âë
+   * è·å–ç›¸é‚»çš„é¡µç 
    * 
-   * @param size Ò³Âë¸öÊı
-   * @return ÏàÁÚµÄÒ³ÂëÊı×é
+   * @param size é¡µç ä¸ªæ•°
+   * @return ç›¸é‚»çš„é¡µç æ•°ç»„
    */
   public int[] getNearPageNumbers(int count){
     int start = pageNumber-count;
@@ -135,54 +135,54 @@ public class PageData implements Serializable{
   }
 
   /**
-   * »ñÈ¡¸ÃÒ³Êı¾İÌõÊı
+   * è·å–è¯¥é¡µæ•°æ®æ¡æ•°
    * 
-   * @return ¸ÃÒ³Êı¾İÌõÊı
+   * @return è¯¥é¡µæ•°æ®æ¡æ•°
    */
   public int getSize(){
     return null==data?0:data.size();
   }
 
   /**
-   * »ñÈ¡¸ÃÒ³Ò³Âë
+   * è·å–è¯¥é¡µé¡µç 
    * 
-   * @return Ò³Âë
+   * @return é¡µç 
    */
   public int getPageNumber(){
     return pageNumber;
   }
 
   /**
-   * ÉèÖÃ¸ÃÒ³Ò³Âë
+   * è®¾ç½®è¯¥é¡µé¡µç 
    * 
-   * @param pageNumber Ò³Âë
+   * @param pageNumber é¡µç 
    */
   public void setPageNumber(int pageNumber){
     this.pageNumber = pageNumber<1?1:pageNumber;
   }
 
   /**
-   * »ñÈ¡¸ÃÒ³Êı¾İ
+   * è·å–è¯¥é¡µæ•°æ®
    * 
-   * @return ¸ÃÒ³Êı¾İ
+   * @return è¯¥é¡µæ•°æ®
    */
   public List<?> getData(){
     return data;
   }
 
   /**
-   * ÉèÖÃ¸ÃÒ³Êı¾İ
+   * è®¾ç½®è¯¥é¡µæ•°æ®
    * 
-   * @param data ¸ÃÒ³Êı¾İ
+   * @param data è¯¥é¡µæ•°æ®
    */
   public void setData(List<?> data){
     this.data = data;
   }
 
   /**
-   * »ñÈ¡Ö¸¶¨Bean
+   * è·å–æŒ‡å®šBean
    * 
-   * @param index Ë÷Òı
+   * @param index ç´¢å¼•
    * @return Bean
    */
   public Bean getBean(int index){
@@ -190,28 +190,28 @@ public class PageData implements Serializable{
   }
 
   /**
-   * »ñÈ¡ÅÅĞò¼üÖµ¶ÔÁĞ±í
+   * è·å–æ’åºé”®å€¼å¯¹åˆ—è¡¨
    * 
-   * @return ÅÅĞò¼üÖµ¶ÔÁĞ±í
+   * @return æ’åºé”®å€¼å¯¹åˆ—è¡¨
    */
   public List<Pair> getSorts(){
     return sorts;
   }
 
   /**
-   * ÉèÖÃÅÅĞò¼üÖµ¶ÔÁĞ±í
+   * è®¾ç½®æ’åºé”®å€¼å¯¹åˆ—è¡¨
    * 
-   * @param sorts ÅÅĞò¼üÖµ¶ÔÁĞ±í
+   * @param sorts æ’åºé”®å€¼å¯¹åˆ—è¡¨
    */
   public void setSorts(List<Pair> sorts){
     this.sorts = sorts;
   }
 
   /**
-   * »ñÈ¡ÅÅĞòÖĞÄ³ÁĞµÄÖµ
+   * è·å–æ’åºä¸­æŸåˆ—çš„å€¼
    * 
-   * @param column ÁĞ¼üÃû
-   * @return Öµ
+   * @param column åˆ—é”®å
+   * @return å€¼
    */
   public String getSort(String column){
     for(Pair p:sorts){
@@ -223,10 +223,10 @@ public class PageData implements Serializable{
   }
 
   /**
-   * Ìí¼ÓÅÅĞò¼üÖµ¶Ô
+   * æ·»åŠ æ’åºé”®å€¼å¯¹
    * 
-   * @param key ¼ü
-   * @param value Öµ
+   * @param key é”®
+   * @param value å€¼
    */
   public void addSort(String key,String value){
     if(null!=key){
@@ -235,16 +235,16 @@ public class PageData implements Serializable{
   }
 
   /**
-   * Çå¿ÕÅÅĞò¼üÖµ¶Ô
+   * æ¸…ç©ºæ’åºé”®å€¼å¯¹
    */
   public void clearSorts(){
     sorts.clear();
   }
 
   /**
-   * »ñÈ¡¼üÖµ¶ÔµÄ×Ö·û´®±íÊ¾
+   * è·å–é”®å€¼å¯¹çš„å­—ç¬¦ä¸²è¡¨ç¤º
    * 
-   * @return ¼üÖµ¶ÔµÄ×Ö·û´®±íÊ¾£¬¶à¼üÖ®¼äÒÔ·ÖºÅ¼ä¸ô£¬¼üÖµÖ®¼äÒÔÃ°ºÅ¼ä¸ô
+   * @return é”®å€¼å¯¹çš„å­—ç¬¦ä¸²è¡¨ç¤ºï¼Œå¤šé”®ä¹‹é—´ä»¥åˆ†å·é—´éš”ï¼Œé”®å€¼ä¹‹é—´ä»¥å†’å·é—´éš”
    */
   public String getSortsAsString(){
     StringBuilder s = new StringBuilder();

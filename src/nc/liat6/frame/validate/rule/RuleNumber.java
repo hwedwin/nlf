@@ -1,9 +1,9 @@
-package nc.liat6.frame.validate.rule;
+ï»¿package nc.liat6.frame.validate.rule;
 
 import nc.liat6.frame.validate.RegUtil;
 
 /**
- * Êı×Ö
+ * æ•°å­—
  * 
  * @author 6tail
  * 
@@ -11,7 +11,7 @@ import nc.liat6.frame.validate.RegUtil;
 public class RuleNumber extends RuleRegex{
 
   /**
-   * ÕûÊı
+   * æ•´æ•°
    * 
    * @author 6tail
    * 
@@ -27,7 +27,7 @@ public class RuleNumber extends RuleRegex{
     }
   }
   /**
-   * ÕıÕûÊı
+   * æ­£æ•´æ•°
    * 
    * @author 6tail
    * 
@@ -43,7 +43,7 @@ public class RuleNumber extends RuleRegex{
     }
   }
   /**
-   * ¸ºÕûÊı
+   * è´Ÿæ•´æ•°
    * 
    * @author 6tail
    * 
@@ -59,7 +59,7 @@ public class RuleNumber extends RuleRegex{
     }
   }
   /**
-   * ·ÇÕıÕûÊı
+   * éæ­£æ•´æ•°
    * 
    * @author 6tail
    * 
@@ -75,7 +75,7 @@ public class RuleNumber extends RuleRegex{
     }
   }
   /**
-   * ·Ç¸ºÕûÊı
+   * éè´Ÿæ•´æ•°
    * 
    * @author 6tail
    * 
@@ -91,7 +91,7 @@ public class RuleNumber extends RuleRegex{
     }
   }
   /**
-   * ¸¡µãÊı
+   * æµ®ç‚¹æ•°
    * 
    * @author 6tail
    * 
@@ -107,7 +107,7 @@ public class RuleNumber extends RuleRegex{
     }
   }
   /**
-   * Õı¸¡µãÊı
+   * æ­£æµ®ç‚¹æ•°
    * 
    * @author 6tail
    * 
@@ -123,7 +123,7 @@ public class RuleNumber extends RuleRegex{
     }
   }
   /**
-   * ¸º¸¡µãÊı
+   * è´Ÿæµ®ç‚¹æ•°
    * 
    * @author 6tail
    * 
@@ -139,7 +139,7 @@ public class RuleNumber extends RuleRegex{
     }
   }
   /**
-   * ·ÇÕı¸¡µãÊı
+   * éæ­£æµ®ç‚¹æ•°
    * 
    * @author 6tail
    * 
@@ -155,7 +155,7 @@ public class RuleNumber extends RuleRegex{
     }
   }
   /**
-   * ·Ç¸º¸¡µãÊı
+   * éè´Ÿæµ®ç‚¹æ•°
    * 
    * @author 6tail
    * 

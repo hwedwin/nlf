@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.plugin.impl;
+ï»¿package nc.liat6.frame.db.plugin.impl;
 
 import java.util.List;
 import nc.liat6.frame.db.entity.Bean;
@@ -7,7 +7,7 @@ import nc.liat6.frame.db.plugin.Rule;
 import nc.liat6.frame.paging.PageData;
 
 /**
- * Í¨ÓÃ²éÑ¯Æ÷
+ * é€šç”¨æŸ¥è¯¢å™¨
  * 
  * @author 6tail
  * 
@@ -113,9 +113,9 @@ public class CommonSelecter extends SuperExecuter implements ISelecter{
   }
 
   public String getSql(){
-    // ÖØÖÃSQL
+    // é‡ç½®SQL
     resetSql();
-    // ÖØÐÂ¹¹Ôì
+    // é‡æ–°æž„é€ 
     sql.append(" SELECT");
     int l = cols.size();
     if(l>0){

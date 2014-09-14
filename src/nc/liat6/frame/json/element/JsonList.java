@@ -1,10 +1,10 @@
-package nc.liat6.frame.json.element;
+锘縫ackage nc.liat6.frame.json.element;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * JSON List类型节点
+ * JSON List绫诲瀷鑺傜偣
  * 
  * @author 6tail
  * 

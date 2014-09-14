@@ -1,7 +1,7 @@
-package nc.liat6.frame.json.element;
+锘縫ackage nc.liat6.frame.json.element;
 
 /**
- * JSON布尔类型节点
+ * JSON甯冨皵绫诲瀷鑺傜偣
  * 
  * @author 6tail
  * 

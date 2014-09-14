@@ -1,10 +1,10 @@
-package nc.liat6.frame.json.element;
+ï»¿package nc.liat6.frame.json.element;
 
 import nc.liat6.frame.exception.NlfException;
 import nc.liat6.frame.locale.L;
 
 /**
- * ³éÏóJSON½Úµã
+ * æŠ½è±¡JSONèŠ‚ç‚¹
  * 
  * @author 6tail
  * 

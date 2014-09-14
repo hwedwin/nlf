@@ -1,22 +1,22 @@
-package nc.liat6.frame.rmi.server.request;
+锘縫ackage nc.liat6.frame.rmi.server.request;
 
 import nc.liat6.frame.execute.Request;
 import nc.liat6.frame.execute.impl.AppExecute;
 import nc.liat6.frame.execute.request.IIPFetcher;
 
 /**
- * RMI应用IP获取器，在确实需要用到IP的时候才解析
+ * RMI搴旂敤IP鑾峰彇鍣紝鍦ㄧ‘瀹為渶瑕佺敤鍒癐P鐨勬椂鍊欐墠瑙ｆ瀽
  * 
  * @author 6tail
  * 
  */
 public class RmiIPFetcher implements IIPFetcher{
 
-  /** 当前请求 */
+  /** 褰撳墠璇锋眰 */
   private Request request;
-  /** 缓存IP */
+  /** 缂撳瓨IP */
   private String ip;
-  /** 当前请求是否请求过IP */
+  /** 褰撳墠璇锋眰鏄惁璇锋眰杩嘔P */
   private boolean ipFetched = false;
 
   public RmiIPFetcher(Request request){

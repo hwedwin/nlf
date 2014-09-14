@@ -1,10 +1,10 @@
-package nc.liat6.frame.log.impl;
+ï»¿package nc.liat6.frame.log.impl;
 
 import nc.liat6.frame.log.ILog;
 import nc.liat6.frame.log.ILogAdapter;
 
 /**
- * Ä¬ÈÏÈÕÖ¾ÊÊÅäÆ÷
+ * é»˜è®¤æ—¥å¿—é€‚é…å™¨
  * 
  * @author 6tail
  * 

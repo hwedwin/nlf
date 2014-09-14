@@ -1,9 +1,9 @@
-package nc.liat6.frame.xml.element;
+ï»¿package nc.liat6.frame.xml.element;
 
 import java.math.BigDecimal;
 
 /**
- * XML×Ö·û´®ÀàĞÍ½Úµã
+ * XMLå­—ç¬¦ä¸²ç±»å‹èŠ‚ç‚¹
  * 
  * @author 6tail
  * 
@@ -20,18 +20,18 @@ public class XmlString extends AbstractElement{
   }
 
   /**
-   * ÉèÖÃ½ÚµãÖµ
+   * è®¾ç½®èŠ‚ç‚¹å€¼
    * 
-   * @param s ½ÚµãÖµ
+   * @param s èŠ‚ç‚¹å€¼
    */
   public void set(String s){
     o = s;
   }
 
   /**
-   * »ñÈ¡½ÚµãÖµ
+   * è·å–èŠ‚ç‚¹å€¼
    * 
-   * @return ½ÚµãÖµ
+   * @return èŠ‚ç‚¹å€¼
    */
   public String toString(){
     return o;

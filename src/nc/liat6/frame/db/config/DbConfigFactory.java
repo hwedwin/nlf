@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.config;
+ï»¿package nc.liat6.frame.db.config;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +8,7 @@ import nc.liat6.frame.db.exception.DaoException;
 import nc.liat6.frame.locale.L;
 
 /**
- * Êı¾İ¿âÅäÖÃ¹¤³§
+ * æ•°æ®åº“é…ç½®å·¥å‚
  * 
  * @author 6tail
  * 

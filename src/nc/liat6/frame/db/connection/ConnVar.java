@@ -1,9 +1,9 @@
-package nc.liat6.frame.db.connection;
+ï»¿package nc.liat6.frame.db.connection;
 
 import nc.liat6.frame.db.setting.IDbSetting;
 
 /**
- * Á¬½Ó±äÁ¿
+ * è¿æ¥å˜é‡
  * 
  * @author 6tail
  * 
@@ -11,13 +11,13 @@ import nc.liat6.frame.db.setting.IDbSetting;
 public class ConnVar{
 
   private int level = 0;
-  /** Á¬½ÓÉèÖÃ */
+  /** è¿æ¥è®¾ç½® */
   private IDbSetting setting;
-  /** ¶¨ÖÆÁ¬½Ó */
+  /** å®šåˆ¶è¿æ¥ */
   private IConnection connection;
-  /** Êı¾İ¿âÀàĞÍ */
+  /** æ•°æ®åº“ç±»å‹ */
   private String dbType;
-  /** ±ğÃû */
+  /** åˆ«å */
   private String alias;
 
   public int getLevel(){

@@ -1,4 +1,4 @@
-package nc.liat6.frame.util;
+ï»¿package nc.liat6.frame.util;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -7,7 +7,7 @@ import java.net.URLDecoder;
 import nc.liat6.frame.Version;
 
 /**
- * Â·¾¶¹¤¾ß
+ * è·¯å¾„å·¥å…·
  * 
  * @author 6tail
  * 
@@ -15,14 +15,14 @@ import nc.liat6.frame.Version;
 public class Pather{
 
   private Pather(){}
-  /** µ±Ç°¿ò¼Ü°üËùÔÚÂ·¾¶ */
+  /** å½“å‰æ¡†æ¶åŒ…æ‰€åœ¨è·¯å¾„ */
   public static String FRAME_JAR_PATH;
   static{
     try{
       String p = null;
       URL url = Version.class.getProtectionDomain().getCodeSource().getLocation();
       p = URLDecoder.decode(url.getPath(),"UTF-8");
-      // class´¦Àí
+      // classå¤„ç†
       if(p.endsWith(".class")){
         p = p.replace(Version.PACKAGE.replace(".","/"),"");
         p = p.substring(0,p.lastIndexOf("/")+1);
@@ -34,11 +34,11 @@ public class Pather{
   }
 
   /**
-   * Ö¸¶¨ÀàËùÔÚµÄ°üµÄ¾ø¶ÔÂ·¾¶¡£Èç¹ûÀà´¦ÓÚÎÄ¼ş¼ĞÖĞ£¬Ôò·µ»ØÀàËùÔÚ°üµÄ¸ùÂ·¾¶;Èç¹ûÊÇjar£¬Ôò¸ù¾İjarEnabled²ÎÊıÈ·¶¨·µ»ØjarËùÔÚµÄÎÄ¼ş¼Ğ»¹ÊÇjar¡£
+   * æŒ‡å®šç±»æ‰€åœ¨çš„åŒ…çš„ç»å¯¹è·¯å¾„ã€‚å¦‚æœç±»å¤„äºæ–‡ä»¶å¤¹ä¸­ï¼Œåˆ™è¿”å›ç±»æ‰€åœ¨åŒ…çš„æ ¹è·¯å¾„;å¦‚æœæ˜¯jarï¼Œåˆ™æ ¹æ®jarEnabledå‚æ•°ç¡®å®šè¿”å›jaræ‰€åœ¨çš„æ–‡ä»¶å¤¹è¿˜æ˜¯jarã€‚
    * 
-   * @param className ÀàÃû
-   * @param jarEnabled ÊÇ·ñ¿ªÆôjarÄ£Ê½ true·µ»Øjar false·µ»ØjarËùÔÚÄ¿Â¼
-   * @return Â·¾¶
+   * @param className ç±»å
+   * @param jarEnabled æ˜¯å¦å¼€å¯jaræ¨¡å¼ trueè¿”å›jar falseè¿”å›jaræ‰€åœ¨ç›®å½•
+   * @return è·¯å¾„
    */
   public static String getPath(String className,boolean jarEnabled){
     String p = null;
@@ -60,7 +60,7 @@ public class Pather{
     if(jarEnabled){
       return new File(p).getAbsolutePath();
     }
-    // jar´¦Àí
+    // jarå¤„ç†
     if(p.endsWith(".jar")){
       p = p.substring(0,p.lastIndexOf("/")+1);
     }

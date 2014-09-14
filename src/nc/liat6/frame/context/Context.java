@@ -1,14 +1,14 @@
-package nc.liat6.frame.context;
+ï»¿package nc.liat6.frame.context;
 
 /**
- * ÉÏÏÂÎÄ
+ * ä¸Šä¸‹æ–‡
  * 
  * @author liat6
  * 
  */
 public class Context{
 
-  /** ÉÏÏÂÎÄ±äÁ¿ */
+  /** ä¸Šä¸‹æ–‡å˜é‡ */
   private final static ThreadLocal<Var> VAR = new ThreadLocal<Var>(){
 
     public Var initialValue(){
@@ -19,20 +19,20 @@ public class Context{
   protected Context(){}
 
   /**
-   * ÉèÖÃ±äÁ¿
+   * è®¾ç½®å˜é‡
    * 
-   * @param k ¼ü
-   * @param v Öµ
+   * @param k é”®
+   * @param v å€¼
    */
   public synchronized static void set(Object k,Object v){
     VAR.get().set(k,v);
   }
 
   /**
-   * »ñÈ¡±äÁ¿
+   * è·å–å˜é‡
    * 
-   * @param k ¼ü
-   * @return Öµ
+   * @param k é”®
+   * @return å€¼
    */
   @SuppressWarnings("unchecked")
   public synchronized static <T>T get(Object k){
@@ -40,26 +40,26 @@ public class Context{
   }
 
   /**
-   * ÒÆ³ı±äÁ¿
+   * ç§»é™¤å˜é‡
    * 
-   * @param k ¼ü
+   * @param k é”®
    */
   public synchronized static void remove(Object k){
     VAR.get().remove(k);
   }
 
   /**
-   * ÊÇ·ñ´æÔÚ±äÁ¿
+   * æ˜¯å¦å­˜åœ¨å˜é‡
    * 
-   * @param k ¼ü
-   * @return Öµ
+   * @param k é”®
+   * @return å€¼
    */
   public static boolean contains(Object k){
     return VAR.get().contains(k);
   }
 
   /**
-   * Çå¿ÕÉÏÏÂÎÄ±äÁ¿
+   * æ¸…ç©ºä¸Šä¸‹æ–‡å˜é‡
    */
   public synchronized static void clear(){
     VAR.get().clear();

@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.custom.mongo;
+ï»¿package nc.liat6.frame.db.custom.mongo;
 
 import java.net.UnknownHostException;
 import nc.liat6.frame.db.connection.ConnVar;
@@ -9,7 +9,7 @@ import nc.liat6.frame.util.Stringer;
 import com.mongodb.Mongo;
 
 /**
- * MONGOÁ¬½Ó±äÁ¿Ìá¹©Æ÷
+ * MONGOè¿æ¥å˜é‡æä¾›å™¨
  * 
  * @author 6tail
  * 

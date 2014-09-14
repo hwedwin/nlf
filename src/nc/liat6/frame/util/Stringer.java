@@ -1,4 +1,4 @@
-package nc.liat6.frame.util;
+ï»¿package nc.liat6.frame.util;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -16,7 +16,7 @@ import java.util.List;
 import nc.liat6.frame.exception.NlfException;
 
 /**
- * ×Ö·û´®´¦Àí
+ * å­—ç¬¦ä¸²å¤„ç†
  * 
  * @author 6tail
  * 
@@ -26,12 +26,12 @@ public class Stringer{
   private Stringer(){}
 
   /**
-   * ²Ã¼ô×Ö·û´®
+   * è£å‰ªå­—ç¬¦ä¸²
    * 
-   * @param s Ô­Ê¼×Ö·û´®
-   * @param start ÆğÊ¼×Ö·û´®
-   * @param end ´ÓÆğÊ¼×Ö·û´®¿ªÊ¼µÚÒ»´ÎÓöµ½µÄ½áÊø×Ö·û´®
-   * @return ´ÓÆğÊ¼×Ö·û´®µ½½áÊø×Ö·û´®Ö®¼äµÄ×Ö·û´®£¬²»°üÀ¨ÆğÊ¼×Ö·û´®ºÍ½áÊø×Ö·û´®
+   * @param s åŸå§‹å­—ç¬¦ä¸²
+   * @param start èµ·å§‹å­—ç¬¦ä¸²
+   * @param end ä»èµ·å§‹å­—ç¬¦ä¸²å¼€å§‹ç¬¬ä¸€æ¬¡é‡åˆ°çš„ç»“æŸå­—ç¬¦ä¸²
+   * @return ä»èµ·å§‹å­—ç¬¦ä¸²åˆ°ç»“æŸå­—ç¬¦ä¸²ä¹‹é—´çš„å­—ç¬¦ä¸²ï¼Œä¸åŒ…æ‹¬èµ·å§‹å­—ç¬¦ä¸²å’Œç»“æŸå­—ç¬¦ä¸²
    */
   public static String cut(String s,String start,String end){
     int idx = s.indexOf(start);
@@ -44,11 +44,11 @@ public class Stringer{
   }
 
   /**
-   * ²Ã¼ô×Ö·û´®
+   * è£å‰ªå­—ç¬¦ä¸²
    * 
-   * @param s Ô­Ê¼×Ö·û´®
-   * @param start ÆğÊ¼×Ö·û´®
-   * @return ´ÓÆğÊ¼×Ö·û´®¿ªÊ¼µÄ×Ö·û´®£¬²»°üÀ¨ÆğÊ¼×Ö·û´®
+   * @param s åŸå§‹å­—ç¬¦ä¸²
+   * @param start èµ·å§‹å­—ç¬¦ä¸²
+   * @return ä»èµ·å§‹å­—ç¬¦ä¸²å¼€å§‹çš„å­—ç¬¦ä¸²ï¼Œä¸åŒ…æ‹¬èµ·å§‹å­—ç¬¦ä¸²
    */
   public static String cut(String s,String start){
     int idx = s.indexOf(start);
@@ -60,11 +60,11 @@ public class Stringer{
   }
 
   /**
-   * ½«×Ö·û´®Êı×éÒÔ¼ä¸ô·ûÁ¬½ÓÎª×Ö·û´®
+   * å°†å­—ç¬¦ä¸²æ•°ç»„ä»¥é—´éš”ç¬¦è¿æ¥ä¸ºå­—ç¬¦ä¸²
    * 
-   * @param arrays ×Ö·û´®Êı×é
-   * @param tag ¼ä¸ô·û
-   * @return Á¬½ÓºóµÄ×Ö·û´®
+   * @param arrays å­—ç¬¦ä¸²æ•°ç»„
+   * @param tag é—´éš”ç¬¦
+   * @return è¿æ¥åçš„å­—ç¬¦ä¸²
    */
   public static String join(String[] arrays,String tag){
     if(null==arrays)
@@ -80,11 +80,11 @@ public class Stringer{
   }
 
   /**
-   * ½«×Ö·û´®ÁĞ±íÒÔ¼ä¸ô·ûÁ¬½ÓÎª×Ö·û´®
+   * å°†å­—ç¬¦ä¸²åˆ—è¡¨ä»¥é—´éš”ç¬¦è¿æ¥ä¸ºå­—ç¬¦ä¸²
    * 
-   * @param list ×Ö·û´®ÁĞ±í
-   * @param tag ¼ä¸ô·û
-   * @return Á¬½ÓºóµÄ×Ö·û´®
+   * @param list å­—ç¬¦ä¸²åˆ—è¡¨
+   * @param tag é—´éš”ç¬¦
+   * @return è¿æ¥åçš„å­—ç¬¦ä¸²
    */
   public static String join(List<String> list,String tag){
     if(null==list)
@@ -100,12 +100,12 @@ public class Stringer{
   }
 
   /**
-   * ×Ö·û´®Ìæ´®
+   * å­—ç¬¦ä¸²æ›¿ä¸²
    * 
-   * @param os Ô­×Ö·û´®£¬Èç¹ûÎªNULL£¬·µ»ØNULL
-   * @param tag ĞèÒªÌæ»»µÄ×Ö·û´®ÁĞ±í
-   * @param rs Ìæ»»Îª
-   * @return Ìæ»»ºóµÄ×Ö·û´®
+   * @param os åŸå­—ç¬¦ä¸²ï¼Œå¦‚æœä¸ºNULLï¼Œè¿”å›NULL
+   * @param tag éœ€è¦æ›¿æ¢çš„å­—ç¬¦ä¸²åˆ—è¡¨
+   * @param rs æ›¿æ¢ä¸º
+   * @return æ›¿æ¢åçš„å­—ç¬¦ä¸²
    */
   public static String replace(String os,String[] tag,String rs){
     if(null==os){
@@ -119,24 +119,24 @@ public class Stringer{
   }
 
   /**
-   * ×Ö·û´®Ìæ»»
+   * å­—ç¬¦ä¸²æ›¿æ¢
    * 
-   * @param os Ô­×Ö·û´®£¬Èç¹ûÎªNULL£¬·µ»ØNULL
-   * @param tag ĞèÒªÌæ»»µÄ×Ö·û´®
-   * @param rs Ìæ»»Îª
-   * @return Ìæ»»ºóµÄ×Ö·û´®
+   * @param os åŸå­—ç¬¦ä¸²ï¼Œå¦‚æœä¸ºNULLï¼Œè¿”å›NULL
+   * @param tag éœ€è¦æ›¿æ¢çš„å­—ç¬¦ä¸²
+   * @param rs æ›¿æ¢ä¸º
+   * @return æ›¿æ¢åçš„å­—ç¬¦ä¸²
    */
   public static String replace(String os,String tag,String rs){
     return replace(os,new String[]{tag},rs);
   }
 
   /**
-   * ×Ö·û´®°´Ö¸¶¨·Ö¸ô·û×ª»»ÎªÁĞ±í
+   * å­—ç¬¦ä¸²æŒ‰æŒ‡å®šåˆ†éš”ç¬¦è½¬æ¢ä¸ºåˆ—è¡¨
    * 
-   * @param os Ô­×Ö·û´®
-   * @param spliter ·Ö¸ô·û
-   * @param allowRepeat ÊÇ·ñÔÊĞíÖØ¸´
-   * @return ×ª»»ºóµÄÁĞ±í
+   * @param os åŸå­—ç¬¦ä¸²
+   * @param spliter åˆ†éš”ç¬¦
+   * @param allowRepeat æ˜¯å¦å…è®¸é‡å¤
+   * @return è½¬æ¢åçš„åˆ—è¡¨
    */
   public static List<String> list(String os,String spliter,boolean allowRepeat){
     List<String> l = new ArrayList<String>();
@@ -160,21 +160,21 @@ public class Stringer{
   }
 
   /**
-   * ×Ö·û´®°´Ö¸¶¨·Ö¸ô·û×ª»»Îª²»ÖØ¸´µÄÁĞ±í
+   * å­—ç¬¦ä¸²æŒ‰æŒ‡å®šåˆ†éš”ç¬¦è½¬æ¢ä¸ºä¸é‡å¤çš„åˆ—è¡¨
    * 
-   * @param os Ô­×Ö·û´®
-   * @param spliter ·Ö¸ô·û
-   * @return ×ª»»ºóµÄÁĞ±í
+   * @param os åŸå­—ç¬¦ä¸²
+   * @param spliter åˆ†éš”ç¬¦
+   * @return è½¬æ¢åçš„åˆ—è¡¨
    */
   public static List<String> list(String os,String spliter){
     return list(os,spliter,false);
   }
 
   /**
-   * ¶ÔAJAXÌá½»À´µÄÊı¾İ½øĞĞ½âÂë
+   * å¯¹AJAXæäº¤æ¥çš„æ•°æ®è¿›è¡Œè§£ç 
    * 
-   * @param s Ô­×Ö·û´®
-   * @return ½âÂëºóµÄ×Ö·û´®
+   * @param s åŸå­—ç¬¦ä¸²
+   * @return è§£ç åçš„å­—ç¬¦ä¸²
    */
   public static String ajax(String s){
     try{
@@ -185,12 +185,12 @@ public class Stringer{
   }
 
   /**
-   * ½«Ö¸¶¨×Ö·û´®½øĞĞ×ªÂë
+   * å°†æŒ‡å®šå­—ç¬¦ä¸²è¿›è¡Œè½¬ç 
    * 
-   * @param s Òª×ªÂëµÄ×Ö·û´®
-   * @param ocharSet Ô­±àÂë
-   * @param ncharSet ĞÂ±àÂë
-   * @return ×ªÂëºóµÄ×Ö·û´®
+   * @param s è¦è½¬ç çš„å­—ç¬¦ä¸²
+   * @param ocharSet åŸç¼–ç 
+   * @param ncharSet æ–°ç¼–ç 
+   * @return è½¬ç åçš„å­—ç¬¦ä¸²
    */
   public static String encode(String s,String ocharSet,String ncharSet){
     try{
@@ -201,7 +201,7 @@ public class Stringer{
   }
 
   /**
-   * Õ¼Î»Êä³ö
+   * å ä½è¾“å‡º
    * 
    * @param s
    * @param obj
@@ -230,10 +230,10 @@ public class Stringer{
   }
 
   /**
-   * ¶Ô×Ö·û´®½øĞĞMD5¼ÓÃÜ
+   * å¯¹å­—ç¬¦ä¸²è¿›è¡ŒMD5åŠ å¯†
    * 
-   * @param s Ô­ÎÄ
-   * @return ÃÜÎÄ,´óĞ´ĞÎÊ½
+   * @param s åŸæ–‡
+   * @return å¯†æ–‡,å¤§å†™å½¢å¼
    * @throws Exception
    */
   public static String md5(String s) throws NoSuchAlgorithmException{
@@ -250,10 +250,10 @@ public class Stringer{
   }
 
   /**
-   * 16½øÖÆ×Ö·û´®×ª×Ö½ÚÊı×é
+   * 16è¿›åˆ¶å­—ç¬¦ä¸²è½¬å­—èŠ‚æ•°ç»„
    * 
-   * @param hexString 16½øÖÆ×Ö·û´®
-   * @return ×Ö½ÚÊı×é
+   * @param hexString 16è¿›åˆ¶å­—ç¬¦ä¸²
+   * @return å­—èŠ‚æ•°ç»„
    */
   public static byte[] hex2Bytes(String hexString){
     String s = hexString;
@@ -277,11 +277,11 @@ public class Stringer{
   }
 
   /**
-   * ¶ÁÈ¡ÎÄ¼şÄÚÈİµ½×Ö·û´®
+   * è¯»å–æ–‡ä»¶å†…å®¹åˆ°å­—ç¬¦ä¸²
    * 
-   * @param file ÎÄ¼ş
-   * @param encode ±àÂë
-   * @return ÎÄ¼şÄÚÈİ
+   * @param file æ–‡ä»¶
+   * @param encode ç¼–ç 
+   * @return æ–‡ä»¶å†…å®¹
    * @throws IOException
    */
   public static String readFromFile(File file,String encode) throws IOException{
@@ -304,11 +304,11 @@ public class Stringer{
   }
 
   /**
-   * ¶ÁÈ¡ÎÄ¼şÄÚÈİµ½×Ö·û´®
+   * è¯»å–æ–‡ä»¶å†…å®¹åˆ°å­—ç¬¦ä¸²
    * 
-   * @param file ÎÄ¼şÂ·¾¶
-   * @param encode ±àÂë
-   * @return ÎÄ¼şÄÚÈİ
+   * @param file æ–‡ä»¶è·¯å¾„
+   * @param encode ç¼–ç 
+   * @return æ–‡ä»¶å†…å®¹
    * @throws IOException
    */
   public static String readFromFile(String file,String encode) throws IOException{
@@ -324,11 +324,11 @@ public class Stringer{
   }
 
   /**
-   * ½«×Ö·û´®Ğ´µ½ÎÄ¼ş
+   * å°†å­—ç¬¦ä¸²å†™åˆ°æ–‡ä»¶
    * 
-   * @param s ×Ö·û´®
-   * @param file ÎÄ¼ş
-   * @param encode ±àÂë
+   * @param s å­—ç¬¦ä¸²
+   * @param file æ–‡ä»¶
+   * @param encode ç¼–ç 
    * @throws IOException
    */
   public static void writeToFile(String s,File file,String encode) throws IOException{
@@ -347,11 +347,11 @@ public class Stringer{
   }
 
   /**
-   * ½«×Ö·û´®Ğ´µ½ÎÄ¼ş
+   * å°†å­—ç¬¦ä¸²å†™åˆ°æ–‡ä»¶
    * 
-   * @param s ×Ö·û´®
-   * @param file ÎÄ¼şÂ·¾¶
-   * @param encode ±àÂë
+   * @param s å­—ç¬¦ä¸²
+   * @param file æ–‡ä»¶è·¯å¾„
+   * @param encode ç¼–ç 
    * @throws IOException
    */
   public static void writeToFile(String s,String file,String encode) throws IOException{

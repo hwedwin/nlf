@@ -1,4 +1,4 @@
-package nc.liat6.frame.web.upload;
+ï»¿package nc.liat6.frame.web.upload;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,31 +9,31 @@ import nc.liat6.frame.web.response.Json;
 import nc.liat6.frame.web.upload.bean.UploadBean;
 
 /**
- * ÎÄ¼şÉÏ´«×´Ì¬
+ * æ–‡ä»¶ä¸Šä¼ çŠ¶æ€
  * 
  * @author 6tail
  * 
  */
 public class UploadStatus{
 
-  /** ÎÄ¼ş×´Ì¬³Ø */
+  /** æ–‡ä»¶çŠ¶æ€æ±  */
   private static final Map<String,UploadBean> POOL = new HashMap<String,UploadBean>();
 
   /**
-   * Ìí¼ÓÒ»¸öÉÏ´«ÎÄ¼ş
+   * æ·»åŠ ä¸€ä¸ªä¸Šä¼ æ–‡ä»¶
    * 
-   * @param id ÎÄ¼ş±êÊ¶
-   * @param ub ÎÄ¼ş×´Ì¬·â×°¶ÔÏó
+   * @param id æ–‡ä»¶æ ‡è¯†
+   * @param ub æ–‡ä»¶çŠ¶æ€å°è£…å¯¹è±¡
    */
   public static void add(String id,UploadBean ub){
     POOL.put(id,ub);
   }
 
   /**
-   * ¸üĞÂÎÄ¼ş×´Ì¬
+   * æ›´æ–°æ–‡ä»¶çŠ¶æ€
    * 
-   * @param id ÎÄ¼ş±êÊ¶
-   * @param ub ÎÄ¼ş×´Ì¬·â×°¶ÔÏó
+   * @param id æ–‡ä»¶æ ‡è¯†
+   * @param ub æ–‡ä»¶çŠ¶æ€å°è£…å¯¹è±¡
    */
   public static void update(String id,UploadBean ub){
     UploadBean o = POOL.get(id);
@@ -46,7 +46,7 @@ public class UploadStatus{
   }
 
   /**
-   * »ñÈ¡ÎÄ¼ş×´Ì¬
+   * è·å–æ–‡ä»¶çŠ¶æ€
    * 
    * @return
    */

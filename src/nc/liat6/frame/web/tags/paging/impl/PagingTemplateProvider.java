@@ -1,4 +1,4 @@
-package nc.liat6.frame.web.tags.paging.impl;
+锘縫ackage nc.liat6.frame.web.tags.paging.impl;
 
 import java.util.Map;
 import nc.liat6.frame.execute.Request;
@@ -9,7 +9,7 @@ import nc.liat6.frame.util.Pair;
 import nc.liat6.frame.web.tags.paging.IPagingTemplateProvider;
 
 /**
- * 框架的默认分页模板提供器实现
+ * 妗嗘灦鐨勯粯璁ゅ垎椤垫ā鏉挎彁渚涘櫒瀹炵幇
  * 
  * @author 6tail
  * 

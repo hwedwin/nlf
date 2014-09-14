@@ -1,4 +1,4 @@
-package nc.liat6.frame.web.request;
+ï»¿package nc.liat6.frame.web.request;
 
 import java.util.Locale;
 import javax.servlet.http.HttpSession;
@@ -8,14 +8,14 @@ import nc.liat6.frame.locale.LocaleFactory;
 import nc.liat6.frame.web.WebExecute;
 
 /**
- * WEBÓ¦ÓÃlocale»ñÈ¡Æ÷
+ * WEBåº”ç”¨localeè·å–å™¨
  * 
  * @author 6tail
  * 
  */
 public class WebLocaleFetcher implements ILocaleFetcher{
 
-  /** µ±Ç°ÇëÇó */
+  /** å½“å‰è¯·æ±‚ */
   private Request request;
 
   public WebLocaleFetcher(Request request){

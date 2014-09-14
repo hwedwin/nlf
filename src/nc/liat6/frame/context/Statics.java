@@ -1,7 +1,7 @@
-package nc.liat6.frame.context;
+ï»¿package nc.liat6.frame.context;
 
 /**
- * ³£Á¿
+ * å¸¸é‡
  * 
  * @author 6tail
  * 
@@ -9,24 +9,24 @@ package nc.liat6.frame.context;
 public class Statics{
 
   private Statics(){}
-  /** ×Ö·û±àÂë */
+  /** å­—ç¬¦ç¼–ç  */
   public final static String ENCODE = "UTF-8";
-  /** ÏìÓ¦·â×° */
+  /** å“åº”å°è£… */
   public final static String RESPONSE = "NLF_RESPONSE";
-  /** ÇëÇó·â×° */
+  /** è¯·æ±‚å°è£… */
   public final static String REQUEST = "NLF_REQUEST";
-  /** ÎïÀíÂ·¾¶±êÊ¶ */
+  /** ç‰©ç†è·¯å¾„æ ‡è¯† */
   public final static String REAL_PATH_TAG = "REAL_PATH";
-  /** Ä¬ÈÏÓ¦ÓÃ¸ùÂ·¾¶±êÊ¶ */
+  /** é»˜è®¤åº”ç”¨æ ¹è·¯å¾„æ ‡è¯† */
   public final static String DEFAULT_APP_ROOT_TAG = "PATH";
-  /** Ä¬ÈÏÁ¬½Ó±ğÃû */
+  /** é»˜è®¤è¿æ¥åˆ«å */
   public final static String DEFAULT_CONNECTION_ALIAS = "NLF_DEFAULT_CONNECTION_ALIAS";
-  /** Á¬½Ó */
+  /** è¿æ¥ */
   public final static String CONNECTIONS = "NLF_CONNECTIONS";
-  /** ÓÃÓÚ»ñÈ¡Ô­Ê¼RequestµÄ±êÊ¶·û */
+  /** ç”¨äºè·å–åŸå§‹Requestçš„æ ‡è¯†ç¬¦ */
   public static final String TAG_ORG_REQUEST = "request";
-  /** ÓÃÓÚ»ñÈ¡IP»ñÈ¡Æ÷µÄ±êÊ¶·û */
+  /** ç”¨äºè·å–IPè·å–å™¨çš„æ ‡è¯†ç¬¦ */
   public static final String TAG_IP_FETCHER = "ipfetcher";
-  /** ÓÃÓÚ»ñÈ¡locale»ñÈ¡Æ÷µÄ±êÊ¶·û */
+  /** ç”¨äºè·å–localeè·å–å™¨çš„æ ‡è¯†ç¬¦ */
   public static final String TAG_LOCALE_FETCHER = "localefetcher";
 }

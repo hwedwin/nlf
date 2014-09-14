@@ -1,4 +1,4 @@
-package nc.liat6.frame.json.wrapper;
+ï»¿package nc.liat6.frame.json.wrapper;
 
 import java.beans.BeanInfo;
 import java.beans.PropertyDescriptor;
@@ -9,7 +9,7 @@ import nc.liat6.frame.json.JSON;
 import nc.liat6.frame.klass.BeanPool;
 
 /**
- * ¶ÔÏó°ü×°Æ÷
+ * å¯¹è±¡åŒ…è£…å™¨
  * 
  * @author 6tail
  * 
@@ -44,7 +44,7 @@ public class ObjectWrapper implements IWrapper{
               s.append(" ");
             }
           }
-          if(tiny){// ¾«¼òÄ£Ê½²»Ìí¼Ó×¢ÊÍ
+          if(tiny){// ç²¾ç®€æ¨¡å¼ä¸æ·»åŠ æ³¨é‡Š
             // s.append("/*"+note+"*/");
           }else{
             if(note.contains("\r")||note.contains("\n")){

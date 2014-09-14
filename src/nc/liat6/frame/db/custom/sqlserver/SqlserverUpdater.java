@@ -1,9 +1,9 @@
-package nc.liat6.frame.db.custom.sqlserver;
+ï»¿package nc.liat6.frame.db.custom.sqlserver;
 
 import nc.liat6.frame.db.custom.oracle.OracleUpdater;
 
 /**
- * SQLSERVERÊı¾İ¿âÖ´ĞĞÆ÷
+ * SQLSERVERæ•°æ®åº“æ‰§è¡Œå™¨
  * 
  * @author 6tail
  * 

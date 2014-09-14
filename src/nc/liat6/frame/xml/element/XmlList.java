@@ -1,10 +1,10 @@
-package nc.liat6.frame.xml.element;
+ï»¿package nc.liat6.frame.xml.element;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * XML ListÀàĞÍ½Úµã
+ * XML Listç±»å‹èŠ‚ç‚¹
  * 
  * @author 6tail
  * 
@@ -15,29 +15,29 @@ public class XmlList extends AbstractElement{
   private List<IXmlElement> l = new ArrayList<IXmlElement>();
 
   /**
-   * »ñÈ¡×Ó½ÚµãÊıÁ¿
+   * è·å–å­èŠ‚ç‚¹æ•°é‡
    * 
-   * @return ×Ó½ÚµãÊıÁ¿
+   * @return å­èŠ‚ç‚¹æ•°é‡
    */
   public int size(){
     return l.size();
   }
 
   /**
-   * ÒÆ³ıÖ¸¶¨ÏÂ±êµÄ½Úµã
+   * ç§»é™¤æŒ‡å®šä¸‹æ ‡çš„èŠ‚ç‚¹
    * 
-   * @param index ÏÂ±ê
-   * @return ½Úµã
+   * @param index ä¸‹æ ‡
+   * @return èŠ‚ç‚¹
    */
   public IXmlElement remove(int index){
     return l.remove(index);
   }
 
   /**
-   * »ñÈ¡Ö¸¶¨ÏÂ±êµÄ½Úµã
+   * è·å–æŒ‡å®šä¸‹æ ‡çš„èŠ‚ç‚¹
    * 
-   * @param index ÏÂ±ê
-   * @return ½Úµã
+   * @param index ä¸‹æ ‡
+   * @return èŠ‚ç‚¹
    */
   public IXmlElement get(int index){
     return l.get(index);
@@ -48,9 +48,9 @@ public class XmlList extends AbstractElement{
   }
 
   /**
-   * ÔÚÄ©Î²´¦Ìí¼ÓÒ»¸ö½Úµã
+   * åœ¨æœ«å°¾å¤„æ·»åŠ ä¸€ä¸ªèŠ‚ç‚¹
    * 
-   * @param o ½Úµã
+   * @param o èŠ‚ç‚¹
    */
   public void add(IXmlElement o){
     l.add(o);

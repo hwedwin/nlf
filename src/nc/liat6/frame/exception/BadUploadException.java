@@ -1,10 +1,10 @@
-package nc.liat6.frame.exception;
+锘縫ackage nc.liat6.frame.exception;
 
 import nc.liat6.frame.exception.NlfException;
 import nc.liat6.frame.locale.L;
 
 /**
- * 文件上传异常
+ * 鏂囦欢涓婁紶寮傚父
  * 
  * @author 6tail
  * 

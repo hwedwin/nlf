@@ -1,4 +1,4 @@
-package nc.liat6.frame.klass;
+ï»¿package nc.liat6.frame.klass;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -73,10 +73,10 @@ class InterfaceVisitor implements ClassVisitor{
 public class ByteCodeReader implements Opcodes{
 
   /**
-   * »ñÈ¡ÀàÎÄ¼şµÄ×îºóĞŞ¸ÄÊ±¼ä
+   * è·å–ç±»æ–‡ä»¶çš„æœ€åä¿®æ”¹æ—¶é—´
    * 
-   * @param ci ÀàĞÅÏ¢
-   * @return ×îºÃĞŞ¸ÄÊ±¼ä
+   * @param ci ç±»ä¿¡æ¯
+   * @return æœ€å¥½ä¿®æ”¹æ—¶é—´
    */
   public long lastModified(ClassInfo ci){
     String className = ci.getClassName();
@@ -95,10 +95,10 @@ public class ByteCodeReader implements Opcodes{
   }
 
   /**
-   * ´ÓÊäÈëÁ÷¶ÁÈ¡×Ö½ÚÂë
+   * ä»è¾“å…¥æµè¯»å–å­—èŠ‚ç 
    * 
-   * @param in ÊäÈëÁ÷
-   * @return ×Ö½ÚÂë
+   * @param in è¾“å…¥æµ
+   * @return å­—èŠ‚ç 
    * @throws IOException
    */
   private byte[] readClassFromStream(InputStream in) throws IOException{
@@ -120,10 +120,10 @@ public class ByteCodeReader implements Opcodes{
   }
 
   /**
-   * ¶ÁÈ¡Àà×Ö½ÚÂë
+   * è¯»å–ç±»å­—èŠ‚ç 
    * 
-   * @param ci ÀàĞÅÏ¢
-   * @return ×Ö½ÚÂë
+   * @param ci ç±»ä¿¡æ¯
+   * @return å­—èŠ‚ç 
    */
   public byte[] readClass(ClassInfo ci){
     try{

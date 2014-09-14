@@ -1,4 +1,4 @@
-package nc.liat6.frame.klass;
+﻿package nc.liat6.frame.klass;
 
 import java.util.Map;
 

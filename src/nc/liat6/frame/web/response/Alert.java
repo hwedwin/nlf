@@ -1,7 +1,7 @@
-package nc.liat6.frame.web.response;
+ï»¿package nc.liat6.frame.web.response;
 
 /**
- * ·µ»Ø - µ¯³ö¿ò
+ * è¿”å›ž - å¼¹å‡ºæ¡†
  * 
  * @author liat6
  * 

@@ -1,11 +1,11 @@
-package nc.liat6.frame.db.custom.oracle;
+ï»¿package nc.liat6.frame.db.custom.oracle;
 
 import nc.liat6.frame.db.plugin.ISelecter;
 import nc.liat6.frame.db.plugin.Rule;
 import nc.liat6.frame.db.plugin.impl.CommonSelecter;
 
 /**
- * OracleÊı¾İ¿â²éÑ¯Æ÷
+ * Oracleæ•°æ®åº“æŸ¥è¯¢å™¨
  * @author 6tail
  *
  */

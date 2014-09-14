@@ -1,7 +1,7 @@
-package nc.liat6.frame.execute;
+﻿package nc.liat6.frame.execute;
 
 /**
- * ִ�нӿ�
+ * 执行接口
  * 
  * @author 6tail
  * 
@@ -9,12 +9,12 @@ package nc.liat6.frame.execute;
 public interface IExecute{
 
   /**
-   * ִ�п�ʼ
+   * 执行开始
    */
   public void begin();
 
   /**
-   * ִ�н���
+   * 执行结束
    */
   public void end();
 }

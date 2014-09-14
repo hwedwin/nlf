@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.sql.impl;
+ï»¿package nc.liat6.frame.db.sql.impl;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,20 +13,20 @@ import nc.liat6.frame.db.sql.ITemplate;
 import nc.liat6.frame.db.transaction.ITrans;
 
 /**
- * SQLÖ´ĞĞÄ£°å³¬Àà
+ * SQLæ‰§è¡Œæ¨¡æ¿è¶…ç±»
  * 
  * @author 6tail
  * 
  */
 public abstract class SuperTemplate implements ITemplate{
 
-  /** »º´æµÄÉÏÒ»ÌõSQLÓï¾ä */
+  /** ç¼“å­˜çš„ä¸Šä¸€æ¡SQLè¯­å¥ */
   protected String stackSql = null;
-  /** »º´æµÄÉÏÒ»¸öStatement */
+  /** ç¼“å­˜çš„ä¸Šä¸€ä¸ªStatement */
   protected PreparedStatement stackStatement = null;
-  /** µ±Ç°Á¬½Ó±äÁ¿ */
+  /** å½“å‰è¿æ¥å˜é‡ */
   protected ConnVar cv;
-  /** ÊÂÎñ½Ó¿Ú */
+  /** äº‹åŠ¡æ¥å£ */
   protected ITrans trans;
 
   public ITrans getTrans(){
@@ -48,11 +48,11 @@ public abstract class SuperTemplate implements ITemplate{
   }
 
   /**
-   * ²ÎÊıµÄÔ¤´¦Àí
+   * å‚æ•°çš„é¢„å¤„ç†
    * 
    * @param stmt PreparedStatement
-   * @param params ²ÎÊı£¬¿ÉÒÔÊÇÊı×é£¬Ò²¿ÉÒÔÊÇµ¥Öµ
-   * @return ²ÎÊıÁĞ±í
+   * @param params å‚æ•°ï¼Œå¯ä»¥æ˜¯æ•°ç»„ï¼Œä¹Ÿå¯ä»¥æ˜¯å•å€¼
+   * @return å‚æ•°åˆ—è¡¨
    * @throws SQLException
    */
   protected List<Object> processParams(PreparedStatement stmt,Object params) throws SQLException{
@@ -92,7 +92,7 @@ public abstract class SuperTemplate implements ITemplate{
   }
 
   /**
-   * ÉÆºó´¦Àí
+   * å–„åå¤„ç†
    * 
    * @param stmt
    * @param rs

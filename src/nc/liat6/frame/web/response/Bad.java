@@ -1,16 +1,16 @@
-package nc.liat6.frame.web.response;
+锘縫ackage nc.liat6.frame.web.response;
 
 /**
- * 返回 - 错误信息
+ * 杩斿洖 - 閿欒淇℃伅
  * 
  * @author 6tail
  * 
  */
 public class Bad{
 
-  /** 消息内容 */
+  /** 娑堟伅鍐呭 */
   private String thing;
-  /** 数据对象 */
+  /** 鏁版嵁瀵硅薄 */
   private Object data;
 
   public Bad(String thing){
@@ -23,18 +23,18 @@ public class Bad{
   }
 
   /**
-   * 设置消息内容
+   * 璁剧疆娑堟伅鍐呭
    * 
-   * @param thing 消息内容
+   * @param thing 娑堟伅鍐呭
    */
   public void setThing(String thing){
     this.thing = thing;
   }
 
   /**
-   * 获取消息内容
+   * 鑾峰彇娑堟伅鍐呭
    * 
-   * @return 消息内容
+   * @return 娑堟伅鍐呭
    */
   public String getThing(){
     return thing;
@@ -45,18 +45,18 @@ public class Bad{
   }
 
   /**
-   * 获取数据对象
+   * 鑾峰彇鏁版嵁瀵硅薄
    * 
-   * @return 数据对象
+   * @return 鏁版嵁瀵硅薄
    */
   public Object getData(){
     return data;
   }
 
   /**
-   * 设置数据对象
+   * 璁剧疆鏁版嵁瀵硅薄
    * 
-   * @param data 数据对象
+   * @param data 鏁版嵁瀵硅薄
    */
   public void setData(Object data){
     this.data = data;

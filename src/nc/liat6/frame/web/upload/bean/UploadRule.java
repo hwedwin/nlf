@@ -1,19 +1,19 @@
-package nc.liat6.frame.web.upload.bean;
+ï»¿package nc.liat6.frame.web.upload.bean;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ÉÏ´«¹æÔò
+ * ä¸Šä¼ è§„åˆ™
  * 
  * @author 6tail
  * 
  */
 public class UploadRule{
 
-  /** ÔÊĞíµÄ×î´ó×Ö½ÚÊı£¬-1±íÊ½²»ÏŞÖÆ */
+  /** å…è®¸çš„æœ€å¤§å­—èŠ‚æ•°ï¼Œ-1è¡¨å¼ä¸é™åˆ¶ */
   private int maxSize = -1;
-  /** ÔÊĞíµÄÎÄ¼şÀàĞÍÁĞ±í£¬ÎŞ±íÊ¾È«²¿ÔÊĞí */
+  /** å…è®¸çš„æ–‡ä»¶ç±»å‹åˆ—è¡¨ï¼Œæ— è¡¨ç¤ºå…¨éƒ¨å…è®¸ */
   private List<String> allows = new ArrayList<String>();
 
   public List<String> getAllows(){

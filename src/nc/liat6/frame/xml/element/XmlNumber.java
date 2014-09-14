@@ -1,7 +1,7 @@
-package nc.liat6.frame.xml.element;
+ï»¿package nc.liat6.frame.xml.element;
 
 /**
- * XMLÊı×ÖÀàĞÍ½Úµã
+ * XMLæ•°å­—ç±»å‹èŠ‚ç‚¹
  * 
  * @author 6tail
  * 
@@ -24,18 +24,18 @@ public class XmlNumber extends AbstractElement{
   }
 
   /**
-   * ÉèÖÃ½ÚµãÖµ
+   * è®¾ç½®èŠ‚ç‚¹å€¼
    * 
-   * @param n ½ÚµãÖµ
+   * @param n èŠ‚ç‚¹å€¼
    */
   public void set(Number n){
     this.n = n;
   }
 
   /**
-   * »ñÈ¡½ÚµãÖµ
+   * è·å–èŠ‚ç‚¹å€¼
    * 
-   * @return ½ÚµãÖµ
+   * @return èŠ‚ç‚¹å€¼
    */
   public Number value(){
     return n;

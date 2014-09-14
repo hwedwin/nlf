@@ -1,4 +1,4 @@
-package nc.liat6.frame.web;
+ï»¿package nc.liat6.frame.web;
 
 import java.io.IOException;
 import java.util.Enumeration;
@@ -28,14 +28,14 @@ import nc.liat6.frame.web.config.IWebConfig;
 import nc.liat6.frame.web.config.IWebManager;
 
 /**
- * WEBÓ¦ÓÃµ÷¶ÈÆ÷
+ * WEBåº”ç”¨è°ƒåº¦å™¨
  * 
  * @author 6tail
  * 
  */
 public class Dispatcher implements Filter{
 
-  /** WEBÅäÖÃ */
+  /** WEBé…ç½® */
   public static IWebConfig config;
 
   public void destroy(){}
@@ -51,15 +51,15 @@ public class Dispatcher implements Filter{
   public void doFilter(ServletRequest request,ServletResponse response,FilterChain chain) throws IOException,ServletException{
     HttpServletRequest req = (HttpServletRequest)request;
     HttpServletResponse res = (HttpServletResponse)response;
-    // ÉèÖÃ±àÂë
+    // è®¾ç½®ç¼–ç 
     req.setCharacterEncoding(Statics.ENCODE);
-    // ÉèÖÃÔ­ÇëÇó
+    // è®¾ç½®åŸè¯·æ±‚
     Context.set(WebExecute.HTTP_SERVLET_REQUEST,req);
-    // ÉèÖÃÔ­ÏìÓ¦
+    // è®¾ç½®åŸå“åº”
     Context.set(WebExecute.HTTP_SERVLET_RESPONSE,res);
-    // ÉèÖÃ¹ıÂËÁ´
+    // è®¾ç½®è¿‡æ»¤é“¾
     Context.set(WebExecute.HTTP_FILTERCHAIN,chain);
-    // ÉèÖÃ²ÎÊı
+    // è®¾ç½®å‚æ•°
     Map<String,String> args = new HashMap<String,String>();
     Enumeration<?> en = req.getParameterNames();
     while(en.hasMoreElements()){
@@ -67,27 +67,27 @@ public class Dispatcher implements Filter{
       args.put(key,req.getParameter(key));
     }
     Context.set(AbstractExecute.EXECUTE_ARGS,args);
-    // ·ÃÎÊµØÖ·
+    // è®¿é—®åœ°å€
     String path = req.getServletPath();
-    // È¥³ıÈßÓà/
+    // å»é™¤å†—ä½™/
     while(path.startsWith("//")){
       path = path.substring(1);
     }
-    // ÇëÇó¹ıÂË
+    // è¯·æ±‚è¿‡æ»¤
     if(contains(config.getForbiddenPaths(),path)){
       if(!contains(config.getAllowPaths(),path)){
         return;
       }
     }
-    // WEB¹ÜÀíÆ÷
+    // WEBç®¡ç†å™¨
     IWebManager wm = config.getWebManager();
     ClassMethod cm = wm.before(path);
-    // ²»ÊÜ¹ÜÀíµÄÂ·¾¶
+    // ä¸å—ç®¡ç†çš„è·¯å¾„
     if(null==cm){
       chain.doFilter(request,response);
       return;
     }
-    // WEBÖ´ĞĞÆ÷
+    // WEBæ‰§è¡Œå™¨
     IExecute executer = config.getExecuter();
     executer.begin();
     Object r = null;
@@ -106,15 +106,15 @@ public class Dispatcher implements Filter{
 
   public void init(FilterConfig fc) throws ServletException{
     ServletContext ctx = fc.getServletContext();
-    // ÅäÖÃÎªWEBÓ¦ÓÃ
+    // é…ç½®ä¸ºWEBåº”ç”¨
     WebContext.isWebApp = true;
     WebContext.REAL_PATH = ctx.getRealPath("");
     WebContext.CONTEXT_PATH = ctx.getContextPath();
-    // ³õÊ¼»¯¹¤³§
+    // åˆå§‹åŒ–å·¥å‚
     Factory.initWebApp(ctx.getRealPath("/WEB-INF/classes"));
-    // WEBÅäÖÃ½Ó¿Ú³õÊ¼»¯
+    // WEBé…ç½®æ¥å£åˆå§‹åŒ–
     config = Factory.getCaller().newInstance(IWebConfig.class);
-    // ÅäÖÃ³õÊ¼»¯
+    // é…ç½®åˆå§‹åŒ–
     config.init();
     ctx.setAttribute(config.getAppRootTag(),WebContext.CONTEXT_PATH);
     if(null!=config.getGlobalVars()){

@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.custom.mongo;
+ï»¿package nc.liat6.frame.db.custom.mongo;
 
 import java.sql.Connection;
 import nc.liat6.frame.db.connection.SuperConnection;
@@ -7,7 +7,7 @@ import nc.liat6.frame.locale.L;
 import com.mongodb.DB;
 
 /**
- * MONGOÊı¾İ¿âÁ¬½Ó
+ * MONGOæ•°æ®åº“è¿æ¥
  * 
  * @author 6tail
  * 

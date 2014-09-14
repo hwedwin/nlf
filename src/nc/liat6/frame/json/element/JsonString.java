@@ -1,9 +1,9 @@
-package nc.liat6.frame.json.element;
+ï»¿package nc.liat6.frame.json.element;
 
 import java.math.BigDecimal;
 
 /**
- * JSON×Ö·û´®ÀàÐÍ½Úµã
+ * JSONå­—ç¬¦ä¸²ç±»åž‹èŠ‚ç‚¹
  * 
  * @author 6tail
  * 

@@ -1,4 +1,4 @@
-package nc.liat6.frame.web.upload.impl;
+ï»¿package nc.liat6.frame.web.upload.impl;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -21,12 +21,12 @@ import nc.liat6.frame.web.upload.IParser;
 import nc.liat6.frame.web.upload.bean.UploadRule;
 
 /**
- * Í¨¹ı´ÅÅÌ»º´æµÄÎÄ¼şÉÏ´«½âÎöÆ÷
+ * é€šè¿‡ç£ç›˜ç¼“å­˜çš„æ–‡ä»¶ä¸Šä¼ è§£æå™¨
  * <p>
- * Ö»ÊµÏÖÁËµ¥¸öÎÄ¼şµÄÉÏ´«£¬¶àÓàµÄÎÄ¼ş»á±»ºöÂÔ¡£
+ * åªå®ç°äº†å•ä¸ªæ–‡ä»¶çš„ä¸Šä¼ ï¼Œå¤šä½™çš„æ–‡ä»¶ä¼šè¢«å¿½ç•¥ã€‚
  * </p>
  * <p>
- * ÓÉÓÚÖ»»ñÈ¡µ½Õû¸öÇëÇóµÄbody×Ü´óĞ¡£¬ËùÒÔÎÄ¼şµÄÉÏ´«½ø¶ÈµÄÊıÖµ²¢²»ÊÇ´¿´âÎÄ¼şµÄ´óĞ¡¡£
+ * ç”±äºåªè·å–åˆ°æ•´ä¸ªè¯·æ±‚çš„bodyæ€»å¤§å°ï¼Œæ‰€ä»¥æ–‡ä»¶çš„ä¸Šä¼ è¿›åº¦çš„æ•°å€¼å¹¶ä¸æ˜¯çº¯ç²¹æ–‡ä»¶çš„å¤§å°ã€‚
  * </p>
  * 
  * @author 6tail
@@ -34,33 +34,33 @@ import nc.liat6.frame.web.upload.bean.UploadRule;
  */
 public class UploadParser implements IParser{
 
-  /** »Ø³µ */
+  /** å›è½¦ */
   public static final byte CR = 0x0D;
-  /** »»ĞĞ */
+  /** æ¢è¡Œ */
   public static final byte LF = 0x0A;
   /** - */
   public static final byte DASH = 0x2D;
-  /** »º³åÇø´óĞ¡ */
+  /** ç¼“å†²åŒºå¤§å° */
   public static final int BUFFER_SIZE = 20480;
-  /** Í·²¿·Ö¸ô */
+  /** å¤´éƒ¨åˆ†éš” */
   public static final byte[] HEADER_SEPARATOR = {CR,LF,CR,LF};
-  /** ¿é·Ö¸ô */
+  /** å—åˆ†éš” */
   protected static final byte[] FIELD_SEPARATOR = {CR,LF};
-  /** boundaryÇ°×º */
+  /** boundaryå‰ç¼€ */
   public static final byte[] BOUNDARY_PREFIX = {CR,LF,DASH,DASH};
-  /** ÁÙÊ±ÎÄ¼şÄ¿Â¼ */
+  /** ä¸´æ—¶æ–‡ä»¶ç›®å½• */
   public static final String TEMP_DIR = System.getProperty("java.io.tmpdir");
   public static final String BOUNDARY_TAG = "boundary=";
   public static final String FILE_TAG = "filename=\"";
-  /** µ±Ç°×Ö½Ú */
+  /** å½“å‰å­—èŠ‚ */
   private int c;
-  /** ÉÏ´«½ø¶È¼àÌı£¬ÒòÔİÊ±Ã»ÓĞºÃµÄ°ì·¨»ñÈ¡ÎÄ¼ş´óĞ¡£¬¹Ê²»ÊÇºÜ×¼È· */
+  /** ä¸Šä¼ è¿›åº¦ç›‘å¬ï¼Œå› æš‚æ—¶æ²¡æœ‰å¥½çš„åŠæ³•è·å–æ–‡ä»¶å¤§å°ï¼Œæ•…ä¸æ˜¯å¾ˆå‡†ç¡® */
   private IProgressListener listener;
   private HttpServletRequest request;
   private ServletInputStream reader;
 
   /**
-   * »ñÈ¡boundary
+   * è·å–boundary
    * 
    * @return boundary
    */
@@ -79,17 +79,17 @@ public class UploadParser implements IParser{
   }
 
   /**
-   * ¶ÁÈ¡ÏÂÒ»×Ö½Ú
+   * è¯»å–ä¸‹ä¸€å­—èŠ‚
    */
   private void next() throws IOException{
     c = reader.read();
   }
 
   /**
-   * ¶ÁÈ¡£¬Ö±µ½Óöµ½½áÊø±êÊ¶µÄ×Ö½ÚÊı×é
+   * è¯»å–ï¼Œç›´åˆ°é‡åˆ°ç»“æŸæ ‡è¯†çš„å­—èŠ‚æ•°ç»„
    * 
-   * @param endTags ½áÊø±êÊ¶µÄ×Ö½ÚÊı×é
-   * @return ÒÑ¶ÁÈ¡µÄ×Ö½ÚÊı×é
+   * @param endTags ç»“æŸæ ‡è¯†çš„å­—èŠ‚æ•°ç»„
+   * @return å·²è¯»å–çš„å­—èŠ‚æ•°ç»„
    * @throws IOException
    */
   private byte[] readUntil(byte[] endTags) throws IOException{
@@ -113,10 +113,10 @@ public class UploadParser implements IParser{
   }
 
   /**
-   * Ìø¹ı£¬Ö±µ½Óöµ½½áÊø±êÊ¶µÄ×Ö½ÚÊı×é
+   * è·³è¿‡ï¼Œç›´åˆ°é‡åˆ°ç»“æŸæ ‡è¯†çš„å­—èŠ‚æ•°ç»„
    * 
-   * @param endTags ½áÊø±êÊ¶µÄ×Ö½ÚÊı×é
-   * @return l Ìø¹ıµÄ×Ü×Ö½ÚÊı
+   * @param endTags ç»“æŸæ ‡è¯†çš„å­—èŠ‚æ•°ç»„
+   * @return l è·³è¿‡çš„æ€»å­—èŠ‚æ•°
    * @throws IOException
    */
   private int skipUntil(byte[] endTags) throws IOException{
@@ -139,35 +139,35 @@ public class UploadParser implements IParser{
 
   public UploadedFile parseRequest(HttpServletRequest request,UploadRule rule){
     this.request = request;
-    // »ñÈ¡boundary
+    // è·å–boundary
     String boundary = getBoundary();
     if(null==boundary){
       return null;
     }
     byte[] boundaryBytes = boundary.getBytes();
-    // ×ÜµÄÊı¾İbody´óĞ¡
+    // æ€»çš„æ•°æ®bodyå¤§å°
     int total = request.getContentLength();
     if(rule.getMaxSize()>-1){
       if(total>rule.getMaxSize()){
         throw new BadUploadException(L.get("upload.max_size")+(rule.getMaxSize()*100/1024/100D)+"KB");
       }
     }
-    // ÒÑÉÏ´«×Ö½ÚÊı
+    // å·²ä¸Šä¼ å­—èŠ‚æ•°
     int uploaded = 0;
-    // ÊÇ·ñÊÇÎÄ¼ş¿é
+    // æ˜¯å¦æ˜¯æ–‡ä»¶å—
     boolean fileField = false;
     listener.update(uploaded,total);
     UploadedFile uf = new UploadedFile();
     try{
       reader = request.getInputStream();
       while(!fileField){
-        // »ñÈ¡Ã¿¿éµÄÍ·²¿ĞÅÏ¢
+        // è·å–æ¯å—çš„å¤´éƒ¨ä¿¡æ¯
         byte[] headBytes = readUntil(HEADER_SEPARATOR);
         uploaded += headBytes.length;
-        // °´ĞĞ·Ö¸ô
+        // æŒ‰è¡Œåˆ†éš”
         String[] heads = new String(headBytes,Statics.ENCODE).split("\r\n");
         for(String s:heads){
-          // ÎÄ¼şÅĞ¶Ï
+          // æ–‡ä»¶åˆ¤æ–­
           if(s.contains(FILE_TAG)){
             fileField = true;
             String fileName = Stringer.cut(s,FILE_TAG,"\"");
@@ -193,12 +193,12 @@ public class UploadParser implements IParser{
             uf.setContentType(Stringer.cut(s,":").trim());
           }
         }
-        // Ìø¹ı·ÇÎÄ¼ş¿é£¬ÒÔºó¿ÉĞŞ¸Ä£¬´¦Àí´«µİµÄ²ÎÊı
+        // è·³è¿‡éæ–‡ä»¶å—ï¼Œä»¥åå¯ä¿®æ”¹ï¼Œå¤„ç†ä¼ é€’çš„å‚æ•°
         if(!fileField){
           uploaded += skipUntil(FIELD_SEPARATOR);
         }
       }
-      // ½áÊø½âÎöµÄ±êÊ¶
+      // ç»“æŸè§£æçš„æ ‡è¯†
       byte[] endBytes = Mather.merge(BOUNDARY_PREFIX,boundaryBytes);
       ByteArray array = new ByteArray();
       short count = 0;
@@ -233,7 +233,7 @@ public class UploadParser implements IParser{
       bos.flush();
       bos.close();
       uf.setSize(tempFile.length());
-      // ÉÏ´«Íê³É£¬½ø¶ÈĞŞÕı
+      // ä¸Šä¼ å®Œæˆï¼Œè¿›åº¦ä¿®æ­£
       listener.update(total,total);
       uf.setInputStream(new FileInputStream(tempFile));
     }catch(IOException e){

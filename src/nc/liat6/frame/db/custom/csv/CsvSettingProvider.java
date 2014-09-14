@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.custom.csv;
+锘縫ackage nc.liat6.frame.db.custom.csv;
 
 import nc.liat6.frame.Factory;
 import nc.liat6.frame.db.config.DbConfig;
@@ -8,7 +8,7 @@ import nc.liat6.frame.db.setting.IDbSetting;
 import nc.liat6.frame.db.setting.IDbSettingProvider;
 
 /**
- * CSV数据库设置提供器
+ * CSV鏁版嵁搴撹缃彁渚涘櫒
  * 
  * @author 6tail
  * 

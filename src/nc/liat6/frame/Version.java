@@ -1,14 +1,14 @@
-package nc.liat6.frame;
+ï»¿package nc.liat6.frame;
 
 /**
- * ¿ò¼Ü°æ±¾ĞÅÏ¢
+ * æ¡†æ¶ç‰ˆæœ¬ä¿¡æ¯
  * 
  * @author 6tail
  */
 public class Version{
 
-  /** ¿ò¼Ü°æ±¾ºÅ */
+  /** æ¡†æ¶ç‰ˆæœ¬å· */
   public static final String version = "1.2.3";
-  /** ¿ò¼Ü°üÃû */
+  /** æ¡†æ¶åŒ…å */
   public static final String PACKAGE = Version.class.getPackage().getName();
 }

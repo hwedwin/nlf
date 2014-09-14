@@ -1,7 +1,7 @@
-package nc.liat6.frame.util;
+ï»¿package nc.liat6.frame.util;
 
 /**
- * ÔËËã¸¨Öú¹¤¾ß
+ * è¿ç®—è¾…åŠ©å·¥å…·
  * 
  * @author 6tail
  * 
@@ -11,10 +11,10 @@ public class Mather{
   private Mather(){}
 
   /**
-   * ÕûĞÍ×ª4Î»byte
+   * æ•´å‹è½¬4ä½byte
    * 
-   * @param value ÕûĞÍÊı×Ö
-   * @return 4Î»byte
+   * @param value æ•´å‹æ•°å­—
+   * @return 4ä½byte
    */
   public static byte[] toByte(int value){
     byte[] b = new byte[4];
@@ -26,21 +26,21 @@ public class Mather{
   }
 
   /**
-   * 4Î»byte×ªÕûĞÍ
+   * 4ä½byteè½¬æ•´å‹
    * 
-   * @param b 4Î»byte
-   * @return ÕûĞÍ
+   * @param b 4ä½byte
+   * @return æ•´å‹
    */
   public static int toInt(byte[] b){
     return (b[0]<<24)+((b[1]&0xFF)<<16)+((b[2]&0xFF)<<8)+(b[3]&0xFF);
   }
 
   /**
-   * Á½¸öbyteÊı×é¶Ô½Ó
+   * ä¸¤ä¸ªbyteæ•°ç»„å¯¹æ¥
    * 
-   * @param a Ç°
-   * @param b ºó
-   * @return ¶Ô½ÓºóµÄÊı×é
+   * @param a å‰
+   * @param b å
+   * @return å¯¹æ¥åçš„æ•°ç»„
    */
   public static byte[] merge(byte[] a,byte[] b){
     byte[] t = new byte[a.length+b.length];
@@ -50,12 +50,12 @@ public class Mather{
   }
 
   /**
-   * »ñÈ¡Ò»¸öbyteÊı×éµÄÒ»²¿·Ö
+   * è·å–ä¸€ä¸ªbyteæ•°ç»„çš„ä¸€éƒ¨åˆ†
    * 
-   * @param src Ô´Êı×é
-   * @param from ¿ªÊ¼µã£¬´Ó0¿ªÊ¼¼ÆËã
-   * @param to ½áÊøµã£¬´Ó0¿ªÊ¼¼ÆËã
-   * @return byteÊı×é
+   * @param src æºæ•°ç»„
+   * @param from å¼€å§‹ç‚¹ï¼Œä»0å¼€å§‹è®¡ç®—
+   * @param to ç»“æŸç‚¹ï¼Œä»0å¼€å§‹è®¡ç®—
+   * @return byteæ•°ç»„
    */
   public static byte[] sub(byte[] src,int from,int to){
     byte[] t = new byte[to-from+1];

@@ -1,11 +1,11 @@
-package nc.liat6.frame.db.plugin.impl;
+ï»¿package nc.liat6.frame.db.plugin.impl;
 
 import nc.liat6.frame.db.plugin.ICounter;
 import nc.liat6.frame.db.plugin.ISelecter;
 import nc.liat6.frame.db.sql.ITemplate;
 
 /**
- * Í¨ÓÃ¼ÆÊýÆ÷
+ * é€šç”¨è®¡æ•°å™¨
  * 
  * @author 6tail
  * 

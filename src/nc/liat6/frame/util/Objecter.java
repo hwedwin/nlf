@@ -1,4 +1,4 @@
-package nc.liat6.frame.util;
+ï»¿package nc.liat6.frame.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -10,9 +10,9 @@ import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 /**
- * ¶ÔÏó¹¤¾ß
+ * å¯¹è±¡å·¥å…·
  * 
- * @author ÁùÌØ¶û
+ * @author å…­ç‰¹å°”
  * 
  */
 public class Objecter{
@@ -20,10 +20,10 @@ public class Objecter{
   private Objecter(){}
 
   /**
-   * ½«¶ÔÏóĞòÁĞ»¯²¢Ñ¹Ëõ±àÂëÎª×Ö·û´®
+   * å°†å¯¹è±¡åºåˆ—åŒ–å¹¶å‹ç¼©ç¼–ç ä¸ºå­—ç¬¦ä¸²
    * 
-   * @param o ¶ÔÏó
-   * @return ×Ö·û´®
+   * @param o å¯¹è±¡
+   * @return å­—ç¬¦ä¸²
    * @throws IOException
    */
   public synchronized static String encode(Object o) throws IOException{
@@ -57,10 +57,10 @@ public class Objecter{
   }
 
   /**
-   * ½«×Ö·û´®½âÑ¹Ëõ²¢½âÂë×ª»»Îª¶ÔÏó
+   * å°†å­—ç¬¦ä¸²è§£å‹ç¼©å¹¶è§£ç è½¬æ¢ä¸ºå¯¹è±¡
    * 
-   * @param s ×Ö·û´®
-   * @return ¶ÔÏó
+   * @param s å­—ç¬¦ä¸²
+   * @return å¯¹è±¡
    * @throws IOException
    * @throws ClassNotFoundException
    */

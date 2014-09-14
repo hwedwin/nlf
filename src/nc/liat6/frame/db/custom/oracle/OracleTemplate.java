@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.custom.oracle;
+锘縫ackage nc.liat6.frame.db.custom.oracle;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +18,7 @@ import nc.liat6.frame.paging.PageData;
 import nc.liat6.frame.util.Stringer;
 
 /**
- * SQL执行模板的Oracle实现
+ * SQL鎵ц妯℃澘鐨凮racle瀹炵幇
  * @author 6tail
  *
  */

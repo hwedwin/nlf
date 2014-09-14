@@ -1,4 +1,4 @@
-package nc.liat6.frame.proxy.impl;
+ï»¿package nc.liat6.frame.proxy.impl;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -10,16 +10,16 @@ import nc.liat6.frame.exception.NlfException;
 import nc.liat6.frame.proxy.IProxy;
 
 /**
- * JDK¶¯Ì¬´úÀí
+ * JDKåŠ¨æ€ä»£ç†
  * 
  * @author 6tail
  * 
  */
 public class ReflectProxy implements IProxy,InvocationHandler{
 
-  /** Ô­Ê¼¶ÔÏó */
+  /** åŸå§‹å¯¹è±¡ */
   private Object oBean;
-  /** AOPÀ¹½ØÆ÷ÁĞ±í */
+  /** AOPæ‹¦æˆªå™¨åˆ—è¡¨ */
   private List<IAopInterceptor> ais = new ArrayList<IAopInterceptor>();
 
   @SuppressWarnings("unchecked")
@@ -34,9 +34,9 @@ public class ReflectProxy implements IProxy,InvocationHandler{
   }
 
   /**
-   * »ñÈ¡Ô­Ê¼¶ÔÏó
+   * è·å–åŸå§‹å¯¹è±¡
    * 
-   * @return Ô­Ê¼¶ÔÏó
+   * @return åŸå§‹å¯¹è±¡
    */
   @SuppressWarnings("unchecked")
   public <T>T getOBean(){
@@ -44,7 +44,7 @@ public class ReflectProxy implements IProxy,InvocationHandler{
   }
 
   /**
-   * Ìí¼ÓAOPÀ¹½ØÆ÷
+   * æ·»åŠ AOPæ‹¦æˆªå™¨
    * 
    * @param ai
    */

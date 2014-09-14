@@ -1,7 +1,7 @@
-package nc.liat6.frame.db.custom.oracle;
+﻿package nc.liat6.frame.db.custom.oracle;
 
 /**
- * Oracle�ӿ�
+ * Oracle接口
  * @author 6tail
  *
  */

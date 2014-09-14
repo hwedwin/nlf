@@ -1,10 +1,10 @@
-package nc.liat6.frame.util;
+ï»¿package nc.liat6.frame.util;
 
 import java.lang.reflect.Method;
 import nc.liat6.frame.exception.NlfException;
 
 /**
- * ·´Éä¹¤¾ß
+ * åå°„å·¥å…·
  * 
  * @author 6tail
  * 
@@ -14,10 +14,10 @@ public class Reflector{
   private Reflector(){}
 
   /**
-   * »ñÈ¡ÀàµÄÊµÀı
+   * è·å–ç±»çš„å®ä¾‹
    * 
-   * @param klass ÀàÃû
-   * @return ÊµÀı¶ÔÏó
+   * @param klass ç±»å
+   * @return å®ä¾‹å¯¹è±¡
    */
   public static Object newInstance(String klass){
     try{
@@ -29,10 +29,10 @@ public class Reflector{
   }
 
   /**
-   * »ñÈ¡ÀàµÄÊµÀı
+   * è·å–ç±»çš„å®ä¾‹
    * 
-   * @param o Àà
-   * @return ÊµÀı¶ÔÏó
+   * @param o ç±»
+   * @return å®ä¾‹å¯¹è±¡
    */
   public static Object newInstance(Class<?> o){
     try{
@@ -43,13 +43,13 @@ public class Reflector{
   }
 
   /**
-   * Ö´ĞĞ·½·¨
+   * æ‰§è¡Œæ–¹æ³•
    * 
-   * @param o ¶ÔÏó
-   * @param method ·½·¨Ãû
-   * @param types ²ÎÊıÀàĞÍ
-   * @param args ²ÎÊıÖµ
-   * @return Ö´ĞĞ½á¹û
+   * @param o å¯¹è±¡
+   * @param method æ–¹æ³•å
+   * @param types å‚æ•°ç±»å‹
+   * @param args å‚æ•°å€¼
+   * @return æ‰§è¡Œç»“æœ
    */
   public static Object execute(Object o,String method,Class<?>[] types,Object[] args){
     try{
@@ -62,14 +62,14 @@ public class Reflector{
   }
 
   /**
-   * Ö´ĞĞ·½·¨
+   * æ‰§è¡Œæ–¹æ³•
    * 
-   * @param klass ÀàÃû
-   * @param method ·½·¨Ãû
-   * @param types ²ÎÊıÀàĞÍ
-   * @param args ²ÎÊıÖµ
-   * @param isStatic ÊÇ·ñ¾²Ì¬µ÷ÓÃ
-   * @return ·µ»Ø½á¹û
+   * @param klass ç±»å
+   * @param method æ–¹æ³•å
+   * @param types å‚æ•°ç±»å‹
+   * @param args å‚æ•°å€¼
+   * @param isStatic æ˜¯å¦é™æ€è°ƒç”¨
+   * @return è¿”å›ç»“æœ
    */
   private static Object execute(String klass,String method,Class<?>[] types,Object[] args,boolean isStatic){
     try{
@@ -81,14 +81,14 @@ public class Reflector{
   }
 
   /**
-   * Ö´ĞĞ·½·¨
+   * æ‰§è¡Œæ–¹æ³•
    * 
-   * @param klass Àà
-   * @param method ·½·¨Ãû
-   * @param types ²ÎÊıÀàĞÍ
-   * @param args ²ÎÊıÖµ
-   * @param isStatic ÊÇ·ñ¾²Ì¬µ÷ÓÃ
-   * @return ·µ»Ø½á¹û
+   * @param klass ç±»
+   * @param method æ–¹æ³•å
+   * @param types å‚æ•°ç±»å‹
+   * @param args å‚æ•°å€¼
+   * @param isStatic æ˜¯å¦é™æ€è°ƒç”¨
+   * @return è¿”å›ç»“æœ
    */
   private static Object execute(Class<?> klass,String method,Class<?>[] types,Object[] args,boolean isStatic){
     try{
@@ -100,85 +100,85 @@ public class Reflector{
   }
 
   /**
-   * µ÷ÓÃ·Ç¾²Ì¬·½·¨
+   * è°ƒç”¨éé™æ€æ–¹æ³•
    * 
-   * @param klass ÀàÃû
-   * @param method ·½·¨Ãû
-   * @param types ²ÎÊıÀàĞÍ
-   * @param args ²ÎÊıÖµ
-   * @return ·µ»Ø½á¹û
+   * @param klass ç±»å
+   * @param method æ–¹æ³•å
+   * @param types å‚æ•°ç±»å‹
+   * @param args å‚æ•°å€¼
+   * @return è¿”å›ç»“æœ
    */
   public static Object execute(String klass,String method,Class<?>[] types,Object[] args){
     return execute(klass,method,types,args,false);
   }
 
   /**
-   * µ÷ÓÃ·Ç¾²Ì¬·½·¨
+   * è°ƒç”¨éé™æ€æ–¹æ³•
    * 
-   * @param klass Àà
-   * @param method ·½·¨Ãû
-   * @param types ²ÎÊıÀàĞÍ
-   * @param args ²ÎÊıÖµ
-   * @return ·µ»Ø½á¹û
+   * @param klass ç±»
+   * @param method æ–¹æ³•å
+   * @param types å‚æ•°ç±»å‹
+   * @param args å‚æ•°å€¼
+   * @return è¿”å›ç»“æœ
    */
   public static Object execute(Class<?> klass,String method,Class<?>[] types,Object[] args){
     return execute(klass,method,types,args,false);
   }
 
   /**
-   * µ÷ÓÃ¾²Ì¬·½·¨
+   * è°ƒç”¨é™æ€æ–¹æ³•
    * 
-   * @param klass ÀàÃû
-   * @param method ·½·¨Ãû
-   * @param types ²ÎÊıÀàĞÍ
-   * @param args ²ÎÊıÖµ
-   * @return ·µ»Ø½á¹û
+   * @param klass ç±»å
+   * @param method æ–¹æ³•å
+   * @param types å‚æ•°ç±»å‹
+   * @param args å‚æ•°å€¼
+   * @return è¿”å›ç»“æœ
    */
   public static Object executeStatic(String klass,String method,Class<?>[] types,Object[] args){
     return execute(klass,method,types,args,true);
   }
 
   /**
-   * µ÷ÓÃ¾²Ì¬·½·¨
+   * è°ƒç”¨é™æ€æ–¹æ³•
    * 
-   * @param klass Àà
-   * @param method ·½·¨Ãû
-   * @param types ²ÎÊıÀàĞÍ
-   * @param args ²ÎÊıÖµ
-   * @return ·µ»Ø½á¹û
+   * @param klass ç±»
+   * @param method æ–¹æ³•å
+   * @param types å‚æ•°ç±»å‹
+   * @param args å‚æ•°å€¼
+   * @return è¿”å›ç»“æœ
    */
   public static Object executeStatic(Class<?> klass,String method,Class<?>[] types,Object[] args){
     return execute(klass,method,types,args,true);
   }
 
   /**
-   * µ÷ÓÃ·Ç¾²Ì¬ÎŞ²Î·½·¨
+   * è°ƒç”¨éé™æ€æ— å‚æ–¹æ³•
    * 
-   * @param klass ÀàÃû
-   * @param method ·½·¨Ãû
-   * @return ½á¹û
+   * @param klass ç±»å
+   * @param method æ–¹æ³•å
+   * @return ç»“æœ
    */
   public static Object execute(String klass,String method){
     return execute(klass,method,new Class[0],new Object[0],false);
   }
 
   /**
-   * µ÷ÓÃ·Ç¾²Ì¬ÎŞ²Î·½·¨
+   * è°ƒç”¨éé™æ€æ— å‚æ–¹æ³•
    * 
-   * @param klass Àà
-   * @param method ·½·¨Ãû
-   * @return ½á¹û
+   * @param klass ç±»
+   * @param method æ–¹æ³•å
+   * @return ç»“æœ
    */
   public static Object execute(Class<?> klass,String method){
     return execute(klass.getName(),method);
   }
 
   /**
-   * µ÷ÓÃÎŞ²Î·½·¨
+   * è°ƒç”¨æ— å‚æ–¹æ³•
    * 
-   * @param o ¶ÔÏó
-   * @param method ·½·¨Ãû
-   * @return ½á¹û
+   * @param o å¯¹è±¡
+   * @param method æ–¹æ³•å
+   * @return ç»“æœ
    */
   public static Object execute(Object o,String method){
     return execute(o,method,new Class[0],new Object[0]);

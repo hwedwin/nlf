@@ -1,4 +1,4 @@
-package nc.liat6.frame.xml;
+ï»¿package nc.liat6.frame.xml;
 
 import nc.liat6.frame.xml.element.IXmlElement;
 import nc.liat6.frame.xml.parser.BeanParser;
@@ -6,12 +6,12 @@ import nc.liat6.frame.xml.parser.XMLParser;
 import nc.liat6.frame.xml.wrapper.XMLWrapper;
 
 /**
- * XML×ª»»Æ÷£¬Ä¬ÈÏ¿ªÆôÑÏ¸ñÄ£Ê½
+ * XMLè½¬æ¢å™¨ï¼Œé»˜è®¤å¼€å¯ä¸¥æ ¼æ¨¡å¼
  * <p>
- * ×ª»»»á×ñÑ­ÒÔÏÂÔ¼¶¨£º
+ * è½¬æ¢ä¼šéµå¾ªä»¥ä¸‹çº¦å®šï¼š
  * <ul>
- * <li>¿ªÆôÑÏ¸ñÄ£Ê½ºó£¬×Ó½ÚµãÎªÊôĞÔµÄ£¬¸¸½ÚµãÉèÖÃtype="bean"ÊôĞÔ¡£</li>
- * <li>×Ó½ÚµãÎªÊı×éµÄ£¬¸¸½Úµã±ØĞëÉèÖÃtype="list"ÊôĞÔ¡£</li>
+ * <li>å¼€å¯ä¸¥æ ¼æ¨¡å¼åï¼Œå­èŠ‚ç‚¹ä¸ºå±æ€§çš„ï¼Œçˆ¶èŠ‚ç‚¹è®¾ç½®type="bean"å±æ€§ã€‚</li>
+ * <li>å­èŠ‚ç‚¹ä¸ºæ•°ç»„çš„ï¼Œçˆ¶èŠ‚ç‚¹å¿…é¡»è®¾ç½®type="list"å±æ€§ã€‚</li>
  * </ul>
  * </p>
  * 
@@ -20,62 +20,62 @@ import nc.liat6.frame.xml.wrapper.XMLWrapper;
  */
 public class XML{
 
-  /** Ä¬ÈÏ¸ù½Úµã */
+  /** é»˜è®¤æ ¹èŠ‚ç‚¹ */
   public static final String DEFAULT_ROOT_TAG = "data";
-  /** ¿ÉÉèÖÃµÄÈ«¾Ö¸ù½Úµã */
+  /** å¯è®¾ç½®çš„å…¨å±€æ ¹èŠ‚ç‚¹ */
   public static String ROOT_TAG = DEFAULT_ROOT_TAG;
-  /** ÊÇ·ñ¼«¼ò£¨²»Ëõ½ø²»»»ĞĞ£©µÄÄ¬ÈÏÉèÖÃ */
+  /** æ˜¯å¦æç®€ï¼ˆä¸ç¼©è¿›ä¸æ¢è¡Œï¼‰çš„é»˜è®¤è®¾ç½® */
   public static final boolean DEFAULT_TINY = true;
-  /** ÊÇ·ñ¼«¼ò£¨²»Ëõ½ø²»»»ĞĞ£©µÄÈ«¾ÖÉèÖÃ */
+  /** æ˜¯å¦æç®€ï¼ˆä¸ç¼©è¿›ä¸æ¢è¡Œï¼‰çš„å…¨å±€è®¾ç½® */
   public static boolean TINY = DEFAULT_TINY;
-  /** Ä¬ÈÏ¿ªÆôÑÏ¸ñÄ£Ê½ */
+  /** é»˜è®¤å¼€å¯ä¸¥æ ¼æ¨¡å¼ */
   public static final boolean DEFAULT_STRICT = true;
-  /** ÊÇ·ñ¿ªÆôÑÏ¸ñÄ£Ê½µÄÈ«¾ÖÉèÖÃ */
+  /** æ˜¯å¦å¼€å¯ä¸¥æ ¼æ¨¡å¼çš„å…¨å±€è®¾ç½® */
   public static boolean STRICT = DEFAULT_STRICT;
 
   private XML(){}
 
   /**
-   * ²ÉÓÃÈ«¾Ö¸ù½Úµã£¬½«¶ÔÏó×ª»»ÎªXML×Ö·û´®
+   * é‡‡ç”¨å…¨å±€æ ¹èŠ‚ç‚¹ï¼Œå°†å¯¹è±¡è½¬æ¢ä¸ºXMLå­—ç¬¦ä¸²
    * 
-   * @param o ¶ÔÏó
-   * @return XML×Ö·û´®
+   * @param o å¯¹è±¡
+   * @return XMLå­—ç¬¦ä¸²
    */
   public static String toXML(Object o){
     return toXML(o,TINY);
   }
 
   /**
-   * ²ÉÓÃÈ«¾Ö¸ù½Úµã£¬½«¶ÔÏó×ª»»ÎªXML×Ö·û´®
+   * é‡‡ç”¨å…¨å±€æ ¹èŠ‚ç‚¹ï¼Œå°†å¯¹è±¡è½¬æ¢ä¸ºXMLå­—ç¬¦ä¸²
    * 
-   * @param o ¶ÔÏó
-   * @param tiny ÊÇ·ñÊÇ¼«¼ò£¨²»Ëõ½ø²»»»ĞĞ£©
-   * @return XML×Ö·û´®
+   * @param o å¯¹è±¡
+   * @param tiny æ˜¯å¦æ˜¯æç®€ï¼ˆä¸ç¼©è¿›ä¸æ¢è¡Œï¼‰
+   * @return XMLå­—ç¬¦ä¸²
    */
   public static String toXML(Object o,boolean tiny){
     return toXML(o,tiny,ROOT_TAG);
   }
 
   /**
-   * ½«¶ÔÏó×ª»»ÎªXML×Ö·û´®
+   * å°†å¯¹è±¡è½¬æ¢ä¸ºXMLå­—ç¬¦ä¸²
    * 
-   * @param o ¶ÔÏó
-   * @param tiny ÊÇ·ñÊÇ¼«¼ò£¨²»Ëõ½ø²»»»ĞĞ£©
-   * @param rootTag ×Ô¶¨Òå¸ù½Úµã
-   * @return XML×Ö·û´®
+   * @param o å¯¹è±¡
+   * @param tiny æ˜¯å¦æ˜¯æç®€ï¼ˆä¸ç¼©è¿›ä¸æ¢è¡Œï¼‰
+   * @param rootTag è‡ªå®šä¹‰æ ¹èŠ‚ç‚¹
+   * @return XMLå­—ç¬¦ä¸²
    */
   public static String toXML(Object o,boolean tiny,String rootTag){
     return toXML(o,tiny,rootTag,STRICT);
   }
 
   /**
-   * ½«¶ÔÏó×ª»»ÎªXML×Ö·û´®
+   * å°†å¯¹è±¡è½¬æ¢ä¸ºXMLå­—ç¬¦ä¸²
    * 
-   * @param o ¶ÔÏó
-   * @param tiny ÊÇ·ñÊÇ¼«¼ò£¨²»Ëõ½ø²»»»ĞĞ£©
-   * @param rootTag ×Ô¶¨Òå¸ù½Úµã
-   * @param strict ÊÇ·ñ¿ªÆôÑÏ¸ñÄ£Ê½£¬¿ªÆôºó·ÇÊı×é¸¸½ÚµãÇ¿ÖÆÌí¼Ótype="bean"ÊôĞÔ
-   * @return XML×Ö·û´®
+   * @param o å¯¹è±¡
+   * @param tiny æ˜¯å¦æ˜¯æç®€ï¼ˆä¸ç¼©è¿›ä¸æ¢è¡Œï¼‰
+   * @param rootTag è‡ªå®šä¹‰æ ¹èŠ‚ç‚¹
+   * @param strict æ˜¯å¦å¼€å¯ä¸¥æ ¼æ¨¡å¼ï¼Œå¼€å¯åéæ•°ç»„çˆ¶èŠ‚ç‚¹å¼ºåˆ¶æ·»åŠ type="bean"å±æ€§
+   * @return XMLå­—ç¬¦ä¸²
    */
   public static String toXML(Object o,boolean tiny,String rootTag,boolean strict){
     StringBuilder s = new StringBuilder();
@@ -88,27 +88,27 @@ public class XML{
   }
 
   /**
-   * ½«XML×Ö·û´®×ª»»Îª¶ÔÏó£¬¿ÉÄÜ»á¶ªÊ§½ÚµãÊôĞÔºÍ²¿·Ö×¢ÊÍ
+   * å°†XMLå­—ç¬¦ä¸²è½¬æ¢ä¸ºå¯¹è±¡ï¼Œå¯èƒ½ä¼šä¸¢å¤±èŠ‚ç‚¹å±æ€§å’Œéƒ¨åˆ†æ³¨é‡Š
    * 
-   * @param s XML×Ö·û´®
-   * @return ¶ÔÏó
+   * @param s XMLå­—ç¬¦ä¸²
+   * @return å¯¹è±¡
    */
   public static <T>T toBean(String s){
     return toBean(fromXML(s));
   }
 
   /**
-   * ½«XML×ª»»ÎªÍ¨ÓÃ·â×°
+   * å°†XMLè½¬æ¢ä¸ºé€šç”¨å°è£…
    * 
-   * @param s XML×Ö·û´®
-   * @return ¶ÔÏó
+   * @param s XMLå­—ç¬¦ä¸²
+   * @return å¯¹è±¡
    */
   public static IXmlElement fromXML(String s){
     return new XMLParser().parse(s);
   }
 
   /**
-   * ½«XMLÍ¨ÓÃ·â×°×ª»»Îª¶ÔÏó£¬¿ÉÄÜ»á¶ªÊ§½ÚµãÊôĞÔºÍ²¿·Ö×¢ÊÍ
+   * å°†XMLé€šç”¨å°è£…è½¬æ¢ä¸ºå¯¹è±¡ï¼Œå¯èƒ½ä¼šä¸¢å¤±èŠ‚ç‚¹å±æ€§å’Œéƒ¨åˆ†æ³¨é‡Š
    * 
    * @param xe
    * @return

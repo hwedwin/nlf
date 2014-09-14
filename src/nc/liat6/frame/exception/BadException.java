@@ -1,9 +1,9 @@
-package nc.liat6.frame.exception;
+ï»¿package nc.liat6.frame.exception;
 
 import nc.liat6.frame.locale.L;
 
 /**
- * ¿ÉºöÂÔÒì³£
+ * å¯å¿½ç•¥å¼‚å¸¸
  * 
  * @author 6tail
  * 

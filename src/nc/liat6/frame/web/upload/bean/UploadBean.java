@@ -1,69 +1,69 @@
-package nc.liat6.frame.web.upload.bean;
+ï»¿package nc.liat6.frame.web.upload.bean;
 
 /**
- * ÉÏ´«ÎÄ¼ş×´Ì¬·â×°
+ * ä¸Šä¼ æ–‡ä»¶çŠ¶æ€å°è£…
  * 
  * @author 6tail
  * 
  */
 public class UploadBean{
 
-  /** ÎÄ¼ş±êÊ¶ */
+  /** æ–‡ä»¶æ ‡è¯† */
   private String id;
-  /** ÒÑÉÏ´«×Ö½ÚÊı */
+  /** å·²ä¸Šä¼ å­—èŠ‚æ•° */
   private long uploaded;
-  /** ×Ü×Ö½ÚÊı */
+  /** æ€»å­—èŠ‚æ•° */
   private long total;
 
   /**
-   * »ñÈ¡ÎÄ¼ş±êÊ¶
+   * è·å–æ–‡ä»¶æ ‡è¯†
    * 
-   * @return Î¨Ò»±êÊ¶
+   * @return å”¯ä¸€æ ‡è¯†
    */
   public String getId(){
     return id;
   }
 
   /**
-   * ÉèÖÃÎÄ¼ş±êÊ¶
+   * è®¾ç½®æ–‡ä»¶æ ‡è¯†
    * 
-   * @param id Î¨Ò»±êÊ¶
+   * @param id å”¯ä¸€æ ‡è¯†
    */
   public void setId(String id){
     this.id = id;
   }
 
   /**
-   * »ñÈ¡ÒÑÉÏ´«×Ö½ÚÊı
+   * è·å–å·²ä¸Šä¼ å­—èŠ‚æ•°
    * 
-   * @return ÒÑÉÏ´«×Ö½ÚÊı
+   * @return å·²ä¸Šä¼ å­—èŠ‚æ•°
    */
   public long getUploaded(){
     return uploaded;
   }
 
   /**
-   * ÉèÖÃÒÑÉÏ´«×Ö½ÚÊı
+   * è®¾ç½®å·²ä¸Šä¼ å­—èŠ‚æ•°
    * 
-   * @param uploaded ÒÑÉÏ´«×Ö½ÚÊı
+   * @param uploaded å·²ä¸Šä¼ å­—èŠ‚æ•°
    */
   public void setUploaded(long uploaded){
     this.uploaded = uploaded;
   }
 
   /**
-   * »ñÈ¡×Ü×Ö½ÚÊı
+   * è·å–æ€»å­—èŠ‚æ•°
    * 
-   * @return ×Ü×Ö½ÚÊı
+   * @return æ€»å­—èŠ‚æ•°
    */
   public long getTotal(){
     return total;
   }
 
   /**
-   * ÉèÖÃ×Ü×Ö½ÚÊı
+   * è®¾ç½®æ€»å­—èŠ‚æ•°
    * 
-   * @param total ×Ü×Ö½ÚÊı
+   * @param total æ€»å­—èŠ‚æ•°
    */
   public void setTotal(long total){
     this.total = total;

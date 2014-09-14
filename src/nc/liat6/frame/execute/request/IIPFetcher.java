@@ -1,7 +1,7 @@
-package nc.liat6.frame.execute.request;
+ï»¿package nc.liat6.frame.execute.request;
 
 /**
- * IP»ñÈ¡½Ó¿Ú
+ * IPè·å–æ¥å£
  * 
  * @author 6tail
  * 
@@ -9,9 +9,9 @@ package nc.liat6.frame.execute.request;
 public interface IIPFetcher{
 
   /**
-   * »ñÈ¡IP
+   * è·å–IP
    * 
-   * @return IP×Ö·û´®
+   * @return IPå­—ç¬¦ä¸²
    */
   public String getIP();
 }

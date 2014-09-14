@@ -1,4 +1,4 @@
-package nc.liat6.frame.web.upload;
+ï»¿package nc.liat6.frame.web.upload;
 
 import javax.servlet.http.HttpServletRequest;
 import nc.liat6.frame.execute.Request;
@@ -9,7 +9,7 @@ import nc.liat6.frame.web.upload.impl.UploadParser;
 import nc.liat6.frame.web.upload.impl.UploadListener;
 
 /**
- * ÎÄ¼şÉÏ´«Æ÷
+ * æ–‡ä»¶ä¸Šä¼ å™¨
  * 
  * @author 6tail
  * 
@@ -17,7 +17,7 @@ import nc.liat6.frame.web.upload.impl.UploadListener;
 public class FileUploader implements IUploader{
 
   public static final String ARG_ID = "NLF_UPLOAD_ID";
-  /** Ô´ÇëÇó */
+  /** æºè¯·æ±‚ */
   private Request request;
 
   public FileUploader(Request request){

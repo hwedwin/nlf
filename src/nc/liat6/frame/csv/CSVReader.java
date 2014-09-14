@@ -1,4 +1,4 @@
-package nc.liat6.frame.csv;
+ï»¿package nc.liat6.frame.csv;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,25 +7,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * CSVÊäÈëÁ÷¶ÁÈ¡
+ * CSVè¾“å…¥æµè¯»å–
  * 
  * @author 6tail
  * 
  */
 public class CSVReader{
 
-  /** »Ø³µ·û */
+  /** å›è½¦ç¬¦ */
   public static String CR = "\r";
-  /** »»ĞĞ·û */
+  /** æ¢è¡Œç¬¦ */
   public static String LF = "\n";
-  /** ÁĞ¼ä¸ô·û */
+  /** åˆ—é—´éš”ç¬¦ */
   public static final String SPACE = ",";
-  /** Ë«ÒıºÅ */
+  /** åŒå¼•å· */
   public static final String QUOTE = "\"";
   private BufferedReader reader;
-  /** »º´æ */
+  /** ç¼“å­˜ */
   private StringBuffer buffer = new StringBuffer();
-  /** ±êÊ¶Êı¾İÄÚÈİÊÇ·ñ°üº¬ÔÚÒıºÅÖ®¼ä */
+  /** æ ‡è¯†æ•°æ®å†…å®¹æ˜¯å¦åŒ…å«åœ¨å¼•å·ä¹‹é—´ */
   private boolean quoted = false;
 
   public CSVReader(InputStreamReader reader){
@@ -42,11 +42,11 @@ public class CSVReader{
   }
 
   /**
-   * °´¼ä¸ô·û²ğ·Ö×Ö·û´®
+   * æŒ‰é—´éš”ç¬¦æ‹†åˆ†å­—ç¬¦ä¸²
    * 
-   * @param s ×Ö·û´®
-   * @param sp ¼ä¸ô·û
-   * @return ²ğ·ÖºóµÄÁĞ±í
+   * @param s å­—ç¬¦ä¸²
+   * @param sp é—´éš”ç¬¦
+   * @return æ‹†åˆ†åçš„åˆ—è¡¨
    */
   private List<String> split(String s,String sp){
     List<String> l = new ArrayList<String>();
@@ -61,10 +61,10 @@ public class CSVReader{
   }
 
   /**
-   * °´ÕÕCSV¸ñÊ½¹æ·¶½«²ğÉ¢µÄ±¾À´ÊÇÒ»ÁĞµÄÊı¾İºÏ²¢
+   * æŒ‰ç…§CSVæ ¼å¼è§„èŒƒå°†æ‹†æ•£çš„æœ¬æ¥æ˜¯ä¸€åˆ—çš„æ•°æ®åˆå¹¶
    * 
-   * @param segs ²ğÉ¢µÄÁĞ
-   * @return ºÏ²¢ºóµÄÁĞ
+   * @param segs æ‹†æ•£çš„åˆ—
+   * @return åˆå¹¶åçš„åˆ—
    */
   private List<String> combin(List<String> segs){
     List<String> l = new ArrayList<String>();
@@ -118,9 +118,9 @@ public class CSVReader{
   }
 
   /**
-   * ¶ÁÈ¡ÏÂÒ»ĞĞ
+   * è¯»å–ä¸‹ä¸€è¡Œ
    * 
-   * @return Ò»ĞĞÊı¾İ£¬Èç¹ûÃ»ÓĞÏÂÒ»ĞĞ£¬·µ»Ønull
+   * @return ä¸€è¡Œæ•°æ®ï¼Œå¦‚æœæ²¡æœ‰ä¸‹ä¸€è¡Œï¼Œè¿”å›null
    * @throws IOException
    */
   public String[] readLine() throws IOException{

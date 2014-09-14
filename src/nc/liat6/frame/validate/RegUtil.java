@@ -1,43 +1,43 @@
-package nc.liat6.frame.validate;
+ï»¿package nc.liat6.frame.validate;
 
 /**
- * ÕıÔò¹¤¾ß
+ * æ­£åˆ™å·¥å…·
  * 
  * @author 6tail
  * 
  */
 public class RegUtil{
 
-  /** 0µ½9µÄÊı×Ö */
+  /** 0åˆ°9çš„æ•°å­— */
   public static final String NUMBER = "^[0-9]*$";
-  /** ÕıÕûÊı */
+  /** æ­£æ•´æ•° */
   public static final String INTEGER_POSITIVE = "^[1-9]\\d*$";
-  /** ¸ºÕûÊı */
+  /** è´Ÿæ•´æ•° */
   public static final String INTEGER_NEGTIVE = "^-[1-9]\\d*$";
-  /** ÕûÊı */
+  /** æ•´æ•° */
   public static final String INTEGER = "^-?[1-9]\\d*$";
-  /** ·Ç¸ºÕûÊı */
+  /** éè´Ÿæ•´æ•° */
   public static final String INTEGER_NOT_NEGTIVE = "^[1-9]\\d*|0$";
-  /** ·ÇÕıÕûÊı */
+  /** éæ­£æ•´æ•° */
   public static final String INTEGER_NOT_POSITIVE = "^-[1-9]\\d*|0$";
-  /** Õı¸¡µãÊı */
+  /** æ­£æµ®ç‚¹æ•° */
   public static final String FLOAT_POSITIVE = "^[1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*$";
-  /** ¸º¸¡µãÊı */
+  /** è´Ÿæµ®ç‚¹æ•° */
   public static final String FLOAT_NEGTIVE = "^-([1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*)$";
-  /** ¸¡µãÊı */
+  /** æµ®ç‚¹æ•° */
   public static final String FLOAT = "^-?([1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*|0?\\.0+|0)$";
-  /** ·Ç¸º¸¡µãÊı */
+  /** éè´Ÿæµ®ç‚¹æ•° */
   public static final String FLOAT_NOT_NEGTIVE = "^[1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*|0?\\.0+|0$";
-  /** ·ÇÕı¸¡µãÊı */
+  /** éæ­£æµ®ç‚¹æ•° */
   public static final String FLOAT_NOT_POSITIVE = "^(-([1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*))|0?\\.0+|0$";
-  /** ×ÖÄ¸ */
+  /** å­—æ¯ */
   public static final String LETTER = "^[A-Za-z]+$";
-  /** ´óĞ´×ÖÄ¸ */
+  /** å¤§å†™å­—æ¯ */
   public static final String LETTER_UPPERCASE = "^[A-Z]+$";
-  /** Ğ¡Ğ´×ÖÄ¸ */
+  /** å°å†™å­—æ¯ */
   public static final String LETTER_LOWERCASE = "^[a-z]+$";
-  /** µç×ÓÓÊ¼ş */
+  /** ç”µå­é‚®ä»¶ */
   public static final String EMAIL = "^\\w+([-+\\.]\\w+)*@\\w+([-\\.]\\w+)*\\.\\w+([-\\.]\\w+)*$";
-  /** ÊÖ»úºÅÂë */
+  /** æ‰‹æœºå·ç  */
   public static final String MOBILE = "^((13[0-9])|(15[^4,\\D])|(18[0-9]))\\d{8}$";
 }

@@ -1,18 +1,18 @@
-package nc.liat6.frame.web.upload.impl;
+锘縫ackage nc.liat6.frame.web.upload.impl;
 
 import nc.liat6.frame.execute.upload.IProgressListener;
 import nc.liat6.frame.web.upload.UploadStatus;
 import nc.liat6.frame.web.upload.bean.UploadBean;
 
 /**
- * 文件上传监听
+ * 鏂囦欢涓婁紶鐩戝惉
  * 
  * @author 6tail
  * 
  */
 public class UploadListener implements IProgressListener{
 
-  /** 文件标识 */
+  /** 鏂囦欢鏍囪瘑 */
   private String id;
 
   public UploadListener(String id){

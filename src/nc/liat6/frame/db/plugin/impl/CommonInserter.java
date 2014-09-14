@@ -1,11 +1,11 @@
-package nc.liat6.frame.db.plugin.impl;
+ï»¿package nc.liat6.frame.db.plugin.impl;
 
 import nc.liat6.frame.db.entity.Bean;
 import nc.liat6.frame.db.plugin.IInserter;
 import nc.liat6.frame.db.plugin.Rule;
 
 /**
- * Í¨ÓÃ²åÈëÆ÷
+ * é€šç”¨æ’å…¥å™¨
  * 
  * @author 6tail
  * 
@@ -18,7 +18,7 @@ public class CommonInserter extends SuperExecuter implements IInserter{
   }
 
   public IInserter set(String column,Object value){
-    // Èç¹ûÓĞÖØ¸´µÄ£¬Ìæ»»Öµ
+    // å¦‚æœæœ‰é‡å¤çš„ï¼Œæ›¿æ¢å€¼
     for(int i = 0;i<cols.size();i++){
       if(cols.get(i).getColumn().equalsIgnoreCase(column)){
         paramCols.set(i,value);
@@ -59,9 +59,9 @@ public class CommonInserter extends SuperExecuter implements IInserter{
   }
 
   public String getSql(){
-    // ÖØÖÃSQL
+    // é‡ç½®SQL
     resetSql();
-    // ÖØĞÂ¹¹Ôì
+    // é‡æ–°æ„é€ 
     sql.append(" INSERT INTO");
     int l = tables.size();
     for(int i = 0;i<l;i++){

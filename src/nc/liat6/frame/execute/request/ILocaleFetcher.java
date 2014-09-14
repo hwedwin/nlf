@@ -1,9 +1,9 @@
-package nc.liat6.frame.execute.request;
+ï»¿package nc.liat6.frame.execute.request;
 
 import java.util.Locale;
 
 /**
- * ¿Í»§¶Ëlocale»ñÈ¡½Ó¿Ú
+ * å®¢æˆ·ç«¯localeè·å–æ¥å£
  * 
  * @author 6tail
  * 
@@ -11,30 +11,30 @@ import java.util.Locale;
 public interface ILocaleFetcher{
 
   /**
-   * »ñÈ¡¿Í»§¶Ëlocale
+   * è·å–å®¢æˆ·ç«¯locale
    * 
    * @return locale
    */
   public Locale getLocale();
 
   /**
-   * »ñÈ¡¿Í»§¶Ëlocale×Ö·û´®
+   * è·å–å®¢æˆ·ç«¯localeå­—ç¬¦ä¸²
    * 
-   * @return locale×Ö·û´®£¬Èçzh-CN
+   * @return localeå­—ç¬¦ä¸²ï¼Œå¦‚zh-CN
    */
   public String getLocaleString();
 
   /**
-   * ÉèÖÃlocale
+   * è®¾ç½®locale
    * 
    * @param locale locale
    */
   public void setLocale(Locale locale);
 
   /**
-   * ÉèÖÃlocale
+   * è®¾ç½®locale
    * 
-   * @param locale locale×Ö·û´®£¬Èçzh-CN
+   * @param locale localeå­—ç¬¦ä¸²ï¼Œå¦‚zh-CN
    */
   public void setLocale(String locale);
 }

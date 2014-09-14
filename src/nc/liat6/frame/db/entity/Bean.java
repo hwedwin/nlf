@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.entity;
+ï»¿package nc.liat6.frame.db.entity;
 
 import java.beans.BeanInfo;
 import java.beans.PropertyDescriptor;
@@ -16,7 +16,7 @@ import nc.liat6.frame.locale.L;
 import nc.liat6.frame.util.Streamer;
 
 /**
- * Í¨ÓÃ¶ÔÏó·â×°
+ * é€šç”¨å¯¹è±¡å°è£…
  * 
  * @author 6tail
  * 
@@ -24,47 +24,47 @@ import nc.liat6.frame.util.Streamer;
 public class Bean implements Serializable{
 
   private static final long serialVersionUID = -1432802131869099829L;
-  /** ¼üÖµ¶Ô */
+  /** é”®å€¼å¯¹ */
   private Map<String,Object> values = new HashMap<String,Object>();
-  /** ×¢ÊÍ¶Ô */
+  /** æ³¨é‡Šå¯¹ */
   private Map<String,String> notes = new HashMap<String,String>();
 
   public Bean(){}
 
   /**
-   * ½«Ò»¸ö¶ÔÏó×ªÎªBean
+   * å°†ä¸€ä¸ªå¯¹è±¡è½¬ä¸ºBean
    * 
-   * @param object ¶ÔÏó
+   * @param object å¯¹è±¡
    */
   public Bean(Object object){
     this(object,null);
   }
 
   /**
-   * ½«Ò»¸ö¶ÔÏó×ªÎªBean
+   * å°†ä¸€ä¸ªå¯¹è±¡è½¬ä¸ºBean
    * 
-   * @param object ¶ÔÏó
-   * @param rule ×ª»»¹æÔò
+   * @param object å¯¹è±¡
+   * @param rule è½¬æ¢è§„åˆ™
    */
   public Bean(Object object,IBeanRule rule){
     fromObject(object,rule);
   }
 
   /**
-   * ÊÇ·ñ´æÔÚÖ¸¶¨¼üµÄ¶ÔÏó
+   * æ˜¯å¦å­˜åœ¨æŒ‡å®šé”®çš„å¯¹è±¡
    * 
-   * @param key ¼ü
-   * @return true/false ´æÔÚ/²»´æÔÚ
+   * @param key é”®
+   * @return true/false å­˜åœ¨/ä¸å­˜åœ¨
    */
   public boolean containsKey(String key){
     return values.containsKey(key);
   }
 
   /**
-   * »ñÈ¡Öµ
+   * è·å–å€¼
    * 
-   * @param key ¼ü
-   * @return Öµ
+   * @param key é”®
+   * @return å€¼
    */
   @SuppressWarnings("unchecked")
   public <T>T get(String key){
@@ -72,21 +72,21 @@ public class Bean implements Serializable{
   }
 
   /**
-   * »ñÈ¡×¢ÊÍ
+   * è·å–æ³¨é‡Š
    * 
-   * @param key ¼ü
-   * @return ×¢ÊÍ
+   * @param key é”®
+   * @return æ³¨é‡Š
    */
   public String getNote(String key){
     return notes.get(key);
   }
 
   /**
-   * ÉèÖÃÖµ
+   * è®¾ç½®å€¼
    * 
-   * @param key ¼ü
-   * @param value Öµ
-   * @return ×Ô¼º
+   * @param key é”®
+   * @param value å€¼
+   * @return è‡ªå·±
    */
   public Bean set(String key,Object value){
     values.put(key,value);
@@ -94,12 +94,12 @@ public class Bean implements Serializable{
   }
 
   /**
-   * ÉèÖÃ´ø×¢ÊÍµÄÖµ
+   * è®¾ç½®å¸¦æ³¨é‡Šçš„å€¼
    * 
-   * @param key ¼ü
-   * @param value Öµ
-   * @param note ×¢ÊÍ
-   * @return ×Ô¼º
+   * @param key é”®
+   * @param value å€¼
+   * @param note æ³¨é‡Š
+   * @return è‡ªå·±
    */
   public Bean set(String key,Object value,String note){
     values.put(key,value);
@@ -108,11 +108,11 @@ public class Bean implements Serializable{
   }
 
   /**
-   * ÉèÖÃ×¢ÊÍ
+   * è®¾ç½®æ³¨é‡Š
    * 
-   * @param key ¼ü
-   * @param note ×¢ÊÍ
-   * @return ×Ô¼º
+   * @param key é”®
+   * @param note æ³¨é‡Š
+   * @return è‡ªå·±
    */
   public Bean setNote(String key,String note){
     notes.put(key,note);
@@ -120,10 +120,10 @@ public class Bean implements Serializable{
   }
 
   /**
-   * ÒÆ³ı
+   * ç§»é™¤
    * 
-   * @param key ¼ü
-   * @return ×Ô¼º
+   * @param key é”®
+   * @return è‡ªå·±
    */
   public Bean remove(String key){
     values.remove(key);
@@ -132,9 +132,9 @@ public class Bean implements Serializable{
   }
 
   /**
-   * Çå¿Õ
+   * æ¸…ç©º
    * 
-   * @return ×Ô¼º
+   * @return è‡ªå·±
    */
   public Bean clear(){
     values.clear();
@@ -143,9 +143,9 @@ public class Bean implements Serializable{
   }
 
   /**
-   * »ñÈ¡¼üµÄ¼¯ºÏ
+   * è·å–é”®çš„é›†åˆ
    * 
-   * @return ¼ü¼¯ºÏ
+   * @return é”®é›†åˆ
    */
   public Set<String> keySet(){
     return values.keySet();
@@ -156,11 +156,11 @@ public class Bean implements Serializable{
   }
 
   /**
-   * »ñÈ¡intÖµ£¬Èç¹û»ñÈ¡²»µ½»ò³ö´í£¬·µ»ØÄ¬ÈÏÖµ£¬²»Å×³öÒì³£
+   * è·å–intå€¼ï¼Œå¦‚æœè·å–ä¸åˆ°æˆ–å‡ºé”™ï¼Œè¿”å›é»˜è®¤å€¼ï¼Œä¸æŠ›å‡ºå¼‚å¸¸
    * 
-   * @param key ¼ü
-   * @param defaultValue Ä¬ÈÏÖµ
-   * @return Öµ
+   * @param key é”®
+   * @param defaultValue é»˜è®¤å€¼
+   * @return å€¼
    */
   public int getInt(String key,int defaultValue){
     try{
@@ -171,11 +171,11 @@ public class Bean implements Serializable{
   }
 
   /**
-   * »ñÈ¡longÖµ£¬Èç¹û»ñÈ¡²»µ½»ò³ö´í£¬·µ»ØÄ¬ÈÏÖµ£¬²»Å×³öÒì³£
+   * è·å–longå€¼ï¼Œå¦‚æœè·å–ä¸åˆ°æˆ–å‡ºé”™ï¼Œè¿”å›é»˜è®¤å€¼ï¼Œä¸æŠ›å‡ºå¼‚å¸¸
    * 
-   * @param key ¼ü
-   * @param defaultValue Ä¬ÈÏÖµ
-   * @return Öµ
+   * @param key é”®
+   * @param defaultValue é»˜è®¤å€¼
+   * @return å€¼
    */
   public long getLong(String key,long defaultValue){
     try{
@@ -186,11 +186,11 @@ public class Bean implements Serializable{
   }
 
   /**
-   * »ñÈ¡doubleÖµ£¬Èç¹û»ñÈ¡²»µ½»ò³ö´í£¬·µ»ØÄ¬ÈÏÖµ£¬²»Å×³öÒì³£
+   * è·å–doubleå€¼ï¼Œå¦‚æœè·å–ä¸åˆ°æˆ–å‡ºé”™ï¼Œè¿”å›é»˜è®¤å€¼ï¼Œä¸æŠ›å‡ºå¼‚å¸¸
    * 
-   * @param key ¼ü
-   * @param defaultValue Ä¬ÈÏÖµ
-   * @return Öµ
+   * @param key é”®
+   * @param defaultValue é»˜è®¤å€¼
+   * @return å€¼
    */
   public double getDouble(String key,double defaultValue){
     try{
@@ -201,11 +201,11 @@ public class Bean implements Serializable{
   }
 
   /**
-   * »ñÈ¡floatÖµ£¬Èç¹û»ñÈ¡²»µ½»ò³ö´í£¬·µ»ØÄ¬ÈÏÖµ£¬²»Å×³öÒì³£
+   * è·å–floatå€¼ï¼Œå¦‚æœè·å–ä¸åˆ°æˆ–å‡ºé”™ï¼Œè¿”å›é»˜è®¤å€¼ï¼Œä¸æŠ›å‡ºå¼‚å¸¸
    * 
-   * @param key ¼ü
-   * @param defaultValue Ä¬ÈÏÖµ
-   * @return Öµ
+   * @param key é”®
+   * @param defaultValue é»˜è®¤å€¼
+   * @return å€¼
    */
   public float getFloat(String key,float defaultValue){
     try{
@@ -216,11 +216,11 @@ public class Bean implements Serializable{
   }
 
   /**
-   * »ñÈ¡booleanÖµ£¬Èç¹û»ñÈ¡²»µ½»ò³ö´í£¬·µ»ØÄ¬ÈÏÖµ£¬²»Å×³öÒì³£
+   * è·å–booleanå€¼ï¼Œå¦‚æœè·å–ä¸åˆ°æˆ–å‡ºé”™ï¼Œè¿”å›é»˜è®¤å€¼ï¼Œä¸æŠ›å‡ºå¼‚å¸¸
    * 
-   * @param key ¼ü
-   * @param defaultValue Ä¬ÈÏÖµ
-   * @return Öµ
+   * @param key é”®
+   * @param defaultValue é»˜è®¤å€¼
+   * @return å€¼
    */
   public boolean getBoolean(String key,boolean defaultValue){
     try{
@@ -231,21 +231,21 @@ public class Bean implements Serializable{
   }
 
   /**
-   * »ñÈ¡StringÖµ£¬Èç¹ûÎªnull,·µ»Ønull
+   * è·å–Stringå€¼ï¼Œå¦‚æœä¸ºnull,è¿”å›null
    * 
-   * @param key ¼ü
-   * @return Öµ
+   * @param key é”®
+   * @return å€¼
    */
   public String getString(String key){
     return getString(key,null);
   }
 
   /**
-   * »ñÈ¡StringÖµ£¬Èç¹ûÎªnull,·µ»ØÄ¬ÈÏÖµ
+   * è·å–Stringå€¼ï¼Œå¦‚æœä¸ºnull,è¿”å›é»˜è®¤å€¼
    * 
-   * @param key ¼ü
-   * @param defaultValue Ä¬ÈÏÖµ
-   * @return Öµ
+   * @param key é”®
+   * @param defaultValue é»˜è®¤å€¼
+   * @return å€¼
    */
   public String getString(String key,String defaultValue){
     Object o = values.get(key);
@@ -264,36 +264,36 @@ public class Bean implements Serializable{
   }
 
   /**
-   * ´Ó¶ÔÏó¶ÁÈ¡ÊôĞÔµ½Bean£¬×¢Òâ¶ÁÈ¡Ç°»áÏÈÇå¿ÕÊôĞÔ
+   * ä»å¯¹è±¡è¯»å–å±æ€§åˆ°Beanï¼Œæ³¨æ„è¯»å–å‰ä¼šå…ˆæ¸…ç©ºå±æ€§
    * 
-   * @param object ¶ÔÏó
+   * @param object å¯¹è±¡
    */
   public void fromObject(Object object){
     fromObject(object,null);
   }
 
   /**
-   * ´Ó¶ÔÏó¶ÁÈ¡ÊôĞÔµ½Bean£¬×¢Òâ¶ÁÈ¡Ç°»áÏÈÇå¿ÕÊôĞÔ
+   * ä»å¯¹è±¡è¯»å–å±æ€§åˆ°Beanï¼Œæ³¨æ„è¯»å–å‰ä¼šå…ˆæ¸…ç©ºå±æ€§
    * 
-   * @param object ¶ÔÏó
-   * @param rule ÊôĞÔ×ª»»¹æÔò
+   * @param object å¯¹è±¡
+   * @param rule å±æ€§è½¬æ¢è§„åˆ™
    */
   public void fromObject(Object object,IBeanRule rule){
     fromObject(object,null,true);
   }
 
   /**
-   * ´Ó¶ÔÏó¶ÁÈ¡ÊôĞÔµ½Bean
+   * ä»å¯¹è±¡è¯»å–å±æ€§åˆ°Bean
    * 
-   * @param object ¶ÔÏó
-   * @param rule ÊôĞÔ×ª»»¹æÔò
-   * @param clear ¶ÁÈ¡Ç°ÊÇ·ñÏÈÇå¿ÕÊôĞÔ
+   * @param object å¯¹è±¡
+   * @param rule å±æ€§è½¬æ¢è§„åˆ™
+   * @param clear è¯»å–å‰æ˜¯å¦å…ˆæ¸…ç©ºå±æ€§
    */
   public void fromObject(Object object,IBeanRule rule,boolean clear){
     if(null==object){
       return;
     }
-    // Çå¿ÕÊôĞÔ
+    // æ¸…ç©ºå±æ€§
     if(clear){
       clear();
     }
@@ -321,7 +321,7 @@ public class Bean implements Serializable{
           if(null==method){
             continue;
           }
-          // ÊôĞÔ
+          // å±æ€§
           String p = desc.getName();
           String key = null==rule?p:rule.getKey(p);
           set(null==rule?p:key,method.invoke(object));
@@ -333,9 +333,9 @@ public class Bean implements Serializable{
   }
 
   /**
-   * Bean×ª»»ÎªObject
-   * @param klass Àà
-   * @param rule ×ª»»¹æÔò
+   * Beanè½¬æ¢ä¸ºObject
+   * @param klass ç±»
+   * @param rule è½¬æ¢è§„åˆ™
    * @return Object
    */
   @SuppressWarnings("unchecked")
@@ -351,7 +351,7 @@ public class Bean implements Serializable{
         PropertyDescriptor desc = props[i];
         String property = desc.getName();
         Method method = desc.getWriteMethod();
-        // property type ÊôĞÔÀàĞÍ
+        // property type å±æ€§ç±»å‹
         Class<?> pt = desc.getPropertyType();
         if(null==method){
           continue;
@@ -370,7 +370,7 @@ public class Bean implements Serializable{
           if(null==v){
             method.invoke(o,v);
           }else{
-            // value type ÖµÀàĞÍ
+            // value type å€¼ç±»å‹
             Class<?> vt = v.getClass();
             if(String.class.equals(pt)){
               method.invoke(o,v.toString());
@@ -422,8 +422,8 @@ public class Bean implements Serializable{
   }
 
   /**
-   * Bean×ª»»ÎªObject
-   * @param klass Àà
+   * Beanè½¬æ¢ä¸ºObject
+   * @param klass ç±»
    * @return Object
    */
   public <T>T toObject(Class<?> klass){

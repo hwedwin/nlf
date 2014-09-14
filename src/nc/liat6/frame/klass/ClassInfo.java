@@ -1,11 +1,11 @@
-package nc.liat6.frame.klass;
+ï»¿package nc.liat6.frame.klass;
 
 import java.util.ArrayList;
 import java.util.List;
 import nc.liat6.frame.json.JSON;
 
 /**
- * ÀàĞÅÏ¢·â×°
+ * ç±»ä¿¡æ¯å°è£…
  * 
  * @author 6tail
  * 

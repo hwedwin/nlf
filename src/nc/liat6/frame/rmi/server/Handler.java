@@ -1,4 +1,4 @@
-package nc.liat6.frame.rmi.server;
+ï»¿package nc.liat6.frame.rmi.server;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -25,7 +25,7 @@ import nc.liat6.frame.util.Mather;
 import nc.liat6.frame.web.response.Json;
 
 /**
- * µ¥Á¬½Ó´¦ÀíÆ÷
+ * å•è¿æ¥å¤„ç†å™¨
  * 
  * @author 6tail
  * 
@@ -72,14 +72,14 @@ public class Handler implements Runnable{
           bo.write(c);
         }
       }
-      // Êı¾İÄÚÈİ
+      // æ•°æ®å†…å®¹
       byte[] d = bo.toByteArray();
       bo.close();
       IJsonElement obj = JSON.fromJson(new String(Base64Coder.decode(new String(d))));
       JsonMap m = obj.toJsonMap();
       String uuid = m.get("uuid").toJsonString().toString();
       StringBuilder logs = new StringBuilder();
-      logs.append("UUID£º"+uuid+"\r\n");
+      logs.append("UUIDï¼š"+uuid+"\r\n");
       String klass = m.get("class").toJsonString().toString();
       logs.append(L.get(LocaleFactory.locale,"rmi.req_class")+klass+"\r\n");
       String method = m.get("method").toJsonString().toString();
@@ -94,7 +94,7 @@ public class Handler implements Runnable{
         valid = false;
       }
       if(valid){
-        // ÇëÇó¹ıÂË
+        // è¯·æ±‚è¿‡æ»¤
         if(contains(NlfServer.forbid,km)){
           if(!contains(NlfServer.allow,km)){
             s = L.get(LocaleFactory.locale,"rmi.forbid")+km;
@@ -124,7 +124,7 @@ public class Handler implements Runnable{
         RmiRequest rr = new RmiRequest();
         rr.setIp(socket.getInetAddress().getHostAddress());
         rr.setPort(socket.getPort());
-        // ÉèÖÃÔ­ÇëÇó
+        // è®¾ç½®åŸè¯·æ±‚
         Context.set(AppExecute.RMI_REQUEST,rr);
         Object ro = new AppDispatcher().execute(klass,method,map);
         if(ro instanceof Throwable){
@@ -136,7 +136,7 @@ public class Handler implements Runnable{
           s = JSON.toJson(ro);
         }
       }
-      logs.append("UUID£º"+uuid+"\r\n");
+      logs.append("UUIDï¼š"+uuid+"\r\n");
       logs.append(L.get(LocaleFactory.locale,"rmi.res_json")+s);
       if(NlfServer.enableLog){
         log.debug(logs);
@@ -147,7 +147,7 @@ public class Handler implements Runnable{
       out.write(t);
       out.flush();
     }catch(ReqNotMatchException e){
-      // ºöÂÔ·Ç·¨ÇëÇó
+      // å¿½ç•¥éæ³•è¯·æ±‚
     }catch(Exception e){
       Logger.getLog().error(L.get(LocaleFactory.locale,"rmi.req_fail"),e);
     }finally{

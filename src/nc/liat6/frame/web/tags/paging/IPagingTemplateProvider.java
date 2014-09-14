@@ -1,10 +1,10 @@
-package nc.liat6.frame.web.tags.paging;
+ï»¿package nc.liat6.frame.web.tags.paging;
 
 import nc.liat6.frame.paging.PageData;
 import nc.liat6.frame.paging.PagingParam;
 
 /**
- * ·ÖÒ³Ä£°åÌá¹©Æ÷
+ * åˆ†é¡µæ¨¡æ¿æä¾›å™¨
  * 
  * @author 6tail
  * 
@@ -12,22 +12,22 @@ import nc.liat6.frame.paging.PagingParam;
 public interface IPagingTemplateProvider{
 
   /**
-   * »ñÈ¡ÆÕÍ¨Ò³ÃæµÄ·ÖÒ³Ä£°å
+   * è·å–æ™®é€šé¡µé¢çš„åˆ†é¡µæ¨¡æ¿
    * 
-   * @param pd ·ÖÒ³Êı¾İ
-   * @param pr ·ÖÒ³²ÎÊı
-   * @param near ÏàÁÚÒ³Êı
-   * @return html´úÂë
+   * @param pd åˆ†é¡µæ•°æ®
+   * @param pr åˆ†é¡µå‚æ•°
+   * @param near ç›¸é‚»é¡µæ•°
+   * @return htmlä»£ç 
    */
   public String getNormalTemplate(PageData pd,PagingParam pr,int near);
 
   /**
-   * »ñÈ¡AJAXÇëÇóÒ³ÃæµÄ·ÖÒ³Ä£°å
+   * è·å–AJAXè¯·æ±‚é¡µé¢çš„åˆ†é¡µæ¨¡æ¿
    * 
-   * @param pd ·ÖÒ³Êı¾İ
-   * @param pr ·ÖÒ³²ÎÊı
-   * @param near ÏàÁÚÒ³Êı
-   * @return html´úÂë
+   * @param pd åˆ†é¡µæ•°æ®
+   * @param pr åˆ†é¡µå‚æ•°
+   * @param near ç›¸é‚»é¡µæ•°
+   * @return htmlä»£ç 
    */
   public String getAjaxTemplate(PageData pd,PagingParam pr,int near);
 }

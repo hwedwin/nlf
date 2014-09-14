@@ -1,11 +1,11 @@
-package nc.liat6.frame.aop;
+ï»¿package nc.liat6.frame.aop;
 
 import java.lang.reflect.Method;
 import java.util.List;
 import nc.liat6.frame.util.Stringer;
 
 /**
- * ³éÏóAOP¹ÜÀíÆ÷
+ * æŠ½è±¡AOPç®¡ç†å™¨
  * 
  * @author liat6
  * 
@@ -14,13 +14,13 @@ public abstract class AbstractManager implements IAopInterceptor{
 
   private static final String[] TAG_DROP = new String[]{"\r","\n"," "};
   private static final String TAG_SPLIT = ",";
-  /** ÊÊÓ¦µÄÀàÁĞ±í */
+  /** é€‚åº”çš„ç±»åˆ—è¡¨ */
   private String klass;
-  /** ÊÊÓ¦µÄ·½·¨ÁĞ±í */
+  /** é€‚åº”çš„æ–¹æ³•åˆ—è¡¨ */
   private String method;
-  /** ĞèÒª¹ÜÀíµÄÀàÃûÁĞ±í */
+  /** éœ€è¦ç®¡ç†çš„ç±»ååˆ—è¡¨ */
   protected List<String> klasses;
-  /** ĞèÒª¹ÜÀíµÄ·½·¨ÃûÁĞ±í */
+  /** éœ€è¦ç®¡ç†çš„æ–¹æ³•ååˆ—è¡¨ */
   protected List<String> methods;
 
   public void setMethod(String method){
@@ -39,40 +39,40 @@ public abstract class AbstractManager implements IAopInterceptor{
   }
 
   /**
-   * ·½·¨Ö´ĞĞºóµ÷ÓÃ
+   * æ–¹æ³•æ‰§è¡Œåè°ƒç”¨
    * 
-   * @param o ¶ÔÏó
-   * @param m ·½·¨
-   * @param args ²ÎÊı
+   * @param o å¯¹è±¡
+   * @param m æ–¹æ³•
+   * @param args å‚æ•°
    */
   public abstract void after(Object o,Method m,Object[] args);
 
   /**
-   * ·½·¨Ö´ĞĞÇ°µ÷ÓÃ
+   * æ–¹æ³•æ‰§è¡Œå‰è°ƒç”¨
    * 
-   * @param o ¶ÔÏó
-   * @param m ·½·¨
-   * @param args ²ÎÊı
+   * @param o å¯¹è±¡
+   * @param m æ–¹æ³•
+   * @param args å‚æ•°
    */
   public abstract void before(Object o,Method m,Object[] args);
 
   /**
-   * ·½·¨Ö´ĞĞÊ§°Üºóµ÷ÓÃ
+   * æ–¹æ³•æ‰§è¡Œå¤±è´¥åè°ƒç”¨
    * 
-   * @param o ¶ÔÏó
-   * @param m ·½·¨
-   * @param args ²ÎÊı
-   * @param e Òì³£
+   * @param o å¯¹è±¡
+   * @param m æ–¹æ³•
+   * @param args å‚æ•°
+   * @param e å¼‚å¸¸
    */
   public abstract void failed(Object o,Method m,Object[] args,Throwable e);
 
   /**
-   * ·½·¨Ö´ĞĞ³É¹¦ºóµ÷ÓÃ
+   * æ–¹æ³•æ‰§è¡ŒæˆåŠŸåè°ƒç”¨
    * 
-   * @param o ¶ÔÏó
-   * @param m ·½·¨
-   * @param args ²ÎÊı
-   * @param e Òì³£
+   * @param o å¯¹è±¡
+   * @param m æ–¹æ³•
+   * @param args å‚æ•°
+   * @param e å¼‚å¸¸
    */
   public abstract void succeed(Object o,Method m,Object[] args);
 }

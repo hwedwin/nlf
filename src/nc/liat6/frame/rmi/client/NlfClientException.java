@@ -1,9 +1,9 @@
-package nc.liat6.frame.rmi.client;
+﻿package nc.liat6.frame.rmi.client;
 
 import nc.liat6.frame.locale.L;
 
 /**
- * Զ�̵��ÿͻ����쳣
+ * 远程调用客户端异常
  * 
  * @author 6tail
  * 

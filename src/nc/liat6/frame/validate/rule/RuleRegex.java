@@ -1,11 +1,11 @@
-package nc.liat6.frame.validate.rule;
+ï»¿package nc.liat6.frame.validate.rule;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import nc.liat6.frame.validate.RegPool;
 
 /**
- * ÕıÔòÆ¥Åä
+ * æ­£åˆ™åŒ¹é…
  * 
  * @author 6tail
  * 

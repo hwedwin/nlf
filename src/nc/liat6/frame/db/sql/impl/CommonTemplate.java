@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.sql.impl;
+ï»¿package nc.liat6.frame.db.sql.impl;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -17,7 +17,7 @@ import nc.liat6.frame.paging.PageData;
 import nc.liat6.frame.util.Stringer;
 
 /**
- * SQLÖ´ĞĞÄ£°åµÄÍ¨ÓÃÊµÏÖ
+ * SQLæ‰§è¡Œæ¨¡æ¿çš„é€šç”¨å®ç°
  * 
  * @author 6tail
  * 
@@ -166,29 +166,29 @@ public class CommonTemplate extends SuperTemplate{
   }
 
   /**
-   * ¸üĞÂ£¬Èç¹ûÖ§³ÖÅú´¦Àí£¬·µ»Ø-1£¬Èç¹û²»Ö§³ÖÅú´¦Àí£¬·µ»Ø¸üĞÂ¼ÇÂ¼Êı
+   * æ›´æ–°ï¼Œå¦‚æœæ”¯æŒæ‰¹å¤„ç†ï¼Œè¿”å›-1ï¼Œå¦‚æœä¸æ”¯æŒæ‰¹å¤„ç†ï¼Œè¿”å›æ›´æ–°è®°å½•æ•°
    */
   public int update(String sql,Object param){
     boolean sptBatch = cv.getConnection().isSupportsBatchUpdates()&&trans.isBatchEnabled();
     PreparedStatement stmt = null;
     try{
-      // Èç¹ûÖ§³ÖÅú´¦Àí
+      // å¦‚æœæ”¯æŒæ‰¹å¤„ç†
       if(sptBatch){
-        if(sql.equals(stackSql)){// Èç¹ûSQLÓï¾äÒ»Ñù£¬Ö±½Ó¸´ÓÃÔ­À´µÄStatement
+        if(sql.equals(stackSql)){// å¦‚æœSQLè¯­å¥ä¸€æ ·ï¼Œç›´æ¥å¤ç”¨åŸæ¥çš„Statement
           stmt = stackStatement;
-        }else{// Èç¹ûSQLÓï¾ä±äÁË£¬Ìá½»ÉÏ´ÎµÄÅú´¦Àí£¬ĞÂ½¨Statement
+        }else{// å¦‚æœSQLè¯­å¥å˜äº†ï¼Œæäº¤ä¸Šæ¬¡çš„æ‰¹å¤„ç†ï¼Œæ–°å»ºStatement
           flush();
           stmt = cv.getConnection().getSqlConnection().prepareStatement(sql);
           stackStatement = stmt;
           stackSql = sql;
         }
-      }else{// Èç¹û²»Ö§³ÖÅú´¦Àí£¬ĞÂ½¨Statement
+      }else{// å¦‚æœä¸æ”¯æŒæ‰¹å¤„ç†ï¼Œæ–°å»ºStatement
         stmt = cv.getConnection().getSqlConnection().prepareStatement(sql);
         stackSql = null;
       }
-      // ²ÎÊıÔ¤´¦Àí
+      // å‚æ•°é¢„å¤„ç†
       List<Object> pl = processParams(stmt,param);
-      // debugÓï¾ä¼°²ÎÊı
+      // debugè¯­å¥åŠå‚æ•°
       StringBuilder s = new StringBuilder();
       for(Object o:pl){
         s.append("\t");
@@ -196,17 +196,17 @@ public class CommonTemplate extends SuperTemplate{
         s.append("\r\n");
       }
       log.debug(Stringer.print("??\r\n?\r\n?",L.get(LocaleFactory.locale,"sql.update"),sql,L.get(LocaleFactory.locale,"sql.var"),s.toString()));
-      // Èç¹ûÖ§³ÖÅú´¦Àí£¬¼ÓÈëÅú´¦Àí
+      // å¦‚æœæ”¯æŒæ‰¹å¤„ç†ï¼ŒåŠ å…¥æ‰¹å¤„ç†
       if(sptBatch){
         stmt.addBatch();
         return -1;
       }
-      // Èç¹û²»Ö§³ÖÅú´¦Àí£¬Ö´ĞĞupdate
+      // å¦‚æœä¸æ”¯æŒæ‰¹å¤„ç†ï¼Œæ‰§è¡Œupdate
       return stmt.executeUpdate();
     }catch(SQLException e){
       throw new DaoException(e);
     }finally{
-      // Èç¹û²»Ö§³ÖÅú´¦Àí£¬Ö±½ÓÉÆºó
+      // å¦‚æœä¸æ”¯æŒæ‰¹å¤„ç†ï¼Œç›´æ¥å–„å
       if(!sptBatch){
         finalize(stmt,null);
       }
@@ -252,9 +252,9 @@ public class CommonTemplate extends SuperTemplate{
       s.append(")}");
       String sql = Stringer.print(s.toString(),procName);
       stmt = cv.getConnection().getSqlConnection().prepareCall(sql);
-      // ²ÎÊıÔ¤´¦Àí
+      // å‚æ•°é¢„å¤„ç†
       List<Object> pl = processParams(stmt,param);
-      // debugÓï¾ä¼°²ÎÊı
+      // debugè¯­å¥åŠå‚æ•°
       StringBuilder sb = new StringBuilder();
       for(Object o:pl){
         sb.append("\t");

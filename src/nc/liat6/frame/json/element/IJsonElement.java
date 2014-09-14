@@ -1,9 +1,9 @@
-package nc.liat6.frame.json.element;
+ï»¿package nc.liat6.frame.json.element;
 
 import java.io.Serializable;
 
 /**
- * JSON¶ÔÏó½Ó¿Ú
+ * JSONå¯¹è±¡æ¥å£
  * 
  * @author 6tail
  * 
@@ -11,66 +11,66 @@ import java.io.Serializable;
 public interface IJsonElement extends Serializable{
 
   /**
-   * ÀàĞÍ
+   * ç±»å‹
    * 
-   * @return ÀàĞÍ
+   * @return ç±»å‹
    */
   public JsonType type();
 
   /**
-   * ×ª»»Îª{}ÀàĞÍ
+   * è½¬æ¢ä¸º{}ç±»å‹
    * 
    * @return
    */
   public JsonMap toJsonMap();
 
   /**
-   * ×ª»»Îª[]ÀàĞÍ
+   * è½¬æ¢ä¸º[]ç±»å‹
    * 
    * @return
    */
   public JsonList toJsonList();
 
   /**
-   * ×ª»»Îª²¼¶ûÖµ
+   * è½¬æ¢ä¸ºå¸ƒå°”å€¼
    * 
    * @return
    */
   public JsonBool toJsonBool();
 
   /**
-   * ×ª»»ÎªÊı×ÖÀàĞÍ
+   * è½¬æ¢ä¸ºæ•°å­—ç±»å‹
    * 
    * @return
    */
   public JsonNumber toJsonNumber();
 
   /**
-   * ×ª»»Îª×Ö·û´®ÀàĞÍ
+   * è½¬æ¢ä¸ºå­—ç¬¦ä¸²ç±»å‹
    * 
    * @return
    */
   public JsonString toJsonString();
 
   /**
-   * ¸ù¾İÂ·¾¶»ñÈ¡½ÚµãÖµ,Ö»ÓĞJsonMapºÍJsonList²ÅÊµÏÖ¸Ã·½·¨
+   * æ ¹æ®è·¯å¾„è·å–èŠ‚ç‚¹å€¼,åªæœ‰JsonMapå’ŒJsonListæ‰å®ç°è¯¥æ–¹æ³•
    * 
-   * @param path Â·¾¶£¬Èç{'a':{'b':1}}£¬select("a.b")½á¹ûÎª1£¬Èç[1,2,3,4]£¬select("0")½á¹ûÎª1£¬Èç¹ûÎŞ·¨ÕÒµ½Ö¸¶¨½Úµã£¬·µ»Ønull
-   * @return ½ÚµãÖµ
+   * @param path è·¯å¾„ï¼Œå¦‚{'a':{'b':1}}ï¼Œselect("a.b")ç»“æœä¸º1ï¼Œå¦‚[1,2,3,4]ï¼Œselect("0")ç»“æœä¸º1ï¼Œå¦‚æœæ— æ³•æ‰¾åˆ°æŒ‡å®šèŠ‚ç‚¹ï¼Œè¿”å›null
+   * @return èŠ‚ç‚¹å€¼
    */
   public IJsonElement select(String path);
 
   /**
-   * ÉèÖÃ×¢ÊÍ
+   * è®¾ç½®æ³¨é‡Š
    * 
-   * @param note ×¢ÊÍ
+   * @param note æ³¨é‡Š
    */
   public void setNote(String note);
 
   /**
-   * »ñÈ¡×¢ÊÍ
+   * è·å–æ³¨é‡Š
    * 
-   * @return ×¢ÊÍ
+   * @return æ³¨é‡Š
    */
   public String getNote();
 }

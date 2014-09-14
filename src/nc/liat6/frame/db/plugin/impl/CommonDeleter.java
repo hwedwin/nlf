@@ -1,10 +1,10 @@
-package nc.liat6.frame.db.plugin.impl;
+ï»¿package nc.liat6.frame.db.plugin.impl;
 
 import nc.liat6.frame.db.plugin.IDeleter;
 import nc.liat6.frame.db.plugin.Rule;
 
 /**
- * Í¨ÓÃÉ¾³ıÆ÷
+ * é€šç”¨åˆ é™¤å™¨
  * 
  * @author 6tail
  * 
@@ -58,9 +58,9 @@ public class CommonDeleter extends SuperExecuter implements IDeleter{
   }
 
   public String getSql(){
-    // ÖØÖÃSQL
+    // é‡ç½®SQL
     resetSql();
-    // ÖØĞÂ¹¹Ôì
+    // é‡æ–°æ„é€ 
     sql.append(" DELETE FROM");
     int l = tables.size();
     for(int i = 0;i<l;i++){

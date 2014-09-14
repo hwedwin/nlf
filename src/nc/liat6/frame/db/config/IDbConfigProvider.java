@@ -1,7 +1,7 @@
-package nc.liat6.frame.db.config;
+ï»¿package nc.liat6.frame.db.config;
 
 /**
- * Êı¾İ¿âÅäÖÃÌá¹©½Ó¿Ú
+ * æ•°æ®åº“é…ç½®æä¾›æ¥å£
  * 
  * @author 6tail
  * 

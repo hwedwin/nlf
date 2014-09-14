@@ -1,4 +1,4 @@
-package nc.liat6.frame.xml.wrapper;
+ï»¿package nc.liat6.frame.xml.wrapper;
 
 import java.text.SimpleDateFormat;
 import java.util.Collection;
@@ -8,7 +8,7 @@ import java.util.Map;
 import nc.liat6.frame.xml.XML;
 
 /**
- * XML°ü×°Æ÷
+ * XMLåŒ…è£…å™¨
  * 
  * @author 6tail
  * 

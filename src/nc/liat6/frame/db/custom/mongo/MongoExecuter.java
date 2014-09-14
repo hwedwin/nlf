@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.custom.mongo;
+ï»¿package nc.liat6.frame.db.custom.mongo;
 
 import nc.liat6.frame.db.entity.Bean;
 import nc.liat6.frame.db.plugin.impl.SuperExecuter;
@@ -6,7 +6,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
 /**
- * MONGOÖ´ÐÐÆ÷
+ * MONGOæ‰§è¡Œå™¨
  * 
  * @author 6tail
  * 

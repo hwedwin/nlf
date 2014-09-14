@@ -1,8 +1,8 @@
-package nc.liat6.frame.db.connection;
+锘縫ackage nc.liat6.frame.db.connection;
 
 public abstract class SuperConnection implements IConnection{
 
-  /** 连接变量 */
+  /** 杩炴帴鍙橀噺 */
   protected ConnVar connVar;
 
   public ConnVar getConnVar(){

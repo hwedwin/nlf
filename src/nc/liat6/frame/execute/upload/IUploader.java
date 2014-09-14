@@ -1,7 +1,7 @@
-package nc.liat6.frame.execute.upload;
+ï»¿package nc.liat6.frame.execute.upload;
 
 /**
- * ÎÄ¼şÉÏ´«½Ó¿Ú£¬½öÖ§³Öµ¥ÎÄ¼şÉÏ´«
+ * æ–‡ä»¶ä¸Šä¼ æ¥å£ï¼Œä»…æ”¯æŒå•æ–‡ä»¶ä¸Šä¼ 
  * 
  * @author 6tail
  * 
@@ -9,19 +9,19 @@ package nc.liat6.frame.execute.upload;
 public interface IUploader{
 
   /**
-   * »ñÈ¡ÒÑÉÏ´«ÎÄ¼ş·â×°
+   * è·å–å·²ä¸Šä¼ æ–‡ä»¶å°è£…
    * 
-   * @param allow ÔÊĞíµÄ¸ñÊ½
-   * @return ÒÑÉÏ´«ÎÄ¼ş·â×°
+   * @param allow å…è®¸çš„æ ¼å¼
+   * @return å·²ä¸Šä¼ æ–‡ä»¶å°è£…
    */
   public UploadedFile getFile(String... allow);
 
   /**
-   * »ñÈ¡ÒÑÉÏ´«ÎÄ¼ş·â×°
+   * è·å–å·²ä¸Šä¼ æ–‡ä»¶å°è£…
    * 
-   * @param maxSize ÔÊĞíµÄ×î´ó×Ö½ÚÊı
-   * @param allow ÔÊĞíµÄ¸ñÊ½
-   * @return ÒÑÉÏ´«ÎÄ¼ş·â×°
+   * @param maxSize å…è®¸çš„æœ€å¤§å­—èŠ‚æ•°
+   * @param allow å…è®¸çš„æ ¼å¼
+   * @return å·²ä¸Šä¼ æ–‡ä»¶å°è£…
    */
   public UploadedFile getFile(int maxSize,String... allow);
 }

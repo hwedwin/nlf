@@ -1,17 +1,17 @@
-package nc.liat6.frame.util;
+ï»¿package nc.liat6.frame.util;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ×Ö½ÚÊı×é
+ * å­—èŠ‚æ•°ç»„
  * 
  * @author 6tail
  * 
  */
 public class ByteArray{
 
-  /** ×Ö½Ú»º´æ */
+  /** å­—èŠ‚ç¼“å­˜ */
   private List<Byte> l = new ArrayList<Byte>();
 
   public ByteArray(){}
@@ -21,36 +21,36 @@ public class ByteArray{
   }
 
   /**
-   * Çå¿Õ
+   * æ¸…ç©º
    */
   public void clear(){
     l.clear();
   }
 
   /**
-   * ÉèÖÃ
+   * è®¾ç½®
    * 
-   * @param index ÏÂ±ê
-   * @param b ×Ö½Ú
+   * @param index ä¸‹æ ‡
+   * @param b å­—èŠ‚
    */
   public void set(int index,byte b){
     l.set(index,b);
   }
 
   /**
-   * ×Ü´óĞ¡
+   * æ€»å¤§å°
    * 
-   * @return ×Ü´óĞ¡
+   * @return æ€»å¤§å°
    */
   public int size(){
     return l.size();
   }
 
   /**
-   * »ñÈ¡Ö¸¶¨ÏÂ±êµÄ×Ö½Ú
+   * è·å–æŒ‡å®šä¸‹æ ‡çš„å­—èŠ‚
    * 
-   * @param index ÏÂ±ê
-   * @return ×Ö½Ú
+   * @param index ä¸‹æ ‡
+   * @return å­—èŠ‚
    */
   public byte get(int index){
     return l.get(index);
@@ -61,7 +61,7 @@ public class ByteArray{
   }
 
   /**
-   * ½ØÈ¡
+   * æˆªå–
    * @param fromIndex 
    * @param toIndex
    * @return
@@ -76,18 +76,18 @@ public class ByteArray{
   }
 
   /**
-   * ÔÚÄ©Î²Ìí¼Ó×Ö½Ú
+   * åœ¨æœ«å°¾æ·»åŠ å­—èŠ‚
    * 
-   * @param b ×Ö½Ú
+   * @param b å­—èŠ‚
    */
   public void add(byte b){
     l.add(b);
   }
 
   /**
-   * ÔÚÄ©Î²Ìí¼Ó×Ö½ÚÊı×é
+   * åœ¨æœ«å°¾æ·»åŠ å­—èŠ‚æ•°ç»„
    * 
-   * @param data ×Ö½ÚÊı×é
+   * @param data å­—èŠ‚æ•°ç»„
    */
   public void add(byte[] data){
     for(byte b:data){
@@ -96,9 +96,9 @@ public class ByteArray{
   }
 
   /**
-   * ×ª»»ÎªÊı×é
+   * è½¬æ¢ä¸ºæ•°ç»„
    * 
-   * @return ×Ö½ÚÊı×é
+   * @return å­—èŠ‚æ•°ç»„
    */
   public byte[] toArray(){
     byte[] b = new byte[l.size()];
@@ -109,7 +109,7 @@ public class ByteArray{
   }
 
   /**
-   * byte[]³öÏÖµÄÏÂ±ê£¬Èç¹û²»´æÔÚ£¬·µ»Ø-1
+   * byte[]å‡ºç°çš„ä¸‹æ ‡ï¼Œå¦‚æœä¸å­˜åœ¨ï¼Œè¿”å›-1
    * @param bytes byte[]
    * @return
    */

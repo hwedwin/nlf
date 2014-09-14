@@ -1,10 +1,10 @@
-package nc.liat6.frame.xml;
+锘縫ackage nc.liat6.frame.xml;
 
 import nc.liat6.frame.exception.NlfException;
 import nc.liat6.frame.locale.L;
 
 /**
- * 不支持的XML格式
+ * 涓嶆敮鎸佺殑XML鏍煎紡
  * 
  * @author 6tail
  * 

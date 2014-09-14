@@ -1,4 +1,4 @@
-package nc.liat6.frame.lib.org.objectweb.asm;
+﻿package nc.liat6.frame.lib.org.objectweb.asm;
 
 class Edge{
 

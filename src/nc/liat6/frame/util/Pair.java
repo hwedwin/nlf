@@ -1,9 +1,9 @@
-package nc.liat6.frame.util;
+ï»¿package nc.liat6.frame.util;
 
 import java.io.Serializable;
 
 /**
- * ×Ö·û´®¼üÖµ¶Ô
+ * å­—ç¬¦ä¸²é”®å€¼å¯¹
  * 
  * @author 6tail
  * 
@@ -11,9 +11,9 @@ import java.io.Serializable;
 public class Pair implements Serializable{
 
   private static final long serialVersionUID = 3519595853819456600L;
-  /** ¼ü */
+  /** é”® */
   private String key;
-  /** Öµ */
+  /** å€¼ */
   private String value;
 
   public Pair(){}
@@ -24,36 +24,36 @@ public class Pair implements Serializable{
   }
 
   /**
-   * »ñÈ¡¼ü
+   * è·å–é”®
    * 
-   * @return ¼ü
+   * @return é”®
    */
   public String getKey(){
     return key;
   }
 
   /**
-   * ÉèÖÃ¼ü
+   * è®¾ç½®é”®
    * 
-   * @param key ¼ü
+   * @param key é”®
    */
   public void setKey(String key){
     this.key = key;
   }
 
   /**
-   * »ñÈ¡Öµ
+   * è·å–å€¼
    * 
-   * @return Öµ
+   * @return å€¼
    */
   public String getValue(){
     return value;
   }
 
   /**
-   * ÉèÖÃÖµ
+   * è®¾ç½®å€¼
    * 
-   * @param value Öµ
+   * @param value å€¼
    */
   public void setValue(String value){
     this.value = value;

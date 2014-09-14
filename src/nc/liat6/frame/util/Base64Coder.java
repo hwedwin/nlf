@@ -1,7 +1,7 @@
-package nc.liat6.frame.util;
+ï»¿package nc.liat6.frame.util;
 
 /**
- * Base64±à½âÂëÆ÷
+ * Base64ç¼–è§£ç å™¨
  * 
  * @author 6tail
  * 

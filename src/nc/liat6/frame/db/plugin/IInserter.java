@@ -1,9 +1,9 @@
-package nc.liat6.frame.db.plugin;
+ï»¿package nc.liat6.frame.db.plugin;
 
 import nc.liat6.frame.db.entity.Bean;
 
 /**
- * Êı¾İ²åÈë½Ó¿Ú
+ * æ•°æ®æ’å…¥æ¥å£
  * 
  * @author 6tail
  * 
@@ -11,53 +11,53 @@ import nc.liat6.frame.db.entity.Bean;
 public interface IInserter extends IExecuter{
 
   /**
-   * ÉèÖÃÒª²åÈëÊı¾İµÄ±í
+   * è®¾ç½®è¦æ’å…¥æ•°æ®çš„è¡¨
    * 
-   * @param tableName ±íÃû
-   * @return Êı¾İ²åÈë½Ó¿Ú
+   * @param tableName è¡¨å
+   * @return æ•°æ®æ’å…¥æ¥å£
    */
   public IInserter table(String tableName);
 
   /**
-   * ÉèÖÃÁĞµÄÖµ
+   * è®¾ç½®åˆ—çš„å€¼
    * 
-   * @param column ÁĞÃû
-   * @param value °ó¶¨±äÁ¿
-   * @return Êı¾İ²åÈë½Ó¿Ú
+   * @param column åˆ—å
+   * @param value ç»‘å®šå˜é‡
+   * @return æ•°æ®æ’å…¥æ¥å£
    */
   public IInserter set(String column,Object value);
 
   /**
-   * Í¨¹ıSQLÖ±½ÓÉèÖÃÁĞµÄÖµ
+   * é€šè¿‡SQLç›´æ¥è®¾ç½®åˆ—çš„å€¼
    * 
-   * @param column ÁĞÃû
-   * @param valueSql Öµ£¬½öÓÃÓÚ´¿SQL£¬Èç:sysdate
-   * @return Êı¾İ²åÈë½Ó¿Ú
+   * @param column åˆ—å
+   * @param valueSql å€¼ï¼Œä»…ç”¨äºçº¯SQLï¼Œå¦‚:sysdate
+   * @return æ•°æ®æ’å…¥æ¥å£
    */
   public IInserter setSql(String column,String valueSql);
 
   /**
-   * Í¨¹ıSQLÉèÖÃ´ø±äÁ¿µÄÖµ
+   * é€šè¿‡SQLè®¾ç½®å¸¦å˜é‡çš„å€¼
    * 
-   * @param column ÁĞÃû
-   * @param valueSql Öµ£¬½öÓÃÓÚ´¿SQL£¬Èç:to_date(?,'yyyy-mm-dd')
-   * @param values °ó¶¨±äÁ¿
-   * @return Êı¾İ²åÈë½Ó¿Ú
+   * @param column åˆ—å
+   * @param valueSql å€¼ï¼Œä»…ç”¨äºçº¯SQLï¼Œå¦‚:to_date(?,'yyyy-mm-dd')
+   * @param values ç»‘å®šå˜é‡
+   * @return æ•°æ®æ’å…¥æ¥å£
    */
   public IInserter setSql(String column,String valueSql,Object[] values);
 
   /**
-   * ²åÈë²Ù×÷£¬×îºóµ÷ÓÃ
+   * æ’å…¥æ“ä½œï¼Œæœ€åè°ƒç”¨
    * 
-   * @return ²åÈëµÄ¼ÇÂ¼Êı
+   * @return æ’å…¥çš„è®°å½•æ•°
    */
   public int insert();
 
   /**
-   * ÉèÖÃÒª²åÈëµÄBean
+   * è®¾ç½®è¦æ’å…¥çš„Bean
    * 
    * @param bean
-   * @return Êı¾İ²åÈë½Ó¿Ú
+   * @return æ•°æ®æ’å…¥æ¥å£
    */
   public IInserter setBean(Bean bean);
 }

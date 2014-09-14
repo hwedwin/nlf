@@ -1,9 +1,9 @@
-package nc.liat6.frame.log.impl;
+ï»¿package nc.liat6.frame.log.impl;
 
 import nc.liat6.frame.log.ILog;
 
 /**
- * ÈÕÖ¾³éÏó
+ * æ—¥å¿—æŠ½è±¡
  * 
  * @author 6tail
  * 

@@ -1,10 +1,10 @@
-package nc.liat6.frame.execute;
+ï»¿package nc.liat6.frame.execute;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * ÏìÓ¦
+ * å“åº”
  * 
  * @author 6tail
  * 
@@ -14,20 +14,20 @@ public class Response{
   private Map<String,Object> bundle = new HashMap<String,Object>();
 
   /**
-   * °ó¶¨±äÁ¿
+   * ç»‘å®šå˜é‡
    * 
-   * @param key ¼ü
-   * @param value Öµ
+   * @param key é”®
+   * @param value å€¼
    */
   public void bind(String key,Object value){
     bundle.put(key,value);
   }
 
   /**
-   * »ñÈ¡°ó¶¨µÄ±äÁ¿Öµ
+   * è·å–ç»‘å®šçš„å˜é‡å€¼
    * 
-   * @param key ¼ü
-   * @return Öµ
+   * @param key é”®
+   * @return å€¼
    */
   @SuppressWarnings("unchecked")
   public <T>T find(String key){

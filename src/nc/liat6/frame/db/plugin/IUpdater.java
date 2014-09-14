@@ -1,9 +1,9 @@
-package nc.liat6.frame.db.plugin;
+ï»¿package nc.liat6.frame.db.plugin;
 
 import nc.liat6.frame.db.entity.Bean;
 
 /**
- * Êı¾İ¸üĞÂ½Ó¿Ú
+ * æ•°æ®æ›´æ–°æ¥å£
  * 
  * @author 6tail
  * 
@@ -11,131 +11,131 @@ import nc.liat6.frame.db.entity.Bean;
 public interface IUpdater extends IExecuter{
 
   /**
-   * ÉèÖÃÒª¸üĞÂµÄ±íÃû
+   * è®¾ç½®è¦æ›´æ–°çš„è¡¨å
    * 
-   * @param tableName ±íÃû
-   * @return Êı¾İ¸üĞÂ½Ó¿Ú
+   * @param tableName è¡¨å
+   * @return æ•°æ®æ›´æ–°æ¥å£
    */
   public IUpdater table(String tableName);
 
   /**
-   * SQLÓï¾äĞÎÊ½µÄÌõ¼ş
+   * SQLè¯­å¥å½¢å¼çš„æ¡ä»¶
    * 
-   * @param sql SQLÓï¾ä
-   * @return Êı¾İ¸üĞÂ½Ó¿Ú
+   * @param sql SQLè¯­å¥
+   * @return æ•°æ®æ›´æ–°æ¥å£
    */
   public IUpdater where(String sql);
 
   /**
-   * SQLÓï¾äÓë°ó¶¨±äÁ¿ĞÎÊ½µÄÌõ¼ş
+   * SQLè¯­å¥ä¸ç»‘å®šå˜é‡å½¢å¼çš„æ¡ä»¶
    * 
-   * @param sql SQLÓï¾ä
-   * @param values °ó¶¨±äÁ¿
-   * @return Êı¾İ¸üĞÂ½Ó¿Ú
+   * @param sql SQLè¯­å¥
+   * @param values ç»‘å®šå˜é‡
+   * @return æ•°æ®æ›´æ–°æ¥å£
    */
   public IUpdater whereSql(String sql,Object[] values);
 
   /**
-   * ÁĞ=Öµ ĞÎÊ½µÄÌõ¼ş
+   * åˆ—=å€¼ å½¢å¼çš„æ¡ä»¶
    * 
-   * @param column ÁĞÃû
-   * @param value °ó¶¨±äÁ¿
-   * @return Êı¾İ¸üĞÂ½Ó¿Ú
+   * @param column åˆ—å
+   * @param value ç»‘å®šå˜é‡
+   * @return æ•°æ®æ›´æ–°æ¥å£
    */
   public IUpdater where(String column,Object value);
 
   /**
-   * ÁĞ like %Öµ% ĞÎÊ½µÄÌõ¼ş
+   * åˆ— like %å€¼% å½¢å¼çš„æ¡ä»¶
    * 
-   * @param column ÁĞÃû
-   * @param value °ó¶¨±äÁ¿
-   * @return Êı¾İ¸üĞÂ½Ó¿Ú
+   * @param column åˆ—å
+   * @param value ç»‘å®šå˜é‡
+   * @return æ•°æ®æ›´æ–°æ¥å£
    */
   public IUpdater whereLike(String column,Object value);
 
   /**
-   * ÁĞ like Öµ% ĞÎÊ½µÄÌõ¼ş
+   * åˆ— like å€¼% å½¢å¼çš„æ¡ä»¶
    * 
-   * @param column ÁĞÃû
-   * @param value °ó¶¨±äÁ¿
-   * @return Êı¾İ¸üĞÂ½Ó¿Ú
+   * @param column åˆ—å
+   * @param value ç»‘å®šå˜é‡
+   * @return æ•°æ®æ›´æ–°æ¥å£
    */
   public IUpdater whereLeftLike(String column,Object value);
 
   /**
-   * ÁĞ like %Öµ ĞÎÊ½µÄÌõ¼ş
+   * åˆ— like %å€¼ å½¢å¼çš„æ¡ä»¶
    * 
-   * @param column ÁĞÃû
-   * @param value °ó¶¨±äÁ¿
-   * @return Êı¾İ¸üĞÂ½Ó¿Ú
+   * @param column åˆ—å
+   * @param value ç»‘å®šå˜é‡
+   * @return æ•°æ®æ›´æ–°æ¥å£
    */
   public IUpdater whereRightLike(String column,Object value);
 
   /**
-   * ÁĞ != Öµ ĞÎÊ½µÄÌõ¼ş
+   * åˆ— != å€¼ å½¢å¼çš„æ¡ä»¶
    * 
-   * @param column ÁĞÃû
-   * @param value °ó¶¨±äÁ¿
-   * @return Êı¾İ¸üĞÂ½Ó¿Ú
+   * @param column åˆ—å
+   * @param value ç»‘å®šå˜é‡
+   * @return æ•°æ®æ›´æ–°æ¥å£
    */
   public IUpdater whereNq(String column,Object value);
 
   /**
-   * ÁĞ in(...) ĞÎÊ½µÄÌõ¼ş
+   * åˆ— in(...) å½¢å¼çš„æ¡ä»¶
    * 
-   * @param column ÁĞÃû
-   * @param value °ó¶¨±äÁ¿
-   * @return Êı¾İ¸üĞÂ½Ó¿Ú
+   * @param column åˆ—å
+   * @param value ç»‘å®šå˜é‡
+   * @return æ•°æ®æ›´æ–°æ¥å£
    */
   public IUpdater whereIn(String column,Object... value);
 
   /**
-   * ÁĞ not in(...) ĞÎÊ½µÄÌõ¼ş
+   * åˆ— not in(...) å½¢å¼çš„æ¡ä»¶
    * 
-   * @param column ÁĞÃû
-   * @param value °ó¶¨±äÁ¿
-   * @return Êı¾İ¸üĞÂ½Ó¿Ú
+   * @param column åˆ—å
+   * @param value ç»‘å®šå˜é‡
+   * @return æ•°æ®æ›´æ–°æ¥å£
    */
   public IUpdater whereNotIn(String column,Object... value);
 
   /**
-   * ÁĞ¸³Öµ
+   * åˆ—èµ‹å€¼
    * 
-   * @param column ÁĞÃû
-   * @param value °ó¶¨±äÁ¿
-   * @return Êı¾İ¸üĞÂ½Ó¿Ú
+   * @param column åˆ—å
+   * @param value ç»‘å®šå˜é‡
+   * @return æ•°æ®æ›´æ–°æ¥å£
    */
   public IUpdater set(String column,Object value);
 
   /**
-   * SQLÓï¾äĞÎÊ½µÄÁĞ¸³Öµ
+   * SQLè¯­å¥å½¢å¼çš„åˆ—èµ‹å€¼
    * 
-   * @param sql SQLÓï¾ä£¬Èç£ºcol=sysdate
-   * @return Êı¾İ¸üĞÂ½Ó¿Ú
+   * @param sql SQLè¯­å¥ï¼Œå¦‚ï¼šcol=sysdate
+   * @return æ•°æ®æ›´æ–°æ¥å£
    */
   public IUpdater set(String sql);
 
   /**
-   * ´ø°ó¶¨±äÁ¿µÄSQLÓï¾äĞÎÊ½µÄÁĞ¸´ÖÆ
+   * å¸¦ç»‘å®šå˜é‡çš„SQLè¯­å¥å½¢å¼çš„åˆ—å¤åˆ¶
    * 
-   * @param sql SQLÓï¾ä
-   * @param values °ó¶¨±äÁ¿
-   * @return Êı¾İ¸üĞÂ½Ó¿Ú
+   * @param sql SQLè¯­å¥
+   * @param values ç»‘å®šå˜é‡
+   * @return æ•°æ®æ›´æ–°æ¥å£
    */
   public IUpdater setSql(String sql,Object[] values);
 
   /**
-   * ¸üĞÂ²Ù×÷£¬×îºóµ÷ÓÃ
+   * æ›´æ–°æ“ä½œï¼Œæœ€åè°ƒç”¨
    * 
-   * @return ¸üĞÂ¼ÇÂ¼Êı
+   * @return æ›´æ–°è®°å½•æ•°
    */
   public int update();
 
   /**
-   * ÉèÖÃÒª¸üĞÂµÄBean
+   * è®¾ç½®è¦æ›´æ–°çš„Bean
    * 
    * @param bean
-   * @return Êı¾İ¸üĞÂ½Ó¿Ú
+   * @return æ•°æ®æ›´æ–°æ¥å£
    */
   public IUpdater setBean(Bean bean);
 }

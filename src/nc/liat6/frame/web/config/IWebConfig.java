@@ -1,4 +1,4 @@
-package nc.liat6.frame.web.config;
+ï»¿package nc.liat6.frame.web.config;
 
 import java.util.List;
 import java.util.Map;
@@ -6,7 +6,7 @@ import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.execute.IExecute;
 
 /**
- * WEBÅäÖÃ½Ó¿Ú
+ * WEBé…ç½®æ¥å£
  * 
  * @author 6tail
  * 
@@ -14,62 +14,62 @@ import nc.liat6.frame.execute.IExecute;
 public interface IWebConfig{
 
   /**
-   * »ñÈ¡Ó¦ÓÃ¸ùÂ·¾¶±êÊ¶£¬Èç·µ»ØPATH£¬ÔòjspÒ³ÃæÖĞ¿ÉÊ¹ÓÃ${PATH}´ú±íÓ¦ÓÃÂ·¾¶
+   * è·å–åº”ç”¨æ ¹è·¯å¾„æ ‡è¯†ï¼Œå¦‚è¿”å›PATHï¼Œåˆ™jspé¡µé¢ä¸­å¯ä½¿ç”¨${PATH}ä»£è¡¨åº”ç”¨è·¯å¾„
    * 
-   * @return Ó¦ÓÃ¸ùÂ·¾¶±êÊ¶,Èç¹û·µ»Ønull£¬ÔòÊ¹ÓÃ¿ò¼ÜÄ¬ÈÏ±êÊ¶
+   * @return åº”ç”¨æ ¹è·¯å¾„æ ‡è¯†,å¦‚æœè¿”å›nullï¼Œåˆ™ä½¿ç”¨æ¡†æ¶é»˜è®¤æ ‡è¯†
    * @see Statics
    */
   public String getAppRootTag();
 
   /**
-   * »ñÈ¡´íÎóÒ³ÃæµØÖ·
+   * è·å–é”™è¯¯é¡µé¢åœ°å€
    * 
-   * @return ´íÎóÒ³ÃæµØÖ·£¬Èç¹û·µ»Ønull£¬ÔòÊ¹ÓÃ¿ò¼ÜÄ¬ÈÏ
+   * @return é”™è¯¯é¡µé¢åœ°å€ï¼Œå¦‚æœè¿”å›nullï¼Œåˆ™ä½¿ç”¨æ¡†æ¶é»˜è®¤
    */
   public String getErrorPage();
 
   /**
-   * »ñÈ¡È«¾Ö±äÁ¿£¬·µ»ØµÄ½á¹û½«ÉèÖÃµ½applicationÖĞ£¬ÈçÉèÖÃWEB_NAME="NLF"£¬ÔòjspÒ³ÃæÖĞ${WEB_NAME}="NLF"
+   * è·å–å…¨å±€å˜é‡ï¼Œè¿”å›çš„ç»“æœå°†è®¾ç½®åˆ°applicationä¸­ï¼Œå¦‚è®¾ç½®WEB_NAME="NLF"ï¼Œåˆ™jspé¡µé¢ä¸­${WEB_NAME}="NLF"
    * 
-   * @return È«¾Ö±äÁ¿£¬Èç¹û·µ»Ønull£¬ÔòÊ¹ÓÃ¿ò¼ÜÄ¬ÈÏ
+   * @return å…¨å±€å˜é‡ï¼Œå¦‚æœè¿”å›nullï¼Œåˆ™ä½¿ç”¨æ¡†æ¶é»˜è®¤
    */
   public Map<String,Object> getGlobalVars();
 
   /**
-   * »ñÈ¡½ûÖ¹·ÃÎÊµÄÂ·¾¶ÁĞ±í
+   * è·å–ç¦æ­¢è®¿é—®çš„è·¯å¾„åˆ—è¡¨
    * 
-   * @return ½ûÖ¹·ÃÎÊµÄÂ·¾¶ÁĞ±í
+   * @return ç¦æ­¢è®¿é—®çš„è·¯å¾„åˆ—è¡¨
    */
   public List<String> getForbiddenPaths();
 
   /**
-   * »ñÈ¡ÔÊĞí·ÃÎÊµÄÂ·¾¶ÁĞ±í£¬ÓÅÏÈ¼¶±È½ûÖ¹·ÃÎÊµÄ¸ß
+   * è·å–å…è®¸è®¿é—®çš„è·¯å¾„åˆ—è¡¨ï¼Œä¼˜å…ˆçº§æ¯”ç¦æ­¢è®¿é—®çš„é«˜
    * 
-   * @return ÔÊĞí·ÃÎÊµÄÂ·¾¶ÁĞ±í
+   * @return å…è®¸è®¿é—®çš„è·¯å¾„åˆ—è¡¨
    */
   public List<String> getAllowPaths();
 
   /**
-   * »ñÈ¡WEB¹ÜÀíÆ÷
+   * è·å–WEBç®¡ç†å™¨
    * 
-   * @return WEB¹ÜÀíÆ÷
+   * @return WEBç®¡ç†å™¨
    */
   public IWebManager getWebManager();
 
   /**
-   * WEBÓ¦ÓÃ³õÊ¼»¯Ê±µÄ²Ù×÷
+   * WEBåº”ç”¨åˆå§‹åŒ–æ—¶çš„æ“ä½œ
    */
   public void init();
 
   /**
-   * WEBÓ¦ÓÃÆô¶¯ºóÖ´ĞĞµÄ²Ù×÷
+   * WEBåº”ç”¨å¯åŠ¨åæ‰§è¡Œçš„æ“ä½œ
    */
   public void start();
 
   /**
-   * »ñÈ¡Ö´ĞĞÆ÷
+   * è·å–æ‰§è¡Œå™¨
    * 
-   * @return Ö´ĞĞÆ÷
+   * @return æ‰§è¡Œå™¨
    */
   public IExecute getExecuter();
 }

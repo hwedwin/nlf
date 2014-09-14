@@ -1,7 +1,7 @@
-package nc.liat6.frame.execute.upload;
+ï»¿package nc.liat6.frame.execute.upload;
 
 /**
- * ÎÄ¼şÉÏ´«½ø¶È¼àÌı
+ * æ–‡ä»¶ä¸Šä¼ è¿›åº¦ç›‘å¬
  * 
  * @author 6tail
  * 
@@ -9,10 +9,10 @@ package nc.liat6.frame.execute.upload;
 public interface IProgressListener{
 
   /**
-   * ¸üĞÂÉÏ´«×´Ì¬
+   * æ›´æ–°ä¸Šä¼ çŠ¶æ€
    * 
-   * @param uploadedBytes ÒÑÉÏ´«×Ö½Ú
-   * @param totalBytes ×Ü×Ö½Ú
+   * @param uploadedBytes å·²ä¸Šä¼ å­—èŠ‚
+   * @param totalBytes æ€»å­—èŠ‚
    */
   public void update(long uploadedBytes,long totalBytes);
 }

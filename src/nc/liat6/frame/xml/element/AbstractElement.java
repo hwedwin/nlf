@@ -1,4 +1,4 @@
-package nc.liat6.frame.xml.element;
+ï»¿package nc.liat6.frame.xml.element;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,7 +6,7 @@ import nc.liat6.frame.exception.NlfException;
 import nc.liat6.frame.locale.L;
 
 /**
- * ³éÏóXML½Úµã
+ * æŠ½è±¡XMLèŠ‚ç‚¹
  * 
  * @author 6tail
  * 

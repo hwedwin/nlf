@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.connection.impl;
+ï»¿package nc.liat6.frame.db.connection.impl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,7 +12,7 @@ import nc.liat6.frame.locale.LocaleFactory;
 import nc.liat6.frame.log.Logger;
 
 /**
- * JDBCÁ¬½Ó±äÁ¿Ìá¹©Æ÷
+ * JDBCè¿æ¥å˜é‡æä¾›å™¨
  * @author 6tail
  *
  */

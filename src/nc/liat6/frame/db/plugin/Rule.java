@@ -1,20 +1,20 @@
-package nc.liat6.frame.db.plugin;
+ï»¿package nc.liat6.frame.db.plugin;
 
 /**
- * ¹æÔò
+ * è§„åˆ™
  * 
  * @author 6tail
  * 
  */
 public class Rule{
 
-  /** ²Ù×÷¿ªÊ¼ */
+  /** æ“ä½œå¼€å§‹ */
   private String opStart = "";
-  /** ×Ö¶Î */
+  /** å­—æ®µ */
   private String column;
-  /** ²Ù×÷½áÊø */
+  /** æ“ä½œç»“æŸ */
   private String opEnd = "";
-  /** ¸³Öµ */
+  /** èµ‹å€¼ */
   private String tag = "?";
 
   public String getOpStart(){

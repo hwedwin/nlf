@@ -1,9 +1,9 @@
-package nc.liat6.frame.validate.rule;
+锘縫ackage nc.liat6.frame.validate.rule;
 
 import nc.liat6.frame.validate.IValidatorRule;
 
 /**
- * 验证规则抽象
+ * 楠岃瘉瑙勫垯鎶借薄
  * 
  * @author 6tail
  * 

@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.connection;
+ï»¿package nc.liat6.frame.db.connection;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,23 +11,23 @@ import nc.liat6.frame.locale.L;
 import nc.liat6.frame.locale.LocaleFactory;
 
 /**
- * Á¬½Ó±äÁ¿¹¤³§
+ * è¿æ¥å˜é‡å·¥å‚
  * 
  * @author 6tail
  * 
  */
 public class ConnVarFactory{
 
-  /** Á¬½ÓÌá¹©Æ÷»º´æ */
+  /** è¿æ¥æä¾›å™¨ç¼“å­˜ */
   private static final Map<String,IConnVarProvider> pool = new HashMap<String,IConnVarProvider>();
 
   private ConnVarFactory(){}
 
   /**
-   * ¸ù¾İ±ğÃû»ñÈ¡Á¬½Ó±äÁ¿
+   * æ ¹æ®åˆ«åè·å–è¿æ¥å˜é‡
    * 
-   * @param alias ±ğÃû
-   * @return Á¬½Ó±äÁ¿
+   * @param alias åˆ«å
+   * @return è¿æ¥å˜é‡
    */
   public static ConnVar getConnVar(String alias){
     IDbSetting setting = DbSettingFactory.getSetting(alias);
@@ -48,9 +48,9 @@ public class ConnVarFactory{
   }
 
   /**
-   * »ñÈ¡Ä¬ÈÏÁ¬½Ó±äÁ¿
+   * è·å–é»˜è®¤è¿æ¥å˜é‡
    * 
-   * @return Ä¬ÈÏÁ¬½Ó±äÁ¿
+   * @return é»˜è®¤è¿æ¥å˜é‡
    */
   public static ConnVar getConnVar(){
     return getConnVar(DbSettingFactory.getDefaultSetting().getAlias());

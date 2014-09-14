@@ -1,4 +1,4 @@
-package nc.liat6.frame.csv;
+ï»¿package nc.liat6.frame.csv;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -8,22 +8,22 @@ import java.io.OutputStreamWriter;
 import java.util.List;
 
 /**
- * CSV¸ñÊ½Ğ´Èë£¬Ö§³ÖÁ÷Êä³ö¼°ÎÄ¼şÊä³ö
+ * CSVæ ¼å¼å†™å…¥ï¼Œæ”¯æŒæµè¾“å‡ºåŠæ–‡ä»¶è¾“å‡º
  * 
  * @author 6tail
  * 
  */
 public class CSVWriter{
 
-  /** »Ø³µ·û */
+  /** å›è½¦ç¬¦ */
   public static String CR = "\r";
-  /** »»ĞĞ·û */
+  /** æ¢è¡Œç¬¦ */
   public static String LF = "\n";
-  /** ÁĞ¼ä¸ô·û */
+  /** åˆ—é—´éš”ç¬¦ */
   public static final String SPACE = ",";
-  /** Ë«ÒıºÅ */
+  /** åŒå¼•å· */
   public static final String QUOTE = "\"";
-  /** ÊÇ·ñ×·¼Ó */
+  /** æ˜¯å¦è¿½åŠ  */
   public static boolean APPEND = false;
   private BufferedWriter writer;
 
@@ -58,9 +58,9 @@ public class CSVWriter{
   }
 
   /**
-   * Ğ´ÈëÒ»ĞĞÊı¾İ
+   * å†™å…¥ä¸€è¡Œæ•°æ®
    * 
-   * @param cols Ò»ĞĞÊı¾İ
+   * @param cols ä¸€è¡Œæ•°æ®
    * @throws IOException
    */
   public void writeLine(String[] cols) throws IOException{
@@ -94,9 +94,9 @@ public class CSVWriter{
   }
 
   /**
-   * Ğ´ÈëÒ»ĞĞÊı¾İ
+   * å†™å…¥ä¸€è¡Œæ•°æ®
    * 
-   * @param cols Ò»ĞĞÊı¾İ
+   * @param cols ä¸€è¡Œæ•°æ®
    * @throws IOException
    */
   public void writeLine(List<String> cols) throws IOException{

@@ -1,7 +1,7 @@
-package nc.liat6.frame.validate;
+ï»¿package nc.liat6.frame.validate;
 
 /**
- * ÑéÖ¤Æ÷¹æÔò½Ó¿Ú
+ * éªŒè¯å™¨è§„åˆ™æ¥å£
  * 
  * @author 6tail
  * 
@@ -9,17 +9,17 @@ package nc.liat6.frame.validate;
 public interface IValidatorRule{
 
   /**
-   * »ñÈ¡´íÎóĞÅÏ¢
+   * è·å–é”™è¯¯ä¿¡æ¯
    * 
-   * @return ´íÎóĞÅÏ¢
+   * @return é”™è¯¯ä¿¡æ¯
    */
   public String getErrorMessage();
 
   /**
-   * ¼ì²é
+   * æ£€æŸ¥
    * 
-   * @param key ÒªÑéÖ¤µÄÖµ
-   * @return ÊÇ·ñÑéÖ¤Í¨¹ı
+   * @param key è¦éªŒè¯çš„å€¼
+   * @return æ˜¯å¦éªŒè¯é€šè¿‡
    */
   public boolean validate(String key);
 }

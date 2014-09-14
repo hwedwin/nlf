@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.custom.mongo;
+锘縫ackage nc.liat6.frame.db.custom.mongo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +20,9 @@ import com.mongodb.DBObject;
 
 public class MongoTemplate implements ITemplate,IMongo{
 
-  /** 当前连接变量 */
+  /** 褰撳墠杩炴帴鍙橀噺 */
   protected ConnVar cv;
-  /** 事务接口 */
+  /** 浜嬪姟鎺ュ彛 */
   protected ITrans trans;
 
   @Override

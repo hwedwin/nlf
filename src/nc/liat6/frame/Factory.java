@@ -1,4 +1,4 @@
-package nc.liat6.frame;
+ï»¿package nc.liat6.frame;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -25,16 +25,16 @@ import nc.liat6.frame.util.Pather;
 import nc.liat6.frame.web.WebContext;
 
 /**
- * ¹¤³§
+ * å·¥å‚
  * 
  * @author 6tail
  * 
  */
 public class Factory{
 
-  /** Ó¦ÓÃ°üÂ·¾¶ */
+  /** åº”ç”¨åŒ…è·¯å¾„ */
   public static String APP_PATH = "";
-  /** ÀàĞÅÏ¢»º´æ */
+  /** ç±»ä¿¡æ¯ç¼“å­˜ */
   public static final Map<String,ClassInfo> CLASS = new HashMap<String,ClassInfo>();
   public static final Map<String,List<String>> IMPLS = new HashMap<String,List<String>>();
   public static final List<String> AOPS = new ArrayList<String>();
@@ -152,7 +152,7 @@ public class Factory{
     while(cn.startsWith(File.separator)){
       cn = cn.substring(File.separator.length());
     }
-    // Ìí¼Ólocale
+    // æ·»åŠ locale
     if(cn.endsWith(LocaleFactory.FILE_SUFFIX)){
       if(cn.contains("_")){
         LocaleResource lr = new LocaleResource();
@@ -181,7 +181,7 @@ public class Factory{
       while(entries.hasMoreElements()){
         ZipEntry entry = (ZipEntry)entries.nextElement();
         String cn = entry.getName();
-        // Ìí¼Ólocale
+        // æ·»åŠ locale
         if(cn.endsWith(LocaleFactory.FILE_SUFFIX)){
           if(cn.contains("_")){
             LocaleResource lr = new LocaleResource();

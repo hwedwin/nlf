@@ -1,9 +1,9 @@
-package nc.liat6.frame.validate.rule;
+ï»¿package nc.liat6.frame.validate.rule;
 
 import nc.liat6.frame.locale.L;
 
 /**
- * Ã¶¾Ù£¬²»Çø·Ö´óĞ¡Ğ´
+ * æšä¸¾ï¼Œä¸åŒºåˆ†å¤§å°å†™
  * 
  * @author 6tail
  * 

@@ -1,14 +1,14 @@
-package nc.liat6.frame.web.config;
+ï»¿package nc.liat6.frame.web.config;
 
 /**
- * WEB¹ÜÀíÆ÷¸¸Àà
+ * WEBç®¡ç†å™¨çˆ¶ç±»
  * 
  * @author 6tail
  * 
  */
 public abstract class AbstractWebManager implements IWebManager{
 
-  /** WEBÅäÖÃ */
+  /** WEBé…ç½® */
   protected IWebConfig config;
 
   protected AbstractWebManager(IWebConfig config){

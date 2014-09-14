@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.custom.csv;
+锘縫ackage nc.liat6.frame.db.custom.csv;
 
 import java.util.List;
 import nc.liat6.frame.context.Context;
@@ -12,16 +12,16 @@ import nc.liat6.frame.locale.L;
 import nc.liat6.frame.paging.PageData;
 
 /**
- * CSV执行模板
+ * CSV鎵ц妯℃澘
  * 
  * @author 6tail
  * 
  */
 public class CsvTemplate implements ITemplate,ICsv{
 
-  /** 当前连接变量 */
+  /** 褰撳墠杩炴帴鍙橀噺 */
   protected ConnVar cv;
-  /** 事务接口 */
+  /** 浜嬪姟鎺ュ彛 */
   protected ITrans trans;
 
   @Override

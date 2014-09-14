@@ -1,7 +1,7 @@
-package nc.liat6.frame.proxy.impl;
+锘縫ackage nc.liat6.frame.proxy.impl;
 
 /**
- * 代理类加载器
+ * 浠ｇ悊绫诲姞杞藉櫒
  * 
  * @author 6tail
  * 

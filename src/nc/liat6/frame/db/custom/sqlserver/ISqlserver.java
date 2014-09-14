@@ -1,7 +1,7 @@
-package nc.liat6.frame.db.custom.sqlserver;
+﻿package nc.liat6.frame.db.custom.sqlserver;
 
 /**
- * SQLSERVER�ӿ�
+ * SQLSERVER接口
  * @author 6tail
  *
  */

@@ -1,12 +1,12 @@
-package nc.liat6.frame.db.exception;
+ï»¿package nc.liat6.frame.db.exception;
 
 import nc.liat6.frame.exception.NlfException;
 import nc.liat6.frame.locale.L;
 
 /**
- * Êı¾İ·ÃÎÊÒì³£
+ * æ•°æ®è®¿é—®å¼‚å¸¸
  * 
- * @author ÁùÌØ¶û
+ * @author å…­ç‰¹å°”
  */
 public class DaoException extends NlfException {
 

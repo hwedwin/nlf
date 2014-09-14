@@ -1,9 +1,9 @@
-package nc.liat6.frame.db.plugin;
+锘縫ackage nc.liat6.frame.db.plugin;
 
 import nc.liat6.frame.db.sql.ITemplate;
 
 /**
- * 数据执行接口
+ * 鏁版嵁鎵ц鎺ュ彛
  * 
  * @author 6tail
  * 
@@ -11,30 +11,30 @@ import nc.liat6.frame.db.sql.ITemplate;
 public interface IExecuter{
 
   /**
-   * 获取SQL语句，注意只有在提交前才能获取到
+   * 鑾峰彇SQL璇彞锛屾敞鎰忓彧鏈夊湪鎻愪氦鍓嶆墠鑳借幏鍙栧埌
    * 
-   * @return 执行的SQL语句
+   * @return 鎵ц鐨凷QL璇彞
    */
   public String getSql();
 
   /**
-   * 获取绑定变量，注意只有在提交前才能获取到
+   * 鑾峰彇缁戝畾鍙橀噺锛屾敞鎰忓彧鏈夊湪鎻愪氦鍓嶆墠鑳借幏鍙栧埌
    * 
-   * @return 绑定变量
+   * @return 缁戝畾鍙橀噺
    */
   public Object[] getParam();
 
   /**
-   * 设置执行模板
+   * 璁剧疆鎵ц妯℃澘
    * 
-   * @param template 执行模板
+   * @param template 鎵ц妯℃澘
    */
   public void setTemplate(ITemplate template);
 
   /**
-   * 获取执行模板
+   * 鑾峰彇鎵ц妯℃澘
    * 
-   * @return 执行模板
+   * @return 鎵ц妯℃澘
    */
   public ITemplate getTemplate();
 }

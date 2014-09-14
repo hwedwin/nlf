@@ -1,11 +1,11 @@
-package nc.liat6.frame.db.custom.oracle;
+ï»¿package nc.liat6.frame.db.custom.oracle;
 
 import nc.liat6.frame.db.plugin.IUpdater;
 import nc.liat6.frame.db.plugin.Rule;
 import nc.liat6.frame.db.plugin.impl.CommonUpdater;
 
 /**
- * OracleÊı¾İ¿âÖ´ĞĞÆ÷
+ * Oracleæ•°æ®åº“æ‰§è¡Œå™¨
  * @author 6tail
  *
  */

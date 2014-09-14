@@ -1,4 +1,4 @@
-package nc.liat6.frame.rmi.server.request;
+﻿package nc.liat6.frame.rmi.server.request;
 
 public class RmiRequest{
 

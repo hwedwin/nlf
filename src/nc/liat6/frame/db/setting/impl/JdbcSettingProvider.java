@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.setting.impl;
+﻿package nc.liat6.frame.db.setting.impl;
 
 import nc.liat6.frame.db.config.DbConfig;
 import nc.liat6.frame.db.config.DbConfigFactory;

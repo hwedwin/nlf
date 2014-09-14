@@ -1,4 +1,4 @@
-package nc.liat6.frame.web.response;
+ï»¿package nc.liat6.frame.web.response;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,20 +9,20 @@ import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.execute.Request;
 
 /**
- * ·µ»Ø - Ò³Ãæ
+ * è¿”å› - é¡µé¢
  * 
  * @author liat6
  * 
  */
 public class Page{
 
-  /** Ä¬ÈÏ´«µİ¶ÔÏóÃû */
+  /** é»˜è®¤ä¼ é€’å¯¹è±¡å */
   public static final String DEFAULT_ATTRIBUTE_NAME = "data";
-  /** Ò³ÃæµØÖ· */
+  /** é¡µé¢åœ°å€ */
   private String uri;
-  /** ÏìÓ¦×´Ì¬Âë */
+  /** å“åº”çŠ¶æ€ç  */
   private int status = 200;
-  /** ´«µİ²ÎÊı */
+  /** ä¼ é€’å‚æ•° */
   private Map<String,Object> value = new HashMap<String,Object>();
 
   public Page(){}
@@ -37,53 +37,53 @@ public class Page{
   }
 
   /**
-   * »ñÈ¡ÏìÓ¦×´Ì¬Âë
+   * è·å–å“åº”çŠ¶æ€ç 
    * 
-   * @return ×´Ì¬Âë
+   * @return çŠ¶æ€ç 
    */
   public int getStatus(){
     return status;
   }
 
   /**
-   * ÉèÖÃÏìÓ¦×´Ì¬Âë
+   * è®¾ç½®å“åº”çŠ¶æ€ç 
    * 
-   * @param status ×´Ì¬Âë
+   * @param status çŠ¶æ€ç 
    */
   public void setStatus(int status){
     this.status = status;
   }
 
   /**
-   * »ñÈ¡·µ»ØÒ³ÃæµØÖ·
+   * è·å–è¿”å›é¡µé¢åœ°å€
    * 
-   * @return ·µ»ØÒ³ÃæµØÖ·
+   * @return è¿”å›é¡µé¢åœ°å€
    */
   public String getUri(){
     return uri;
   }
 
   /**
-   * ÉèÖÃ·µ»ØÒ³ÃæµØÖ·
+   * è®¾ç½®è¿”å›é¡µé¢åœ°å€
    * 
-   * @param uri ·µ»ØÒ³ÃæµØÖ·
+   * @param uri è¿”å›é¡µé¢åœ°å€
    */
   public void setUri(String uri){
     this.uri = uri;
   }
 
   /**
-   * ÉèÖÃ´«µİ²ÎÊı
+   * è®¾ç½®ä¼ é€’å‚æ•°
    * 
-   * @param key ²ÎÊıÃû
-   * @param value ²ÎÊıÖµ
+   * @param key å‚æ•°å
+   * @param value å‚æ•°å€¼
    */
   public void set(String key,Object value){
     this.value.put(key,value);
   }
 
   /**
-   * »ñÈ¡´«µİ²ÎÊıµÄ²ÎÊıÃû¼¯ºÏ
+   * è·å–ä¼ é€’å‚æ•°çš„å‚æ•°åé›†åˆ
    * 
    * @return
    */
@@ -92,17 +92,17 @@ public class Page{
   }
 
   /**
-   * »ñÈ¡²ÎÊıÖµ
+   * è·å–å‚æ•°å€¼
    * 
-   * @param key ²ÎÊıÃû
-   * @return ²ÎÊıÖµ
+   * @param key å‚æ•°å
+   * @return å‚æ•°å€¼
    */
   public Object get(String key){
     return value.get(key);
   }
 
   /**
-   * µ÷ÓÃºó¿É½«ÉÏÒ»¸öÒ³Ãæ´«µİÀ´µÄ²ÎÊı×Ô¶¯´«µİµ½ÏÂÒ»¸öÒ³Ãæ
+   * è°ƒç”¨åå¯å°†ä¸Šä¸€ä¸ªé¡µé¢ä¼ é€’æ¥çš„å‚æ•°è‡ªåŠ¨ä¼ é€’åˆ°ä¸‹ä¸€ä¸ªé¡µé¢
    */
   public void deliver(){
     Request request = Context.get(Statics.REQUEST);

@@ -1,20 +1,20 @@
-package nc.liat6.frame.xml.element;
+ï»¿package nc.liat6.frame.xml.element;
 
 /**
- * XMLÀàÐÍ
+ * XMLç±»åž‹
  * 
  * @author 6tail
  * 
  */
 public enum XmlType{
-  /** ¶ÔÏó */
+  /** å¯¹è±¡ */
   MAP,
-  /** ÁÐ±í */
+  /** åˆ—è¡¨ */
   LIST,
-  /** ×Ö·û´® */
+  /** å­—ç¬¦ä¸² */
   STRING,
-  /** Êý×Ö */
+  /** æ•°å­— */
   NUMBER,
-  /** ²¼¶ûÖµ */
+  /** å¸ƒå°”å€¼ */
   BOOL
 }

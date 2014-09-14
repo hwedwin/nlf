@@ -1,9 +1,9 @@
-package nc.liat6.frame.db.setting;
+ï»¿package nc.liat6.frame.db.setting;
 
 import java.io.Serializable;
 
 /**
- * Á¬½ÓÉèÖÃ½Ó¿Ú
+ * è¿æ¥è®¾ç½®æ¥å£
  * 
  * @author 6tail
  * 
@@ -11,37 +11,37 @@ import java.io.Serializable;
 public interface IDbSetting extends Serializable{
 
   /**
-   * »ñÈ¡ÅäÖÃÀàĞÍ
+   * è·å–é…ç½®ç±»å‹
    * 
-   * @return ÅäÖÃÀàĞÍ
+   * @return é…ç½®ç±»å‹
    */
   public String getType();
 
   /**
-   * »ñÈ¡±ğÃû
+   * è·å–åˆ«å
    * 
-   * @return ±ğÃû
+   * @return åˆ«å
    */
   public String getAlias();
 
   /**
-   * »ñÈ¡Êı¾İ¿âÊµÀıÃû
+   * è·å–æ•°æ®åº“å®ä¾‹å
    * 
-   * @return Êı¾İ¿âÊµÀıÃû
+   * @return æ•°æ®åº“å®ä¾‹å
    */
   public String getDbName();
 
   /**
-   * »ñÈ¡Çı¶¯
+   * è·å–é©±åŠ¨
    * 
-   * @return Çı¶¯
+   * @return é©±åŠ¨
    */
   public String getDriver();
 
   /**
-   * »ñÈ¡Êı¾İ¿âÀàĞÍ
+   * è·å–æ•°æ®åº“ç±»å‹
    * 
-   * @return Êı¾İ¿âÀàĞÍ
+   * @return æ•°æ®åº“ç±»å‹
    */
   public String getDbType();
 }

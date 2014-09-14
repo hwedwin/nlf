@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.custom.csv;
+ï»¿package nc.liat6.frame.db.custom.csv;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +15,7 @@ import nc.liat6.frame.log.Logger;
 import nc.liat6.frame.util.Stringer;
 
 /**
- * CSVÉ¾³ıÆ÷
+ * CSVåˆ é™¤å™¨
  * 
  * @author 6tail
  * 
@@ -91,14 +91,14 @@ public class CsvDeleter extends CsvExecuter implements IDeleter{
               o.set(s,"");
             }
           }
-          // Âú×ãÌõ¼şµÄÌø¹ı£¬¼´²»Ğ´ÈëÎÄ¼ş
+          // æ»¡è¶³æ¡ä»¶çš„è·³è¿‡ï¼Œå³ä¸å†™å…¥æ–‡ä»¶
           for(int j = 0;j<wheres.size();j++){
             Rule r = wheres.get(j);
-            // ²Ù×÷ÀàĞÍ
+            // æ“ä½œç±»å‹
             String op = r.getOpStart();
-            // ½á¹û
+            // ç»“æœ
             String v = o.getString(r.getColumn().toUpperCase(),"");
-            // ²ÎÊı
+            // å‚æ•°
             String p = paramWheres.get(j)+"";
             if("=".equals(op)){
               if(v.equals(p)){

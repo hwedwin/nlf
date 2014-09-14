@@ -1,7 +1,7 @@
-package nc.liat6.frame.xml.wrapper;
+ï»¿package nc.liat6.frame.xml.wrapper;
 
 /**
- * XML°ü×°½Ó¿Ú
+ * XMLåŒ…è£…æ¥å£
  * 
  * @author 6tail
  * 
@@ -9,12 +9,12 @@ package nc.liat6.frame.xml.wrapper;
 public interface IXMLWrapper{
 
   /**
-   * °ü×°
+   * åŒ…è£…
    * 
-   * @param o ¶ÔÏó
-   * @param tag ±êÇ©
-   * @param level ²ã¼¶
-   * @return ×Ö·û´®
+   * @param o å¯¹è±¡
+   * @param tag æ ‡ç­¾
+   * @param level å±‚çº§
+   * @return å­—ç¬¦ä¸²
    */
   public String wrap(Object o,String tag,int level);
 }

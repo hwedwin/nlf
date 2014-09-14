@@ -1,4 +1,4 @@
-package nc.liat6.frame.db.setting.impl;
+ï»¿package nc.liat6.frame.db.setting.impl;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -16,13 +16,13 @@ import nc.liat6.frame.locale.L;
 import nc.liat6.frame.util.Stringer;
 
 /**
- * Êı¾İ¿âÁ¬½ÓÉèÖÃ¹ÜÀíÆ÷
+ * æ•°æ®åº“è¿æ¥è®¾ç½®ç®¡ç†å™¨
  * @author 6tail
  *
  */
 public class DbSettingManager implements IDbSettingManager{
 	
-	/** Êı¾İ¿âÅäÖÃÎÄ¼şÄ¿Â¼ */
+	/** æ•°æ®åº“é…ç½®æ–‡ä»¶ç›®å½• */
 	public static final String DB_DIR = "db";
 
 	@Override

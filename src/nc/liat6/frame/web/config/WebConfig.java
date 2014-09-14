@@ -1,4 +1,4 @@
-package nc.liat6.frame.web.config;
+ï»¿package nc.liat6.frame.web.config;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ import nc.liat6.frame.web.WebExecute;
 import nc.liat6.frame.web.upload.UploadStatus;
 
 /**
- * Ä¬ÈÏWEBÅäÖÃ
+ * é»˜è®¤WEBé…ç½®
  * 
  * @author 6tail
  * 

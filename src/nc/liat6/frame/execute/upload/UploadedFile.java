@@ -1,4 +1,4 @@
-package nc.liat6.frame.execute.upload;
+ï»¿package nc.liat6.frame.execute.upload;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -8,48 +8,48 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * ÒÑÉÏ´«ÎÄ¼ş·â×°
+ * å·²ä¸Šä¼ æ–‡ä»¶å°è£…
  * 
  * @author 6tail
  * 
  */
 public class UploadedFile{
 
-  /** »º³åÇø´óĞ¡ */
+  /** ç¼“å†²åŒºå¤§å° */
   public static final int BUFFER_SIZE = 20480;
-  /** ÎÄ¼şÃû³Æ,°üº¬ºó×º£¬²»°üº¬ÍêÕûÂ·¾¶ */
+  /** æ–‡ä»¶åç§°,åŒ…å«åç¼€ï¼Œä¸åŒ…å«å®Œæ•´è·¯å¾„ */
   private String name;
-  /** ÎÄ¼ş´óĞ¡£¬µ¥Î»£º×Ö½Ú */
+  /** æ–‡ä»¶å¤§å°ï¼Œå•ä½ï¼šå­—èŠ‚ */
   private long size;
-  /** ÎÄ¼şÀàĞÍ */
+  /** æ–‡ä»¶ç±»å‹ */
   private String contentType;
-  /** ÎÄ¼şºó×º£¬Ğ¡Ğ´×ÖÄ¸£¬²»°üÀ¨µãºÅ */
+  /** æ–‡ä»¶åç¼€ï¼Œå°å†™å­—æ¯ï¼Œä¸åŒ…æ‹¬ç‚¹å· */
   private String suffix = "";
-  /** ÊäÈëÁ÷ */
+  /** è¾“å…¥æµ */
   private InputStream inputStream;
 
   /**
-   * »ñÈ¡ÎÄ¼şÃû³Æ
+   * è·å–æ–‡ä»¶åç§°
    * 
-   * @return ÎÄ¼şÃû³Æ
+   * @return æ–‡ä»¶åç§°
    */
   public String getName(){
     return name;
   }
 
   /**
-   * ÉèÖÃÎÄ¼şÃû³Æ
+   * è®¾ç½®æ–‡ä»¶åç§°
    * 
-   * @param name ÎÄ¼şÃû³Æ
+   * @param name æ–‡ä»¶åç§°
    */
   public void setName(String name){
     this.name = name;
   }
 
   /**
-   * »ñÈ¡ÎÄ¼şÄÚÈİ£¬Èç¹ûÎÄ¼ş½Ï´ó£¬²»½¨Òéµ÷ÓÃ¸Ã·½·¨
+   * è·å–æ–‡ä»¶å†…å®¹ï¼Œå¦‚æœæ–‡ä»¶è¾ƒå¤§ï¼Œä¸å»ºè®®è°ƒç”¨è¯¥æ–¹æ³•
    * 
-   * @return ÎÄ¼şÄÚÈİ
+   * @return æ–‡ä»¶å†…å®¹
    */
   public byte[] getBody() throws IOException{
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -64,9 +64,9 @@ public class UploadedFile{
   }
 
   /**
-   * Ğ´µ½ÎÄ¼ş
+   * å†™åˆ°æ–‡ä»¶
    * 
-   * @param file Ä¿±êÎÄ¼ş
+   * @param file ç›®æ ‡æ–‡ä»¶
    * @throws IOException
    */
   public void writeTo(File file) throws IOException{
@@ -80,16 +80,16 @@ public class UploadedFile{
   }
 
   /**
-   * »ñÈ¡ÊäÈëÁ÷
+   * è·å–è¾“å…¥æµ
    * 
-   * @return ÊäÈëÁ÷
+   * @return è¾“å…¥æµ
    */
   public InputStream getInputStream(){
     return inputStream;
   }
 
   /**
-   * ÉèÖÃÊäÈëÁ÷
+   * è®¾ç½®è¾“å…¥æµ
    * 
    * @param inputStream
    */
@@ -98,54 +98,54 @@ public class UploadedFile{
   }
 
   /**
-   * »ñÈ¡ÎÄ¼ş´óĞ¡
+   * è·å–æ–‡ä»¶å¤§å°
    * 
-   * @return ÎÄ¼ş´óĞ¡£¬µ¥Î»£º×Ö½Ú
+   * @return æ–‡ä»¶å¤§å°ï¼Œå•ä½ï¼šå­—èŠ‚
    */
   public long getSize(){
     return size;
   }
 
   /**
-   * ÉèÖÃÎÄ¼ş´óĞ¡
+   * è®¾ç½®æ–‡ä»¶å¤§å°
    * 
-   * @param size ÎÄ¼ş´óĞ¡£¬µ¥Î»£º×Ö½Ú
+   * @param size æ–‡ä»¶å¤§å°ï¼Œå•ä½ï¼šå­—èŠ‚
    */
   public void setSize(long size){
     this.size = size;
   }
 
   /**
-   * »ñÈ¡ÎÄ¼şÀàĞÍ
+   * è·å–æ–‡ä»¶ç±»å‹
    * 
-   * @return ÎÄ¼şÀàĞÍ
+   * @return æ–‡ä»¶ç±»å‹
    */
   public String getContentType(){
     return contentType;
   }
 
   /**
-   * ÉèÖÃÎÄ¼şÀàĞÍ
+   * è®¾ç½®æ–‡ä»¶ç±»å‹
    * 
-   * @param contentType ÎÄ¼şÀàĞÍ
+   * @param contentType æ–‡ä»¶ç±»å‹
    */
   public void setContentType(String contentType){
     this.contentType = contentType;
   }
 
   /**
-   * »ñÈ¡ÎÄ¼şºó×º
+   * è·å–æ–‡ä»¶åç¼€
    * 
-   * @return ÎÄ¼şºó×º£ºĞ¡Ğ´×ÖÄ¸£¬²»°üÀ¨µãºÅ
+   * @return æ–‡ä»¶åç¼€ï¼šå°å†™å­—æ¯ï¼Œä¸åŒ…æ‹¬ç‚¹å·
    */
   public String getSuffix(){
     return suffix;
   }
 
   /**
-   * ÉèÖÃÎÄ¼şºó×º
+   * è®¾ç½®æ–‡ä»¶åç¼€
    * 
-   * @param suffix ÎÄ¼şºó×º£ºĞ¡Ğ´×ÖÄ¸£¬²»°üÀ¨µãºÅ
+   * @param suffix æ–‡ä»¶åç¼€ï¼šå°å†™å­—æ¯ï¼Œä¸åŒ…æ‹¬ç‚¹å·
    */
   public void setSuffix(String suffix){
     this.suffix = suffix;
