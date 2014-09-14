@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.web.upload.impl;
+package nc.liat6.frame.web.upload.impl;
 
 import nc.liat6.frame.execute.upload.IProgressListener;
 import nc.liat6.frame.web.upload.UploadStatus;

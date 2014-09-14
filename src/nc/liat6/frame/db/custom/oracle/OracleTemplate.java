@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.custom.oracle;
+package nc.liat6.frame.db.custom.oracle;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

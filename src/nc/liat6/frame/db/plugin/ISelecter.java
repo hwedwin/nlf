@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.plugin;
+package nc.liat6.frame.db.plugin;
 
 import java.util.List;
 import nc.liat6.frame.db.entity.Bean;

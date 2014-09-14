@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.custom.mongo;
+package nc.liat6.frame.db.custom.mongo;
 
 import nc.liat6.frame.db.config.DbConfig;
 import nc.liat6.frame.db.config.DbConfigFactory;

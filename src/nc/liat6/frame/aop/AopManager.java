@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.aop;
+package nc.liat6.frame.aop;
 
 import java.lang.reflect.Method;
 

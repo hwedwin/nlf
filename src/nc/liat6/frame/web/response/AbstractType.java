@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.web.response;
+package nc.liat6.frame.web.response;
 
 /**
  * 返回 - 自定义封装，所有与前端UI有关的对象的父类

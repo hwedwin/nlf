@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.util;
+package nc.liat6.frame.util;
 
 /**
  * 运算辅助工具

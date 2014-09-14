@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.sql;
+package nc.liat6.frame.db.sql;
 
 import java.util.List;
 import nc.liat6.frame.db.connection.ConnVar;

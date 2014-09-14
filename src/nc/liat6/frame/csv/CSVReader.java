@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.csv;
+package nc.liat6.frame.csv;
 
 import java.io.BufferedReader;
 import java.io.IOException;

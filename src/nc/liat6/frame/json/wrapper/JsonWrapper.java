@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.json.wrapper;
+package nc.liat6.frame.json.wrapper;
 
 import java.text.SimpleDateFormat;
 import java.util.Collection;

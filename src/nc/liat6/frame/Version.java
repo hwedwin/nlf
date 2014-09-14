@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame;
+package nc.liat6.frame;
 
 /**
  * 框架版本信息

@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.json.wrapper;
+package nc.liat6.frame.json.wrapper;
 
 import java.beans.BeanInfo;
 import java.beans.PropertyDescriptor;

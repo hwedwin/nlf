@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.setting.impl;
+package nc.liat6.frame.db.setting.impl;
 
 /**
  * PROXOOL连接池配置

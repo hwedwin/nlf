@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.custom.csv;
+package nc.liat6.frame.db.custom.csv;
 
 import nc.liat6.frame.Factory;
 import nc.liat6.frame.db.config.DbConfig;

@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.web.upload.bean;
+package nc.liat6.frame.web.upload.bean;
 
 import java.util.ArrayList;
 import java.util.List;

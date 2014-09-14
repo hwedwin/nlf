@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.rmi.client;
+package nc.liat6.frame.rmi.client;
 
 import nc.liat6.frame.locale.L;
 

@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.rmi.server.request;
+package nc.liat6.frame.rmi.server.request;
 
 import nc.liat6.frame.execute.Request;
 import nc.liat6.frame.execute.impl.AppExecute;

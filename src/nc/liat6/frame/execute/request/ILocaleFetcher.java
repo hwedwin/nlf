@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.execute.request;
+package nc.liat6.frame.execute.request;
 
 import java.util.Locale;
 

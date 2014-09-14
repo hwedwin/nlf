@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.context;
+package nc.liat6.frame.context;
 
 import java.util.HashMap;
 import java.util.Map;

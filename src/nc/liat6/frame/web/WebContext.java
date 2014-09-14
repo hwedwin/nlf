@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.web;
+package nc.liat6.frame.web;
 
 /**
  * WEB应用变量

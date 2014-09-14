@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.web.response;
+package nc.liat6.frame.web.response;
 
 import nc.liat6.frame.paging.PageData;
 import nc.liat6.frame.web.tags.paging.PagingTag;

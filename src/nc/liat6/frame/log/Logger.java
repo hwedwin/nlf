@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.log;
+package nc.liat6.frame.log;
 
 import java.util.List;
 import nc.liat6.frame.Factory;

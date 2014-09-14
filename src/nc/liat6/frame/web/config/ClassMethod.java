@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.web.config;
+package nc.liat6.frame.web.config;
 
 /**
  * 类&方法

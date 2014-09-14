@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.proxy.impl;
+package nc.liat6.frame.proxy.impl;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

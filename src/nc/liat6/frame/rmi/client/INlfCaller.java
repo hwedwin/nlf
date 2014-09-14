@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.rmi.client;
+package nc.liat6.frame.rmi.client;
 
 import java.util.Map;
 import nc.liat6.frame.json.element.IJsonElement;

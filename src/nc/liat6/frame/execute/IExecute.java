@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.execute;
+package nc.liat6.frame.execute;
 
 /**
  * 执行接口

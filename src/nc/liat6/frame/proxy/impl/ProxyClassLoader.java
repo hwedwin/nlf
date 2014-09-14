@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.proxy.impl;
+package nc.liat6.frame.proxy.impl;
 
 /**
  * 代理类加载器

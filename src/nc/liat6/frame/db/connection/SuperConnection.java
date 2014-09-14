@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.connection;
+package nc.liat6.frame.db.connection;
 
 public abstract class SuperConnection implements IConnection{
 

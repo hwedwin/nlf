@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.custom.csv;
+package nc.liat6.frame.db.custom.csv;
 
 import java.util.List;
 import nc.liat6.frame.context.Context;

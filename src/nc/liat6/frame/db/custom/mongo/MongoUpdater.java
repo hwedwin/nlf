@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.custom.mongo;
+package nc.liat6.frame.db.custom.mongo;
 
 import nc.liat6.frame.db.entity.Bean;
 import nc.liat6.frame.db.exception.DaoException;

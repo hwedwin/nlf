@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.connection.impl;
+package nc.liat6.frame.db.connection.impl;
 
 import java.sql.Connection;
 import java.sql.SQLException;

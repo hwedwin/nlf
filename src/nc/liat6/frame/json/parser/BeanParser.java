@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.json.parser;
+package nc.liat6.frame.json.parser;
 
 import java.util.ArrayList;
 import java.util.List;

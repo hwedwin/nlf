@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.custom.csv;
+package nc.liat6.frame.db.custom.csv;
 
 import java.io.File;
 import nc.liat6.frame.db.connection.ConnVar;

@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.lib.org.objectweb.asm;
+package nc.liat6.frame.lib.org.objectweb.asm;
 
 import java.io.InputStream;
 import java.io.IOException;

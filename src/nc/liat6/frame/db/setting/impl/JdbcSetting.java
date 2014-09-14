@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.setting.impl;
+package nc.liat6.frame.db.setting.impl;
 
 /**
  * JDBC连接配置

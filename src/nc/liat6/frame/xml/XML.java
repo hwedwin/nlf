@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.xml;
+package nc.liat6.frame.xml;
 
 import nc.liat6.frame.xml.element.IXmlElement;
 import nc.liat6.frame.xml.parser.BeanParser;

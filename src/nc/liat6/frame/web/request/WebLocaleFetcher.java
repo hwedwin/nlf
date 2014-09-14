@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.web.request;
+package nc.liat6.frame.web.request;
 
 import java.util.Locale;
 import javax.servlet.http.HttpSession;

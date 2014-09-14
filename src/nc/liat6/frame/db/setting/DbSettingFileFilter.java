@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.setting;
+package nc.liat6.frame.db.setting;
 
 import java.io.File;
 import java.io.FileFilter;

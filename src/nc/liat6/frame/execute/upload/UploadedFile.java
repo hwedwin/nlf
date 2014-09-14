@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.execute.upload;
+package nc.liat6.frame.execute.upload;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;

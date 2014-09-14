@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.custom.sqlserver;
+package nc.liat6.frame.db.custom.sqlserver;
 
 /**
  * SQLSERVER接口

@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.validate.rule;
+package nc.liat6.frame.validate.rule;
 
 import java.text.ParseException;
 import nc.liat6.frame.locale.L;

@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.xml.wrapper;
+package nc.liat6.frame.xml.wrapper;
 
 import java.beans.BeanInfo;
 import java.beans.PropertyDescriptor;

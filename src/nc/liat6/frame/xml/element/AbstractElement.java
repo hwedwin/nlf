@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.xml.element;
+package nc.liat6.frame.xml.element;
 
 import java.util.HashMap;
 import java.util.Map;

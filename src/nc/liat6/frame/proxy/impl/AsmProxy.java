@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.proxy.impl;
+package nc.liat6.frame.proxy.impl;
 
 import java.io.IOException;
 import java.lang.reflect.Constructor;

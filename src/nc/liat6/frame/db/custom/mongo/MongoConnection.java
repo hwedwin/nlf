@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.custom.mongo;
+package nc.liat6.frame.db.custom.mongo;
 
 import java.sql.Connection;
 import nc.liat6.frame.db.connection.SuperConnection;

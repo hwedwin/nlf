@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.web.config;
+package nc.liat6.frame.web.config;
 
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;

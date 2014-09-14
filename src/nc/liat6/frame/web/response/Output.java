@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.web.response;
+package nc.liat6.frame.web.response;
 
 import java.io.File;
 import java.io.FileInputStream;

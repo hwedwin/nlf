@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.proxy;
+package nc.liat6.frame.proxy;
 
 import nc.liat6.frame.aop.IAopInterceptor;
 

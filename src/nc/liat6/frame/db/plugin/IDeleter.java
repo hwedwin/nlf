@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.plugin;
+package nc.liat6.frame.db.plugin;
 
 /**
  * 数据删除接口

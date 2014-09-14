@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.locale;
+package nc.liat6.frame.locale;
 
 import java.util.ArrayList;
 import java.util.List;

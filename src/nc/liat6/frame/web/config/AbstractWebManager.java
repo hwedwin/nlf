@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.web.config;
+package nc.liat6.frame.web.config;
 
 /**
  * WEB管理器父类

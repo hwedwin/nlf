@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.web.upload.impl;
+package nc.liat6.frame.web.upload.impl;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;

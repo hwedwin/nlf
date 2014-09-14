@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.xml.element;
+package nc.liat6.frame.xml.element;
 
 /**
  * XML数字类型节点

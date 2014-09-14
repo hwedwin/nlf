@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.xml.parser;
+package nc.liat6.frame.xml.parser;
 
 import java.io.IOException;
 import java.io.Reader;

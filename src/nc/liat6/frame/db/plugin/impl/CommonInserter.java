@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.plugin.impl;
+package nc.liat6.frame.db.plugin.impl;
 
 import nc.liat6.frame.db.entity.Bean;
 import nc.liat6.frame.db.plugin.IInserter;

@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.json;
+package nc.liat6.frame.json;
 
 import nc.liat6.frame.json.element.IJsonElement;
 import nc.liat6.frame.json.parser.BeanParser;

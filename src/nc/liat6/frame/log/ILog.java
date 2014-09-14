@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.log;
+package nc.liat6.frame.log;
 
 /**
  * 日志接口

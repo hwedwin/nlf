@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.web.upload.bean;
+package nc.liat6.frame.web.upload.bean;
 
 /**
  * 上传文件状态封装

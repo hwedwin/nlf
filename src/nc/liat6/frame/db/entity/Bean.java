@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.entity;
+package nc.liat6.frame.db.entity;
 
 import java.beans.BeanInfo;
 import java.beans.PropertyDescriptor;

@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.execute.upload;
+package nc.liat6.frame.execute.upload;
 
 /**
  * 文件上传接口，仅支持单文件上传

@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.transaction.impl;
+package nc.liat6.frame.db.transaction.impl;
 
 import java.util.ArrayList;
 import java.util.List;

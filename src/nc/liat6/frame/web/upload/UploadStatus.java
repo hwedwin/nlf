@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.web.upload;
+package nc.liat6.frame.web.upload;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.execute.impl;
+package nc.liat6.frame.execute.impl;
 
 import nc.liat6.frame.context.Context;
 import nc.liat6.frame.context.Statics;

@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.util;
+package nc.liat6.frame.util;
 
 /**
  * Base64编解码器

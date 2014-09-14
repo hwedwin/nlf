@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.execute.impl;
+package nc.liat6.frame.execute.impl;
 
 import java.util.Map;
 import nc.liat6.frame.context.Context;

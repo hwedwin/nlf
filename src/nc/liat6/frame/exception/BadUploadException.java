@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.exception;
+package nc.liat6.frame.exception;
 
 import nc.liat6.frame.exception.NlfException;
 import nc.liat6.frame.locale.L;

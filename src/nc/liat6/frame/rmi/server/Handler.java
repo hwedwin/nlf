@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.rmi.server;
+package nc.liat6.frame.rmi.server;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;

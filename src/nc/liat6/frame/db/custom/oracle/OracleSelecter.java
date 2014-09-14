@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.custom.oracle;
+package nc.liat6.frame.db.custom.oracle;
 
 import nc.liat6.frame.db.plugin.ISelecter;
 import nc.liat6.frame.db.plugin.Rule;

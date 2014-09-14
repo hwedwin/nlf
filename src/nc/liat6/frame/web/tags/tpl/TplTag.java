@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.web.tags.tpl;
+package nc.liat6.frame.web.tags.tpl;
 
 import java.io.IOException;
 import javax.servlet.jsp.JspException;

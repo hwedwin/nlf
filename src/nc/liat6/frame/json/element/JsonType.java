@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.json.element;
+package nc.liat6.frame.json.element;
 
 /**
  * JSON类型

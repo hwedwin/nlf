@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.web;
+package nc.liat6.frame.web;
 
 import java.io.IOException;
 import java.io.InputStream;

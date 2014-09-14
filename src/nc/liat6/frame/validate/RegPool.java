@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.validate;
+package nc.liat6.frame.validate;
 
 import java.util.HashMap;
 import java.util.Map;

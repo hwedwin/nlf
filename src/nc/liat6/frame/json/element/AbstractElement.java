@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.json.element;
+package nc.liat6.frame.json.element;
 
 import nc.liat6.frame.exception.NlfException;
 import nc.liat6.frame.locale.L;

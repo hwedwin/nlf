@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.xml.wrapper;
+package nc.liat6.frame.xml.wrapper;
 
 /**
  * XML包装接口

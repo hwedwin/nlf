@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.locale;
+package nc.liat6.frame.locale;
 
 public class LocaleResource{
 

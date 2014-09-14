@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.json.wrapper;
+package nc.liat6.frame.json.wrapper;
 
 /**
  * 包装接口

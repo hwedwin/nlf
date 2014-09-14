@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.config;
+package nc.liat6.frame.db.config;
 
 /**
  * 数据库配置提供接口

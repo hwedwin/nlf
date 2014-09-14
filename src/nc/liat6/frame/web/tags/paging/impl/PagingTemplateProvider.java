@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.web.tags.paging.impl;
+package nc.liat6.frame.web.tags.paging.impl;
 
 import java.util.Map;
 import nc.liat6.frame.execute.Request;

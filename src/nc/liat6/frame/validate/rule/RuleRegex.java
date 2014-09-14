@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.validate.rule;
+package nc.liat6.frame.validate.rule;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

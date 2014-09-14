@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.web.tags.paging;
+package nc.liat6.frame.web.tags.paging;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspWriter;

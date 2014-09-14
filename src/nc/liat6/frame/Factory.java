@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame;
+package nc.liat6.frame;
 
 import java.io.File;
 import java.io.FileFilter;

@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.plugin.impl;
+package nc.liat6.frame.db.plugin.impl;
 
 import java.util.ArrayList;
 import java.util.List;

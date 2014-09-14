@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.web.upload;
+package nc.liat6.frame.web.upload;
 
 import javax.servlet.http.HttpServletRequest;
 import nc.liat6.frame.execute.upload.IProgressListener;

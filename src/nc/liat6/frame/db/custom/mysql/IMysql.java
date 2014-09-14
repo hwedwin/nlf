@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.custom.mysql;
+package nc.liat6.frame.db.custom.mysql;
 
 /**
  * MYSQL接口

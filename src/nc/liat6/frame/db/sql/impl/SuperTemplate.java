@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.sql.impl;
+package nc.liat6.frame.db.sql.impl;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.validate;
+package nc.liat6.frame.validate;
 
 /**
  * 验证器规则接口

@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.web.tags.entity;
+package nc.liat6.frame.web.tags.entity;
 
 import nc.liat6.frame.db.entity.Bean;
 

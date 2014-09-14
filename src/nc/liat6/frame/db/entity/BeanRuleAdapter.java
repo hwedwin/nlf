@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.entity;
+package nc.liat6.frame.db.entity;
 
 /**
  * Bean转换规则适配器

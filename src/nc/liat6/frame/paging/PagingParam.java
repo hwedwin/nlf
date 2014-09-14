@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.paging;
+package nc.liat6.frame.paging;
 
 import java.io.Serializable;
 import java.util.HashMap;

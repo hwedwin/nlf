@@ -1,4 +1,4 @@
-﻿package nc.liat6.frame.db.custom.oracle;
+package nc.liat6.frame.db.custom.oracle;
 
 import nc.liat6.frame.db.config.DbConfig;
 import nc.liat6.frame.db.config.IDbConfigProvider;
