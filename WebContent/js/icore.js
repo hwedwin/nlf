@@ -540,6 +540,32 @@
         }
         return c;
       },
+      NEXT:function(d,o){
+        var pt = o.parentNode;
+        var chd = this.CHILD(pt);
+        var me = false;
+        for(var i=0;i<chd.length;i++){
+          if(me){
+            return chd[i];
+          }
+          if(chd[i]==o){
+            me = true;
+          }
+        }
+        return null;
+      },
+      PREVIOUS:function(d,o){
+        var pt = o.parentNode;
+        var chd = this.CHILD(pt);
+        var last = null;
+        for(var i=0;i<chd.length;i++){
+          if(chd[i]==o){
+            return last;
+          }
+          last = chd[i];
+        }
+        return null;
+      },
       CLASS:function(o,s){
         if(o.getElementsByClassName){
           return o.getElementsByClassName(s);
