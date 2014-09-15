@@ -119,6 +119,9 @@ I.regist('net.Page',function(W,D){
     var s = html;
     var index = s.indexOf('<'+tag+'>');
     if(index<0){
+      if('body'==tag){
+        return s;
+      }
       return null;
     }
     s = s.substr(index+2+tag.length);
