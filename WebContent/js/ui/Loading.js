@@ -41,6 +41,14 @@ I.regist('ui.Loading',function(W,D){
         }catch(e){}
       }
     },60);
+    obj.layer.style.display = 'none';
+    obj.mask.layer.style.display = 'none';
+    I.delay(1000,function(){
+      try{
+        obj.mask.layer.style.display = 'block';
+        obj.layer.style.display = 'block';
+      }catch(e){}
+    });
   };
   var _prepare = function(config){
     var obj = {layer:null,mask:null,timer:null,percent:0,over:false,className:null,config:null};
