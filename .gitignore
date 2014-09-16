@@ -1,6 +1,14 @@
 *.class
 
 # Package Files #
-*.jar
 *.war
 *.ear
+/.idea
+/.settings
+/out
+/reports
+/.checkstyle
+/.classpath
+/.project
+/LICENSE
+/nlf.iml
