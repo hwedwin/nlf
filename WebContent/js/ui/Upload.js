@@ -15,6 +15,8 @@ I.regist('ui.Upload',function(W,D){
     background_hover:'#FBFBFB',
     color:'#666',
     color_hover:'#333',
+    checkKlass:'nc.liat6.frame.web.upload.UploadStatus',
+    checkMethod:'getStatus',
     onUpload:function(cfg){},
     onSuccess:function(result){},
     onFailed:function(result){
@@ -72,7 +74,7 @@ I.regist('ui.Upload',function(W,D){
     obj.check = function(){
       var inst = this;
       I.net.SilentRmi.set(ARG_ID,inst.uuid);
-      I.net.SilentRmi.call('nc.liat6.frame.web.upload.UploadStatus','getStatus',function(o){
+      I.net.SilentRmi.call(inst.config.checkKlass,inst.config.checkMethod,function(o){
         inst.uploaded = o.uploaded;
         inst.total = o.total;
         if(1==inst.state){
