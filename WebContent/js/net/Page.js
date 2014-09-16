@@ -100,7 +100,20 @@ I.regist('net.Page',function(W,D){
     var r = /<script[^>]*>/ig.exec(s);
     while(null!=r){
       var tag = r[0]+'';
-      o.html.push(s.substr(0,r.index));
+      var left = s.substr(0,r.index);
+      o.html.push(left);
+      
+      var textareaStart = left.lastIndexOf('<textarea');
+      var textareaEnd = left.lastIndexOf('</textarea>');
+      if(textareaStart>textareaEnd){
+        s = s.substr(r.index);
+        textareaEnd = s.indexOf('</textarea>');
+        o.html.push(s.substr(0,textareaEnd+11));
+        s = s.substr(textareaEnd+11);
+        r = /<script[^>]*>/ig.exec(s);
+        continue;
+      }
+      
       s = s.substr(r.index+tag.length);
       var endIndex  = s.indexOf('</'+'script>');
       var src = tag.match(/src=["|'][^"|']*["|']/ig);
