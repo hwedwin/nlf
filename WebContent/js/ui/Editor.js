@@ -6,8 +6,54 @@ I.regist('ui.Editor',function(W,D){
   var CFG = {
     skin:'Default',
     border:'1px solid #DDD',
-    toolbar:['bold','italic','underline','strikethrough','|','superscript','subscript','|','forecolor','backcolor','|','justifyleft','justifycenter','justifyright','|','link','unlink','|','image','|','horizontal'],
+    toolbar:['bold','italic','underline','strikethrough','|','superscript','subscript','|','forecolor','backcolor','|','removeformat','|','insertorderedlist','insertunorderedlist','justifyleft','justifycenter','justifyright','justifyfull','|','indent','outdent','|','link','unlink','|','image','|','horizontal'],
     dom:D.body
+  };
+  var TIP = {
+    bold:'加粗',
+    italic:'斜体',
+    underline:'下划线',
+    strikethrough:'删除线',
+    superscript:'上标',
+    subscript:'下标',
+    forecolor:'字体颜色',
+    backcolor:'背景色',
+    removeformat:'清除格式',
+    insertorderedlist:'有序列表',
+    insertunorderedlist:'无序列表',
+    justifyleft:'左对齐',
+    justifycenter:'居中对齐',
+    justifyright:'右对齐',
+    justifyfull:'两端对齐',
+    indent:'增加缩进',
+    outdent:'减少缩进',
+    link:'超链接',
+    unlink:'取消链接',
+    image:'图片',
+    horizontal:'分隔线'
+  };
+  var ICON = {
+    bold:'fa fa-bold',
+    italic:'fa fa-italic',
+    underline:'fa fa-underline',
+    strikethrough:'fa fa-strikethrough',
+    superscript:'fa fa-superscript',
+    subscript:'fa fa-subscript',
+    forecolor:'fa fa-pencil',
+    backcolor:'fa fa-pencil-square',
+    removeformat:'fa fa-eraser',
+    insertorderedlist:'fa fa-list-ol',
+    insertunorderedlist:'fa fa-list',
+    justifyleft:'fa fa-align-left',
+    justifycenter:'fa fa-align-center',
+    justifyright:'fa fa-align-right',
+    justifyfull:'fa fa-align-justify',
+    indent:'fa fa-indent',
+    outdent:'fa fa-outdent',
+    link:'fa fa-link',
+    unlink:'fa fa-chain-broken',
+    image:'fa fa-picture-o',
+    horizontal:'fa fa-minus'
   };
   
   var _try = function(obj,func){
@@ -19,96 +65,42 @@ I.regist('ui.Editor',function(W,D){
       },16);
     }
   };
+  var _tool = function(obj,name,callback){
+    var a = I.insert('a',obj.toolbar);
+    a.setAttribute('title',TIP[name]);
+    a.setAttribute('data-name',name);
+    I.cls(a,ICON[name]);
+    I.listen(a,'click',function(m,e){
+      _try(obj,function(){
+        callback.call(this,a);
+      });
+    });
+    return a;
+  };
   var _renderToolbar = function(obj){
     var cfg = obj.config;
     for(var i=0;i<cfg.toolbar.length;i++){
-      switch(cfg.toolbar[i]){
+      var name = cfg.toolbar[i];
+      switch(name){
       case '|':
         I.insert('i',obj.toolbar);
         break;
-      case 'bold':
-        var a = I.insert('a',obj.toolbar);
-        I.cls(a,'fa fa-bold');
-        I.listen(a,'click',function(m,e){
-          _try(obj,function(){
-            this.doc.execCommand('bold', false, null);
-          });
-        });
-        break;
-      case 'italic':
-        var a = I.insert('a',obj.toolbar);
-        I.cls(a,'fa fa-italic');
-        I.listen(a,'click',function(m,e){
-          _try(obj,function(){
-            this.doc.execCommand('italic', false, null);
-          });
-        });
-        break;
-      case 'underline':
-        var a = I.insert('a',obj.toolbar);
-        I.cls(a,'fa fa-underline');
-        I.listen(a,'click',function(m,e){
-          _try(obj,function(){
-            this.doc.execCommand('underline', false, null);
-          });
-        });
-        break;
-      case 'strikethrough':
-        var a = I.insert('a',obj.toolbar);
-        I.cls(a,'fa fa-strikethrough');
-        break;
-      case 'superscript':
-        var a = I.insert('a',obj.toolbar);
-        I.cls(a,'fa fa-superscript');
-        break;
-      case 'subscript':
-        var a = I.insert('a',obj.toolbar);
-        I.cls(a,'fa fa-subscript');
-        break;
       case 'forecolor':
-        var a = I.insert('a',obj.toolbar);
-        I.cls(a,'fa fa-pencil');
+        var a = _tool(obj,name,function(a){
+        });
         var b = I.insert('b',a);
         I.cls(b,'fa fa-sort-desc');
         break;
       case 'backcolor':
-        var a = I.insert('a',obj.toolbar);
-        I.cls(a,'fa fa-pencil-square');
+        var a = _tool(obj,name,function(a){
+        });
         var b = I.insert('b',a);
         I.cls(b,'fa fa-sort-desc');
         break;
-      case 'justifyleft':
-        var a = I.insert('a',obj.toolbar);
-        I.cls(a,'fa fa-align-left');
-        I.listen(a,'click',function(m,e){
-          _try(obj,function(){
-            this.doc.execCommand('justifyleft', false, null);
-          });
-        });
-        break;
-      case 'justifycenter':
-        var a = I.insert('a',obj.toolbar);
-        I.cls(a,'fa fa-align-center');
-        I.listen(a,'click',function(m,e){
-          _try(obj,function(){
-            this.doc.execCommand('justifycenter', false, null);
-          });
-        });
-        break;
-      case 'justifyright':
-        var a = I.insert('a',obj.toolbar);
-        I.cls(a,'fa fa-align-right');
-        I.listen(a,'click',function(m,e){
-          _try(obj,function(){
-            this.doc.execCommand('justifyright', false, null);
-          });
-        });
-        break;
       case 'link':
-        var a = I.insert('a',obj.toolbar);
-        I.cls(a,'fa fa-link');
-        I.listen(a,'click',function(m,e){
-          obj.range = D.all?obj.doc.selection.createRange():obj.iframe.contentWindow.getSelection().getRangeAt(0);
+        _tool(obj,name,function(a){
+          var inst = this;
+          inst.range = D.all?inst.doc.selection.createRange():inst.iframe.contentWindow.getSelection().getRangeAt(0);
           var id = I.util.UUID.next();
           var win = I.z.Win.create({
             title:'添加链接',
@@ -123,27 +115,15 @@ I.regist('ui.Editor',function(W,D){
           });
           I.ui.Button.render('btn'+id,{
             callback:function(){
-              _try(obj,function(){
-                this.iframe.focus();
-                if(D.all){
-                  this.range.execCommand('createlink', false, I.$('input'+id).value);
-                  this.range.parentElement().target = I.$('select'+id).value;
-                }else{
-                  this.doc.execCommand("createlink", false, I.$('input'+id).value);
-                  this.range.commonAncestorContainer.parentNode.target = I.$('select'+id).value;
-                }
-                win.close();
-              });
+              if(D.all){
+                inst.range.execCommand('createlink', false, I.$('input'+id).value);
+                inst.range.parentElement().target = I.$('select'+id).value;
+              }else{
+                inst.doc.execCommand("createlink", false, I.$('input'+id).value);
+                inst.range.commonAncestorContainer.parentNode.target = I.$('select'+id).value;
+              }
+              win.close();
             }
-          });
-        });
-        break;
-      case 'unlink':
-        var a = I.insert('a',obj.toolbar);
-        I.cls(a,'fa fa-chain-broken');
-        I.listen(a,'click',function(m,e){
-          _try(obj,function(){
-            this.doc.execCommand('unlink', false, null);
           });
         });
         break;
@@ -152,10 +132,14 @@ I.regist('ui.Editor',function(W,D){
         I.cls(a,'fa fa-picture-o');
         break;
       case 'horizontal':
-        var a = I.insert('a',obj.toolbar);
-        I.cls(a,'fa fa-minus');
+        _tool(obj,name,function(a){
+          this.doc.execCommand('inserthorizontalrule', false, null);
+        });
         break;
       default:
+        _tool(obj,name,function(a){
+          this.doc.execCommand(a.getAttribute('data-name'), false, null);
+        });
         break;
       }
     }
