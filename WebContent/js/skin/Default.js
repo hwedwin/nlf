@@ -321,6 +321,15 @@ ul.i-ui-Tree-${skin} ul{
   width:100%;
   height:100%;
 }
+.i-ui-Editor-${skin} textarea{
+  margin:0;
+  padding:0;
+  border:0;
+  outline:none;
+  width:100%;
+  height:100%;
+  resize:none;
+}
   */}+'';
   return {
     getCss:function(){return CSS;}

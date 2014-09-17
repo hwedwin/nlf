@@ -6,10 +6,11 @@ I.regist('ui.Editor',function(W,D){
   var CFG = {
     skin:'Default',
     border:'1px solid #DDD',
-    toolbar:['bold','italic','underline','strikethrough','|','superscript','subscript','|','forecolor','backcolor','|','removeformat','|','insertorderedlist','insertunorderedlist','justifyleft','justifycenter','justifyright','justifyfull','|','indent','outdent','|','link','unlink','|','image','|','horizontal'],
+    toolbar:['source','|','bold','italic','underline','strikethrough','|','superscript','subscript','|','forecolor','backcolor','|','removeformat','|','insertorderedlist','insertunorderedlist','justifyleft','justifycenter','justifyright','justifyfull','|','indent','outdent','|','link','unlink','|','image','|','horizontal'],
     dom:D.body
   };
   var TIP = {
+    source:'源代码',
     bold:'加粗',
     italic:'斜体',
     underline:'下划线',
@@ -33,6 +34,7 @@ I.regist('ui.Editor',function(W,D){
     horizontal:'分隔线'
   };
   var ICON = {
+    source:'fa fa-file-text',
     bold:'fa fa-bold',
     italic:'fa fa-italic',
     underline:'fa fa-underline',
@@ -84,6 +86,25 @@ I.regist('ui.Editor',function(W,D){
       switch(name){
       case '|':
         I.insert('i',obj.toolbar);
+        break;
+      case 'source':
+        _tool(obj,name,function(a){
+          if(this.showSource){
+            if(this.doc){
+              this.doc.body.innerHTML = this.dom.value;
+            }
+            this.dom.style.display = 'none';
+            this.iframe.style.display = 'block';
+            this.showSource = false;
+          }else{
+            if(this.doc){
+              this.dom.value = this.doc.body.innerHTML;
+            }
+            this.dom.style.display = 'block';
+            this.iframe.style.display = 'none';
+            this.showSource = true;
+          }
+        });
         break;
       case 'forecolor':
         var a = _tool(obj,name,function(a){
@@ -160,6 +181,7 @@ I.regist('ui.Editor',function(W,D){
     var body = I.insert('div',dom);
     I.cls(body,'editor-body');
     obj.body = body;
+    obj.body.appendChild(obj.dom);
     
     var iframe = I.insert('iframe',body);
     iframe.src = 'about:blank';
@@ -202,13 +224,18 @@ I.regist('ui.Editor',function(W,D){
       className:null,
       config:null,
       range:null,
+      showSource:false,
       getContent:function(){
-        if(this.doc){
-          var s = this.doc.body.innerHTML;
-          this.dom.value = s;
-          return s;
-        }else{
+        if(this.showSource){
           return this.dom.value;
+        }else{
+          if(this.doc){
+            var s = this.doc.body.innerHTML;
+            this.dom.value = s;
+            return s;
+          }else{
+            return '';
+          }
         }
       },
       setContent:function(s){
