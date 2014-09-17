@@ -22,7 +22,9 @@
 <a id="btnB">设置内容</a>
 <script type="text/javascript">
 I.want(function(){
-  var editor = I.ui.Editor.render('editor');
+  var editor = I.ui.Editor.render('editor',{
+    uploadUrl:'${PATH}/test.Action/uploadPic'
+  });
   I.ui.Button.render('btn',{
     callback:function(){
       window.alert(editor.getContent());

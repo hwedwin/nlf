@@ -1,13 +1,18 @@
 package test;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import nc.liat6.frame.context.Context;
 import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.db.transaction.ITrans;
 import nc.liat6.frame.db.transaction.TransFactory;
+import nc.liat6.frame.exception.BadUploadException;
 import nc.liat6.frame.execute.Request;
 import nc.liat6.frame.execute.upload.UploadedFile;
 import nc.liat6.frame.paging.PageData;
+import nc.liat6.frame.util.ID;
+import nc.liat6.frame.util.ImageHelper;
+import nc.liat6.frame.web.WebContext;
 import nc.liat6.frame.web.WebExecute;
 import nc.liat6.frame.web.response.Alert;
 import nc.liat6.frame.web.response.Json;
@@ -39,7 +44,7 @@ public class Action{
   }
 
   /**
-   * 文件上传
+   * 文件上传，仅供测试
    * 
    * @return
    * @throws IOException
@@ -51,6 +56,34 @@ public class Action{
     return new Json(file.getName());
   }
   
+  /**
+   * 图片上传
+   * 
+   * @return
+   * @throws IOException
+   */
+  public Object uploadPic(){
+    Request r = Context.get(Statics.REQUEST);
+    FileUploader uploader = r.find(WebExecute.TAG_UPLOADER);
+    UploadedFile file = uploader.getFile("jpg","gif","bmp","png");
+    java.io.File dir = new java.io.File(WebContext.REAL_PATH,"uploaded");
+    if(!dir.exists()||!dir.isDirectory()){
+      dir.mkdirs();
+    }
+    String fileName = ID.next()+".jpg";
+    try{
+      BufferedImage img = ImageHelper.image(file.getBody());
+      ImageHelper.writeJPG(img,new java.io.File(dir,fileName));
+    }catch(IOException e){
+      throw new BadUploadException("文件上传失败",e);
+    }
+    return new Json(WebContext.CONTEXT_PATH+"/uploaded/"+fileName);
+  }
+  
+  /**
+   * 添加数据
+   * @return
+   */
   public Object addData(){
     ITrans t = TransFactory.getTrans();
     for(int i=0;i<20;i++){

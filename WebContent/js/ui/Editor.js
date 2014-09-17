@@ -5,6 +5,9 @@
 I.regist('ui.Editor',function(W,D){
   var CFG = {
     skin:'Default',
+    uploadUrl:'',
+    checkKlass:'nc.liat6.frame.web.upload.UploadStatus',
+    checkMethod:'getStatus',
     border:'1px solid #DDD',
     toolbar:['source','|','bold','italic','underline','strikethrough','|','superscript','subscript','|','forecolor','backcolor','|','removeformat','|','insertorderedlist','insertunorderedlist','justifyleft','justifycenter','justifyright','justifyfull','|','indent','outdent','|','link','unlink','|','image','|','horizontal'],
     dom:D.body
@@ -121,6 +124,9 @@ I.regist('ui.Editor',function(W,D){
       case 'link':
         _tool(obj,name,function(a){
           var inst = this;
+          try{
+            inst.doc.body.focus();
+          }catch(e){}
           inst.range = D.all?inst.doc.selection.createRange():inst.iframe.contentWindow.getSelection().getRangeAt(0);
           var id = I.util.UUID.next();
           var win = I.z.Win.create({
@@ -149,8 +155,46 @@ I.regist('ui.Editor',function(W,D){
         });
         break;
       case 'image':
-        var a = I.insert('a',obj.toolbar);
-        I.cls(a,'fa fa-picture-o');
+        _tool(obj,name,function(a){
+          var inst = this;
+          try{
+            inst.doc.body.focus();
+          }catch(e){}
+          inst.range = D.all?inst.doc.selection.createRange():inst.iframe.contentWindow.getSelection().getRangeAt(0);
+          var id = I.util.UUID.next();
+          var win = I.z.Win.create({
+            title:'添加图片',
+            width:400,
+            height:120,
+            content:I.util.Template.render(null,'<div id="'+id+'"><ul><li data-width="10">URL：</li><li><input id="input'+id+'" type="text" /></li><li data-width="25">&nbsp;<div id="upload'+id+'"><i>上传</i><b></b><form><input type="file" /></form></div></li></ul><ul><li></li><li data-width="20"><a id="btn'+id+'">确定</a></li></ul></div>')
+          });
+          I.ui.Form.render(id,{
+            border:'0',
+            border_hover:'0',
+            background_hover:'#FFF'
+          });
+          I.ui.Upload.render('upload'+id,{
+            width:80,
+            height:30,
+            checkKlass:inst.config.checkKlass,
+            checkMethod:inst.config.checkMethod,
+            url:inst.config.uploadUrl,
+            onSuccess:function(r){
+              I.$('input'+id).value = r.data;
+            }
+          });
+          
+          I.ui.Button.render('btn'+id,{
+            callback:function(){
+              if(D.all){
+                inst.range.execCommand('insertimage', false, I.$('input'+id).value);
+              }else{
+                inst.doc.execCommand('insertimage', false, I.$('input'+id).value);
+              }
+              win.close();
+            }
+          });
+        });
         break;
       case 'horizontal':
         _tool(obj,name,function(a){
