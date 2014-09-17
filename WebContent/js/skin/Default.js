@@ -232,6 +232,95 @@ ul.i-ui-Tree-${skin} ul{
 .i-ui-Radio-${skin}:hover{text-decoration:none;}
 .i-ui-Checkbox-${skin}{position:relative;display:inline-block;vertical-align:middle;zoom:1;text-decoration:none;margin:0;padding:0.3em 0.6em;line-height:1.5em;overflow:hidden;font-size:1em;-webkit-border-radius:6px;-moz-border-radius:6px;-ms-border-radius:6px;-o-border-radius:6px;border-radius:6px;cursor:pointer;}
 .i-ui-Checkbox-${skin}:hover{text-decoration:none;}
+
+.i-ui-Editor-${skin}{
+  display:block;
+  margin:0;
+  padding:0;
+  overflow:hidden;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+  width:100%;
+  border:1px solid #D4D4D4;
+}
+.i-ui-Editor-${skin} div.editor-toolbar{
+  display:block;
+  margin:0;
+  padding:0;
+  overflow:hidden;
+  width:100%;
+  background-color:#FAFAFA;
+  border:0;
+  border-bottom:1px solid #E1E1E1;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+}
+.i-ui-Editor-${skin} div.editor-toolbar i{
+  display:block;
+  float:left;
+  margin:2px;
+  padding:0;
+  overflow:hidden;
+  width:1px;
+  height:24px;
+  font-size:0;
+  background-color:#CED1D8;
+  border:0;
+  border-right:1px solid #FFF;
+  cursor:default;
+}
+.i-ui-Editor-${skin} div.editor-toolbar b{
+  margin-left:2px;
+  color:#999;
+  font-weight:normal;
+}
+.i-ui-Editor-${skin} div.editor-toolbar a{
+  display:block;
+  float:left;
+  margin:2px;
+  padding:0;
+  overflow:hidden;
+  background-color:#FAFAFA;
+  border:1px solid #FAFAFA;
+  height:24px;
+  color:#444;
+  line-height:24px;
+  cursor:pointer;
+  font-size:14px;
+  padding-left:6px;
+  padding-right:6px;
+  text-decoration:none;
+}
+.i-ui-Editor-${skin} div.editor-toolbar a:hover{
+  background-color:#D5E1F2;
+  border:1px solid #A3BDE3;
+  text-decoration:none;
+}
+.i-ui-Editor-${skin} div.editor-body{
+  display:block;
+  margin:0;
+  padding:0;
+  overflow:hidden;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+  width:100%;
+  background-color:#FFF;
+  border:0;
+  outline:none;
+  height:120px;
+}
+.i-ui-Editor-${skin} iframe{
+  display:block;
+  margin:0;
+  padding:0;
+  border:0;
+  outline:none;
+  width:100%;
+  height:100%;
+}
   */}+'';
   return {
     getCss:function(){return CSS;}

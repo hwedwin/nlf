@@ -27,6 +27,7 @@
       <li><b></b><i></i><a data-url="${PATH}/demo/simplewin.jsp">简单窗</a></li>
       <li><b></b><i></i><a data-url="${PATH}/demo/notitlewin.jsp">无标题窗</a></li>
       <li><b></b><i></i><a data-url="${PATH}/demo/form.jsp">表单</a></li>
+      <li><b></b><i></i><a data-url="${PATH}/demo/editor.jsp">文本编辑器</a></li>
     </ul>
   </li>
   <li><b></b><i></i><a>自动分页</a>
