@@ -10,9 +10,9 @@ import nc.liat6.frame.execute.Request;
 
 /**
  * 返回 - 页面
- * 
+ *
  * @author liat6
- * 
+ *
  */
 public class Page{
 
@@ -38,7 +38,7 @@ public class Page{
 
   /**
    * 获取响应状态码
-   * 
+   *
    * @return 状态码
    */
   public int getStatus(){
@@ -47,7 +47,7 @@ public class Page{
 
   /**
    * 设置响应状态码
-   * 
+   *
    * @param status 状态码
    */
   public void setStatus(int status){
@@ -56,7 +56,7 @@ public class Page{
 
   /**
    * 获取返回页面地址
-   * 
+   *
    * @return 返回页面地址
    */
   public String getUri(){
@@ -65,7 +65,7 @@ public class Page{
 
   /**
    * 设置返回页面地址
-   * 
+   *
    * @param uri 返回页面地址
    */
   public void setUri(String uri){
@@ -74,7 +74,7 @@ public class Page{
 
   /**
    * 设置传递参数
-   * 
+   *
    * @param key 参数名
    * @param value 参数值
    */
@@ -84,7 +84,7 @@ public class Page{
 
   /**
    * 获取传递参数的参数名集合
-   * 
+   *
    * @return
    */
   public Set<String> keySet(){
@@ -93,7 +93,7 @@ public class Page{
 
   /**
    * 获取参数值
-   * 
+   *
    * @param key 参数名
    * @return 参数值
    */

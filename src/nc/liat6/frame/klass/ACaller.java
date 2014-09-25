@@ -31,7 +31,7 @@ public class ACaller implements ICaller{
     try{
       return execute(Class.forName(className),method,args);
     }catch(ClassNotFoundException e){
-      throw new NlfException(className,e);
+      throw new NlfException(null==e?null:e.getMessage(),e);
     }
   }
 
@@ -55,7 +55,7 @@ public class ACaller implements ICaller{
     try{
       return newInstance(Class.forName(className),args);
     }catch(ClassNotFoundException e){
-      throw new NlfException(className,e);
+      throw new NlfException(null==e?null:e.getMessage(),e);
     }
   }
 
@@ -72,7 +72,7 @@ public class ACaller implements ICaller{
       try{
         cls = Class.forName(impls.get(0));
       }catch(ClassNotFoundException e){
-        throw new NlfException(className,e);
+        throw new NlfException(null==e?null:e.getMessage(),e);
       }
     }
     proxy = new AsmProxy();
@@ -82,7 +82,7 @@ public class ACaller implements ICaller{
       try{
         newProxy.addAopInterceptor((IAopInterceptor)Class.forName(c).newInstance());
       }catch(Exception e){
-        throw new NlfException(c,e);
+        throw new NlfException(null==e?null:e.getMessage(),e);
       }
     }
     o = newProxy.create(o.getClass());

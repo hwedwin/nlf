@@ -37,9 +37,9 @@ import nc.liat6.frame.web.upload.FileUploader;
 
 /**
  * WEB应用执行器
- * 
+ *
  * @author 6tail
- * 
+ *
  */
 public class WebExecute extends AbstractExecute{
 
@@ -59,7 +59,7 @@ public class WebExecute extends AbstractExecute{
   public static final String TAG_IP_FETCHER = Statics.TAG_IP_FETCHER;
   /** 用于获取locale获取器的标识符 */
   public static final String TAG_LOCALE_FETCHER = Statics.TAG_LOCALE_FETCHER;
-  private StringBuffer logs = new StringBuffer();
+  protected StringBuffer logs = new StringBuffer();
 
   /**
    * 初始化参数
@@ -99,14 +99,6 @@ public class WebExecute extends AbstractExecute{
       req.setParam(key,value);
       logs.append("\t"+key+"="+value+"\r\n");
     }
-  }
-
-  protected void appendLog(String s){
-    logs.append(s);
-  }
-
-  protected void writeLog(){
-    Logger.getLog().debug(logs.toString());
   }
 
   /**
@@ -278,6 +270,7 @@ public class WebExecute extends AbstractExecute{
       oreq.setAttribute(key,p.get(key));
       logs.append(Stringer.print("\t?=?",key,p.get(key))+"\r\n");
     }
+    logs.append(Stringer.print("??\r\n",L.get(LocaleFactory.locale,"web.res_status"),p.getStatus()));
     logs.append(Stringer.print("??",L.get(LocaleFactory.locale,"web.res_page"),p.getUri()));
     Logger.getLog().debug(logs.toString());
     try{

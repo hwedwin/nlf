@@ -3,8 +3,6 @@ package nc.liat6.frame;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -86,26 +84,6 @@ public class Factory{
   public static void initApp(String callerPath,String libPath){
     //所有需要扫描的路径
     List<String> paths = new ArrayList<String>();
-    Thread currentThread = Thread.currentThread();
-    //获取当前应用路径
-    try{
-      Enumeration<URL> urls = currentThread.getContextClassLoader().getResources("");
-      while(urls.hasMoreElements()){
-        URL url = urls.nextElement();
-        File f = new File(url.toURI());
-        if(!f.exists()){
-          continue;
-        }
-        String path = f.getAbsolutePath();
-        if(!paths.contains(path)){
-          paths.add(path);
-        }
-      }
-    }catch(IOException e){
-      throw new RuntimeException(e);
-    }catch(URISyntaxException e){
-      throw new RuntimeException(e);
-    }
     //获取classpath引用路径
     String[] cps = System.getProperty("java.class.path").split(File.pathSeparator);
     for(String cp:cps){
@@ -121,7 +99,7 @@ public class Factory{
 
     if(null==callerPath){
       //获取调用者路径
-      StackTraceElement[] sts = currentThread.getStackTrace();
+      StackTraceElement[] sts = Thread.currentThread().getStackTrace();
       String caller = null;
       boolean isFrameClass = false;
       for(StackTraceElement t:sts){

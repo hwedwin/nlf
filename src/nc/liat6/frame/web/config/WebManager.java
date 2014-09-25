@@ -2,6 +2,7 @@ package nc.liat6.frame.web.config;
 
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import nc.liat6.frame.context.Context;
 import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.db.connection.ConnVar;
@@ -9,6 +10,7 @@ import nc.liat6.frame.db.connection.IConnection;
 import nc.liat6.frame.exception.BadException;
 import nc.liat6.frame.exception.BadUploadException;
 import nc.liat6.frame.execute.Request;
+import nc.liat6.frame.execute.Response;
 import nc.liat6.frame.locale.L;
 import nc.liat6.frame.locale.LocaleFactory;
 import nc.liat6.frame.log.Logger;
@@ -41,6 +43,8 @@ public class WebManager extends AbstractWebManager{
     String r = null==cause?null:cause.getMessage();
     Request req = Context.get(Statics.REQUEST);
     HttpServletRequest oreq = req.find("request");
+    Response res = Context.get(Statics.RESPONSE);
+    HttpServletResponse ores = res.find("response");
     String headAjax = oreq.getHeader("x-requested-with");
     if(null==headAjax){
       // 文件上传异常，转换为JSON返回
@@ -57,12 +61,17 @@ public class WebManager extends AbstractWebManager{
         json.setSuccess(false);
         return json;
       }
-      if(null!=config.getErrorPage()){
+      if(null==config.getErrorPage()){
+        if(cause instanceof ClassNotFoundException){
+          ores.setStatus(404);
+          return null;
+        }
+      }else{
         Page p = new Page(config.getErrorPage());
+        p.set("e",cause);
         if(cause instanceof ClassNotFoundException){
           p.setStatus(404);
         }
-        p.set("e",cause);
         return p;
       }
       return r;
