@@ -3,6 +3,7 @@ package nc.liat6.frame;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -26,9 +27,9 @@ import nc.liat6.frame.web.WebContext;
 
 /**
  * 工厂
- * 
+ *
  * @author 6tail
- * 
+ *
  */
 public class Factory{
 
@@ -67,24 +68,75 @@ public class Factory{
     }
     String p = Pather.getPath(caller,true);
     APP_PATH = p.endsWith(".jar")?new File(p).getParentFile().getAbsolutePath():p;
-    if(!Pather.FRAME_JAR_PATH.equals(APP_PATH)){
-      scan(Pather.FRAME_JAR_PATH);
-    }
-    scan(p);
-    reBuild();
     System.out.println("APP PATH:"+APP_PATH);
     System.out.println("NLF PATH:"+Pather.FRAME_JAR_PATH);
-  }
-
-  public static void initWebApp(String path){
-    APP_PATH = path;
+    //扫描NLF
     if(!Pather.FRAME_JAR_PATH.equals(APP_PATH)){
       scan(Pather.FRAME_JAR_PATH);
     }
-    scan(APP_PATH);
+    //扫描引用
+    String[] cps = System.getProperty("java.class.path").split(File.pathSeparator);
+    for(String cp:cps){
+      File f = new File(cp);
+      if(!f.exists()){
+        continue;
+      }
+      String path = f.getAbsolutePath();
+      if(p.equals(path)){
+        continue;
+      }
+      if(Pather.FRAME_JAR_PATH.equals(path)){
+        continue;
+      }
+      System.out.println("SCAN    :"+path);
+      scan(path);
+    }
+    //扫描当前应用
+    scan(p);
     reBuild();
+  }
+
+  public static void initWebApp(String root){
+    APP_PATH = root;
     System.out.println("WEB PATH:"+APP_PATH);
     System.out.println("NLF PATH:"+Pather.FRAME_JAR_PATH);
+
+    //扫描NLF
+    if(!Pather.FRAME_JAR_PATH.equals(APP_PATH)){
+      scan(Pather.FRAME_JAR_PATH);
+    }
+    //扫描引用
+    try{
+      Enumeration<URL> paths = Thread.currentThread().getContextClassLoader().getResources("");
+      while(paths.hasMoreElements()){
+        URL url = paths.nextElement();
+        File f = new File(url.toURI());
+        if(!f.exists()){
+          continue;
+        }
+        String path = f.getAbsolutePath();
+        if(APP_PATH.equals(path)){
+          continue;
+        }
+        if(Pather.FRAME_JAR_PATH.equals(path)){
+          continue;
+        }
+        File[] fs = f.listFiles();
+        for(File file:fs){
+          String p = file.getAbsolutePath();
+          if(Pather.FRAME_JAR_PATH.equals(p)){
+            continue;
+          }
+          System.out.println("SCAN    :"+p);
+          scan(p);
+        }
+      }
+    }catch(Exception e){
+      throw new RuntimeException(e);
+    }
+    //扫描当前应用
+    scan(APP_PATH);
+    reBuild();
   }
 
   public static List<String> getImpls(String className){
@@ -200,7 +252,7 @@ public class Factory{
         if(!cn.endsWith(".class")){
           continue;
         }
-        cn = cn.replace("/",".").replace(".class","");
+        cn = cn.replace(".class","").replace("/",".");
         ClassInfo ci = new ClassInfo();
         ci.setClassName(cn);
         ci.setHome(jarFile.getAbsolutePath());
