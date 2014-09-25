@@ -119,7 +119,10 @@ upload.formats = 只允许上传的文件格式有：
 
 web.app_path = 应用路径：
 web.app_config = 应用配置：
+web.global_vars = 全局变量:
 web.error_page = 错误页面：
+web.forbid = 屏蔽请求:
+web.allow = 允许请求:
 
 web.req_path = 请求路径：
 web.req_args = 请求参数：

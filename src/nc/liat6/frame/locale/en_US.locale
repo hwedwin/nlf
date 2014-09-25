@@ -119,7 +119,10 @@ upload.formats = only suports:
 
 web.app_path = app path:
 web.app_config = app config:
+web.global_vars = global vars:
 web.error_page = error page:
+web.forbid = forbid path:
+web.allow = allow path:
 
 web.req_path = request path:
 web.req_args = request arguments:
@@ -145,15 +148,15 @@ rmi.res_json = response JSON:
 
 page.number_prefix = page
 page.input_number = input page number
-page.number_suffix = 
+page.number_suffix =
 page.first = Fisrt
 page.prev = Prev
 page.next = Next
 page.last = Last
 page.record_prefix = total:
-page.record_suffix = 
+page.record_suffix =
 page.input_size = input size per page
-page.size_prefix = 
+page.size_prefix =
 page.size_suffix = per page
 page.slash = /
 page.error = auto paging error

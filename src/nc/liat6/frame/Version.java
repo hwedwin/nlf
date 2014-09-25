@@ -8,7 +8,7 @@ package nc.liat6.frame;
 public class Version{
 
   /** 框架版本号 */
-  public static final String version = "1.3.0";
+  public static final String version = "1.4.0";
   /** 框架包名 */
   public static final String PACKAGE = Version.class.getPackage().getName();
 }

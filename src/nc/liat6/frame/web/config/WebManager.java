@@ -20,9 +20,9 @@ import nc.liat6.frame.web.upload.FileUploader;
 
 /**
  * WEB管理器默认实现
- * 
+ *
  * @author 6tail
- * 
+ *
  */
 public class WebManager extends AbstractWebManager{
 

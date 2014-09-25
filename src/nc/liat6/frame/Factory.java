@@ -3,13 +3,19 @@ package nc.liat6.frame;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.jar.Attributes;
+import java.util.jar.JarFile;
+import java.util.jar.Manifest;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import nc.liat6.frame.aop.IAopInterceptor;
@@ -20,6 +26,8 @@ import nc.liat6.frame.klass.ClassFileFilter;
 import nc.liat6.frame.klass.ClassInfo;
 import nc.liat6.frame.klass.ClassNameComparator;
 import nc.liat6.frame.klass.ICaller;
+import nc.liat6.frame.klass.JarFileFilter;
+import nc.liat6.frame.klass.PkgNameComparator;
 import nc.liat6.frame.locale.LocaleFactory;
 import nc.liat6.frame.locale.LocaleResource;
 import nc.liat6.frame.util.Pather;
@@ -33,15 +41,38 @@ import nc.liat6.frame.web.WebContext;
  */
 public class Factory{
 
-  /** 应用包路径 */
+  /** 应用所在目录 */
   public static String APP_PATH = "";
+  /** 应用路径 */
+  public static String CALLER = "";
+  /** NLF路径 */
+  public static String NLF_PATH = "";
   /** 类信息缓存 */
   public static final Map<String,ClassInfo> CLASS = new HashMap<String,ClassInfo>();
   public static final Map<String,List<String>> IMPLS = new HashMap<String,List<String>>();
   public static final List<String> AOPS = new ArrayList<String>();
+  /** 引入的包 */
+  public static final Set<String> PKGS = new HashSet<String>();
   static{
     if(!WebContext.isWebApp){
-      initApp();
+      initApp(null,null);
+    }
+  }
+
+  private static void buildPkg(){
+    List<String> l = new ArrayList<String>(PKGS.size());
+    for(String s:PKGS){
+      l.add(s);
+    }
+    Collections.sort(l,new PkgNameComparator());
+    PKGS.clear();
+    outer:for(String s:l){
+      for(String p:PKGS){
+        if(s.startsWith(p)){
+          continue outer;
+        }
+      }
+      PKGS.add(s);
     }
   }
 
@@ -49,32 +80,33 @@ public class Factory{
     buildInterface();
     buildImpls();
     buildAop();
+    buildPkg();
   }
 
-  private static void initApp(){
-    StackTraceElement[] sts = Thread.currentThread().getStackTrace();
-    String caller = null;
-    boolean isFrameClass = false;
-    for(StackTraceElement t:sts){
-      String s = t.getClassName();
-      if(s.startsWith(Version.PACKAGE)){
-        isFrameClass = true;
-      }else{
-        if(isFrameClass){
-          caller = s;
-          break;
+  public static void initApp(String callerPath,String libPath){
+    //所有需要扫描的路径
+    List<String> paths = new ArrayList<String>();
+    Thread currentThread = Thread.currentThread();
+    //获取当前应用路径
+    try{
+      Enumeration<URL> urls = currentThread.getContextClassLoader().getResources("");
+      while(urls.hasMoreElements()){
+        URL url = urls.nextElement();
+        File f = new File(url.toURI());
+        if(!f.exists()){
+          continue;
+        }
+        String path = f.getAbsolutePath();
+        if(!paths.contains(path)){
+          paths.add(path);
         }
       }
+    }catch(IOException e){
+      throw new RuntimeException(e);
+    }catch(URISyntaxException e){
+      throw new RuntimeException(e);
     }
-    String p = Pather.getPath(caller,true);
-    APP_PATH = p.endsWith(".jar")?new File(p).getParentFile().getAbsolutePath():p;
-    System.out.println("APP PATH:"+APP_PATH);
-    System.out.println("NLF PATH:"+Pather.FRAME_JAR_PATH);
-    //扫描NLF
-    if(!Pather.FRAME_JAR_PATH.equals(APP_PATH)){
-      scan(Pather.FRAME_JAR_PATH);
-    }
-    //扫描引用
+    //获取classpath引用路径
     String[] cps = System.getProperty("java.class.path").split(File.pathSeparator);
     for(String cp:cps){
       File f = new File(cp);
@@ -82,60 +114,104 @@ public class Factory{
         continue;
       }
       String path = f.getAbsolutePath();
-      if(p.equals(path)){
-        continue;
+      if(!paths.contains(path)){
+        paths.add(path);
       }
-      if(Pather.FRAME_JAR_PATH.equals(path)){
-        continue;
-      }
-      System.out.println("SCAN    :"+path);
-      scan(path);
     }
-    //扫描当前应用
-    scan(p);
-    reBuild();
-  }
 
-  public static void initWebApp(String root){
-    APP_PATH = root;
-    System.out.println("WEB PATH:"+APP_PATH);
-    System.out.println("NLF PATH:"+Pather.FRAME_JAR_PATH);
-
-    //扫描NLF
-    if(!Pather.FRAME_JAR_PATH.equals(APP_PATH)){
-      scan(Pather.FRAME_JAR_PATH);
-    }
-    //扫描引用
-    try{
-      Enumeration<URL> paths = Thread.currentThread().getContextClassLoader().getResources("");
-      while(paths.hasMoreElements()){
-        URL url = paths.nextElement();
-        File f = new File(url.toURI());
-        if(!f.exists()){
-          continue;
-        }
-        String path = f.getAbsolutePath();
-        if(APP_PATH.equals(path)){
-          continue;
-        }
-        if(Pather.FRAME_JAR_PATH.equals(path)){
-          continue;
-        }
-        File[] fs = f.listFiles();
-        for(File file:fs){
-          String p = file.getAbsolutePath();
-          if(Pather.FRAME_JAR_PATH.equals(p)){
-            continue;
+    if(null==callerPath){
+      //获取调用者路径
+      StackTraceElement[] sts = currentThread.getStackTrace();
+      String caller = null;
+      boolean isFrameClass = false;
+      for(StackTraceElement t:sts){
+        String s = t.getClassName();
+        if(s.startsWith(Version.PACKAGE)){
+          isFrameClass = true;
+        }else{
+          if(isFrameClass){
+            caller = s;
+            break;
           }
-          System.out.println("SCAN    :"+p);
-          scan(p);
         }
       }
-    }catch(Exception e){
-      throw new RuntimeException(e);
+      callerPath = Pather.getPath(caller,true);
     }
-    //扫描当前应用
-    scan(APP_PATH);
+    if(!paths.contains(callerPath)){
+      paths.add(callerPath);
+    }
+    //获取调用者引用的路径
+    if(callerPath.endsWith(".jar")){
+      try{
+        JarFile file = new JarFile(callerPath);
+        Manifest mf = file.getManifest();
+        if(null != mf){
+          Attributes attrs = mf.getMainAttributes();
+          String[] ps = attrs.getValue("Class-Path").split(" ");
+          for(String p:ps){
+            p = p.trim();
+            if(0==p.length()){
+              continue;
+            }
+            //当前目录，跳过
+            if(".".equals(p)){
+              continue;
+            }
+            File f = new File(p);
+            String path = f.getAbsolutePath();
+            if(!paths.contains(path)){
+              paths.add(path);
+            }
+          }
+        }
+      }catch(IOException e){
+        throw new RuntimeException(e);
+      }
+    }
+    CALLER = callerPath;
+    APP_PATH = callerPath.endsWith(".jar")?new File(callerPath).getParentFile().getAbsolutePath():callerPath;
+    NLF_PATH = Pather.FRAME_JAR_PATH;
+    System.out.println("CALLER   : "+CALLER);
+    System.out.println("APP PATH : "+APP_PATH);
+    System.out.println("NLF PATH : "+NLF_PATH);
+
+    //如果调用者是jar，不扫描其所在目录的class
+    if(CALLER.endsWith(".jar")){
+      paths.remove(APP_PATH);
+    }
+    //需要加载jar的目录
+    List<String> libs = new ArrayList<String>();
+    if(null!=libPath){
+      libs.add(libPath);
+    }
+    for(String p:paths){
+      if(p.endsWith(".jar")){
+        continue;
+      }
+      if(p.equals(CALLER)){
+        continue;
+      }
+      if(!libs.contains(p)){
+        libs.add(p);
+      }
+    }
+    JarFileFilter jff = new JarFileFilter();
+    for(String p:libs){
+      File[] fs = new File(p).listFiles(jff);
+      for(File f:fs){
+        String path = f.getAbsolutePath();
+        if(!paths.contains(path)){
+          paths.add(path);
+        }
+      }
+      paths.remove(p);
+    }
+
+    //扫描所有class
+    for(String p:paths){
+      System.out.println("scan : "+p);
+      scan(p);
+    }
     reBuild();
   }
 
@@ -253,6 +329,11 @@ public class Factory{
           continue;
         }
         cn = cn.replace(".class","").replace("/",".");
+        if(cn.contains(".")){
+          String pkg = cn.substring(0,cn.lastIndexOf("."));
+          PKGS.add(pkg);
+        }
+
         ClassInfo ci = new ClassInfo();
         ci.setClassName(cn);
         ci.setHome(jarFile.getAbsolutePath());
@@ -268,10 +349,10 @@ public class Factory{
 
   private static void scan(String path){
     File f = new File(path);
-    if(!f.isDirectory()||path.endsWith(".jar")){
-      scanJarClass(f);
-    }else{
+    if(f.isDirectory()){
       scanDirClass(f,new ClassFileFilter(),path);
+    }else if(path.endsWith(".jar")){
+      scanJarClass(f);
     }
   }
 

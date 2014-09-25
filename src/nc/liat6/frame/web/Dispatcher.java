@@ -1,6 +1,7 @@
 package nc.liat6.frame.web;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +20,7 @@ import nc.liat6.frame.context.Context;
 import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.execute.IExecute;
 import nc.liat6.frame.execute.impl.AbstractExecute;
+import nc.liat6.frame.json.JSON;
 import nc.liat6.frame.locale.L;
 import nc.liat6.frame.locale.LocaleFactory;
 import nc.liat6.frame.log.Logger;
@@ -29,21 +31,25 @@ import nc.liat6.frame.web.config.IWebManager;
 
 /**
  * WEB应用调度器
- * 
+ *
  * @author 6tail
- * 
+ *
  */
 public class Dispatcher implements Filter{
 
   /** WEB配置 */
   public static IWebConfig config;
 
+  private static List<String> forbiddenPaths = new ArrayList<String>();
+  private static List<String> allowPaths = new ArrayList<String>();
+
   public void destroy(){}
 
   private boolean contains(List<String> l,String s){
     for(String o:l){
-      if(o.startsWith(s))
+      if(s.startsWith(o)){
         return true;
+      }
     }
     return false;
   }
@@ -74,8 +80,9 @@ public class Dispatcher implements Filter{
       path = path.substring(1);
     }
     // 请求过滤
-    if(contains(config.getForbiddenPaths(),path)){
-      if(!contains(config.getAllowPaths(),path)){
+    if(contains(forbiddenPaths,path)){
+      if(!contains(allowPaths,path)){
+        res.setStatus(403);
         return;
       }
     }
@@ -111,19 +118,22 @@ public class Dispatcher implements Filter{
     WebContext.REAL_PATH = ctx.getRealPath("");
     WebContext.CONTEXT_PATH = ctx.getContextPath();
     // 初始化工厂
-    Factory.initWebApp(ctx.getRealPath("/WEB-INF/classes"));
+    Factory.initApp(ctx.getRealPath("/WEB-INF/classes"),ctx.getRealPath("/WEB-INF/lib"));
     // WEB配置接口初始化
     config = Factory.getCaller().newInstance(IWebConfig.class);
     // 配置初始化
     config.init();
-    ctx.setAttribute(config.getAppRootTag(),WebContext.CONTEXT_PATH);
-    if(null!=config.getGlobalVars()){
-      for(String k:config.getGlobalVars().keySet()){
-        Object v = config.getGlobalVars().get(k);
-        ctx.setAttribute(k,v);
-      }
+    forbiddenPaths = config.getForbiddenPaths();
+    allowPaths = config.getAllowPaths();
+    Map<String,Object> globalVars = config.getGlobalVars();
+    if(null==globalVars){
+      globalVars = new HashMap<String,Object>();
     }
-    Logger.getLog().info(Stringer.print("??\r\n??\r\n??\r\n${?} = ?\r\n",L.get(LocaleFactory.locale,"web.app_path"),WebContext.REAL_PATH,L.get(LocaleFactory.locale,"web.app_config"),config,L.get(LocaleFactory.locale,"web.error_page"),config.getErrorPage(),config.getAppRootTag(),WebContext.CONTEXT_PATH));
+    globalVars.put(config.getAppRootTag(),WebContext.CONTEXT_PATH);
+    for(String k:globalVars.keySet()){
+      ctx.setAttribute(k,globalVars.get(k));
+    }
+    Logger.getLog().info(Stringer.print("??\r\n??\r\n??\r\n??\r\n??\r\n??\r\n",L.get(LocaleFactory.locale,"web.app_path"),WebContext.REAL_PATH,L.get(LocaleFactory.locale,"web.app_config"),config,L.get(LocaleFactory.locale,"web.error_page"),config.getErrorPage(),L.get(LocaleFactory.locale,"web.global_vars"),JSON.toJson(globalVars,false),L.get(LocaleFactory.locale,"web.forbid"),JSON.toJson(config.getForbiddenPaths(),false),L.get(LocaleFactory.locale,"web.allow"),JSON.toJson(config.getAllowPaths(),false)));
     config.start();
   }
 }

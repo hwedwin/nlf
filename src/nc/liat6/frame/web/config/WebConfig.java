@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import nc.liat6.frame.Factory;
 import nc.liat6.frame.Version;
 import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.execute.IExecute;
@@ -12,9 +13,9 @@ import nc.liat6.frame.web.upload.UploadStatus;
 
 /**
  * 默认WEB配置
- * 
+ *
  * @author 6tail
- * 
+ *
  */
 public class WebConfig implements IWebConfig{
 
@@ -39,6 +40,9 @@ public class WebConfig implements IWebConfig{
   public List<String> getForbiddenPaths(){
     List<String> l = new ArrayList<String>();
     l.add("/"+Version.PACKAGE);
+    for(String s:Factory.PKGS){
+      l.add("/"+s);
+    }
     return l;
   }
 

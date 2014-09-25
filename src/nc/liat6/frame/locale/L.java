@@ -33,7 +33,7 @@ public class L{
     if(!name.contains("_")){
       return;
     }
-    System.out.println("load locale:"+f.getAbsolutePath());
+    System.out.println("load locale : "+f.getAbsolutePath());
     String locale = name.substring(0,name.indexOf("."));
     res.put(locale,gen(new FileInputStream(f)));
   }
@@ -64,7 +64,7 @@ public class L{
         ZipFile zip = new ZipFile(o.getHome());
         ZipEntry en = zip.getEntry(o.getFileName());
         InputStream in = zip.getInputStream(en);
-        System.out.println("load locale:"+o.getHome());
+        System.out.println("load locale : "+o.getFileName());
         res.put(o.getLocale(),gen(in));
       }else{
         loadResource(new File(o.getHome(),o.getFileName()));
