@@ -11,10 +11,10 @@ I.regist('skin.MobileDefault',function(W,D){
   -moz-box-sizing:border-box;
   box-sizing:border-box;
   outline: none;
-  overflow:hidden;
 }
 html{
   height:100%;
+  overflow:hidden;
 }
 a{
   text-decoration:none;
@@ -120,6 +120,7 @@ header{
   -ms-box-ordinal-group:1;
   -o-box-ordinal-group:1;
   box-ordinal-group:1;
+  overflow:hidden;
   white-space:nowrap;
   text-overflow:ellipsis;
   -moz-user-select:none;
@@ -205,6 +206,7 @@ footer{
   text-align:center;
   color:#FFF;
   font-size:1.2em;
+  overflow:hidden;
   -webkit-box-ordinal-group: 3;
   -moz-box-ordinal-group: 3;
   -ms-box-ordinal-group: 3;
@@ -240,6 +242,7 @@ article li{
   font-weight: 300;
   background-color:#FFF;
   border-bottom: inset 1px #CFCFCF;
+  overflow:hidden;
 }
 aside li{
   position: relative;
@@ -321,6 +324,15 @@ small{
 }
 .fa:first-letter {
   margin-right:.111em;
+}
+.thumb{
+  border:1px solid #EEE;
+  padding:0.2em;
+  overflow:hidden;
+  float:left;
+}
+.padding .thumb{
+  margin-right:.5333333333333333em;
 }
   */}+'';
   return {
