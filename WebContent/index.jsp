@@ -41,6 +41,11 @@
       <li><b></b><i></i><a data-url="${PATH}/demo/template.jsp">js模板引擎</a></li>
     </ul>
   </li>
+  <li><b></b><i></i><a>手机界面</a>
+    <ul>
+      <li><b></b><i></i><a data-url="${PATH}/demo_mobile/index.jsp">手机DEMO</a></li>
+    </ul>
+  </li>
 </ul>
 <a id="btnA">插入点数据</a>
 <script type="text/javascript">
@@ -63,7 +68,7 @@ I.want(function(){
   I.ui.Button.render('btnA',{
     callback:function(){
       I.net.Rmi.call('test.Action','addData',function(){
-        
+
       });
     }
   });
