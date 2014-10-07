@@ -11,6 +11,45 @@
 <link type="text/css" rel="stylesheet" href="${PATH}/css/paging.css" />
 <style type="text/css">
 *{font-size:14px;}
+.nlfPagingForm {
+  margin: 0;
+  padding: 0;
+  float: right;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center
+}
+.nlfPagingForm span {
+  display:none;
+}
+.nlfPagingForm input {
+  display:none;
+}
+.nlfPagingForm a {
+  margin-left:3px;
+  color: #888;
+  text-align: center;
+  text-decoration: none;
+  background-color: #FFFFFF;
+  border: 1px solid #E4E4E4;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  padding: 5px 5px;
+}
+.nlfPagingForm a.current,a.ellipsis {
+  border:0;
+  border-radius:0;
+  -webkit-border-radius:0;
+  -moz-border-radius:0;
+  padding: 5px 5px;
+}
+.nlfPagingForm a:hover {
+  background-color: #F0F0F0;
+}
+.nlfPagingForm a.current:hover,a.ellipsis:hover {
+  background-color: transparent;
+}
 </style>
 <script type="text/javascript" src="${PATH}/js/icore.js"></script>
 </head>
