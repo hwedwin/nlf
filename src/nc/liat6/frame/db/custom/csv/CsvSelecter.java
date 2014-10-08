@@ -19,9 +19,9 @@ import nc.liat6.frame.util.Stringer;
 
 /**
  * CSV查询器
- * 
+ *
  * @author 6tail
- * 
+ *
  */
 public class CsvSelecter extends CsvExecuter implements ISelecter{
 
@@ -160,7 +160,7 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
         Bean o = new Bean();
         for(int j = 0;j<head.length;j++){
           String s = head[j].toUpperCase();
-          if(data.length>=j){
+          if(data.length>j){
             o.set(s,data[j]);
           }else{
             o.set(s,"");

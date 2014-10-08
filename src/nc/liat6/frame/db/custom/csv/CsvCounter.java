@@ -15,9 +15,9 @@ import nc.liat6.frame.util.Stringer;
 
 /**
  * CSV计数器
- * 
+ *
  * @author 6tail
- * 
+ *
  */
 public class CsvCounter extends CsvExecuter implements ICounter{
 
@@ -128,7 +128,7 @@ public class CsvCounter extends CsvExecuter implements ICounter{
         Bean o = new Bean();
         for(int j = 0;j<head.length;j++){
           String s = head[j].toUpperCase();
-          if(data.length>=j){
+          if(data.length>j){
             o.set(s,data[j]);
           }else{
             o.set(s,"");

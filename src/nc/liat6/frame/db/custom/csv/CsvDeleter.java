@@ -16,9 +16,9 @@ import nc.liat6.frame.util.Stringer;
 
 /**
  * CSV删除器
- * 
+ *
  * @author 6tail
- * 
+ *
  */
 public class CsvDeleter extends CsvExecuter implements IDeleter{
 
@@ -85,7 +85,7 @@ public class CsvDeleter extends CsvExecuter implements IDeleter{
           Bean o = new Bean();
           for(int j = 0;j<head.length;j++){
             String s = head[j].toUpperCase();
-            if(data.length>=j){
+            if(data.length>j){
               o.set(s,data[j]);
             }else{
               o.set(s,"");

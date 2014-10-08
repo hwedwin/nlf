@@ -16,9 +16,9 @@ import nc.liat6.frame.util.Stringer;
 
 /**
  * CSV更新器
- * 
+ *
  * @author 6tail
- * 
+ *
  */
 public class CsvUpdater extends CsvExecuter implements IUpdater{
 
@@ -157,12 +157,18 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
           Bean o = new Bean();
           for(int j = 0;j<head.length;j++){
             String s = head[j].toUpperCase();
-            if(data.length>=j){
+            if(data.length>j){
               o.set(s,data[j]);
             }else{
               o.set(s,"");
             }
           }
+          //补全data
+          data = new String[head.length];
+          for(int j=0;j<data.length;j++){
+            data[j] = o.getString(head[j].toUpperCase(),"");
+          }
+
           // 不满足条件的，直接写入
           for(int j = 0;j<wheres.size();j++){
             Rule r = wheres.get(j);
