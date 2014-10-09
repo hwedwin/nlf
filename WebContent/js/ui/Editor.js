@@ -10,7 +10,7 @@ I.regist('ui.Editor',function(W,D){
     checkMethod:'getStatus',
     border:'1px solid #DDD',
     fillHeight:false,
-    toolbar:['source','fullscreen','|','bold','italic','underline','strikethrough','|','superscript','subscript','|','forecolor','backcolor','|','removeformat','|','insertorderedlist','insertunorderedlist','justifyleft','justifycenter','justifyright','justifyfull','|','indent','outdent','|','link','unlink','|','image','|','horizontal'],
+    toolbar:['source','fullscreen','|','bold','italic','underline','strikethrough','|','superscript','subscript','|','forecolor','backcolor','|','removeformat','|','insertorderedlist','insertunorderedlist','justifyleft','justifycenter','justifyright','justifyfull','|','indent','outdent','|','link','unlink','|','image','code','|','horizontal'],
     dom:D.body
   };
   var TIP = {
@@ -36,6 +36,7 @@ I.regist('ui.Editor',function(W,D){
     link:'超链接',
     unlink:'取消链接',
     image:'图片',
+    code:'代码',
     horizontal:'分隔线'
   };
   var ICON = {
@@ -61,6 +62,7 @@ I.regist('ui.Editor',function(W,D){
     link:'fa fa-link',
     unlink:'fa fa-chain-broken',
     image:'fa fa-picture-o',
+    code:'fa fa-code',
     horizontal:'fa fa-minus'
   };
 
@@ -178,6 +180,42 @@ I.regist('ui.Editor',function(W,D){
                 inst.doc.execCommand("createlink", false, I.$('input'+id).value);
                 inst.range.commonAncestorContainer.parentNode.target = I.$('select'+id).value;
               }
+              win.close();
+            }
+          });
+        });
+        break;
+      case 'code':
+        _tool(obj,name,function(a){
+          var inst = this;
+          try{
+            inst.doc.body.focus();
+          }catch(e){}
+          inst.range = D.all?inst.doc.selection.createRange():inst.iframe.contentWindow.getSelection().getRangeAt(0);
+          var id = I.util.UUID.next();
+          var win = I.z.Win.create({
+            title:'粘贴代码',
+            width:400,
+            height:180,
+            content:I.util.Template.render(null,'<div id="'+id+'"><ul><li><textarea id="input'+id+'" style="height:90px;"></textarea></li></ul><ul><li></li><li data-width="20"><a id="btn'+id+'">确定</a></li></ul></div>')
+          });
+          I.ui.Form.render(id,{
+            border:'0',
+            border_hover:'0',
+            background_hover:'#FFF'
+          });
+          I.ui.Button.render('btn'+id,{
+            callback:function(){
+              var v = I.$('input'+id).value;
+              v = v.replace(/</g,'&amplt');
+              v = v.replace(/>/g,'&ampgt');
+              v = '<br /><pre class="i-ui-Code-NeedRender">'+v+'</pre><br />';
+              if(D.all){
+                inst.range.execCommand('inserthtml', false, v);
+              }else{
+                inst.doc.execCommand("inserthtml", false, v);
+              }
+              I.ui.Code.autoRender({dom:inst.doc.body});
               win.close();
             }
           });

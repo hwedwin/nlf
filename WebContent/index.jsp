@@ -39,6 +39,7 @@
   <li><b></b><i></i><a>工具</a>
     <ul>
       <li><b></b><i></i><a data-url="${PATH}/demo/template.jsp">js模板引擎</a></li>
+      <li><b></b><i></i><a data-url="${PATH}/demo/code.jsp">代码着色</a></li>
     </ul>
   </li>
   <li><b></b><i></i><a>手机界面</a>

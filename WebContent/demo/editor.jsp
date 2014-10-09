@@ -15,11 +15,13 @@
 </head>
 <body>
 <a href="${PATH}/">返回首页</a>
-<p></p>
+<p>&nbsp;</p>
 <textarea id="editor">Hello World!</textarea>
-<p></p>
+<p>&nbsp;</p>
+<div id="v"></div>
 <a id="btn">获取内容</a>
 <a id="btnB">设置内容</a>
+<a id="btnC">预览</a>
 <script type="text/javascript">
 I.want(function(){
   var editor = I.ui.Editor.render('editor',{
@@ -33,6 +35,11 @@ I.want(function(){
   I.ui.Button.render('btnB',{
     callback:function(){
       editor.setContent('设置的内容哟。');
+    }
+  });
+  I.ui.Button.render('btnC',{
+    callback:function(){
+      I.$('v').innerHTML = editor.getContent();
     }
   });
 });
