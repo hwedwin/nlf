@@ -343,13 +343,15 @@ ol.i-ui-Code-${skin}{
   list-style:decimal;
   background-color:#F3F3F3;
   font-size:1em;
-  overflow-x:auto;
+  overflow-x:hidden;
+  overflow-y:auto;
   font-family:Monaco, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", Consolas, "Courier New", monospace;
   white-space: pre;
 }
 ol.i-ui-Code-${skin} li{
   display:list-item;
   line-height:1.4em;
+  border:0;
   border-left:1px solid #D1D1D1;
   margin:0;
   padding:0;
@@ -358,6 +360,8 @@ ol.i-ui-Code-${skin} li{
 }
 ol.i-ui-Code-${skin} span{
   color:#000;
+  font-family:Monaco, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", Consolas, "Courier New", monospace;
+  white-space: pre;
 }
 ol.i-ui-Code-${skin} span.keyword{
   color:#954121;

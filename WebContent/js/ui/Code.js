@@ -114,6 +114,8 @@ I.regist('ui.Code',function(W,D){
     obj.dom.style.border = cfg.border;
     if(cfg.height){
       obj.dom.style.height = cfg.height+'px';
+    }else{
+      obj.dom.style.overflow = 'hidden';
     }
     var s = obj.proxyDom.innerText||obj.proxyDom.textContent;
     s = s.replace(/\r/g,'\n');
