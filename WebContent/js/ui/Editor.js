@@ -9,11 +9,13 @@ I.regist('ui.Editor',function(W,D){
     checkKlass:'nc.liat6.frame.web.upload.UploadStatus',
     checkMethod:'getStatus',
     border:'1px solid #DDD',
-    toolbar:['source','|','bold','italic','underline','strikethrough','|','superscript','subscript','|','forecolor','backcolor','|','removeformat','|','insertorderedlist','insertunorderedlist','justifyleft','justifycenter','justifyright','justifyfull','|','indent','outdent','|','link','unlink','|','image','|','horizontal'],
+    fillHeight:false,
+    toolbar:['source','fullscreen','|','bold','italic','underline','strikethrough','|','superscript','subscript','|','forecolor','backcolor','|','removeformat','|','insertorderedlist','insertunorderedlist','justifyleft','justifycenter','justifyright','justifyfull','|','indent','outdent','|','link','unlink','|','image','|','horizontal'],
     dom:D.body
   };
   var TIP = {
     source:'源代码',
+    fullscreen:'全屏',
     bold:'加粗',
     italic:'斜体',
     underline:'下划线',
@@ -38,6 +40,7 @@ I.regist('ui.Editor',function(W,D){
   };
   var ICON = {
     source:'fa fa-file-text',
+    fullscreen:'fa fa-desktop',
     bold:'fa fa-bold',
     italic:'fa fa-italic',
     underline:'fa fa-underline',
@@ -60,7 +63,7 @@ I.regist('ui.Editor',function(W,D){
     image:'fa fa-picture-o',
     horizontal:'fa fa-minus'
   };
-  
+
   var _try = function(obj,func){
     if(obj.doc&&obj.doc.body){
       func.call(obj);
@@ -99,6 +102,7 @@ I.regist('ui.Editor',function(W,D){
             this.dom.style.display = 'none';
             this.iframe.style.display = 'block';
             this.showSource = false;
+            I.cls(a,ICON[a.getAttribute('data-name')]);
           }else{
             if(this.doc){
               this.dom.value = this.doc.body.innerHTML;
@@ -106,7 +110,32 @@ I.regist('ui.Editor',function(W,D){
             this.dom.style.display = 'block';
             this.iframe.style.display = 'none';
             this.showSource = true;
+            I.cls(a,'active '+ICON[a.getAttribute('data-name')]);
           }
+        });
+        break;
+      case 'fullscreen':
+        _tool(obj,name,function(a){
+          var win = I.z.SimpleWin.create({title:'编辑器',callback:function(){
+            obj.setContent(this.editor.getContent());
+          }});
+          var ncfg = {};
+          for(var j in cfg){
+            ncfg[j] = cfg[j];
+          }
+          var toolbar = [];
+          for(var j=0;j<ncfg.toolbar.length;j++){
+            if(ncfg.toolbar[j]=='fullscreen'){
+              continue;
+            }
+            toolbar.push(ncfg.toolbar[j]);
+          }
+          ncfg.toolbar = toolbar;
+          ncfg.dom = win.contentPanel;
+          ncfg.fillHeight = true;
+          var editor = _create(ncfg);
+          editor.setContent(obj.getContent());
+          win.editor = editor;
         });
         break;
       case 'forecolor':
@@ -183,7 +212,7 @@ I.regist('ui.Editor',function(W,D){
               I.$('input'+id).value = r.data;
             }
           });
-          
+
           I.ui.Button.render('btn'+id,{
             callback:function(){
               if(D.all){
@@ -221,16 +250,18 @@ I.regist('ui.Editor',function(W,D){
     var toolbar = I.insert('div',dom);
     I.cls(toolbar,'editor-toolbar');
     obj.toolbar = toolbar;
-    
+
     var body = I.insert('div',dom);
     I.cls(body,'editor-body');
+    if(cfg.height){
+      body.style.height = cfg.height+'px';
+    }
     obj.body = body;
     obj.body.appendChild(obj.dom);
-    
     var iframe = I.insert('iframe',body);
     iframe.src = 'about:blank';
     obj.iframe = iframe;
-    
+
     var timer = null;
     timer = W.setInterval(function(){
       var doc = iframe.contentWindow.document||iframe.contentDocument;
@@ -249,6 +280,29 @@ I.regist('ui.Editor',function(W,D){
     },16);
     _renderToolbar(obj);
     obj.setContent(obj.dom.value);
+    if(cfg.fillHeight){
+      obj.winResizing = false;
+      I.listen(W,'resize',function(){
+        if(!obj.winResizeing){
+          obj.winResizeing = true;
+          I.delay(100,function(){
+            obj.winResizeing = false;
+          });
+        }
+        I.delay(150,function(){
+          if(!obj.winResizeing){
+            var r = I.region(obj.proxyDom.parentNode);
+            var rt = I.region(obj.toolbar);
+            var h = r.height-rt.height-4;
+            obj.body.style.height = h+'px';
+          }
+        });
+      });
+      var r = I.region(obj.proxyDom.parentNode);
+      var rt = I.region(obj.toolbar);
+      var h = r.height-rt.height-4;
+      obj.body.style.height = h+'px';
+    }
   };
   var _create = function(config){
     var dom = I.insert('textarea',config.dom?config.dom:CFG.dom);

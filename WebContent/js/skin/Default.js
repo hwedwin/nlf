@@ -298,6 +298,11 @@ ul.i-ui-Tree-${skin} ul{
   border:1px solid #A3BDE3;
   text-decoration:none;
 }
+.i-ui-Editor-${skin} div.editor-toolbar a.active{
+  background-color:#D5E1F2;
+  border:1px solid #A3BDE3;
+  text-decoration:none;
+}
 .i-ui-Editor-${skin} div.editor-body{
   display:block;
   margin:0;
