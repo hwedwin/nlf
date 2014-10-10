@@ -162,8 +162,8 @@ I.regist('ui.Editor',function(W,D){
           var id = I.util.UUID.next();
           var win = I.z.Win.create({
             title:'添加链接',
-            width:400,
-            height:180,
+            width:500,
+            height:200,
             content:I.util.Template.render(null,'<div id="'+id+'"><ul><li data-width="20">URL：</li><li><input id="input'+id+'" type="text" /></li></ul><ul><li data-width="20">打开窗口：</li><li><select id="select'+id+'"><option value="_blank">新窗口</option><option value="_self">本窗口</option></select></li></ul><ul><li></li><li data-width="20"><a id="btn'+id+'">确定</a></li></ul></div>')
           });
           I.ui.Form.render(id,{
@@ -196,7 +196,7 @@ I.regist('ui.Editor',function(W,D){
           var win = I.z.Win.create({
             title:'粘贴代码',
             width:400,
-            height:180,
+            height:200,
             content:I.util.Template.render(null,'<div id="'+id+'"><ul><li><textarea id="input'+id+'" style="height:90px;"></textarea></li></ul><ul><li></li><li data-width="20"><a id="btn'+id+'">确定</a></li></ul></div>')
           });
           I.ui.Form.render(id,{

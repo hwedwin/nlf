@@ -42,10 +42,14 @@ I.regist('ui.Loading',function(W,D){
       }
     },60);
     obj.layer.style.display = 'none';
-    obj.mask.layer.style.display = 'none';
+    try{
+      obj.mask.layer.style.display = 'none';
+    }catch(e){}
     I.delay(1000,function(){
       try{
         obj.mask.layer.style.display = 'block';
+      }catch(e){}
+      try{
         obj.layer.style.display = 'block';
       }catch(e){}
     });
