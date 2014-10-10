@@ -189,7 +189,6 @@ I.regist('ui.Code',function(W,D){
     }
     for(var i=0;i<doms.length;i++){
       _render(doms[i],config);
-      I.cls(doms[i],'');
     }
   };
   return {
