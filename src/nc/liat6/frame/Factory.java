@@ -82,9 +82,9 @@ public class Factory{
   }
 
   public static void initApp(String callerPath,String libPath){
-    //所有需要扫描的路径
+    // 所有需要扫描的路径
     List<String> paths = new ArrayList<String>();
-    //获取classpath引用路径
+    // 获取classpath引用路径
     String[] cps = System.getProperty("java.class.path").split(File.pathSeparator);
     for(String cp:cps){
       File f = new File(cp);
@@ -96,9 +96,8 @@ public class Factory{
         paths.add(path);
       }
     }
-
     if(null==callerPath){
-      //获取调用者路径
+      // 获取调用者路径
       StackTraceElement[] sts = Thread.currentThread().getStackTrace();
       String caller = null;
       boolean isFrameClass = false;
@@ -118,27 +117,30 @@ public class Factory{
     if(!paths.contains(callerPath)){
       paths.add(callerPath);
     }
-    //获取调用者引用的路径
+    // 获取调用者引用的路径
     if(callerPath.endsWith(".jar")){
       try{
         JarFile file = new JarFile(callerPath);
         Manifest mf = file.getManifest();
-        if(null != mf){
+        if(null!=mf){
           Attributes attrs = mf.getMainAttributes();
-          String[] ps = attrs.getValue("Class-Path").split(" ");
-          for(String p:ps){
-            p = p.trim();
-            if(0==p.length()){
-              continue;
-            }
-            //当前目录，跳过
-            if(".".equals(p)){
-              continue;
-            }
-            File f = new File(p);
-            String path = f.getAbsolutePath();
-            if(!paths.contains(path)){
-              paths.add(path);
+          String cp = attrs.getValue("Class-Path");
+          if(null!=cp){
+            String[] ps = cp.split(" ");
+            for(String p:ps){
+              p = p.trim();
+              if(0==p.length()){
+                continue;
+              }
+              // 当前目录，跳过
+              if(".".equals(p)){
+                continue;
+              }
+              File f = new File(p);
+              String path = f.getAbsolutePath();
+              if(!paths.contains(path)){
+                paths.add(path);
+              }
             }
           }
         }
@@ -152,12 +154,11 @@ public class Factory{
     System.out.println("CALLER   : "+CALLER);
     System.out.println("APP PATH : "+APP_PATH);
     System.out.println("NLF PATH : "+NLF_PATH);
-
-    //如果调用者是jar，不扫描其所在目录的class
+    // 如果调用者是jar，不扫描其所在目录的class
     if(CALLER.endsWith(".jar")){
       paths.remove(APP_PATH);
     }
-    //需要加载jar的目录
+    // 需要加载jar的目录
     List<String> libs = new ArrayList<String>();
     if(null!=libPath){
       libs.add(libPath);
@@ -184,8 +185,7 @@ public class Factory{
       }
       paths.remove(p);
     }
-
-    //扫描所有class
+    // 扫描所有class
     for(String p:paths){
       System.out.println("scan : "+p);
       scan(p);
@@ -311,7 +311,6 @@ public class Factory{
           String pkg = cn.substring(0,cn.lastIndexOf("."));
           PKGS.add(pkg);
         }
-
         ClassInfo ci = new ClassInfo();
         ci.setClassName(cn);
         ci.setHome(jarFile.getAbsolutePath());
