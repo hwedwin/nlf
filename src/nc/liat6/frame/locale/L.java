@@ -35,7 +35,13 @@ public class L{
     }
     System.out.println("load locale : "+f.getAbsolutePath());
     String locale = name.substring(0,name.indexOf("."));
-    res.put(locale,gen(new FileInputStream(f)));
+    Map<String,String> map = res.get(locale);
+    Map<String,String> nmap = gen(new FileInputStream(f));
+    if(null==map){
+      res.put(locale,nmap);
+    }else{
+      map.putAll(nmap);
+    }
   }
 
   private static Map<String,String> gen(InputStream in) throws IOException{
@@ -65,7 +71,13 @@ public class L{
         ZipEntry en = zip.getEntry(o.getFileName());
         InputStream in = zip.getInputStream(en);
         System.out.println("load locale : "+o.getFileName());
-        res.put(o.getLocale(),gen(in));
+        Map<String,String> map = res.get(o.getLocale());
+        Map<String,String> nmap = gen(in);
+        if(null==map){
+          res.put(o.getLocale(),nmap);
+        }else{
+          map.putAll(nmap);
+        }
       }else{
         loadResource(new File(o.getHome(),o.getFileName()));
       }
