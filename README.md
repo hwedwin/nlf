@@ -18,4 +18,4 @@ WebContent下有六特尔开发的一个js框架，通过一个核心js文件自
 
 #更多
     NLF框架官方QQ群：281471914
-    NLF框架介绍网址：http://6tail.cn
+    NLF框架介绍网址：[http://6tail.cn](http://6tail.cn "http://6tail.cn")
