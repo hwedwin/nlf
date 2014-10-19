@@ -1,11 +1,11 @@
 package nc.liat6.frame.web;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -40,12 +40,12 @@ public class Dispatcher implements Filter{
   /** WEB配置 */
   public static IWebConfig config;
 
-  private static List<String> forbiddenPaths = new ArrayList<String>();
-  private static List<String> allowPaths = new ArrayList<String>();
+  private static Set<String> forbiddenPaths = new HashSet<String>();
+  private static Set<String> allowPaths = new HashSet<String>();
 
   public void destroy(){}
 
-  private boolean contains(List<String> l,String s){
+  private boolean contains(Set<String> l,String s){
     for(String o:l){
       if(s.startsWith(o)){
         return true;
@@ -123,8 +123,8 @@ public class Dispatcher implements Filter{
     config = Factory.getCaller().newInstance(IWebConfig.class);
     // 配置初始化
     config.init();
-    forbiddenPaths = config.getForbiddenPaths();
-    allowPaths = config.getAllowPaths();
+    forbiddenPaths.addAll(config.getForbiddenPaths());
+    allowPaths.addAll(config.getAllowPaths());
     Map<String,Object> globalVars = config.getGlobalVars();
     if(null==globalVars){
       globalVars = new HashMap<String,Object>();
@@ -133,7 +133,7 @@ public class Dispatcher implements Filter{
     for(String k:globalVars.keySet()){
       ctx.setAttribute(k,globalVars.get(k));
     }
-    Logger.getLog().info(Stringer.print("??\r\n??\r\n??\r\n??\r\n??\r\n??\r\n",L.get(LocaleFactory.locale,"web.app_path"),WebContext.REAL_PATH,L.get(LocaleFactory.locale,"web.app_config"),config,L.get(LocaleFactory.locale,"web.error_page"),config.getErrorPage(),L.get(LocaleFactory.locale,"web.global_vars"),JSON.toJson(globalVars,false),L.get(LocaleFactory.locale,"web.forbid"),JSON.toJson(config.getForbiddenPaths(),false),L.get(LocaleFactory.locale,"web.allow"),JSON.toJson(config.getAllowPaths(),false)));
+    Logger.getLog().info(Stringer.print("??\r\n??\r\n??\r\n??\r\n??\r\n??\r\n",L.get(LocaleFactory.locale,"web.app_path"),WebContext.REAL_PATH,L.get(LocaleFactory.locale,"web.app_config"),config,L.get(LocaleFactory.locale,"web.error_page"),config.getErrorPage(),L.get(LocaleFactory.locale,"web.global_vars"),JSON.toJson(globalVars,false),L.get(LocaleFactory.locale,"web.forbid"),JSON.toJson(forbiddenPaths,false),L.get(LocaleFactory.locale,"web.allow"),JSON.toJson(allowPaths,false)));
     config.start();
   }
 }
