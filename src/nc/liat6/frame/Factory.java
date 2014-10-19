@@ -47,10 +47,14 @@ public class Factory{
   public static String NLF_PATH = "";
   /** 类信息缓存 */
   public static final Map<String,ClassInfo> CLASS = new HashMap<String,ClassInfo>();
+  /** 接口实现缓存 */
   public static final Map<String,List<String>> IMPLS = new HashMap<String,List<String>>();
+  /** AOP缓存 */
   public static final List<String> AOPS = new ArrayList<String>();
   /** 引入的包 */
   public static final Set<String> PKGS = new HashSet<String>();
+  /** 扫描路径 */
+  public static final Set<String> LIBS = new HashSet<String>();
   static{
     if(!WebContext.isWebApp){
       initApp(null,null);
@@ -82,8 +86,9 @@ public class Factory{
   }
 
   public static void initApp(String callerPath,String libPath){
+    JarFileFilter jarFilter = new JarFileFilter();
     // 所有需要扫描的路径
-    List<String> paths = new ArrayList<String>();
+    Set<String> paths = new HashSet<String>();
     // 获取classpath引用路径
     String[] cps = System.getProperty("java.class.path").split(File.pathSeparator);
     for(String cp:cps){
@@ -91,9 +96,10 @@ public class Factory{
       if(!f.exists()){
         continue;
       }
-      String path = f.getAbsolutePath();
-      if(!paths.contains(path)){
-        paths.add(path);
+      if(f.getName().endsWith(".jar")){
+        if(jarFilter.accept(f)){
+          paths.add(f.getAbsolutePath());
+        }
       }
     }
     if(null==callerPath){
@@ -114,7 +120,7 @@ public class Factory{
       }
       callerPath = Pather.getPath(caller,true);
     }
-    if(!paths.contains(callerPath)){
+    if(new File(callerPath).exists()){
       paths.add(callerPath);
     }
     // 获取调用者引用的路径
@@ -137,9 +143,8 @@ public class Factory{
                 continue;
               }
               File f = new File(p);
-              String path = f.getAbsolutePath();
-              if(!paths.contains(path)){
-                paths.add(path);
+              if(jarFilter.accept(f)){
+                paths.add(f.getAbsolutePath());
               }
             }
           }
@@ -148,18 +153,20 @@ public class Factory{
         throw new RuntimeException(e);
       }
     }
-    CALLER = callerPath;
-    APP_PATH = callerPath.endsWith(".jar")?new File(callerPath).getParentFile().getAbsolutePath():callerPath;
-    NLF_PATH = Pather.FRAME_JAR_PATH;
-    System.out.println("CALLER   : "+CALLER);
-    System.out.println("APP PATH : "+APP_PATH);
-    System.out.println("NLF PATH : "+NLF_PATH);
+    if(new File(callerPath).exists()){
+      CALLER = callerPath;
+      APP_PATH = callerPath.endsWith(".jar")?new File(callerPath).getParentFile().getAbsolutePath():callerPath;
+      NLF_PATH = Pather.FRAME_JAR_PATH;
+      System.out.println("CALLER   : "+CALLER);
+      System.out.println("APP PATH : "+APP_PATH);
+      System.out.println("NLF PATH : "+NLF_PATH);
+    }
     // 如果调用者是jar，不扫描其所在目录的class
     if(CALLER.endsWith(".jar")){
       paths.remove(APP_PATH);
     }
     // 需要加载jar的目录
-    List<String> libs = new ArrayList<String>();
+    Set<String> libs = new HashSet<String>();
     if(null!=libPath){
       libs.add(libPath);
     }
@@ -170,25 +177,26 @@ public class Factory{
       if(p.equals(CALLER)){
         continue;
       }
-      if(!libs.contains(p)){
-        libs.add(p);
-      }
+      libs.add(p);
     }
-    JarFileFilter jff = new JarFileFilter();
     for(String p:libs){
-      File[] fs = new File(p).listFiles(jff);
+      File dir = new File(p);
+      if(!dir.exists()){
+        continue;
+      }
+      File[] fs = dir.listFiles(jarFilter);
       for(File f:fs){
-        String path = f.getAbsolutePath();
-        if(!paths.contains(path)){
-          paths.add(path);
-        }
+        paths.add(f.getAbsolutePath());
       }
       paths.remove(p);
     }
-    // 扫描所有class
+    // 扫描class
     for(String p:paths){
-      System.out.println("scan : "+p);
-      scan(p);
+      if(!LIBS.contains(p)){
+        LIBS.add(p);
+        System.out.println("scan : "+p);
+        scan(p);
+      }
     }
     reBuild();
   }
