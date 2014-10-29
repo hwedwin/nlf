@@ -369,6 +369,50 @@ ol.i-ui-Code-${skin} span.keyword{
 ol.i-ui-Code-${skin} span.comment{
   color:#999;
 }
+.i-ui-Slider-${skin}{
+  display:block;
+  border-radius:4px;
+  -webkit-border-radius:4px;
+  -moz-border-radius:4px;
+  font-size:0;
+  margin:0;
+  padding:0;
+  position:relative;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+}
+.i-ui-Slider-${skin} b{
+  display:block;
+  border-radius:4px;
+  -webkit-border-radius:4px;
+  -moz-border-radius:4px;
+  font-size:0;
+  margin:0;
+  padding:0;
+  position:absolute;
+  left:0;
+  top:0;
+  width:0,
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+}
+.i-ui-Slider-${skin} i{
+  display:block;
+  border-radius:4px;
+  -webkit-border-radius:4px;
+  -moz-border-radius:4px;
+  font-size:0;
+  margin:0;
+  padding:0;
+  position:absolute;
+  left:0;
+  top:0;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+}
   */}+'';
   return {
     getCss:function(){return CSS;}
