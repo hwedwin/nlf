@@ -55,8 +55,11 @@ I.regist('net.SilentRmi',function(W,D){
             }else{
               I.get(o.xtype,function(){
                 if(ef){
-                  o.callback = ef;
+                  //o.callback = ef;
                   this.create(o);
+                  if(ef){
+                    ef(o);
+                  }
                 }else{
                   this.create(o);
                 }
