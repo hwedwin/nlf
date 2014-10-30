@@ -1,9 +1,7 @@
 package nc.liat6.frame.util;
 
-import java.io.Serializable;
 import java.net.NetworkInterface;
 import java.nio.ByteBuffer;
-import java.util.Enumeration;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -13,13 +11,13 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author 6tail
  *
  */
-public class UUID implements Serializable{
+public class UUID implements java.io.Serializable{
 
   private static final long serialVersionUID = -4415279469780082174L;
   private final int _time;
   private final int _machine;
   private final int _inc;
-  private static AtomicInteger _nextInc = new AtomicInteger((new java.util.Random()).nextInt());
+  private static AtomicInteger _nextInc = new AtomicInteger((new Random()).nextInt());
   private static final int _genmachine;
 
   /**
@@ -58,7 +56,7 @@ public class UUID implements Serializable{
       int machinePiece;
       try{
         StringBuilder sb = new StringBuilder();
-        Enumeration<NetworkInterface> e = NetworkInterface.getNetworkInterfaces();
+        java.util.Enumeration<NetworkInterface> e = NetworkInterface.getNetworkInterfaces();
         while(e.hasMoreElements()){
           NetworkInterface ni = e.nextElement();
           sb.append(ni.toString());
