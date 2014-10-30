@@ -4,9 +4,9 @@ import nc.liat6.frame.validate.RegUtil;
 
 /**
  * 英文字母
- * 
+ *
  * @author 6tail
- * 
+ *
  */
 public class RuleLetter extends RuleRegex{
 
@@ -19,9 +19,9 @@ public class RuleLetter extends RuleRegex{
   }
   /**
    * 大写字母
-   * 
+   *
    * @author 6tail
-   * 
+   *
    */
   public static class LetterUpperCase extends RuleRegex{
 
@@ -35,17 +35,17 @@ public class RuleLetter extends RuleRegex{
   }
   /**
    * 小写字母
-   * 
+   *
    * @author 6tail
-   * 
+   *
    */
-  public static class LetterLowserCase extends RuleRegex{
+  public static class LetterLowerCase extends RuleRegex{
 
-    public LetterLowserCase(String item){
-      super(item,RegUtil.LETTER_UPPERCASE);
+    public LetterLowerCase(String item){
+      super(item,RegUtil.LETTER_LOWERCASE);
     }
 
-    public LetterLowserCase(){
+    public LetterLowerCase(){
       this("");
     }
   }
