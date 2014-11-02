@@ -67,17 +67,13 @@ I.regist('net.Rmi',function(W,D){
                 f(o.data);
               }
             }else{
-              I.get(o.xtype,function(){
-                if(ef){
-                  //o.callback = ef;
+              if(ef){
+                ef(o);
+              }else{
+                I.get(o.xtype,function(){
                   this.create(o);
-                  if(ef){
-                    ef(o);
-                  }
-                }else{
-                  this.create(o);
-                }
-              });
+                });
+              }
             }
           }else{
             if(o.success){
