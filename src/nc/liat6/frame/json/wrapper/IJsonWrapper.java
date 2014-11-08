@@ -1,19 +1,19 @@
 package nc.liat6.frame.json.wrapper;
 
 /**
- * 包装接口
- * 
+ * JSON包装接口
+ *
  * @author 6tail
- * 
+ *
  */
-public interface IWrapper{
+public interface IJsonWrapper{
 
   /**
    * 包装
-   * 
-   * @param o 对象
+   *
+   * @param obj 对象
    * @param level 层级
    * @return 字符串
    */
-  public String wrap(Object o,int level);
+  String wrap(Object obj,int level);
 }

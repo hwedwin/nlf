@@ -1,160 +1,102 @@
 package nc.liat6.frame.json.wrapper;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
-import nc.liat6.frame.json.JSON;
 
 /**
  * JSON包装器
- * 
+ *
  * @author 6tail
- * 
+ *
  */
-public class JsonWrapper implements IWrapper{
+public class JsonWrapper extends AbstractJsonWrapper{
 
-  private boolean tiny = JSON.TINY;
-  private String quote = JSON.QUOTE_DEFAULT;
-  private boolean numberQuoted = JSON.NUMBER_QUOTED;
-
-  public JsonWrapper(){}
+  public JsonWrapper(){
+    super();
+  }
 
   public JsonWrapper(boolean tiny,String quote,boolean numberQuoted){
-    this.tiny = tiny;
-    this.quote = quote;
-    this.numberQuoted = numberQuoted;
+    super(tiny,quote,numberQuoted);
   }
 
-  private String wrapNumber(Object o,int level){
+  private String wrapNumber(Object obj){
     StringBuilder s = new StringBuilder();
     if(numberQuoted){
       s.append(quote);
     }
-    s.append(o);
+    s.append(obj);
     if(numberQuoted){
       s.append(quote);
     }
     return s.toString();
   }
 
-  private String wrapBool(Object o,int level){
-    StringBuilder s = new StringBuilder();
-    s.append(o);
-    return s.toString();
+  private String wrapBool(Object obj){
+    return obj.toString();
   }
 
-  private String wrapString(Object o,int level){
-    StringBuilder s = new StringBuilder();
-    s.append(new StringWrapper(quote).wrap(o.toString(),level));
-    return s.toString();
+  private String wrapString(Object obj,int level){
+    return new StringWrapper(tiny,quote,numberQuoted).wrap(obj,level);
   }
 
   private String wrapDate(Object o,int level){
-    StringBuilder s = new StringBuilder();
-    s.append(new StringWrapper(quote).wrap(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format((Date)o),level));
-    return s.toString();
+    return wrapString(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format((Date)o),level);
   }
 
   private String wrapArray(Object o,int level){
-    StringBuilder s = new StringBuilder();
-    Object[] arr = (Object[])o;
-    s.append("[");
-    if(!tiny){
-      s.append("\r\n");
-    }
-    for(int i = 0;i<arr.length;i++){
-      if(!tiny){
-        for(int j = 0;j<2*(level+1);j++){
-          s.append(" ");
-        }
-      }
-      s.append(wrap(arr[i],level+1));
-      if(i<arr.length-1){
-        s.append(",");
-      }
-      if(!tiny){
-        s.append("\r\n");
-      }
-    }
-    if(!tiny){
-      for(int i = 0;i<2*level;i++){
-        s.append(" ");
-      }
-    }
-    s.append("]");
-    return s.toString();
+    Object[] l = (Object[])o;
+    return wrapCollection(Arrays.asList(l),level);
   }
 
   private String wrapCollection(Object o,int level){
-    StringBuilder s = new StringBuilder();
-    s.append("[");
-    if(!tiny){
-      s.append("\r\n");
-    }
-    Iterator<?> it = ((Collection<?>)o).iterator();
-    while(it.hasNext()){
-      if(!tiny){
-        for(int j = 0;j<2*(level+1);j++){
-          s.append(" ");
+    IndentString s = new IndentString(tiny);
+    s.add('[');
+    Collection<?> l = (Collection<?>)o;
+    if(l.size()>0){
+      s.addLine();
+      Iterator<?> it = l.iterator();
+      while(it.hasNext()){
+        s.addSpace(level+1);
+        s.add(wrap(it.next(),level+1));
+        if(it.hasNext()){
+          s.add(',');
         }
+        s.addLine();
       }
-      s.append(wrap(it.next(),level+1));
-      if(it.hasNext()){
-        s.append(",");
-      }
-      if(!tiny){
-        s.append("\r\n");
-      }
+      s.addSpace(level);
     }
-    if(!tiny){
-      for(int i = 0;i<2*level;i++){
-        s.append(" ");
-      }
-    }
-    s.append("]");
+    s.add(']');
     return s.toString();
   }
 
   private String wrapMap(Object o,int level){
-    StringBuilder s = new StringBuilder();
+    IndentString s = new IndentString(tiny);
     Map<?,?> m = (Map<?,?>)o;
-    s.append("{");
-    if(!tiny){
-      s.append("\r\n");
-    }
+    s.add('{');
+    s.addLine();
     Iterator<?> it = m.keySet().iterator();
     while(it.hasNext()){
-      if(!tiny){
-        for(int j = 0;j<2*(level+1);j++){
-          s.append(" ");
-        }
-      }
+      s.addSpace(level+1);
       Object key = it.next();
-      s.append(new StringWrapper().wrap(key+"",level));
-      s.append(":");
-      s.append(wrap(m.get(key),level+1));
+      s.add(new StringWrapper().wrap(key+"",level));
+      s.add(':');
+      s.add(wrap(m.get(key),level+1));
       if(it.hasNext()){
-        s.append(",");
+        s.add(',');
       }
-      if(!tiny){
-        s.append("\r\n");
-      }
+      s.addLine();
     }
-    if(!tiny){
-      for(int i = 0;i<2*level;i++){
-        s.append(" ");
-      }
-    }
-    s.append("}");
+    s.addSpace(level);
+    s.add('}');
     return s.toString();
   }
 
   public String wrapObject(Object o,int level){
-    StringBuilder s = new StringBuilder();
-    s.append(new ObjectWrapper(tiny,quote,numberQuoted).wrap(o,level));
-    return s.toString();
+    return new ObjectWrapper(tiny,quote,numberQuoted).wrap(o,level);
   }
 
   public String wrap(Object o){
@@ -167,9 +109,9 @@ public class JsonWrapper implements IWrapper{
       return "null";
     }
     if(o instanceof Number){
-      s.append(wrapNumber(o,level));
+      s.append(wrapNumber(o));
     }else if(o instanceof Boolean){
-      s.append(wrapBool(o,level));
+      s.append(wrapBool(o));
     }else if(o instanceof Character||o instanceof String){
       s.append(wrapString(o,level));
     }else if(o instanceof Date){

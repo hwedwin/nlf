@@ -7,114 +7,110 @@ import nc.liat6.frame.json.wrapper.JsonWrapper;
 
 /**
  * JSON转换器
- * 
+ *
  * @author 6tail
- * 
+ *
  */
-public class JSON{
+public final class JSON{
 
   /** 单引号模式 */
   public static final String QUOTE_SINGLE = "'";
   /** 双引号模式 */
   public static final String QUOTE_MULTIPLE = "\"";
-  /** 默认引号模式 */
-  public static final String QUOTE_DEFAULT = QUOTE_MULTIPLE;
-  /** 数字是否使用引号的默认设置 */
-  public static final boolean DEFAULT_NUMBER_QUOTED = true;
-  /** 数字是否使用引号 */
-  public static final boolean NUMBER_QUOTED = DEFAULT_NUMBER_QUOTED;
-  /** 是否极简（不缩进不换行）的默认设置 */
-  public static final boolean DEFAULT_TINY = true;
-  /** 是否极简（不缩进不换行）的全局设置 */
-  public static boolean TINY = DEFAULT_TINY;
+  /** 全局设置，字符串首尾的引号 */
+  public static String quote = QUOTE_MULTIPLE;
+  /** 全局设置，数字是否使用引号 */
+  public static boolean numberQuoted = true;
+  /** 全局设置，是否极简（不缩进不换行） */
+  public static boolean tiny = true;
 
   private JSON(){}
 
   /**
-   * 将对象转换为JSON字符串，采用全局极简设置
-   * 
-   * @param o 对象
+   * 将对象转换为JSON字符串
+   *
+   * @param obj 对象
    * @return JSON字符串
    */
-  public static String toJson(Object o){
-    return toJson(o,TINY);
+  public static String toJson(Object obj){
+    return toJson(obj,tiny);
   }
 
   /**
    * 将对象转换为JSON字符串
-   * 
-   * @param o 对象
+   *
+   * @param obj 对象
    * @param tiny 是否是极简（不缩进不换行）
    * @return JSON字符串
    */
-  public static String toJson(Object o,boolean tiny){
-    return toJson(o,tiny,QUOTE_DEFAULT);
+  public static String toJson(Object obj,boolean tiny){
+    return toJson(obj,tiny,quote);
   }
 
   /**
    * 将对象转换为JSON字符串
-   * 
-   * @param o 对象
+   *
+   * @param obj 对象
+   * @param tiny 是否是极简（不缩进不换行）
+   * @param quote 字符串首尾的引号
+   * @return JSON字符串
+   */
+  public static String toJson(Object obj,boolean tiny,String quote){
+    return toJson(obj,tiny,quote,numberQuoted);
+  }
+
+  /**
+   * 将对象转换为JSON字符串
+   *
+   * @param obj 对象
+   * @param tiny 是否是极简（不缩进不换行）
+   * @param numberQuoted 数字是否使用引号
+   * @return JSON字符串
+   */
+  public static String toJson(Object obj,boolean tiny,boolean numberQuoted){
+    return toJson(obj,tiny,quote,numberQuoted);
+  }
+
+  /**
+   * 将对象转换为JSON字符串
+   *
+   * @param obj 对象
    * @param tiny 是否是极简（不缩进不换行）
    * @param quote 字符串首尾引号
+   * @param numberQuoted 数字是否使用引号
    * @return JSON字符串
    */
-  public static String toJson(Object o,boolean tiny,String quote){
-    return toJson(o,tiny,QUOTE_DEFAULT,NUMBER_QUOTED);
+  public static String toJson(Object obj,boolean tiny,String quote,boolean numberQuoted){
+    return new JsonWrapper(tiny,quote,numberQuoted).wrap(obj);
   }
 
   /**
-   * 将对象转换为JSON字符串
-   * 
-   * @param o 对象
-   * @param tiny 是否是极简（不缩进不换行）
-   * @param numberQuoted 数字类型是否使用引号
-   * @return JSON字符串
+   * 将JSON字符串转换为JSON对象接口
+   *
+   * @param str JSON字符串
+   * @return JSON对象接口
    */
-  public static String toJson(Object o,boolean tiny,boolean numberQuoted){
-    return toJson(o,tiny,QUOTE_DEFAULT,numberQuoted);
-  }
-
-  /**
-   * 将对象转换为JSON字符串
-   * 
-   * @param o 对象
-   * @param tiny 是否是极简（不缩进不换行）
-   * @param quote 字符串首尾引号
-   * @param numberQuoted 数字类型是否使用引号
-   * @return JSON字符串
-   */
-  public static String toJson(Object o,boolean tiny,String quote,boolean numberQuoted){
-    return new JsonWrapper(tiny,quote,numberQuoted).wrap(o);
-  }
-
-  /**
-   * 将JSON字符串转换为通用封装
-   * 
-   * @param s JSON字符串
-   * @return 通用封装
-   */
-  public static IJsonElement fromJson(String s){
-    return new JsonParser().parse(s);
+  public static IJsonElement fromJson(String str){
+    return new JsonParser().parse(str);
   }
 
   /**
    * 将JSON字符串转换为对象
-   * 
-   * @param s JSON字符串
+   *
+   * @param str JSON字符串
    * @return 对象
    */
-  public static <T>T toBean(String s){
-    return toBean(fromJson(s));
+  public static <T>T toBean(String str){
+    return toBean(fromJson(str));
   }
 
   /**
-   * 将通用封装转换为对象
-   * 
-   * @param je 通用封装
+   * 将JSON对象接口转换为对象
+   *
+   * @param je JSON对象接口
    * @return 对象
    */
-  public static <T>T toBean(IJsonElement je){
-    return new BeanParser().parse(je);
+  public static <T>T toBean(IJsonElement jsonElement){
+    return new BeanParser().parse(jsonElement);
   }
 }

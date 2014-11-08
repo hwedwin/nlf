@@ -2,111 +2,124 @@ package nc.liat6.frame.json.wrapper;
 
 import java.beans.BeanInfo;
 import java.beans.PropertyDescriptor;
+import java.lang.reflect.Method;
 import java.util.Iterator;
 import nc.liat6.frame.db.entity.Bean;
 import nc.liat6.frame.exception.NlfException;
-import nc.liat6.frame.json.JSON;
 import nc.liat6.frame.klass.BeanPool;
 
 /**
  * 对象包装器
- * 
+ *
  * @author 6tail
- * 
+ *
  */
-public class ObjectWrapper implements IWrapper{
+public class ObjectWrapper extends AbstractJsonWrapper{
 
-  private boolean tiny = JSON.TINY;
-  private String quote = JSON.QUOTE_DEFAULT;
-  private boolean numberQuoted = JSON.NUMBER_QUOTED;
-
-  public ObjectWrapper(boolean tiny,String quote,boolean numberQuoted){
-    this.tiny = tiny;
-    this.quote = quote;
-    this.numberQuoted = numberQuoted;
+  /**
+   * 构造默认字符串包装器
+   */
+  public ObjectWrapper(){
+    super();
   }
 
-  public String wrap(Object o,int level){
-    StringBuilder s = new StringBuilder();
-    s.append("{");
-    if(!tiny){
-      s.append("\r\n");
-    }
-    if(o instanceof Bean){
-      Bean b = (Bean)o;
-      Iterator<String> it = b.keySet().iterator();
+  /**
+   * 构造字符串包装器
+   *
+   * @param tiny 是否极简（不缩进不换行）
+   * @param quote 字符串首尾的引号
+   * @param numberQuoted 数字是否使用引号
+   */
+  public ObjectWrapper(boolean tiny,String quote,boolean numberQuoted){
+    super(tiny,quote,numberQuoted);
+  }
+
+  private String wrapBean(Object obj,int level){
+    Bean bean = (Bean)obj;
+    IndentString s = new IndentString(tiny);
+    s.add('{');
+    Iterator<String> it = bean.keySet().iterator();
+    if(it.hasNext()){
+      String key;
+      String note;
+      IJsonWrapper stringWrapper = new StringWrapper(tiny,quote,numberQuoted);
+      IJsonWrapper jsonWrapper = new JsonWrapper(tiny,quote,numberQuoted);
+      s.addLine();
       while(it.hasNext()){
-        String k = it.next();
-        String note = b.getNote(k);
+        key = it.next();
+        note = bean.getNote(key);
         if(null!=note&&note.trim().length()>0){
+          s.addSpace(level+1);
+          // 非极简模式才添加注释
           if(!tiny){
-            for(int i = 0;i<2*(level+1);i++){
-              s.append(" ");
-            }
-          }
-          if(tiny){// 精简模式不添加注释
-            // s.append("/*"+note+"*/");
-          }else{
             if(note.contains("\r")||note.contains("\n")){
-              s.append("/*"+note+"*/");
+              s.add("/*");
+              s.add(note);
+              s.add("*/");
             }else{
-              s.append("//"+note);
+              s.add("//");
+              s.add(note);
             }
           }
-          if(!tiny){
-            s.append("\r\n");
-          }
+          s.addLine();
         }
-        if(!tiny){
-          for(int i = 0;i<2*(level+1);i++){
-            s.append(" ");
-          }
-        }
-        s.append(new StringWrapper(quote).wrap(k,level+1));
-        s.append(":");
-        s.append(new JsonWrapper(tiny,quote,numberQuoted).wrap(b.get(k),level+1));
+        s.addSpace(level+1);
+        s.add(stringWrapper.wrap(key,level+1));
+        s.add(':');
+        s.add(jsonWrapper.wrap(bean.get(key),level+1));
         if(it.hasNext()){
-          s.append(",");
+          s.add(',');
         }
-        if(!tiny){
-          s.append("\r\n");
-        }
+        s.addLine();
       }
-    }else{
-      BeanInfo info = BeanPool.getBeanInfo(o.getClass());
-      PropertyDescriptor[] props = info.getPropertyDescriptors();
+      s.addSpace(level);
+    }
+    s.add('}');
+    return s.toString();
+  }
+
+  private String wrapObject(Object obj,int level){
+    IndentString s = new IndentString(tiny);
+    s.add('{');
+    BeanInfo info = BeanPool.getBeanInfo(obj.getClass());
+    PropertyDescriptor[] props = info.getPropertyDescriptors();
+    if(props.length>0){
+      IJsonWrapper stringWrapper = new StringWrapper(tiny,quote,numberQuoted);
+      IJsonWrapper jsonWrapper = new JsonWrapper(tiny,quote,numberQuoted);
+      s.addLine();
       for(int i = 0;i<props.length;i++){
-        if(!tiny){
-          for(int j = 0;j<2*(level+1);j++){
-            s.append(" ");
-          }
-        }
+        s.addSpace(level+1);
         PropertyDescriptor desc = props[i];
-        s.append(new StringWrapper(quote).wrap(desc.getName(),level+1));
-        s.append(":");
+        s.add(stringWrapper.wrap(desc.getName(),level+1));
+        s.add(':');
         try{
-          if(null==desc.getReadMethod()){
-            s.append(new JsonWrapper(tiny,quote,numberQuoted).wrap(null,level+1));
+          Method method = desc.getReadMethod();
+          if(null==method){
+            s.add(jsonWrapper.wrap(null,level+1));
           }else{
-            s.append(new JsonWrapper(tiny,quote,numberQuoted).wrap(desc.getReadMethod().invoke(o,new Object[0]),level+1));
+            s.add(jsonWrapper.wrap(method.invoke(obj,new Object[0]),level+1));
           }
         }catch(Exception e){
           throw new NlfException(e);
         }
         if(i<props.length-1){
-          s.append(",");
+          s.add(',');
         }
-        if(!tiny){
-          s.append("\r\n");
-        }
+        s.addLine();
       }
+      s.addSpace(level);
     }
-    if(!tiny){
-      for(int i = 0;i<2*level;i++){
-        s.append(" ");
-      }
-    }
-    s.append("}");
+    s.add('}');
     return s.toString();
+  }
+
+  public String wrap(Object obj,int level){
+    String s;
+    if(obj instanceof Bean){
+      s = wrapBean(obj,level);
+    }else{
+      s = wrapObject(obj,level);
+    }
+    return s;
   }
 }
