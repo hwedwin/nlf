@@ -6,6 +6,7 @@
   <short-name>nlft</short-name>
   <display-name>nlf core</display-name>
   <description>nlf tag</description>
+  <uri>/nlft</uri>
   <tag>
     <name>page</name>
     <tag-class>nc.liat6.frame.web.tags.paging.PagingTag</tag-class>
