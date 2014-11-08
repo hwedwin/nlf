@@ -61,6 +61,8 @@ public class Factory{
     }
   }
 
+  private Factory(){}
+
   private static void buildPkg(){
     List<String> l = new ArrayList<String>(PKGS.size());
     for(String s:PKGS){
@@ -78,6 +80,9 @@ public class Factory{
     }
   }
 
+  /**
+   * 重建缓存
+   */
   public static void reBuild(){
     buildInterface();
     buildImpls();
