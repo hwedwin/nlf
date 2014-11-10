@@ -94,7 +94,7 @@ public class PagingTemplateProvider implements IPagingTemplateProvider{
     s.append("<span class=\"size-suffix\">"+L.get("page.size_suffix")+"</span>");
     return s.toString();
   }
-  @Override
+
   public String getNormalTemplate(PageData pd,PagingParam pr,int near){
     StringBuilder s = new StringBuilder();
     s.append("<form id=\"${formId}\" class=\"${class}\" action=\"${uri}\" target=\"_self\" method=\"post\">");
@@ -138,7 +138,6 @@ public class PagingTemplateProvider implements IPagingTemplateProvider{
     return s.toString();
   }
 
-  @Override
   public String getAjaxTemplate(PageData pd,PagingParam pr,int near){
     StringBuilder s = new StringBuilder();
     s.append("<form id=\"${formId}\" class=\"${class}\" onsubmit=\"return false;\">");

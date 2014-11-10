@@ -9,13 +9,12 @@ import nc.liat6.frame.db.setting.IDbSettingProvider;
 
 /**
  * CSV数据库设置提供器
- * 
+ *
  * @author 6tail
- * 
+ *
  */
 public class CsvSettingProvider implements IDbSettingProvider{
 
-  @Override
   public IDbSetting getDbSetting(Bean o){
     String type = o.getString("type","");
     String alias = o.getString("alias","");
@@ -32,7 +31,6 @@ public class CsvSettingProvider implements IDbSettingProvider{
     return cs;
   }
 
-  @Override
   public boolean support(String type){
     return "csv".equalsIgnoreCase(type);
   }

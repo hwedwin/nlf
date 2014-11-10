@@ -4,9 +4,9 @@ import nc.liat6.frame.aop.IAopInterceptor;
 
 /**
  * 动态代理接口
- * 
+ *
  * @author 6tail
- * 
+ *
  */
 public interface IProxy{
 
@@ -17,23 +17,23 @@ public interface IProxy{
 
   /**
    * 生成指定类的代理对象
-   * 
+   *
    * @param superClass 父类
    * @return 代理对象
    */
-  public <T>T create(Class<?> superClass);
+  <T>T create(Class<?> superClass);
 
   /**
    * 获取原对象
-   * 
+   *
    * @return 原对象
    */
-  public <T>T getOBean();
+  <T>T getOBean();
 
   /**
    * 添加AOP拦截器
-   * 
+   *
    * @param ai AOP拦截器
    */
-  public void addAopInterceptor(IAopInterceptor ai);
+  void addAopInterceptor(IAopInterceptor ai);
 }

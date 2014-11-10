@@ -13,36 +13,35 @@ import nc.liat6.frame.log.Logger;
 
 /**
  * JDBC连接变量提供器
+ *
  * @author 6tail
  *
  */
-public class JdbcConnVarProvider extends SuperConnVarProvider {
-	
-	public ConnVar getConnVar() {
-	  JdbcSetting setting = (JdbcSetting)this.setting;
-		ConnVar cv = new ConnVar();
-		cv.setDbType(setting.getDbType());
-		cv.setAlias(setting.getAlias());
-		try {
-			Connection conn = DriverManager.getConnection(setting.getUrl(), setting.getUser(), setting.getPassword());
-			try{
-				conn.setAutoCommit(false);
-			}catch(SQLException e){
-				Logger.getLog().error(L.get(LocaleFactory.locale,"db.commit_not_support"),e);
-			}
-			SqlConnection sc = new SqlConnection();
-			sc.setSqlConnection(conn);
-			cv.setConnection(sc);
-		} catch (SQLException e) {
-			throw new DaoException(e);
-		}
-		cv.setSetting(setting);
-		return cv;
-	}
+public class JdbcConnVarProvider extends SuperConnVarProvider{
 
-	@Override
-	public boolean support(String connType){
-		return "jdbc".equalsIgnoreCase(connType);
-	}
+  public ConnVar getConnVar(){
+    JdbcSetting setting = (JdbcSetting)this.setting;
+    ConnVar cv = new ConnVar();
+    cv.setDbType(setting.getDbType());
+    cv.setAlias(setting.getAlias());
+    try{
+      Connection conn = DriverManager.getConnection(setting.getUrl(),setting.getUser(),setting.getPassword());
+      try{
+        conn.setAutoCommit(false);
+      }catch(SQLException e){
+        Logger.getLog().error(L.get(LocaleFactory.locale,"db.commit_not_support"),e);
+      }
+      SqlConnection sc = new SqlConnection();
+      sc.setSqlConnection(conn);
+      cv.setConnection(sc);
+    }catch(SQLException e){
+      throw new DaoException(e);
+    }
+    cv.setSetting(setting);
+    return cv;
+  }
 
+  public boolean support(String connType){
+    return "jdbc".equalsIgnoreCase(connType);
+  }
 }

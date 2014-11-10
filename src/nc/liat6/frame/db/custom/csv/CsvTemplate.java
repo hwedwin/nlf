@@ -13,9 +13,9 @@ import nc.liat6.frame.paging.PageData;
 
 /**
  * CSV执行模板
- * 
+ *
  * @author 6tail
- * 
+ *
  */
 public class CsvTemplate implements ITemplate,ICsv{
 
@@ -24,12 +24,10 @@ public class CsvTemplate implements ITemplate,ICsv{
   /** 事务接口 */
   protected ITrans trans;
 
-  @Override
   public void setTrans(ITrans t){
     trans = t;
   }
 
-  @Override
   public ITrans getTrans(){
     return trans;
   }

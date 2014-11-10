@@ -5,15 +5,15 @@ import nc.liat6.frame.json.element.IJsonElement;
 
 /**
  * 远程调用客户端接口
- * 
+ *
  * @author 6tail
- * 
+ *
  */
 public interface INlfCaller{
 
   /**
    * 调用
-   * 
+   *
    * @param ip 服务器地址
    * @param port 端口
    * @param klass 调用类
@@ -21,5 +21,5 @@ public interface INlfCaller{
    * @param args 参数
    * @return 返回结果
    */
-  public IJsonElement call(String ip,int port,String klass,String method,Map<String,String> args);
+  IJsonElement call(String ip,int port,String klass,String method,Map<String,String> args);
 }

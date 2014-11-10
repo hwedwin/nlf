@@ -7,11 +7,11 @@ package nc.liat6.frame.db.entity;
  *
  */
 public interface IBeanRule{
-  
+
   /**
    * 获取指定属性名对应的key
    * @param property 属性名
    * @return key
    */
-  public String getKey(String property);
+  String getKey(String property);
 }

@@ -422,63 +422,52 @@ public class Bean implements Map<String,Object>,Serializable{
     return toObject(klass,null);
   }
 
-  @Override
   @Deprecated
   public boolean containsKey(Object key){
     return containsKey(key.toString());
   }
 
-  @Override
   public boolean containsValue(Object value){
     values.containsValue(value);
     return false;
   }
 
-  @Override
   public Set<java.util.Map.Entry<String,Object>> entrySet(){
     return values.entrySet();
   }
 
-  @Override
   @Deprecated
   public Object get(Object key){
     return values.get(key);
   }
 
-  @Override
   public boolean isEmpty(){
     return values.isEmpty();
   }
 
-  @Override
   @Deprecated
   public Object put(String key,Object value){
     return values.put(key,value);
   }
 
-  @Override
   public void putAll(Map<? extends String,? extends Object> map){
     values.putAll(map);
   }
 
-  @Override
   @Deprecated
   public Object remove(Object key){
     notes.remove(key);
     return values.remove(key);
   }
 
-  @Override
   public int size(){
     return values.size();
   }
 
-  @Override
   public Collection<Object> values(){
     return values.values();
   }
 
-  @Override
   public void clear(){
     values.clear();
     notes.clear();

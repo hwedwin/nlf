@@ -7,7 +7,7 @@ import nc.liat6.frame.web.upload.bean.UploadRule;
 
 public interface IParser{
 
-  public UploadedFile parseRequest(HttpServletRequest request,UploadRule rule);
+  UploadedFile parseRequest(HttpServletRequest request,UploadRule rule);
 
-  public void setProgressListener(IProgressListener progressListener);
+  void setProgressListener(IProgressListener progressListener);
 }

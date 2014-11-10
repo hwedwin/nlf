@@ -4,25 +4,25 @@ import java.sql.Connection;
 
 /**
  * 定制连接
- * 
+ *
  * @author 6tail
- * 
+ *
  */
 public interface IConnection{
 
-  public ConnVar getConnVar();
+  ConnVar getConnVar();
 
-  public void setConnVar(ConnVar connVar);
+  void setConnVar(ConnVar connVar);
 
-  public void commit();
+  void commit();
 
-  public void close();
+  void close();
 
-  public void rollback();
+  void rollback();
 
-  public boolean isClosed();
+  boolean isClosed();
 
-  public boolean isSupportsBatchUpdates();
+  boolean isSupportsBatchUpdates();
 
-  public Connection getSqlConnection();
+  Connection getSqlConnection();
 }

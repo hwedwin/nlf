@@ -14,9 +14,9 @@ import nc.liat6.frame.util.Reflector;
 
 /**
  * PROXOOL连接变量提供器
- * 
+ *
  * @author 6tail
- * 
+ *
  */
 public class ProxoolConnVarProvider extends SuperConnVarProvider{
 
@@ -76,7 +76,6 @@ public class ProxoolConnVarProvider extends SuperConnVarProvider{
     return cv;
   }
 
-  @Override
   public boolean support(String connType){
     return "proxool".equalsIgnoreCase(connType);
   }
