@@ -8,6 +8,7 @@ NLF框架是六特尔独自开发的轻量级java框架，它只有1个jar包，
 ##2014-11-10
 1. 删除BeanUtil，删除nlfe.tld，以后${nlfe:bean(obj,'keyName')}不再使用，直接使用${obj.keyName}。
 * 调整demo页面。
+* 删除接口的public修饰符，基于jdk1.5重新编译。
 
 ##2014-11-08
 1. 重构json包。
