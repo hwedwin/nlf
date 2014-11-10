@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="/nlft" prefix="nlft"%>
-<%@ taglib uri="/nlfe" prefix="nlfe"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -11,6 +10,61 @@
 <link type="text/css" rel="stylesheet" href="${PATH}/css/paging.css" />
 <style type="text/css">
 *{font-size:14px;}
+table.list {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  empty-cells: show;
+  border: 0;
+  border-top: 1px solid #DBDCE2;
+  border-bottom: 1px solid #DBDCE2;
+}
+
+table.list thead th {
+  height: 35px;
+  font-weight: normal;
+  letter-spacing: 2px;
+  color: #666;
+  padding-left: 10px;
+  background-color: #F2F3F6;
+  border: 0;
+  border-top: 1px solid #FFF;
+  border-bottom: 1px solid #DBDCE2;
+  border-right: 1px solid #DBDCE2;
+  text-align: left;
+  white-space: nowrap;
+}
+
+table.list tbody td {
+  background-color: #FFF;
+  padding-left: 10px;
+  padding-top:5px;
+  padding-bottom:5px;
+  border: 0;
+  text-align: left;
+  color: #333;
+  border-bottom: 1px solid #EBECEF
+}
+
+table.list tbody tr.current td {
+  background-color: #FEFBF2;
+  padding-left: 10px;
+  border: 0;
+  text-align: left;
+  color: #333;
+  border-bottom: 1px solid #DEE0E9
+}
+
+table.list tbody tr.current td:first-child {
+  border-left: 4px solid #5F97FB
+}
+
+table.list tfoot td {
+  background-color: #F2F3F6;
+  height: 40px;
+  border: 0;
+}
 .nlfPagingForm {
   margin: 0;
   padding: 0;
@@ -56,7 +110,7 @@
 <body>
 <a href="${PATH}/">返回首页</a>
 <p></p>
-<table>
+<table class="list">
   <thead>
     <tr>
       <th>序号</th>
@@ -73,8 +127,8 @@
     <c:forEach items="${nlfPagingData.data}" var="o" varStatus="index">
     <tr>
       <td>${index.count}</td>
-      <td>${nlfe:bean(o,'NAME')}</td>
-      <td>${nlfe:bean(o,'AGE')}</td>
+      <td>${o.NAME}</td>
+      <td>${o.AGE}</td>
     </tr>
     </c:forEach>
   </tbody>

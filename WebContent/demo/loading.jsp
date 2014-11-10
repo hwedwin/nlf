@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="/nlft" prefix="nlft"%>
-<%@ taglib uri="/nlfe" prefix="nlfe"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -28,7 +27,7 @@ I.want(function(){
       ld.close();
     });
   }});
-  
+
   I.ui.Button.render('btnB',{icon:'fa fa-car',callback:function(){
     //显示默认的进度条，2秒后关闭
     var ld = I.ui.Loading.create();
@@ -36,7 +35,7 @@ I.want(function(){
       ld.close();
     });
   }});
-  
+
   I.ui.Button.render('btnC',{callback:function(){
     var ld = I.ui.Loading.create({
       color:'#FFF',

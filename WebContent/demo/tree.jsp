@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="/nlft" prefix="nlft"%>
-<%@ taglib uri="/nlfe" prefix="nlfe"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -97,7 +96,7 @@ I.want(function(){
       tree.close();
     }
   });
-  
+
   I.ui.Button.render('btnB',{
     callback:function(){
       var selected = tree.getSelected();
@@ -126,7 +125,7 @@ I.want(function(){
       }
     }
   });
-  
+
   //按钮事件，删除选中节点
   I.ui.Button.render('btnD',{
     callback:function(){
@@ -136,7 +135,7 @@ I.want(function(){
       }
     }
   });
-  
+
   //按钮事件，删除选中节点
   I.ui.Button.render('btnC',{callback:function(){
     var d = [
