@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.sql.Blob;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -17,11 +18,11 @@ import nc.liat6.frame.util.Streamer;
 
 /**
  * 通用对象封装
- * 
+ *
  * @author 6tail
- * 
+ *
  */
-public class Bean implements Serializable{
+public class Bean implements Map<String,Object>,Serializable{
 
   private static final long serialVersionUID = -1432802131869099829L;
   /** 键值对 */
@@ -33,7 +34,7 @@ public class Bean implements Serializable{
 
   /**
    * 将一个对象转为Bean
-   * 
+   *
    * @param object 对象
    */
   public Bean(Object object){
@@ -42,7 +43,7 @@ public class Bean implements Serializable{
 
   /**
    * 将一个对象转为Bean
-   * 
+   *
    * @param object 对象
    * @param rule 转换规则
    */
@@ -52,7 +53,7 @@ public class Bean implements Serializable{
 
   /**
    * 是否存在指定键的对象
-   * 
+   *
    * @param key 键
    * @return true/false 存在/不存在
    */
@@ -62,7 +63,7 @@ public class Bean implements Serializable{
 
   /**
    * 获取值
-   * 
+   *
    * @param key 键
    * @return 值
    */
@@ -73,7 +74,7 @@ public class Bean implements Serializable{
 
   /**
    * 获取注释
-   * 
+   *
    * @param key 键
    * @return 注释
    */
@@ -83,7 +84,7 @@ public class Bean implements Serializable{
 
   /**
    * 设置值
-   * 
+   *
    * @param key 键
    * @param value 值
    * @return 自己
@@ -95,7 +96,7 @@ public class Bean implements Serializable{
 
   /**
    * 设置带注释的值
-   * 
+   *
    * @param key 键
    * @param value 值
    * @param note 注释
@@ -109,7 +110,7 @@ public class Bean implements Serializable{
 
   /**
    * 设置注释
-   * 
+   *
    * @param key 键
    * @param note 注释
    * @return 自己
@@ -121,7 +122,7 @@ public class Bean implements Serializable{
 
   /**
    * 移除
-   * 
+   *
    * @param key 键
    * @return 自己
    */
@@ -132,19 +133,8 @@ public class Bean implements Serializable{
   }
 
   /**
-   * 清空
-   * 
-   * @return 自己
-   */
-  public Bean clear(){
-    values.clear();
-    notes.clear();
-    return this;
-  }
-
-  /**
    * 获取键的集合
-   * 
+   *
    * @return 键集合
    */
   public Set<String> keySet(){
@@ -157,7 +147,7 @@ public class Bean implements Serializable{
 
   /**
    * 获取int值，如果获取不到或出错，返回默认值，不抛出异常
-   * 
+   *
    * @param key 键
    * @param defaultValue 默认值
    * @return 值
@@ -172,7 +162,7 @@ public class Bean implements Serializable{
 
   /**
    * 获取long值，如果获取不到或出错，返回默认值，不抛出异常
-   * 
+   *
    * @param key 键
    * @param defaultValue 默认值
    * @return 值
@@ -187,7 +177,7 @@ public class Bean implements Serializable{
 
   /**
    * 获取double值，如果获取不到或出错，返回默认值，不抛出异常
-   * 
+   *
    * @param key 键
    * @param defaultValue 默认值
    * @return 值
@@ -202,7 +192,7 @@ public class Bean implements Serializable{
 
   /**
    * 获取float值，如果获取不到或出错，返回默认值，不抛出异常
-   * 
+   *
    * @param key 键
    * @param defaultValue 默认值
    * @return 值
@@ -217,7 +207,7 @@ public class Bean implements Serializable{
 
   /**
    * 获取boolean值，如果获取不到或出错，返回默认值，不抛出异常
-   * 
+   *
    * @param key 键
    * @param defaultValue 默认值
    * @return 值
@@ -232,7 +222,7 @@ public class Bean implements Serializable{
 
   /**
    * 获取String值，如果为null,返回null
-   * 
+   *
    * @param key 键
    * @return 值
    */
@@ -242,7 +232,7 @@ public class Bean implements Serializable{
 
   /**
    * 获取String值，如果为null,返回默认值
-   * 
+   *
    * @param key 键
    * @param defaultValue 默认值
    * @return 值
@@ -265,7 +255,7 @@ public class Bean implements Serializable{
 
   /**
    * 从对象读取属性到Bean，注意读取前会先清空属性
-   * 
+   *
    * @param object 对象
    */
   public void fromObject(Object object){
@@ -274,7 +264,7 @@ public class Bean implements Serializable{
 
   /**
    * 从对象读取属性到Bean，注意读取前会先清空属性
-   * 
+   *
    * @param object 对象
    * @param rule 属性转换规则
    */
@@ -284,7 +274,7 @@ public class Bean implements Serializable{
 
   /**
    * 从对象读取属性到Bean
-   * 
+   *
    * @param object 对象
    * @param rule 属性转换规则
    * @param clear 读取前是否先清空属性
@@ -334,6 +324,7 @@ public class Bean implements Serializable{
 
   /**
    * Bean转换为Object
+   *
    * @param klass 类
    * @param rule 转换规则
    * @return Object
@@ -423,10 +414,73 @@ public class Bean implements Serializable{
 
   /**
    * Bean转换为Object
+   *
    * @param klass 类
    * @return Object
    */
   public <T>T toObject(Class<?> klass){
     return toObject(klass,null);
+  }
+
+  @Override
+  @Deprecated
+  public boolean containsKey(Object key){
+    return containsKey(key.toString());
+  }
+
+  @Override
+  public boolean containsValue(Object value){
+    values.containsValue(value);
+    return false;
+  }
+
+  @Override
+  public Set<java.util.Map.Entry<String,Object>> entrySet(){
+    return values.entrySet();
+  }
+
+  @Override
+  @Deprecated
+  public Object get(Object key){
+    return values.get(key);
+  }
+
+  @Override
+  public boolean isEmpty(){
+    return values.isEmpty();
+  }
+
+  @Override
+  @Deprecated
+  public Object put(String key,Object value){
+    return values.put(key,value);
+  }
+
+  @Override
+  public void putAll(Map<? extends String,? extends Object> map){
+    values.putAll(map);
+  }
+
+  @Override
+  @Deprecated
+  public Object remove(Object key){
+    notes.remove(key);
+    return values.remove(key);
+  }
+
+  @Override
+  public int size(){
+    return values.size();
+  }
+
+  @Override
+  public Collection<Object> values(){
+    return values.values();
+  }
+
+  @Override
+  public void clear(){
+    values.clear();
+    notes.clear();
   }
 }
