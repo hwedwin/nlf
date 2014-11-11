@@ -8,6 +8,7 @@ NLF框架是六特尔独自开发的轻量级java框架，它只有1个jar包，
 ##2014-11-11
 1.增加CookieFetcher。
 * 大幅改动常量，建议不要替换原有项目中的jar。
+* 修正Object to Bean属性映射失败的问题。
 
 ##2014-11-10
 1. 删除BeanUtil，删除nlfe.tld，以后${nlfe:bean(obj,'keyName')}不再使用，直接使用${obj.keyName}。
