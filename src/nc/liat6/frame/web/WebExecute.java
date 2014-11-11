@@ -7,7 +7,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,6 +24,7 @@ import nc.liat6.frame.paging.PagingParam;
 import nc.liat6.frame.util.Dater;
 import nc.liat6.frame.util.Objecter;
 import nc.liat6.frame.util.Stringer;
+import nc.liat6.frame.web.request.WebCookieFetcher;
 import nc.liat6.frame.web.request.WebIPFetcher;
 import nc.liat6.frame.web.request.WebLocaleFetcher;
 import nc.liat6.frame.web.response.Bad;
@@ -47,18 +47,7 @@ public class WebExecute extends AbstractExecute{
   static final String HTTP_SERVLET_RESPONSE = "NLF_HTTP_SERVLET_RESPONSE";
   static final String HTTP_FILTERCHAIN = "NLF_HTTP_FILTERCHAIN";
   static final String[] MOBILE_AGENT = {"iphone","ipad","android","phone","mobile","wap","netfront","java","opera mobi","opera mini","ucweb","windows ce","symbian","series","webos","sony","blackberry","dopod","nokia","samsung","palmsource","xda","pieplus","meizu","midp","cldc","motorola","foma","docomo","up.browser","up.link","blazer","helio","hosin","huawei","novarra","coolpad","webos","techfaith","palmsource","alcatel","amoi","ktouch","nexian","ericsson","philips","sagem","wellcom","bunjalloo","maui","smartphone","iemobile","spice","bird","zte-","longcos","pantech","gionee","portalmmm","jig browser","hiptop","benq","haier","^lct","320x320","240x320","176x220","w3c ","acs-","alav","alca","amoi","audi","avan","benq","bird","blac","blaz","brew","cell","cldc","cmd-","dang","doco","eric","hipt","inno","ipaq","java","jigs","kddi","keji","leno","lg-c","lg-d","lg-g","lge-","maui","maxo","midp","mits","mmef","mobi","mot-","moto","mwbp","nec-","newt","noki","oper","palm","pana","pant","phil","play","port","prox","qwap","sage","sams","sany","sch-","sec-","send","seri","sgh-","shar","sie-","siem","smal","smar","sony","sph-","symb","t-mo","teli","tim-","tsm-","upg1","upsi","vk-v","voda","wap-","wapa","wapi","wapp","wapr","webc","winw","winw","xda","xda-","Googlebot-Mobile"};
-  /** 用于获取HttpServletRequest的标识符 */
-  public static final String TAG_REQUEST = Statics.TAG_ORG_REQUEST;
-  /** 用于获取HttpServletResponse的标识符 */
-  public static final String TAG_RESPONSE = "response";
-  /** 用于获取HttpSession的标识符 */
-  public static final String TAG_SESSION = "session";
-  /** 用于获取文件上传组件的标识符 */
-  public static final String TAG_UPLOADER = "uploader";
-  /** 用于获取IP获取器的标识符 */
-  public static final String TAG_IP_FETCHER = Statics.TAG_IP_FETCHER;
-  /** 用于获取locale获取器的标识符 */
-  public static final String TAG_LOCALE_FETCHER = Statics.TAG_LOCALE_FETCHER;
+
   protected StringBuffer logs = new StringBuffer();
 
   /**
@@ -66,7 +55,7 @@ public class WebExecute extends AbstractExecute{
    */
   private void initParam(){
     Request req = Context.get(Statics.REQUEST);
-    HttpServletRequest oreq = req.find(TAG_REQUEST);
+    HttpServletRequest oreq = req.find(Statics.FIND_REQUEST);
     // 获取AJAX请求标识
     String headAjax = oreq.getHeader("x-requested-with");
     // 判断移动浏览器
@@ -106,8 +95,8 @@ public class WebExecute extends AbstractExecute{
    */
   private void initPagingParam(){
     Request req = Context.get(Statics.REQUEST);
-    HttpSession session = req.find(TAG_SESSION);
-    HttpServletRequest oreq = req.find(TAG_REQUEST);
+    HttpSession session = req.find(Statics.FIND_SESSION);
+    HttpServletRequest oreq = req.find(Statics.FIND_REQUEST);
     PagingParam pagingParam = new PagingParam();
     String s = req.get(Request.PAGE_PARAM_VAR);
     try{
@@ -138,13 +127,14 @@ public class WebExecute extends AbstractExecute{
     Request req = Context.get(Statics.REQUEST);
     Response res = Context.get(Statics.RESPONSE);
     HttpServletRequest oreq = Context.get(HTTP_SERVLET_REQUEST);
-    req.bind(TAG_REQUEST,oreq);
-    req.bind(TAG_SESSION,oreq.getSession());
-    req.bind(TAG_UPLOADER,new FileUploader(req));
-    req.bind(TAG_IP_FETCHER,new WebIPFetcher(req));
-    req.bind(TAG_LOCALE_FETCHER,new WebLocaleFetcher(req));
     HttpServletResponse ores = Context.get(HTTP_SERVLET_RESPONSE);
-    res.bind(TAG_RESPONSE,ores);
+    req.bind(Statics.FIND_REQUEST,oreq);
+    res.bind(Statics.FIND_RESPONSE,ores);
+    req.bind(Statics.FIND_SESSION,oreq.getSession());
+    req.bind(Statics.FIND_UPLOADER,new FileUploader(req));
+    req.bind(Statics.FIND_IP_FETCHER,new WebIPFetcher(req));
+    req.bind(Statics.FIND_LOCALE_FETCHER,new WebLocaleFetcher(req));
+    req.bind(Statics.FIND_COOKIE_FETCHER,new WebCookieFetcher(req));
     initParam();
     initPagingParam();
   }
@@ -184,7 +174,7 @@ public class WebExecute extends AbstractExecute{
     logs.append(Stringer.print("??",L.get(LocaleFactory.locale,"web.res_stream"),p.getContentType()));
     Logger.getLog().debug(logs.toString());
     Response res = Context.get(Statics.RESPONSE);
-    HttpServletResponse ores = res.find(TAG_RESPONSE);
+    HttpServletResponse ores = res.find(Statics.FIND_RESPONSE);
     ores.setContentType(p.getContentType());
     try{
       ores.setHeader("Content-disposition","attachment;filename="+new String(p.getName().getBytes("gbk"),"ISO-8859-1"));
@@ -214,7 +204,7 @@ public class WebExecute extends AbstractExecute{
     logs.append(Stringer.print("??",L.get(LocaleFactory.locale,"web.res_json"),s));
     Logger.getLog().debug(logs.toString());
     Response res = Context.get(Statics.RESPONSE);
-    HttpServletResponse ores = res.find(TAG_RESPONSE);
+    HttpServletResponse ores = res.find(Statics.FIND_RESPONSE);
     ores.setContentType("text/plain;charset=UTF-8");
     ores.setCharacterEncoding("UTF-8");
     try{
@@ -229,7 +219,7 @@ public class WebExecute extends AbstractExecute{
     logs.append(Stringer.print("??",L.get(LocaleFactory.locale,"web.res_string"),p));
     Logger.getLog().debug(logs.toString());
     Response res = Context.get(Statics.RESPONSE);
-    HttpServletResponse ores = res.find(TAG_RESPONSE);
+    HttpServletResponse ores = res.find(Statics.FIND_RESPONSE);
     ores.setCharacterEncoding(Statics.ENCODE);
     try{
       ores.getWriter().write(p);
@@ -244,7 +234,7 @@ public class WebExecute extends AbstractExecute{
     logs.append(Stringer.print("??",L.get(LocaleFactory.locale,"web.res_json"),s));
     Logger.getLog().debug(logs.toString());
     Response res = Context.get(Statics.RESPONSE);
-    HttpServletResponse ores = res.find(TAG_RESPONSE);
+    HttpServletResponse ores = res.find(Statics.FIND_RESPONSE);
     ores.setContentType("text/plain;charset=UTF-8");
     ores.setCharacterEncoding("UTF-8");
     try{
@@ -258,8 +248,8 @@ public class WebExecute extends AbstractExecute{
   protected void responsePage(Page p){
     Request req = Context.get(Statics.REQUEST);
     Response res = Context.get(Statics.RESPONSE);
-    HttpServletRequest oreq = req.find(TAG_REQUEST);
-    HttpServletResponse ores = res.find(TAG_RESPONSE);
+    HttpServletRequest oreq = req.find(Statics.FIND_REQUEST);
+    HttpServletResponse ores = res.find(Statics.FIND_RESPONSE);
     ores.setStatus(p.getStatus());
     Iterator<String> it = p.keySet().iterator();
     if(it.hasNext()){
@@ -283,17 +273,15 @@ public class WebExecute extends AbstractExecute{
   protected void responseBad(Bad p){
     Request req = Context.get(Statics.REQUEST);
     Response res = Context.get(Statics.RESPONSE);
-    HttpServletRequest oreq = req.find(TAG_REQUEST);
-    HttpServletResponse ores = res.find(TAG_RESPONSE);
+    HttpServletRequest oreq = req.find(Statics.FIND_REQUEST);
+    HttpServletResponse ores = res.find(Statics.FIND_RESPONSE);
     String headAjax = oreq.getHeader("x-requested-with");
     if(null==headAjax){
       if(null!=Dispatcher.config.getErrorPage()){
         oreq.setAttribute("e",p.getThing());
         try{
           oreq.getRequestDispatcher(Dispatcher.config.getErrorPage()).forward(oreq,ores);
-        }catch(IOException e){
-          throw new BadException(e);
-        }catch(ServletException e){
+        }catch(Exception e){
           throw new BadException(e);
         }
       }else{

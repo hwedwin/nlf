@@ -12,13 +12,12 @@ import nc.liat6.frame.paging.PageData;
 import nc.liat6.frame.paging.PagingParam;
 import nc.liat6.frame.util.Objecter;
 import nc.liat6.frame.web.WebContext;
-import nc.liat6.frame.web.WebExecute;
 
 /**
  * 分页标签
- * 
+ *
  * @author liat6
- * 
+ *
  */
 public class PagingTag extends TagSupport{
 
@@ -42,7 +41,7 @@ public class PagingTag extends TagSupport{
 
   /**
    * 获取分页表单ID
-   * 
+   *
    * @return 分页表单ID
    */
   public String getId(){
@@ -51,7 +50,7 @@ public class PagingTag extends TagSupport{
 
   /**
    * 设置分页表单ID
-   * 
+   *
    * @param id 分页表单ID
    */
   public void setId(String id){
@@ -60,7 +59,7 @@ public class PagingTag extends TagSupport{
 
   /**
    * 获取相邻页数
-   * 
+   *
    * @return 相邻页数
    */
   public Integer getNear(){
@@ -69,7 +68,7 @@ public class PagingTag extends TagSupport{
 
   /**
    * 设置相邻页数
-   * 
+   *
    * @param near 相邻页数
    */
   public void setNear(Integer near){
@@ -94,7 +93,7 @@ public class PagingTag extends TagSupport{
 
   public int doStartTag(){
     Request request = Context.get(Statics.REQUEST);
-    HttpServletRequest originRequest = request.find(WebExecute.TAG_REQUEST);
+    HttpServletRequest originRequest = request.find(Statics.FIND_REQUEST);
     JspWriter out = pageContext.getOut();
     try{
       PageData pd = (PageData)originRequest.getAttribute(null==dataVar?PAGE_DATA_VAR:dataVar);

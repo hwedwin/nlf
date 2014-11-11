@@ -2,9 +2,9 @@ package nc.liat6.frame.context;
 
 /**
  * 常量
- * 
+ *
  * @author 6tail
- * 
+ *
  */
 public class Statics{
 
@@ -23,10 +23,18 @@ public class Statics{
   public final static String DEFAULT_CONNECTION_ALIAS = "NLF_DEFAULT_CONNECTION_ALIAS";
   /** 连接 */
   public final static String CONNECTIONS = "NLF_CONNECTIONS";
-  /** 用于获取原始Request的标识符 */
-  public static final String TAG_ORG_REQUEST = "request";
+  /** 用于获取原始HttpServletRequest的标识符 */
+  public static final String FIND_REQUEST = "request";
+  /** 用于获取HttpServletResponse的标识符 */
+  public static final String FIND_RESPONSE = "response";
+  /** 用于获取HttpSession的标识符 */
+  public static final String FIND_SESSION = "session";
   /** 用于获取IP获取器的标识符 */
-  public static final String TAG_IP_FETCHER = "ipfetcher";
+  public static final String FIND_IP_FETCHER = "ipfetcher";
   /** 用于获取locale获取器的标识符 */
-  public static final String TAG_LOCALE_FETCHER = "localefetcher";
+  public static final String FIND_LOCALE_FETCHER = "localefetcher";
+  /** 用于获取Cookie获取器的标识符 */
+  public static final String FIND_COOKIE_FETCHER = "cookiefetcher";
+  /** 用于获取文件上传组件的标识符 */
+  public static final String FIND_UPLOADER = "uploader";
 }

@@ -13,7 +13,6 @@ import nc.liat6.frame.paging.PageData;
 import nc.liat6.frame.util.ID;
 import nc.liat6.frame.util.ImageHelper;
 import nc.liat6.frame.web.WebContext;
-import nc.liat6.frame.web.WebExecute;
 import nc.liat6.frame.web.response.Alert;
 import nc.liat6.frame.web.response.Json;
 import nc.liat6.frame.web.response.Paging;
@@ -28,7 +27,7 @@ public class Action{
 
   /**
    * 自动分页
-   * 
+   *
    * @return
    */
   public Object paging(){
@@ -45,26 +44,26 @@ public class Action{
 
   /**
    * 文件上传，仅供测试
-   * 
+   *
    * @return
    * @throws IOException
    */
   public Object upload(){
     Request r = Context.get(Statics.REQUEST);
-    FileUploader uploader = r.find(WebExecute.TAG_UPLOADER);
+    FileUploader uploader = r.find(Statics.FIND_UPLOADER);
     UploadedFile file = uploader.getFile();
     return new Json(file.getName());
   }
-  
+
   /**
    * 图片上传
-   * 
+   *
    * @return
    * @throws IOException
    */
   public Object uploadPic(){
     Request r = Context.get(Statics.REQUEST);
-    FileUploader uploader = r.find(WebExecute.TAG_UPLOADER);
+    FileUploader uploader = r.find(Statics.FIND_UPLOADER);
     UploadedFile file = uploader.getFile("jpg","gif","bmp","png");
     java.io.File dir = new java.io.File(WebContext.REAL_PATH,"uploaded");
     if(!dir.exists()||!dir.isDirectory()){
@@ -79,7 +78,7 @@ public class Action{
     }
     return new Json(WebContext.CONTEXT_PATH+"/uploaded/"+fileName);
   }
-  
+
   /**
    * 添加数据
    * @return

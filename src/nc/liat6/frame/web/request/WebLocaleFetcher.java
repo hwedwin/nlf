@@ -2,16 +2,16 @@ package nc.liat6.frame.web.request;
 
 import java.util.Locale;
 import javax.servlet.http.HttpSession;
+import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.execute.Request;
 import nc.liat6.frame.execute.request.ILocaleFetcher;
 import nc.liat6.frame.locale.LocaleFactory;
-import nc.liat6.frame.web.WebExecute;
 
 /**
  * WEB应用locale获取器
- * 
+ *
  * @author 6tail
- * 
+ *
  */
 public class WebLocaleFetcher implements ILocaleFetcher{
 
@@ -23,7 +23,7 @@ public class WebLocaleFetcher implements ILocaleFetcher{
   }
 
   public Locale getLocale(){
-    HttpSession session = request.find(WebExecute.TAG_SESSION);
+    HttpSession session = request.find(Statics.FIND_SESSION);
     try{
       String locale = (String)session.getAttribute("locale");
       String language = locale.substring(0,2);
@@ -43,7 +43,7 @@ public class WebLocaleFetcher implements ILocaleFetcher{
   }
 
   public void setLocale(String locale){
-    HttpSession session = request.find(WebExecute.TAG_SESSION);
+    HttpSession session = request.find(Statics.FIND_SESSION);
     session.setAttribute("locale",locale);
   }
 }

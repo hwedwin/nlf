@@ -1,14 +1,14 @@
 package nc.liat6.frame.rmi.server.request;
 
+import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.execute.Request;
-import nc.liat6.frame.execute.impl.AppExecute;
 import nc.liat6.frame.execute.request.IIPFetcher;
 
 /**
  * RMI应用IP获取器，在确实需要用到IP的时候才解析
- * 
+ *
  * @author 6tail
- * 
+ *
  */
 public class RmiIPFetcher implements IIPFetcher{
 
@@ -27,7 +27,7 @@ public class RmiIPFetcher implements IIPFetcher{
     if(ipFetched){
       return ip;
     }
-    RmiRequest oreq = request.find(AppExecute.TAG_REQUEST);
+    RmiRequest oreq = request.find(Statics.FIND_REQUEST);
     String r = null;
     if(null!=oreq){
       r = oreq.getIp();

@@ -2,15 +2,15 @@ package nc.liat6.frame.web.request;
 
 import java.util.Enumeration;
 import javax.servlet.http.HttpServletRequest;
+import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.execute.Request;
 import nc.liat6.frame.execute.request.IIPFetcher;
-import nc.liat6.frame.web.WebExecute;
 
 /**
  * WEB应用IP获取器，在确实需要用到IP的时候才解析
- * 
+ *
  * @author 6tail
- * 
+ *
  */
 public class WebIPFetcher implements IIPFetcher{
 
@@ -31,7 +31,7 @@ public class WebIPFetcher implements IIPFetcher{
     if(ipFetched){
       return ip;
     }
-    HttpServletRequest oreq = request.find(WebExecute.TAG_REQUEST);
+    HttpServletRequest oreq = request.find(Statics.FIND_REQUEST);
     String r = oreq.getRemoteAddr();
     Enumeration<String> em = oreq.getHeaderNames();
     out:while(em.hasMoreElements()){

@@ -97,7 +97,7 @@ public class L{
     if(null==r){
       return get(LocaleFactory.locale,key);
     }
-    ILocaleFetcher lf = r.find(Statics.TAG_LOCALE_FETCHER);
+    ILocaleFetcher lf = r.find(Statics.FIND_LOCALE_FETCHER);
     if(null==lf){
       return get(LocaleFactory.locale,key);
     }
