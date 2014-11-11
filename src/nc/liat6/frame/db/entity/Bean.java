@@ -269,7 +269,7 @@ public class Bean implements Map<String,Object>,Serializable{
    * @param rule 属性转换规则
    */
   public void fromObject(Object object,IBeanRule rule){
-    fromObject(object,null,true);
+    fromObject(object,rule,true);
   }
 
   /**
