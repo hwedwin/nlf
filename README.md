@@ -4,6 +4,170 @@ NLF框架
 #简介
 NLF框架是六特尔独自开发的轻量级java框架，它只有1个jar包，含源代码在内只有600+KB的大小。它无侵入，无依赖，零配置，无注解，支持AOP，自动IOC，支持自动分页，class动态加载，原生支持Oracle、SQLSERVER、MYSQL、MONGO和独创的CSV数据库。使用它你将会体验到前所未有的开发效率，并且你会发现，它支持javase和javaee应用，你甚至不需要启动Server就可以对web应用后台代码进行调试。
 
+#使用示例
+假如数据库有1张表TABLE_USER，3个字段USER_ID，USER_NAME，USER_AGE。我们需要一个控制器，接收1个参数age，返回所有USER_AGE=age的记录的json格式。<br />
+结果示例：{success:true,data:[{id:1,name:"张三",age:30},{id:2,name:"李四",age:30}]}
+
+
+##学前班模式
+```Java
+public class UserAction(){
+  public Object jsonUsers(){
+    Request r = Context.get(Statics.REQUEST);
+    int age = r.getInt("age");
+    ITrans t = TransFactory.getTrans();
+    List<Bean> users = t.getSelecter().column("USER_ID id","USER_NAME name","USER_AGE age").table("TABLE_USER").where("USER_AGE",age).select();
+    t.rollback();
+    t.close();
+    return new Json(users);
+  }
+}
+```
+
+##幼儿园模式
+```Java
+public class User{
+  private long id;
+  private String name;
+  private int age;
+  public void setId(long id){this.id = id;}
+  public long getId(){return id;}
+  public void setName(String name){this.name = name;}
+  public String getName(){return name;}
+  public void setAge(int age){this.age = age;}
+  public String getAge(){return age;}
+}
+public class UserAction(){
+  public Object jsonUsers(){
+    Request r = Context.get(Statics.REQUEST);
+    int age = r.getInt("age");
+    ITrans t = TransFactory.getTrans();
+    List<Bean> users = t.getSelecter().table("TABLE_USER").where("USER_AGE",age).select();
+    t.rollback();
+    t.close();
+    List<User> result = new ArrayList<User>();
+    for(Bean o:users){
+      User user = new User();
+      user.setId(o.getLong("USER_ID",-1));
+      user.setName(o.getString("USER_NAME"));
+      user.setAge(o.getInt("USER_AGE",-1));
+      result.add(user);
+    }
+    return new Json(result);
+  }
+}
+```
+
+##一年级模式
+```Java
+public class UserAction(){
+  public Object jsonUsers(){
+    Request r = Context.get(Statics.REQUEST);
+    int age = r.getInt("age");
+    ITrans t = TransFactory.getTrans();
+    List<Bean> users = t.getSelecter().table("TABLE_USER").where("USER_AGE",age).select();
+    t.rollback();
+    t.close();
+    List<User> result = new ArrayList<User>();
+    for(Bean o:users){
+      User user = o.toObject(User.class,new BeanRuleAdapter(){
+        @Override
+        public String getKey(String property){
+          if("id".equals(property)){
+            return "USER_ID";
+          }else if("name".equals(property)){
+            return "USER_NAME";
+          }else if("age".equals(property)){
+            return "USER_AGE";
+          }
+          return null;
+        }
+      });
+      result.add(user);
+    }
+    return new Json(result);
+  }
+}
+```
+
+##二年级模式
+```Java
+public class UserAdapter implements IBeanRule{
+  private static final Map<String,String> map = new HashMap<String,String>();
+  static{
+    map.put("id","USER_ID");
+    map.put("name","USER_NAME");
+    map.put("age","USER_AGE");
+  }
+  @Override
+  public String getKey(String property){
+    return map.get(property);
+  }
+}
+public class UserAction(){
+  private static IBeanRule userAdapter = new UserAdapter();
+  public Object jsonUsers(){
+    Request r = Context.get(Statics.REQUEST);
+    int age = r.getInt("age");
+    ITrans t = TransFactory.getTrans();
+    List<Bean> users = t.getSelecter().table("TABLE_USER").where("USER_AGE",age).select();
+    t.rollback();
+    t.close();
+    List<User> result = new ArrayList<User>();
+    for(Bean o:users){
+      User user = o.toObject(User.class,userAdapter);
+      result.add(user);
+    }
+    return new Json(result);
+  }
+}
+```
+
+##三年级模式
+```Java
+public class UserAction(){
+  private static IBeanRule userAdapter = new UserAdapter();
+  public Object jsonUsers(){
+    Request r = Context.get(Statics.REQUEST);
+    int age = r.getInt("age");
+    List<Bean> users = Dao.list(new DaoAdapter(){
+      @Override
+      public List<Bean> list(ITrans t){
+        return t.getSelecter().table("TABLE_USER").where("USER_AGE",age).select();
+      }
+    });
+    List<User> result = new ArrayList<User>();
+    for(Bean o:users){
+      User user = o.toObject(User.class,userAdapter);
+      result.add(user);
+    }
+    return new Json(result);
+  }
+}
+```
+
+##四年级模式
+```Java
+public class UserAction(){
+  private static IBeanRule userAdapter = new UserAdapter();
+  public Object jsonUsers(){
+    Request r = Context.get(Statics.REQUEST);
+    int age = r.getInt("age");
+    List<User> users = Dao.list(User.class,new DaoAdapter(){
+      @Override
+      public List<Bean> list(ITrans t){
+        return t.getSelecter().table("TABLE_USER").where("USER_AGE",age).select();
+      }
+      @Override
+      public IBeanRule rule(){
+        return userAdapter;
+      }
+    });
+    return new Json(result);
+  }
+}
+```
+
 #更新日志
 ##2014-11-14
 1. 增加Dao相关封装。
