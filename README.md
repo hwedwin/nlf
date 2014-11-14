@@ -9,7 +9,7 @@ NLF框架是六特尔独自开发的轻量级java框架，它只有1个jar包，
 结果示例：{success:true,data:[{id:1,name:"张三",age:30},{id:2,name:"李四",age:30}]}
 
 
-##学前班模式
+##学前班
 ```Java
 public class UserAction(){
   public Object jsonUsers(){
@@ -24,7 +24,7 @@ public class UserAction(){
 }
 ```
 
-##幼儿园模式
+##幼儿园
 ```Java
 public class User{
   private long id;
@@ -58,7 +58,7 @@ public class UserAction(){
 }
 ```
 
-##一年级模式
+##一年级
 ```Java
 public class UserAction(){
   public Object jsonUsers(){
@@ -90,7 +90,7 @@ public class UserAction(){
 }
 ```
 
-##二年级模式
+##二年级
 ```Java
 public class UserAdapter implements IBeanRule{
   private static final Map<String,String> map = new HashMap<String,String>();
@@ -123,7 +123,7 @@ public class UserAction(){
 }
 ```
 
-##三年级模式
+##三年级
 ```Java
 public class UserAction(){
   private static IBeanRule userAdapter = new UserAdapter();
@@ -146,7 +146,7 @@ public class UserAction(){
 }
 ```
 
-##四年级模式
+##四年级
 ```Java
 public class UserAction(){
   private static IBeanRule userAdapter = new UserAdapter();
@@ -163,9 +163,49 @@ public class UserAction(){
         return userAdapter;
       }
     });
-    return new Json(result);
+    return new Json(users);
   }
 }
+```
+
+##博士后
+```Java
+public interface UserService{
+  List<User> listByAge(int age);
+}
+public class UserServiceImpl implements UserService{
+  public List<User> listByAge(final int age){
+    List<User> users = Dao.list(User.class,new DaoAdapter(){
+      @Override
+      public List<Bean> list(ITrans t){
+        return t.getSelecter().table("TABLE_USER").where("USER_AGE",age).select();
+      }
+      @Override
+      public IBeanRule rule(){
+        return userAdapter;
+      }
+    });
+    return users;
+  }
+}
+public class UserAction(){
+  private static IBeanRule userAdapter = new UserAdapter();
+  private UserService userService;
+  public void setUserService(UserService userService){
+    this.userService = userService;
+  }
+  public Object jsonUsers(){
+    Request r = Context.get(Statics.REQUEST);
+    int age = r.getInt("age");
+    List<User> users = userService.listByAge(age);
+    return new Json(users);
+  }
+}
+```
+
+##圣斗士
+```Java
+//你猜会肿么写？
 ```
 
 #更新日志
