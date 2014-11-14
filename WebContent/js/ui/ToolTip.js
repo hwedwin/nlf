@@ -55,6 +55,7 @@ I.regist('ui.ToolTip',function(W,D){
     I.listen(cfg.dom,'click',function(m,e){
       obj.close();
     });
+    Q[obj.id] = obj;
   };
 
   var _prepare = function(config){
@@ -65,6 +66,7 @@ I.regist('ui.ToolTip',function(W,D){
     I.util.Skin.init(cfg.skin);
     _create(obj);
     obj.close = function(){
+      delete Q[this.id];
       try{
         this.layer.parentNode.removeChild(this.layer);
       }catch(e){
@@ -74,7 +76,15 @@ I.regist('ui.ToolTip',function(W,D){
     };
     return obj;
   };
+  var _closeAll = function(){
+    for(var i in Q){
+      try{
+        Q[i].close();
+      }catch(e){}
+    }
+  };
   return {
-    create:function(cfg){return _prepare(cfg);}
+    create:function(cfg){return _prepare(cfg);},
+    closeAll:function(){_closeAll();}
   };
 }+'');

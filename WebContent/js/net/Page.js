@@ -49,7 +49,7 @@ I.regist('net.Page',function(W,D){
       });
     }
   };
-  
+
   var _parseStyle = function(o,html){
     var s = html;
     var r = /<style[^>]*>/ig.exec(s);
@@ -102,7 +102,7 @@ I.regist('net.Page',function(W,D){
       var tag = r[0]+'';
       var left = s.substr(0,r.index);
       o.html.push(left);
-      
+
       var textareaStart = left.lastIndexOf('<textarea');
       var textareaEnd = left.lastIndexOf('</textarea>');
       if(textareaStart>textareaEnd){
@@ -113,7 +113,7 @@ I.regist('net.Page',function(W,D){
         r = /<script[^>]*>/ig.exec(s);
         continue;
       }
-      
+
       s = s.substr(r.index+tag.length);
       var endIndex  = s.indexOf('</'+'script>');
       var src = tag.match(/src=["|'][^"|']*["|']/ig);
@@ -167,9 +167,6 @@ I.regist('net.Page',function(W,D){
   };
   var _html = function(html,dom,callback){
     var o = _parse(html);
-    try{
-      console.log(o);
-    }catch(e){}
     for(var i=0;i<o.outerStyle.length;i++){
       _loadCss(o.outerStyle[i]);
     }

@@ -228,10 +228,14 @@ ul.i-ui-Tree-${skin} ul{
   display:none;
 }
 
-.i-ui-Radio-${skin}{position:relative;display:inline-block;vertical-align:middle;zoom:1;text-decoration:none;margin:0;padding:0.3em 0.6em;line-height:1.5em;overflow:hidden;font-size:1em;-webkit-border-radius:6px;-moz-border-radius:6px;-ms-border-radius:6px;-o-border-radius:6px;border-radius:6px;cursor:pointer;}
+.i-ui-Radio-${skin}{position:relative;display:inline-block;vertical-align:middle;zoom:1;text-decoration:none;margin:0;padding:0.3em 0.6em;line-height:1.6em;overflow:hidden;font-size:1em;-webkit-border-radius:6px;-moz-border-radius:6px;-ms-border-radius:6px;-o-border-radius:6px;border-radius:6px;cursor:pointer;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
 .i-ui-Radio-${skin}:hover{text-decoration:none;}
-.i-ui-Checkbox-${skin}{position:relative;display:inline-block;vertical-align:middle;zoom:1;text-decoration:none;margin:0;padding:0.3em 0.6em;line-height:1.5em;overflow:hidden;font-size:1em;-webkit-border-radius:6px;-moz-border-radius:6px;-ms-border-radius:6px;-o-border-radius:6px;border-radius:6px;cursor:pointer;}
+.i-ui-Radio-${skin} b{font-weight:normal;}
+.i-ui-Radio-${skin} i{font-weight:normal;font-style:normal;}
+.i-ui-Checkbox-${skin}{position:relative;display:inline-block;vertical-align:middle;zoom:1;text-decoration:none;margin:0;padding:0.3em 0.6em;line-height:1.6em;overflow:hidden;font-size:1em;-webkit-border-radius:6px;-moz-border-radius:6px;-ms-border-radius:6px;-o-border-radius:6px;border-radius:6px;cursor:pointer;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
 .i-ui-Checkbox-${skin}:hover{text-decoration:none;}
+.i-ui-Checkbox-${skin} b{font-weight:normal;}
+.i-ui-Checkbox-${skin} i{font-weight:normal;font-style:normal;}
 
 .i-ui-Editor-${skin}{
   display:block;

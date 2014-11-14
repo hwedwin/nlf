@@ -24,11 +24,11 @@ I.regist('ui.Checkbox',function(W,D){
       var ipt = I.$(dom,'tag','input')[0];
       if(ipt.checked){
         ipt.checked = '';
-        I.cls(dom,this.className+' '+cfg.icon_normal);
+        I.cls(I.$(dom,'tag','b')[0],cfg.icon_normal);
         cfg.checked = false;
       }else{
         ipt.checked = 'checked';
-        I.cls(dom,this.className+' '+cfg.icon_checked);
+        I.cls(I.$(dom,'tag','b')[0],cfg.icon_checked);
         cfg.checked = true;
       }
     },
@@ -56,9 +56,9 @@ I.regist('ui.Checkbox',function(W,D){
       m.style.color = cfg.color;
     });
     if(cfg.checked){
-      I.cls(dom,obj.className+' '+cfg.icon_checked);
+      I.cls(I.$(dom,'tag','b')[0],cfg.icon_checked);
     }else{
-      I.cls(dom,obj.className+' '+cfg.icon_normal);
+      I.cls(I.$(dom,'tag','b')[0],cfg.icon_normal);
     }
   };
   var _create = function(config){
@@ -75,7 +75,7 @@ I.regist('ui.Checkbox',function(W,D){
     obj.config = cfg;
     var ipt = I.$(dom,'tag','input');
     if(!ipt||ipt.length<1){
-      dom.innerHTML = dom.innerHTML+'<input id="'+cfg.id+'" type="checkbox" />';
+      dom.innerHTML = '<b></b><i>'+dom.innerHTML+'</i><input id="'+cfg.id+'" type="checkbox" />';
       ipt = I.$(dom,'tag','input');
     }
     ipt[0].value = cfg.value;
@@ -88,6 +88,18 @@ I.regist('ui.Checkbox',function(W,D){
     }
     I.cls(dom,obj.className);
     _bindEvent(obj);
+    obj.checkOn = function(){
+      this.config.checked = true;
+      var ipt = I.$(this.dom,'tag','input')[0];
+      ipt.checked = 'checked';
+      I.cls(I.$(this.dom,'tag','b')[0],this.config.icon_checked);
+    };
+    obj.checkOff = function(){
+      this.config.checked = false;
+      var ipt = I.$(this.dom,'tag','input')[0];
+      ipt.checked = '';
+      I.cls(I.$(this.dom,'tag','b')[0],this.config.icon_normal);
+    };
     return obj;
   };
   return {
