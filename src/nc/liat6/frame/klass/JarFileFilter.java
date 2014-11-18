@@ -35,6 +35,9 @@ public class JarFileFilter implements FileFilter{
       if(author.contains("Sun Microsystems Inc.")){
         return false;
       }
+      if(author.contains("Oracle Corporation")){
+        return false;
+      }
     }catch(Throwable e){
       return false;
     }
