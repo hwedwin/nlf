@@ -209,6 +209,9 @@ public class UserAction(){
 ```
 
 #更新日志
+##2014-11-19
+1. 不再扫描manifest.mf中Created-By包含Sun、Oracle、Apache、Apple、IBM、Signtool的jar
+
 ##2014-11-14
 1. 增加Dao相关封装。
 * 优化前端js。
