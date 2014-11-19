@@ -14,6 +14,8 @@ import java.util.jar.Manifest;
  */
 public class JarFileFilter implements FileFilter{
 
+  private static final String[] NO = {"Sun","Oracle","Apache","Apple","IBM","Signtool"};
+
   public boolean accept(File f){
     if(f.isDirectory()){
       return false;
@@ -32,11 +34,10 @@ public class JarFileFilter implements FileFilter{
       if(null==author){
         return true;
       }
-      if(author.contains("Sun Microsystems Inc.")){
-        return false;
-      }
-      if(author.contains("Oracle Corporation")){
-        return false;
+      for(String no:NO){
+        if(author.contains(no+" ")){
+          return false;
+        }
       }
     }catch(Throwable e){
       return false;
