@@ -1,6 +1,7 @@
 package nc.liat6.frame.web.config;
 
 import java.util.List;
+import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import nc.liat6.frame.context.Context;
@@ -15,6 +16,8 @@ import nc.liat6.frame.locale.L;
 import nc.liat6.frame.locale.LocaleFactory;
 import nc.liat6.frame.log.Logger;
 import nc.liat6.frame.util.Stringer;
+import nc.liat6.frame.web.Dispatcher;
+import nc.liat6.frame.web.Forbid;
 import nc.liat6.frame.web.response.Json;
 import nc.liat6.frame.web.response.Page;
 import nc.liat6.frame.web.response.Tip;
@@ -30,6 +33,15 @@ public class WebManager extends AbstractWebManager{
 
   public WebManager(IWebConfig config){
     super(config);
+  }
+
+  protected boolean contains(Set<String> l,String s){
+    for(String o:l){
+      if(s.startsWith(o)){
+        return true;
+      }
+    }
+    return false;
   }
 
   public Object failed(Throwable e){
@@ -61,13 +73,14 @@ public class WebManager extends AbstractWebManager{
         json.setSuccess(false);
         return json;
       }
-      if(null==config.getErrorPage()){
+      String errorPage = config.getErrorPage(req,404);
+      if(null==errorPage){
         if(cause instanceof ClassNotFoundException){
           ores.setStatus(404);
           return null;
         }
       }else{
-        Page p = new Page(config.getErrorPage());
+        Page p = new Page(errorPage);
         p.set("e",cause);
         if(cause instanceof ClassNotFoundException){
           p.setStatus(404);
@@ -109,6 +122,18 @@ public class WebManager extends AbstractWebManager{
   }
 
   public ClassMethod before(String path){
+    Set<String> forbiddenPaths = Dispatcher.forbiddenPaths;
+    Set<String> allowPaths = Dispatcher.allowPaths;
+    // 请求过滤
+    if(contains(forbiddenPaths,path)){
+      if(!contains(allowPaths,path)){
+        ClassMethod cm = new ClassMethod();
+        cm.setKlass(Forbid.class.getName());
+        cm.setMethod("access");
+        return cm;
+      }
+    }
+
     // 匹配路径，pkg.Klass/method
     if(!path.matches("[/].{1,}[/]\\w{1,}")){
       return null;

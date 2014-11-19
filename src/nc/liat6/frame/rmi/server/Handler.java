@@ -26,9 +26,9 @@ import nc.liat6.frame.web.response.Json;
 
 /**
  * 单连接处理器
- * 
+ *
  * @author 6tail
- * 
+ *
  */
 public class Handler implements Runnable{
 
@@ -97,7 +97,7 @@ public class Handler implements Runnable{
         // 请求过滤
         if(contains(NlfServer.forbid,km)){
           if(!contains(NlfServer.allow,km)){
-            s = L.get(LocaleFactory.locale,"rmi.forbid")+km;
+            s = L.get(LocaleFactory.locale,"request.forbid")+km;
             logs.append(s);
             valid = false;
           }

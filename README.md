@@ -211,6 +211,9 @@ public class UserAction(){
 #更新日志
 ##2014-11-19
 1. 不再扫描manifest.mf中Created-By包含Sun、Oracle、Apache、Apple、IBM、Signtool的jar
+* WebContext可获取lib路径，classes路径。
+* 404及错误提示页面可按需配置。
+* 删除response下的Bad类，统一使用非受检异常BadException来替代。
 
 ##2014-11-14
 1. 增加Dao相关封装。

@@ -4,6 +4,8 @@ logger.warn = WARN
 logger.info = INFO
 logger.debug = DEBUG
 
+request.forbid = request forbid:
+
 xml.notsupport = xml not supported
 xml.cdata_not_end = CDATA not end:
 xml.note_not_end = note not end:
@@ -144,7 +146,6 @@ rmi.req_method = request method:
 rmi.req_args = request arguments:
 rmi.req_fail = rmi process failed
 rmi.class_not_found = class not found:
-rmi.forbid = request forbid:
 rmi.res_json = response JSON:
 
 page.number_prefix = page

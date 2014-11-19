@@ -4,6 +4,8 @@ logger.warn = 警告
 logger.info = 信息
 logger.debug = 调试
 
+request.forbid = 访问被禁止:
+
 xml.not_support = 不支持的XML格式
 xml.cdata_not_end = CDATA段缺少结束标识，原文如下：
 xml.note_not_end = 注释段缺少结束标识，原文如下：
@@ -144,7 +146,6 @@ rmi.req_method = 方法：
 rmi.req_args = 请求参数：
 rmi.req_fail = 请求处理异常
 rmi.class_not_found = 类未找到：
-rmi.forbid = 访问被禁止:
 rmi.res_json = 返回JSON：
 
 page.number_prefix = 第

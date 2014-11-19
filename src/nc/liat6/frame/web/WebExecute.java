@@ -27,7 +27,6 @@ import nc.liat6.frame.util.Stringer;
 import nc.liat6.frame.web.request.WebCookieFetcher;
 import nc.liat6.frame.web.request.WebIPFetcher;
 import nc.liat6.frame.web.request.WebLocaleFetcher;
-import nc.liat6.frame.web.response.Bad;
 import nc.liat6.frame.web.response.HideJson;
 import nc.liat6.frame.web.response.Json;
 import nc.liat6.frame.web.response.Output;
@@ -160,8 +159,6 @@ public class WebExecute extends AbstractExecute{
       responseJson((Tip)r);
     }else if(r instanceof Page){
       responsePage((Page)r);
-    }else if(r instanceof Bad){
-      responseBad((Bad)r);
     }else{
       responseString(JSON.toJson(r));
     }
@@ -270,27 +267,4 @@ public class WebExecute extends AbstractExecute{
     }
   }
 
-  protected void responseBad(Bad p){
-    Request req = Context.get(Statics.REQUEST);
-    Response res = Context.get(Statics.RESPONSE);
-    HttpServletRequest oreq = req.find(Statics.FIND_REQUEST);
-    HttpServletResponse ores = res.find(Statics.FIND_RESPONSE);
-    String headAjax = oreq.getHeader("x-requested-with");
-    if(null==headAjax){
-      if(null!=Dispatcher.config.getErrorPage()){
-        oreq.setAttribute("e",p.getThing());
-        try{
-          oreq.getRequestDispatcher(Dispatcher.config.getErrorPage()).forward(oreq,ores);
-        }catch(Exception e){
-          throw new BadException(e);
-        }
-      }else{
-        responseString(p.getThing());
-      }
-    }else{
-      Tip tip = new Tip(p.getData(),p.getThing());
-      tip.setSuccess(false);
-      responseJson(tip);
-    }
-  }
 }

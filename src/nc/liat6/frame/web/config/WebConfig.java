@@ -8,6 +8,7 @@ import nc.liat6.frame.Factory;
 import nc.liat6.frame.Version;
 import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.execute.IExecute;
+import nc.liat6.frame.execute.Request;
 import nc.liat6.frame.web.WebExecute;
 import nc.liat6.frame.web.upload.UploadStatus;
 
@@ -23,7 +24,7 @@ public class WebConfig implements IWebConfig{
     return Statics.DEFAULT_APP_ROOT_TAG;
   }
 
-  public String getErrorPage(){
+  public String getErrorPage(Request request,int responseStatus){
     return null;
   }
 

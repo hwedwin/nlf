@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.execute.IExecute;
+import nc.liat6.frame.execute.Request;
 
 /**
  * WEB配置接口
@@ -24,9 +25,11 @@ public interface IWebConfig{
   /**
    * 获取错误页面地址
    *
+   * @param request 请求
+   * @param responseStatus 响应代码
    * @return 错误页面地址，如果返回null，则使用框架默认
    */
-  String getErrorPage();
+  String getErrorPage(Request request,int responseStatus);
 
   /**
    * 获取全局变量，返回的结果将设置到application中，如设置WEB_NAME="NLF"，则jsp页面中${WEB_NAME}="NLF"
