@@ -202,8 +202,8 @@ public class WebExecute extends AbstractExecute{
     Logger.getLog().debug(logs.toString());
     Response res = Context.get(Statics.RESPONSE);
     HttpServletResponse ores = res.find(Statics.FIND_RESPONSE);
-    ores.setContentType("text/plain;charset=UTF-8");
-    ores.setCharacterEncoding("UTF-8");
+    ores.setContentType("text/plain;charset="+Statics.ENCODE);
+    ores.setCharacterEncoding(Statics.ENCODE);
     try{
       ores.getWriter().write(s);
       ores.getWriter().flush();
@@ -217,6 +217,7 @@ public class WebExecute extends AbstractExecute{
     Logger.getLog().debug(logs.toString());
     Response res = Context.get(Statics.RESPONSE);
     HttpServletResponse ores = res.find(Statics.FIND_RESPONSE);
+    ores.setContentType("text/plain;charset="+Statics.ENCODE);
     ores.setCharacterEncoding(Statics.ENCODE);
     try{
       ores.getWriter().write(p);
@@ -232,8 +233,8 @@ public class WebExecute extends AbstractExecute{
     Logger.getLog().debug(logs.toString());
     Response res = Context.get(Statics.RESPONSE);
     HttpServletResponse ores = res.find(Statics.FIND_RESPONSE);
-    ores.setContentType("text/plain;charset=UTF-8");
-    ores.setCharacterEncoding("UTF-8");
+    ores.setContentType("text/plain;charset="+Statics.ENCODE);
+    ores.setCharacterEncoding(Statics.ENCODE);
     try{
       ores.getWriter().write(s);
       ores.getWriter().flush();

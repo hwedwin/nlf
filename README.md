@@ -209,6 +209,9 @@ public class UserAction(){
 ```
 
 #更新日志
+##2014-11-20
+1. 单纯返回字符串时设置编码以防止浏览器显示乱码。
+
 ##2014-11-19
 1. 不再扫描manifest.mf中Created-By包含Sun、Oracle、Apache、Apple、IBM、Signtool的jar
 * WebContext可获取lib路径，classes路径。
