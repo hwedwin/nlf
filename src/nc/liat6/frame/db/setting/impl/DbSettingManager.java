@@ -6,8 +6,8 @@ import java.util.List;
 import nc.liat6.frame.Factory;
 import nc.liat6.frame.db.entity.Bean;
 import nc.liat6.frame.db.exception.DaoException;
-import nc.liat6.frame.db.setting.DbSettingFileFilter;
 import nc.liat6.frame.db.setting.IDbSetting;
+import nc.liat6.frame.db.setting.IDbSettingFileFilter;
 import nc.liat6.frame.db.setting.IDbSettingManager;
 import nc.liat6.frame.db.setting.IDbSettingProvider;
 import nc.liat6.frame.json.JSON;
@@ -31,7 +31,8 @@ public class DbSettingManager implements IDbSettingManager{
     if(!dir.exists()){
       dir.mkdirs();
     }
-    File[] fs = dir.listFiles(new DbSettingFileFilter());
+    IDbSettingFileFilter filter = Factory.getCaller().newInstance(IDbSettingFileFilter.class);
+    File[] fs = dir.listFiles(filter);
     List<String> impls = Factory.getImpls(IDbSettingProvider.class.getName());
     outer:for(File f:fs){
       try{
