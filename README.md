@@ -209,6 +209,9 @@ public class UserAction(){
 ```
 
 #更新日志
+##2014-11-24
+1. 优化代码。
+
 ##2014-11-23
 1. db配置文件过滤以.开头的文件名。
 * 实现IDbSettingFileFilter接口，可对db配置文件过滤器进行扩展。
