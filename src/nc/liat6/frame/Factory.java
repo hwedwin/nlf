@@ -28,6 +28,7 @@ import nc.liat6.frame.klass.JarFileFilter;
 import nc.liat6.frame.klass.PkgNameComparator;
 import nc.liat6.frame.locale.LocaleFactory;
 import nc.liat6.frame.locale.LocaleResource;
+import nc.liat6.frame.util.IOHelper;
 import nc.liat6.frame.util.Pather;
 import nc.liat6.frame.web.WebContext;
 
@@ -130,9 +131,10 @@ public class Factory{
     }
     // 获取调用者引用的路径
     if(callerPath.endsWith(".jar")){
+      JarFile jar = null;
       try{
-        JarFile file = new JarFile(callerPath);
-        Manifest mf = file.getManifest();
+        jar = new JarFile(callerPath);
+        Manifest mf = jar.getManifest();
         if(null!=mf){
           Attributes attrs = mf.getMainAttributes();
           String cp = attrs.getValue("Class-Path");
@@ -156,6 +158,8 @@ public class Factory{
         }
       }catch(IOException e){
         throw new RuntimeException(e);
+      }finally{
+        IOHelper.closeQuietly(jar);
       }
     }
     if(new File(callerPath).exists()){
@@ -294,8 +298,9 @@ public class Factory{
   }
 
   private static void scanJarClass(File jarFile){
+    ZipFile zip = null;
     try{
-      ZipFile zip = new ZipFile(jarFile);
+      zip = new ZipFile(jarFile);
       Enumeration<?> entries = zip.entries();
       while(entries.hasMoreElements()){
         ZipEntry entry = (ZipEntry)entries.nextElement();
@@ -334,6 +339,8 @@ public class Factory{
       }
     }catch(IOException e){
       throw new NlfException(jarFile.getAbsolutePath(),e);
+    }finally{
+      IOHelper.closeQuietly(zip);
     }
   }
 

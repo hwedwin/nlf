@@ -22,6 +22,7 @@ import nc.liat6.frame.locale.LocaleFactory;
 import nc.liat6.frame.log.Logger;
 import nc.liat6.frame.paging.PagingParam;
 import nc.liat6.frame.util.Dater;
+import nc.liat6.frame.util.IOHelper;
 import nc.liat6.frame.util.Objecter;
 import nc.liat6.frame.util.Stringer;
 import nc.liat6.frame.web.request.WebCookieFetcher;
@@ -181,18 +182,21 @@ public class WebExecute extends AbstractExecute{
     if(p.getFileSize()>-1){
       ores.setHeader("content_Length",p.getFileSize()+"");
     }
+    InputStream is = null;
+    OutputStream os = null;
     try{
-      InputStream is = p.getInputStream();
-      OutputStream os = ores.getOutputStream();
+      is = p.getInputStream();
+      os = ores.getOutputStream();
       int n = 0;
       byte b[] = new byte[1024];
       while((n = p.getInputStream().read(b))!=-1){
         os.write(b,0,n);
       }
-      os.close();
-      is.close();
     }catch(IOException e){
       throw new BadException(e);
+    }finally{
+      IOHelper.closeQuietly(os);
+      IOHelper.closeQuietly(is);
     }
   }
 

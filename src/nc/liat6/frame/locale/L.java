@@ -16,6 +16,7 @@ import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.exception.NlfException;
 import nc.liat6.frame.execute.Request;
 import nc.liat6.frame.execute.request.ILocaleFetcher;
+import nc.liat6.frame.util.IOHelper;
 import nc.liat6.frame.util.Stringer;
 
 public class L{
@@ -45,7 +46,7 @@ public class L{
   }
 
   private static Map<String,String> gen(InputStream in) throws IOException{
-    BufferedReader bi = new BufferedReader(new InputStreamReader(in,"utf-8"));
+    BufferedReader bi = new BufferedReader(new InputStreamReader(in,Statics.ENCODE));
     String line = null;
     Map<String,String> map = new HashMap<String,String>();
     while(null!=(line = bi.readLine())){
@@ -65,9 +66,10 @@ public class L{
   }
 
   public static void loadResource(LocaleResource o){
+    ZipFile zip = null;
     try{
       if(o.isInJar()){
-        ZipFile zip = new ZipFile(o.getHome());
+        zip = new ZipFile(o.getHome());
         ZipEntry en = zip.getEntry(o.getFileName());
         InputStream in = zip.getInputStream(en);
         System.out.println("load locale : "+o.getFileName());
@@ -83,6 +85,8 @@ public class L{
       }
     }catch(IOException e){
       throw new NlfException(o.getFileName(),e);
+    }finally{
+      IOHelper.closeQuietly(zip);
     }
   }
 

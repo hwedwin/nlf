@@ -104,11 +104,13 @@ public class WebManager extends AbstractWebManager{
     List<ConnVar> l = Context.get(Statics.CONNECTIONS);
     if(null!=l){
       for(ConnVar o:l){
-        if(null==o)
+        if(null==o){
           continue;
+        }
         IConnection conn = o.getConnection();
-        if(null==conn)
+        if(null==conn){
           continue;
+        }
         try{
           if(conn.isClosed()){
             continue;

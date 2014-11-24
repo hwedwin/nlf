@@ -5,6 +5,7 @@ import java.io.FileFilter;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
+import nc.liat6.frame.util.IOHelper;
 
 /**
  * jar文件过滤，允许.jar文件
@@ -23,9 +24,10 @@ public class JarFileFilter implements FileFilter{
     if(!f.getName().endsWith(".jar")){
       return false;
     }
+    JarFile jar = null;
     try{
-      JarFile file = new JarFile(f);
-      Manifest mf = file.getManifest();
+      jar = new JarFile(f);
+      Manifest mf = jar.getManifest();
       if(null==mf){
         return false;
       }
@@ -34,13 +36,19 @@ public class JarFileFilter implements FileFilter{
       if(null==author){
         return true;
       }
+      boolean inNo = false;
       for(String no:NO){
         if(author.contains(no+" ")){
-          return false;
+          inNo = true;
         }
+      }
+      if(inNo){
+        return false;
       }
     }catch(Throwable e){
       return false;
+    }finally{
+      IOHelper.closeQuietly(jar);
     }
     return true;
   }

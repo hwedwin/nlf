@@ -8,6 +8,7 @@ import nc.liat6.frame.db.entity.IBeanRule;
 import nc.liat6.frame.db.transaction.ITrans;
 import nc.liat6.frame.db.transaction.TransFactory;
 import nc.liat6.frame.paging.PageData;
+import nc.liat6.frame.util.IOHelper;
 
 public class Dao{
 
@@ -34,12 +35,7 @@ public class Dao{
     }
   }
   protected static void close(ITrans t){
-    if(null!=t){
-      try{
-        t.close();
-      }catch(Exception e){
-      }
-    }
+    IOHelper.closeQuietly(t);
   }
 
   public static Bean one(IDaoRule daoRule){

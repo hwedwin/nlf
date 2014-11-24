@@ -1,8 +1,9 @@
 package nc.liat6.frame.csv;
 
+import java.io.Closeable;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import nc.liat6.frame.util.IOHelper;
 
 /**
  * CSV文件读取
@@ -10,7 +11,7 @@ import java.io.IOException;
  * @author 6tail
  * 
  */
-public class CSVFileReader{
+public class CSVFileReader implements Closeable{
 
   /** 文件行数，是按CSV格式解析后的行数，不一定是文本行数 */
   private int lineCount = -1;
@@ -38,7 +39,7 @@ public class CSVFileReader{
     int n = lineNumber;
     if(null==reader){
       n = 0;
-      reader = new CSVReader(new FileReader(file));
+      reader = new CSVReader(file);
     }
     try{
       while(null!=reader.readLine()){
@@ -47,12 +48,7 @@ public class CSVFileReader{
       lineCount = n;
       return n;
     }finally{
-      if(null!=reader){
-        try{
-          reader.close();
-        }catch(Exception e){}
-        reader = null;
-      }
+      close();
       lineNumber = 0;
     }
   }
@@ -66,12 +62,11 @@ public class CSVFileReader{
    */
   public String[] getLine(int index) throws IOException{
     if(null!=reader&&index<lineNumber){
-      reader.close();
-      reader = null;
+      close();
     }
     if(null==reader){
       lineNumber = 0;
-      reader = new CSVReader(new FileReader(file));
+      reader = new CSVReader(file);
     }
     String[] line;
     while(null!=(line = reader.readLine())){
@@ -84,10 +79,8 @@ public class CSVFileReader{
     return null;
   }
 
-  public void close() throws IOException{
-    if(null!=reader){
-      reader.close();
-      reader = null;
-    }
+  public void close(){
+    IOHelper.closeQuietly(reader);
+    reader = null;
   }
 }

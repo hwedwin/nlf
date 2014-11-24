@@ -86,6 +86,8 @@ public class ObjectXMLWrapper implements IXMLWrapper{
         case LIST:
           s.append(" type=\"list\"");
           break;
+        default:
+          break;
       }
     }
     if(el.getAttributes().size()>0){

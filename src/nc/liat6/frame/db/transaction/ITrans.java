@@ -1,5 +1,6 @@
 package nc.liat6.frame.db.transaction;
 
+import java.io.Closeable;
 import nc.liat6.frame.db.plugin.ICounter;
 import nc.liat6.frame.db.plugin.IDeleter;
 import nc.liat6.frame.db.plugin.IInserter;
@@ -13,7 +14,7 @@ import nc.liat6.frame.db.sql.ITemplate;
  * @author 6tail
  *
  */
-public interface ITrans{
+public interface ITrans extends Closeable{
 
   /**
    * 初始化
@@ -75,7 +76,7 @@ public interface ITrans{
   void rollback();
 
   /**
-   * 关闭连接
+   * 关闭
    */
   void close();
 

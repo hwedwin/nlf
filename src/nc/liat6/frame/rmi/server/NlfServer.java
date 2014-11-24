@@ -82,7 +82,7 @@ public class NlfServer implements Runnable{
     }
     Bean o;
     try{
-      o = JSON.toBean(Stringer.readFromFile(f,"utf-8"));
+      o = JSON.toBean(Stringer.readFromFile(f));
     }catch(IOException e){
       throw new NlfException(e);
     }

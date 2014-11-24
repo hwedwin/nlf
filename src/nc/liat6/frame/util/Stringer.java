@@ -13,6 +13,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.exception.NlfException;
 
 /**
@@ -295,11 +296,7 @@ public class Stringer{
       }
       return s.toString();
     }finally{
-      try{
-        if(null!=br){
-          br.close();
-        }
-      }catch(Exception e){}
+      IOHelper.closeQuietly(br);
     }
   }
 
@@ -316,11 +313,11 @@ public class Stringer{
   }
 
   public static String readFromFile(String file) throws IOException{
-    return readFromFile(file,"GBK");
+    return readFromFile(file,Statics.ENCODE);
   }
 
   public static String readFromFile(File file) throws IOException{
-    return readFromFile(file,"GBK");
+    return readFromFile(file,Statics.ENCODE);
   }
 
   /**
@@ -338,11 +335,7 @@ public class Stringer{
       bw.write(s);
       bw.flush();
     }finally{
-      try{
-        if(null!=bw){
-          bw.close();
-        }
-      }catch(Exception e){}
+      IOHelper.closeQuietly(bw);
     }
   }
 
@@ -359,10 +352,10 @@ public class Stringer{
   }
 
   public static void writeToFile(String s,String file) throws IOException{
-    writeToFile(s,file,"GBK");
+    writeToFile(s,file,Statics.ENCODE);
   }
 
   public static void writeToFile(String s,File file) throws IOException{
-    writeToFile(s,file,"GBK");
+    writeToFile(s,file,Statics.ENCODE);
   }
 }

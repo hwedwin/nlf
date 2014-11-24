@@ -19,6 +19,7 @@ import nc.liat6.frame.lib.org.objectweb.asm.ClassVisitor;
 import nc.liat6.frame.lib.org.objectweb.asm.FieldVisitor;
 import nc.liat6.frame.lib.org.objectweb.asm.MethodVisitor;
 import nc.liat6.frame.lib.org.objectweb.asm.Opcodes;
+import nc.liat6.frame.util.IOHelper;
 
 class InterfaceVisitor implements ClassVisitor{
 
@@ -81,12 +82,15 @@ public class ByteCodeReader implements Opcodes{
   public long lastModified(ClassInfo ci){
     String className = ci.getClassName();
     if(ci.isInJar()){
+      ZipFile zip = null;
       try{
-        ZipFile zip = new ZipFile(ci.getHome());
+        zip = new ZipFile(ci.getHome());
         ZipEntry en = zip.getEntry(ci.getClassName().replace(".","/")+".class");
         return en.getTime();
       }catch(IOException e){
         throw new NlfException(ci+"",e);
+      }finally{
+        IOHelper.closeQuietly(zip);
       }
     }else{
       File classFile = new File(ci.getHome()+File.separator+className.replace(".",File.separator)+".class");
@@ -110,12 +114,8 @@ public class ByteCodeReader implements Opcodes{
       }
       return buffer.toByteArray();
     }finally{
-      try{
-        in.close();
-      }catch(Exception e){}
-      try{
-        buffer.close();
-      }catch(Exception e){}
+      IOHelper.closeQuietly(in);
+      IOHelper.closeQuietly(buffer);
     }
   }
 
@@ -126,11 +126,12 @@ public class ByteCodeReader implements Opcodes{
    * @return 字节码
    */
   public byte[] readClass(ClassInfo ci){
+    ZipFile zip = null;
     try{
       String className = ci.getClassName();
       InputStream in = null;
       if(ci.isInJar()){
-        ZipFile zip = new ZipFile(ci.getHome());
+        zip = new ZipFile(ci.getHome());
         ZipEntry en = zip.getEntry(className.replace(".","/")+".class");
         in = zip.getInputStream(en);
       }else{
@@ -140,14 +141,17 @@ public class ByteCodeReader implements Opcodes{
       return readClassFromStream(in);
     }catch(IOException e){
       throw new NlfException(ci+"",e);
+    }finally{
+      IOHelper.closeQuietly(zip);
     }
   }
 
   public List<String> getInterfaces(ClassInfo ci){
+    ZipFile zip = null;
     InputStream in = null;
     try{
       if(ci.isInJar()){
-        ZipFile zip = new ZipFile(ci.getHome());
+        zip = new ZipFile(ci.getHome());
         ZipEntry en = zip.getEntry(ci.getClassName().replace(".","/")+".class");
         in = zip.getInputStream(en);
       }else{
@@ -160,9 +164,8 @@ public class ByteCodeReader implements Opcodes{
     }catch(IOException e){
       throw new NlfException(ci+"",e);
     }finally{
-      try{
-        in.close();
-      }catch(Exception e){}
+      IOHelper.closeQuietly(in);
+      IOHelper.closeQuietly(zip);
     }
   }
 }

@@ -101,13 +101,13 @@ public abstract class SuperTemplate implements ITemplate{
     if(null!=rs){
       try{
         rs.close();
-      }catch(Exception e){
+      }catch(SQLException e){
       }
     }
     if(null!=stmt){
       try{
         stmt.close();
-      }catch(Exception e){
+      }catch(SQLException e){
       }
     }
     rs = null;

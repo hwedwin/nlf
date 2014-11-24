@@ -11,6 +11,7 @@ import nc.liat6.frame.db.entity.Bean;
 import nc.liat6.frame.json.JSON;
 import nc.liat6.frame.json.element.IJsonElement;
 import nc.liat6.frame.util.Base64Coder;
+import nc.liat6.frame.util.IOHelper;
 
 /**
  * 远程调用客户端
@@ -44,12 +45,7 @@ public class NlfClient implements INlfCaller{
    * 断开
    */
   private void disconnect(){
-    if(null!=socket){
-      try{
-        socket.close();
-      }catch(Exception e){}
-      socket = null;
-    }
+    IOHelper.closeQuietly(socket);
   }
 
   public IJsonElement call(String ip,int port,String klass,String method,Map<String,String> args){
@@ -106,18 +102,8 @@ public class NlfClient implements INlfCaller{
     }catch(Exception e){
       throw new NlfClientException(e);
     }finally{
-      if(null!=in){
-        try{
-          in.close();
-        }catch(Exception e){}
-        in = null;
-      }
-      if(null!=out){
-        try{
-          out.close();
-        }catch(Exception e){}
-        out = null;
-      }
+      IOHelper.closeQuietly(in);
+      IOHelper.closeQuietly(out);
       disconnect();
     }
   }

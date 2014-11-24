@@ -15,6 +15,7 @@ import nc.liat6.frame.locale.L;
 import nc.liat6.frame.locale.LocaleFactory;
 import nc.liat6.frame.log.Logger;
 import nc.liat6.frame.paging.PageData;
+import nc.liat6.frame.util.IOHelper;
 import nc.liat6.frame.util.Stringer;
 
 /**
@@ -223,13 +224,10 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
         }
         l.add(o);
       }
-      cr.close();
     }catch(IOException e){
       throw new DaoException(L.get("sql.file_read_error")+file.getAbsolutePath(),e);
     }finally{
-      try{
-        cr.close();
-      }catch(IOException e){}
+      IOHelper.closeQuietly(cr);
     }
     Collections.sort(l,new BeanComparator(BeanComparator.TYPE_MANU,orders));
     if(cols.size()>0){

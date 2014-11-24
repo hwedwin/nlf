@@ -1,11 +1,16 @@
 package nc.liat6.frame.csv;
 
 import java.io.BufferedWriter;
+import java.io.Closeable;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.List;
+import nc.liat6.frame.context.Statics;
+import nc.liat6.frame.util.IOHelper;
 
 /**
  * CSV格式写入，支持流输出及文件输出
@@ -13,7 +18,7 @@ import java.util.List;
  * @author 6tail
  * 
  */
-public class CSVWriter{
+public class CSVWriter implements Closeable{
 
   /** 回车符 */
   public static String CR = "\r";
@@ -25,18 +30,22 @@ public class CSVWriter{
   public static final String QUOTE = "\"";
   /** 是否追加 */
   public static boolean APPEND = false;
-  private BufferedWriter writer;
-
-  public CSVWriter(OutputStreamWriter writer){
-    this.writer = new BufferedWriter(writer);
-  }
+  private Writer writer;
 
   public CSVWriter(File file) throws IOException{
-    this(new FileWriter(file,APPEND));
+    this(file,APPEND);
   }
 
   public CSVWriter(File file,boolean append) throws IOException{
-    this(new FileWriter(file,append));
+    this(file,append,Statics.ENCODE);
+  }
+
+  public CSVWriter(File file,boolean append,String encode) throws IOException{
+    this(new FileOutputStream(file,append),encode);
+  }
+
+  public CSVWriter(OutputStream outputStream,String encode) throws IOException{
+    this.writer = new BufferedWriter(new OutputStreamWriter(outputStream,encode));
   }
 
   /**
@@ -51,10 +60,9 @@ public class CSVWriter{
   /**
    * close
    * 
-   * @throws IOException
    */
-  public void close() throws IOException{
-    writer.close();
+  public void close(){
+    IOHelper.closeQuietly(writer);
   }
 
   /**

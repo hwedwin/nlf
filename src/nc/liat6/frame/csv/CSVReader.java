@@ -1,10 +1,16 @@
 package nc.liat6.frame.csv;
 
 import java.io.BufferedReader;
+import java.io.Closeable;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import nc.liat6.frame.context.Statics;
+import nc.liat6.frame.util.IOHelper;
 
 /**
  * CSV输入流读取
@@ -12,7 +18,7 @@ import java.util.List;
  * @author 6tail
  * 
  */
-public class CSVReader{
+public class CSVReader implements Closeable{
 
   /** 回车符 */
   public static String CR = "\r";
@@ -28,17 +34,24 @@ public class CSVReader{
   /** 标识数据内容是否包含在引号之间 */
   private boolean quoted = false;
 
-  public CSVReader(InputStreamReader reader){
-    this.reader = new BufferedReader(reader);
+  public CSVReader(File file) throws IOException{
+    this(file,Statics.ENCODE);
+  }
+
+  public CSVReader(File file,String encode) throws IOException{
+    this(new FileInputStream(file),encode);
+  }
+
+  public CSVReader(InputStream inputStream,String encode) throws IOException{
+    this.reader = new BufferedReader(new InputStreamReader(inputStream,encode));
   }
 
   /**
    * close
    * 
-   * @throws IOException
    */
-  public void close() throws IOException{
-    reader.close();
+  public void close(){
+    IOHelper.closeQuietly(reader);
   }
 
   /**

@@ -36,7 +36,7 @@ public class DbSettingManager implements IDbSettingManager{
     List<String> impls = Factory.getImpls(IDbSettingProvider.class.getName());
     outer:for(File f:fs){
       try{
-        Bean o = JSON.toBean(Stringer.readFromFile(f,"utf-8"));
+        Bean o = JSON.toBean(Stringer.readFromFile(f));
         String type = o.getString("type","");
         type = type.toUpperCase();
         for(String klass:impls){

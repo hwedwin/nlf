@@ -13,6 +13,7 @@ import nc.liat6.frame.json.JSON;
 import nc.liat6.frame.locale.L;
 import nc.liat6.frame.locale.LocaleFactory;
 import nc.liat6.frame.log.Logger;
+import nc.liat6.frame.util.IOHelper;
 import nc.liat6.frame.util.Stringer;
 
 /**
@@ -126,6 +127,8 @@ public class CsvInserter extends CsvExecuter implements IInserter{
       }
     }catch(IOException e){
       throw new DaoException(L.get("sql.file_read_error")+file.getAbsolutePath(),e);
+    }finally{
+      IOHelper.closeQuietly(cr);
     }
     try{
       if(null==head){// 第一次插入
