@@ -11,28 +11,32 @@ public class Mather{
   private Mather(){}
 
   /**
-   * 整型转4位byte
+   * 整型转指定长度的byte数组
    * 
    * @param value 整型数字
-   * @return 4位byte
+   * @param size byte长度
+   * @return byte数组
    */
-  public static byte[] toByte(int value){
-    byte[] b = new byte[4];
-    for(int i = 0;i<4;i++){
-      int offset = (b.length-1-i)*8;
-      b[i] = (byte)((value>>>offset)&0xFF);
+  public static byte[] toByte(int value,int size){
+    byte[] b = new byte[size];
+    for(int i = 0;i<size;i++){
+      b[i] = (byte)((value>>>(b.length-i-1)*8)&0xFF);
     }
     return b;
   }
 
   /**
-   * 4位byte转整型
+   * byte数组转整型
    * 
-   * @param b 4位byte
+   * @param b byte数组
    * @return 整型
    */
   public static int toInt(byte[] b){
-    return (b[0]<<24)+((b[1]&0xFF)<<16)+((b[2]&0xFF)<<8)+(b[3]&0xFF);
+    int n = 0;
+    for(int i=0;i<b.length;i++){
+      n += (b[i]&0xFF)<<((b.length-i-1)*8);
+    }
+    return n;
   }
 
   /**

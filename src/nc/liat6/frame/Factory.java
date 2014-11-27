@@ -56,6 +56,8 @@ public class Factory{
   public static final Set<String> PKGS = new HashSet<String>();
   /** 扫描路径 */
   public static final Set<String> LIBS = new HashSet<String>();
+  /** 字节码读取器 */
+  private static ByteCodeReader byteCodeReader = new ByteCodeReader();
   static{
     if(!WebContext.isWebApp){
       initApp(null,null);
@@ -244,15 +246,18 @@ public class Factory{
 
   private static void buildInterface(){
     for(ClassInfo c:CLASS.values()){
-      List<String> l = new ByteCodeReader().getInterfaces(c);
-      c.setInterfaces(l);
+      c.setInterfaces(byteCodeReader.getInterfaces(c));
     }
   }
 
   private static void buildImpls(){
     IMPLS.clear();
     for(ClassInfo c:CLASS.values()){
-      for(String it:c.getInterfaces()){
+      inner:for(String it:c.getInterfaces()){
+        ClassInfo ci = getClass(it);
+        if(null==ci){
+          continue inner;
+        }
         if(!IMPLS.containsKey(it)){
           IMPLS.put(it,new ArrayList<String>());
         }
@@ -293,7 +298,6 @@ public class Factory{
     ci.setHome(home);
     ci.setInJar(false);
     ci.setFileName(file.getName());
-    ci.setLastModify(file.lastModified());
     CLASS.put(cn,ci);
   }
 
@@ -334,7 +338,6 @@ public class Factory{
         ci.setHome(jarFile.getAbsolutePath());
         ci.setInJar(true);
         ci.setFileName(entry.getName());
-        ci.setLastModify(entry.getTime());
         CLASS.put(cn,ci);
       }
     }catch(IOException e){
@@ -364,7 +367,7 @@ public class Factory{
     try{
       return (ICaller)Class.forName(l.get(0)).newInstance();
     }catch(Exception e){
-      throw new NlfException(e);
+      throw new RuntimeException(e);
     }
   }
 

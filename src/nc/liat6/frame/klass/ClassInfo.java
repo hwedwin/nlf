@@ -17,16 +17,7 @@ public class ClassInfo{
   private String className;
   private String home;
   private String fileName;
-  private long lastModify;
   private List<String> interfaces = new ArrayList<String>();
-
-  public long getLastModify(){
-    return lastModify;
-  }
-
-  public void setLastModify(long lastModify){
-    this.lastModify = lastModify;
-  }
 
   public String getClassName(){
     return className;
