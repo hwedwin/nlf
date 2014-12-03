@@ -9,7 +9,8 @@ I.regist('ui.Code',function(W,D){
   };
   var _TAG = {
     keyword:[
-      'var','function','try','catch','throw','if','else','return','new','break','switch','case','for','while','delete','do','typeof','undefined','in','this','void','continue','true','false','instanceof','finally','with','null'
+      'var','function','try','catch','throw','if','else','return','new','break','switch','case','for','while','delete','do','typeof','undefined','in','this','void','continue','true','false','instanceof','finally','with','null',
+      'abstract','boolean','byte','char','class','default','double','extends','final','float','implements','import','int','interface','long','native','package','private','protected','public','short','static','super','synchronized','throws','transient','volatile'
     ]
   };
   var TAG = {
