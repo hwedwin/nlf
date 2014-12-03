@@ -73,14 +73,45 @@ I.regist('ui.Upload',function(W,D){
   var _initObj = function(obj){
     obj.check = function(){
       var inst = this;
+      var cfg = inst.config;
       I.net.SilentRmi.set(ARG_ID,inst.uuid);
       I.net.SilentRmi.call(inst.config.checkKlass,inst.config.checkMethod,function(o){
         inst.uploaded = o.uploaded;
         inst.total = o.total;
-        if(1==inst.state){
+        var complete = false;
+        var bd = inst.iframe.contentWindow.document.body;
+        try{
+          if(bd){
+            var pre = I.$(bd,'*');
+            if(pre&&pre.length>0){
+              var json = pre[0].innerHTML;
+              if(json.indexOf('{')>-1){
+                complete = true;
+                var result = eval('('+json+')');
+                if(result.success){
+                  cfg.onSuccess(result);
+                }else{
+                  cfg.onFailed(result);
+                }
+              }
+            }
+          }
+        }catch(ex){
+          cfg.onFailed({success:false,data:null,msg:ex.message});
+        }
+        
+        if(!complete){
+          if(inst.total>0){
+            inst.textLayer.innerHTML = Math.floor(100*inst.uploaded/inst.total)+'%';
+          }else{
+            inst.textLayer.innerHTML = '上传中...';
+          }
           W.setTimeout(function(){
             inst.check();
           },1000);
+        }else{
+          I.opacity(inst.icon,100);
+          inst.textLayer.innerHTML = '';
         }
       });
     };
@@ -120,38 +151,7 @@ I.regist('ui.Upload',function(W,D){
       inst.uploaded=0;
       inst.total=0;
       inst.iframe.contentWindow.document.body.innerHTML = '';
-      inst.state = 1;
       I.opacity(inst.icon,0);
-      inst.timer = W.setInterval(function(){
-        if(1!=inst.state){
-          I.opacity(inst.icon,100);
-          inst.textLayer.innerHTML = '';
-          W.clearInterval(inst.timer);
-          inst.timer = null;
-          return;
-        }
-        if(inst.total>0){
-          inst.textLayer.innerHTML = Math.floor(100*inst.uploaded/inst.total)+'%';
-        }
-        var bd = inst.iframe.contentWindow.document.body;
-        try{
-          if(bd){
-            var pre = I.$(bd,'*');
-            if(pre&&pre.length>0){
-              inst.state = 0;
-              var result = eval('('+pre[0].innerHTML+')');
-              if(result.success){
-                cfg.onSuccess(result);
-              }else{
-                cfg.onFailed(result);
-              }
-            }
-          }
-        }catch(ex){
-          inst.state = 0;
-          cfg.onFailed({success:false,data:null,msg:ex.message});
-        }
-      },100);
       inst.check();
       cfg.onUpload(cfg);
       inst.form.target = FRAME_TAG+'_'+inst.uuid;
@@ -167,7 +167,7 @@ I.regist('ui.Upload',function(W,D){
   var _render = function(dom,config){
     _createFrame();
     dom = I.$(dom);
-    var obj = {layer:dom,iframe:null,textLayer:null,form:null,input:null,bar:null,timer:null,uploaded:0,total:0,state:0,className:null,config:null};
+    var obj = {layer:dom,iframe:null,textLayer:null,form:null,input:null,bar:null,uploaded:0,total:0,className:null,config:null};
     var cfg = I.ui.Component.initConfig(config,CFG);
     cfg.dom = obj.layer;
     obj.config = cfg;
