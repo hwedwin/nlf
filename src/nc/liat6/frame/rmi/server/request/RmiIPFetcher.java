@@ -2,6 +2,7 @@ package nc.liat6.frame.rmi.server.request;
 
 import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.execute.Request;
+import nc.liat6.frame.execute.request.AbstractRequestFind;
 import nc.liat6.frame.execute.request.IIPFetcher;
 
 /**
@@ -10,17 +11,15 @@ import nc.liat6.frame.execute.request.IIPFetcher;
  * @author 6tail
  *
  */
-public class RmiIPFetcher implements IIPFetcher{
+public class RmiIPFetcher extends AbstractRequestFind implements IRmiRequestFind,IIPFetcher{
 
-  /** 当前请求 */
-  private Request request;
   /** 缓存IP */
   private String ip;
   /** 当前请求是否请求过IP */
   private boolean ipFetched = false;
 
   public RmiIPFetcher(Request request){
-    this.request = request;
+    super(request);
   }
 
   public String getIP(){
@@ -38,5 +37,9 @@ public class RmiIPFetcher implements IIPFetcher{
     ip = r;
     ipFetched = true;
     return r;
+  }
+
+  public String getName(){
+    return Statics.FIND_IP_FETCHER;
   }
 }

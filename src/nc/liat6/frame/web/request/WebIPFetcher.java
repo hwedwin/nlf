@@ -4,6 +4,7 @@ import java.util.Enumeration;
 import javax.servlet.http.HttpServletRequest;
 import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.execute.Request;
+import nc.liat6.frame.execute.request.AbstractRequestFind;
 import nc.liat6.frame.execute.request.IIPFetcher;
 
 /**
@@ -12,10 +13,7 @@ import nc.liat6.frame.execute.request.IIPFetcher;
  * @author 6tail
  *
  */
-public class WebIPFetcher implements IIPFetcher{
-
-  /** 当前请求 */
-  private Request request;
+public class WebIPFetcher extends AbstractRequestFind implements IWebRequestFind,IIPFetcher{
   /** 缓存IP */
   private String ip;
   /** 当前请求是否请求过IP */
@@ -24,7 +22,7 @@ public class WebIPFetcher implements IIPFetcher{
   public static final String[] IP_HEADER = {"X-Real-IP","X-Forwarded-For","Proxy-Client-IP","WL-Proxy-Client-IP","HTTP_CLIENT_IP","HTTP_X_FORWARDED_FOR"};
 
   public WebIPFetcher(Request request){
-    this.request = request;
+    super(request);
   }
 
   public String getIP(){
@@ -63,5 +61,9 @@ public class WebIPFetcher implements IIPFetcher{
     ip = r;
     ipFetched = true;
     return r;
+  }
+
+  public String getName(){
+    return Statics.FIND_IP_FETCHER;
   }
 }

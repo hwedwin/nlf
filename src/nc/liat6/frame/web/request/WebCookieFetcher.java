@@ -4,14 +4,12 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.execute.Request;
+import nc.liat6.frame.execute.request.AbstractRequestFind;
 
-public class WebCookieFetcher implements ICookieFetcher{
-
-  /** 当前请求 */
-  private Request request;
+public class WebCookieFetcher extends AbstractRequestFind implements IWebRequestFind,ICookieFetcher{
 
   public WebCookieFetcher(Request request){
-    this.request = request;
+    super(request);
   }
 
   public Cookie getCookie(String name){
@@ -27,5 +25,9 @@ public class WebCookieFetcher implements ICookieFetcher{
   public Cookie[] getCookies(){
     HttpServletRequest oreq = request.find(Statics.FIND_REQUEST);
     return oreq.getCookies();
+  }
+
+  public String getName(){
+    return Statics.FIND_COOKIE_FETCHER;
   }
 }

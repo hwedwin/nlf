@@ -164,6 +164,7 @@ public class UploadParser implements IParser{
         // 获取每块的头部信息
         byte[] headBytes = readUntil(HEADER_SEPARATOR);
         uploaded += headBytes.length;
+        listener.update(uploaded,total);
         // 按行分隔
         String[] heads = new String(headBytes,Statics.ENCODE).split("\r\n");
         for(String s:heads){
@@ -198,6 +199,7 @@ public class UploadParser implements IParser{
           uploaded += skipUntil(FIELD_SEPARATOR);
         }
       }
+      listener.update(uploaded,total);
       // 结束解析的标识
       byte[] endBytes = Mather.merge(BOUNDARY_PREFIX,boundaryBytes);
       ByteArray array = new ByteArray();

@@ -1,9 +1,12 @@
 package nc.liat6.frame.web.upload;
 
 import javax.servlet.http.HttpServletRequest;
+import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.execute.Request;
+import nc.liat6.frame.execute.request.AbstractRequestFind;
 import nc.liat6.frame.execute.upload.IUploader;
 import nc.liat6.frame.execute.upload.UploadedFile;
+import nc.liat6.frame.web.request.IWebRequestFind;
 import nc.liat6.frame.web.upload.bean.UploadRule;
 import nc.liat6.frame.web.upload.impl.UploadParser;
 import nc.liat6.frame.web.upload.impl.UploadListener;
@@ -14,14 +17,12 @@ import nc.liat6.frame.web.upload.impl.UploadListener;
  * @author 6tail
  * 
  */
-public class FileUploader implements IUploader{
+public class FileUploader  extends AbstractRequestFind implements IWebRequestFind,IUploader{
 
   public static final String ARG_ID = "NLF_UPLOAD_ID";
-  /** 源请求 */
-  private Request request;
 
   public FileUploader(Request request){
-    this.request = request;
+    super(request);
   }
 
   public UploadedFile getFile(String... allow){
@@ -34,10 +35,14 @@ public class FileUploader implements IUploader{
     for(String s:allow){
       rule.addAllow(s.toLowerCase());
     }
-    HttpServletRequest r = request.find("request");
+    HttpServletRequest r = request.find(Statics.FIND_REQUEST);
     String id = request.get(ARG_ID);
     IParser parser = new UploadParser();
     parser.setProgressListener(new UploadListener(id));
     return parser.parseRequest(r,rule);
+  }
+
+  public String getName(){
+    return Statics.FIND_UPLOADER;
   }
 }

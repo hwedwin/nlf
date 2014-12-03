@@ -6,16 +6,19 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import nc.liat6.frame.Factory;
 import nc.liat6.frame.context.Context;
 import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.exception.BadException;
 import nc.liat6.frame.execute.Request;
 import nc.liat6.frame.execute.Response;
 import nc.liat6.frame.execute.impl.AbstractExecute;
+import nc.liat6.frame.execute.request.IRequestFind;
 import nc.liat6.frame.json.JSON;
 import nc.liat6.frame.locale.L;
 import nc.liat6.frame.locale.LocaleFactory;
@@ -25,15 +28,12 @@ import nc.liat6.frame.util.Dater;
 import nc.liat6.frame.util.IOHelper;
 import nc.liat6.frame.util.Objecter;
 import nc.liat6.frame.util.Stringer;
-import nc.liat6.frame.web.request.WebCookieFetcher;
-import nc.liat6.frame.web.request.WebIPFetcher;
-import nc.liat6.frame.web.request.WebLocaleFetcher;
+import nc.liat6.frame.web.request.IWebRequestFind;
 import nc.liat6.frame.web.response.HideJson;
 import nc.liat6.frame.web.response.Json;
 import nc.liat6.frame.web.response.Output;
 import nc.liat6.frame.web.response.Page;
 import nc.liat6.frame.web.response.Tip;
-import nc.liat6.frame.web.upload.FileUploader;
 
 /**
  * WEB应用执行器
@@ -131,10 +131,15 @@ public class WebExecute extends AbstractExecute{
     req.bind(Statics.FIND_REQUEST,oreq);
     res.bind(Statics.FIND_RESPONSE,ores);
     req.bind(Statics.FIND_SESSION,oreq.getSession());
-    req.bind(Statics.FIND_UPLOADER,new FileUploader(req));
-    req.bind(Statics.FIND_IP_FETCHER,new WebIPFetcher(req));
-    req.bind(Statics.FIND_LOCALE_FETCHER,new WebLocaleFetcher(req));
-    req.bind(Statics.FIND_COOKIE_FETCHER,new WebCookieFetcher(req));
+    List<String> finds = Factory.getImpls(IWebRequestFind.class.getName());
+    for(String cls:finds){
+      try{
+        IRequestFind find = (IRequestFind)Class.forName(cls).getConstructor(Request.class).newInstance(req);
+        req.bind(find.getName(),find);
+      }catch(Exception e){
+        throw new BadException(Stringer.print(L.get("obj.init_fail"),cls));
+      }
+    }
     initParam();
     initPagingParam();
   }

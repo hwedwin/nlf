@@ -4,6 +4,8 @@ logger.warn = WARN
 logger.info = INFO
 logger.debug = DEBUG
 
+obj.init_fail = ? init fail
+
 request.forbid = request forbid:
 
 xml.notsupport = xml not supported

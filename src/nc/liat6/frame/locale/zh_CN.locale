@@ -4,6 +4,8 @@ logger.warn = 警告
 logger.info = 信息
 logger.debug = 调试
 
+obj.init_fail = ?初始化失败
+
 request.forbid = 访问被禁止:
 
 xml.not_support = 不支持的XML格式

@@ -4,6 +4,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpSession;
 import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.execute.Request;
+import nc.liat6.frame.execute.request.AbstractRequestFind;
 import nc.liat6.frame.execute.request.ILocaleFetcher;
 import nc.liat6.frame.locale.LocaleFactory;
 
@@ -13,13 +14,10 @@ import nc.liat6.frame.locale.LocaleFactory;
  * @author 6tail
  *
  */
-public class WebLocaleFetcher implements ILocaleFetcher{
-
-  /** 当前请求 */
-  private Request request;
+public class WebLocaleFetcher extends AbstractRequestFind implements IWebRequestFind,ILocaleFetcher{
 
   public WebLocaleFetcher(Request request){
-    this.request = request;
+    super(request);
   }
 
   public Locale getLocale(){
@@ -45,5 +43,9 @@ public class WebLocaleFetcher implements ILocaleFetcher{
   public void setLocale(String locale){
     HttpSession session = request.find(Statics.FIND_SESSION);
     session.setAttribute("locale",locale);
+  }
+
+  public String getName(){
+    return Statics.FIND_LOCALE_FETCHER;
   }
 }
