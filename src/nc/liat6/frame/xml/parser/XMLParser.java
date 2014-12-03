@@ -95,6 +95,48 @@ public class XMLParser{
         break;
     }
   }
+  
+  private void parseEndTag(String tag){
+    if(stack.size()<2){
+      return;
+    }
+    // 最后一个节点
+    IXmlElement el = stack.remove(stack.size()-1);
+    IXmlElement p = stack.get(stack.size()-1);
+    switch(p.type()){
+      case LIST:
+        p.toXmlList().add(el);
+        break;
+      case MAP:
+        IXmlElement xe = p.toXmlMap().get(tag);
+        if(null!=xe){
+          String tagName = p.getName();
+          String n = p.getNote();
+          XmlList xl = new XmlList();
+          Map<String,String> attrs = p.getAttributes();
+          xl.setName(tagName);
+          xl.setNote(n);
+          xl.setAttributes(attrs);
+          xl.add(xe);
+          xl.add(el);
+          stack.set(stack.size()-1,xl);
+        }
+        p.toXmlMap().set(tag,el);
+        break;
+      default:
+        if(XmlType.STRING.equals(p.type())){
+          String tagName = p.getName();
+          String n = p.getNote();
+          Map<String,String> attrs = p.getAttributes();
+          p = new XmlMap();
+          p.setName(tagName);
+          p.setNote(n);
+          p.setAttributes(attrs);
+          stack.set(stack.size()-1,p);
+        }
+        p.toXmlMap().set(tag,el);
+    }
+  }
 
   private void parseNode(){
     next();
@@ -144,56 +186,21 @@ public class XMLParser{
         next();
         String tag = readUntil('>');
         next();
-        if(stack.size()<2){
-          break;
-        }
-        // 最后一个节点
-        IXmlElement el = stack.remove(stack.size()-1);
-        IXmlElement p = stack.get(stack.size()-1);
-        switch(p.type()){
-          case LIST:
-            p.toXmlList().add(el);
-            break;
-          case MAP:
-            IXmlElement xe = p.toXmlMap().get(tag);
-            if(null!=xe){
-              String tagName = p.getName();
-              String n = p.getNote();
-              XmlList xl = new XmlList();
-              Map<String,String> attrs = p.getAttributes();
-              xl.setName(tagName);
-              xl.setNote(n);
-              xl.setAttributes(attrs);
-              xl.add(xe);
-              xl.add(el);
-              stack.set(stack.size()-1,xl);
-            }
-            p.toXmlMap().set(tag,el);
-            break;
-          default:
-            if(XmlType.STRING.equals(p.type())){
-              String tagName = p.getName();
-              String n = p.getNote();
-              Map<String,String> attrs = p.getAttributes();
-              p = new XmlMap();
-              p.setName(tagName);
-              p.setNote(n);
-              p.setAttributes(attrs);
-              stack.set(stack.size()-1,p);
-            }
-            p.toXmlMap().set(tag,el);
-        }
+        parseEndTag(tag);
         break;
       default:
         String startTag = readUntil('>');
         next();
+        boolean isClosed = false;
         startTag = startTag.trim();
         if(startTag.endsWith("/")){
-          break;
+          isClosed = true;
+          startTag = startTag.substring(0,startTag.length()-1);
         }
+        String nodeName = startTag;
         Map<String,String> attrs = new HashMap<String,String>();
         if(startTag.contains(" ")){
-          String nodeName = Stringer.cut(startTag,""," ");
+          nodeName = Stringer.cut(startTag,""," ");
           String attr = Stringer.cut(startTag," ");
           int type = TYPE_OTHER;
           while(attr.contains("=\"")){
@@ -248,9 +255,12 @@ public class XMLParser{
             xs.setNote(note);
             note = null;
           }
-          xs.setName(startTag);
+          xs.setName(nodeName);
           xs.setAttributes(attrs);
           stack.add(xs);
+        }
+        if(isClosed){
+          parseEndTag(nodeName);
         }
     }
   }
