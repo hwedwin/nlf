@@ -112,6 +112,7 @@ I.regist('ui.Upload',function(W,D){
         }else{
           I.opacity(inst.icon,100);
           inst.textLayer.innerHTML = '';
+          inst.form.reset();
         }
       });
     };
@@ -150,7 +151,6 @@ I.regist('ui.Upload',function(W,D){
       
       inst.uploaded=0;
       inst.total=0;
-      inst.iframe.contentWindow.document.body.innerHTML = '';
       I.opacity(inst.icon,0);
       inst.check();
       cfg.onUpload(cfg);
