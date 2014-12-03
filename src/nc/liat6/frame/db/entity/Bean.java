@@ -6,8 +6,10 @@ import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import nc.liat6.frame.db.exception.DaoException;
@@ -23,7 +25,6 @@ import nc.liat6.frame.util.Streamer;
  *
  */
 public class Bean implements Map<String,Object>,Serializable{
-
   private static final long serialVersionUID = -1432802131869099829L;
   /** 键值对 */
   private Map<String,Object> values = new HashMap<String,Object>();
@@ -251,6 +252,26 @@ public class Bean implements Map<String,Object>,Serializable{
       }
     }
     return o+"";
+  }
+  
+  /**
+   * 强制获取List，即使是非Collection，也会强制返回只有1个元素的List。如果不存在该键，返回null。
+   * @param key 键
+   * @return List
+   */
+  public List<?> getList(String key){
+    Object o = values.get(key);
+    if(null==o){
+      return null;
+    }
+    List<Object> r = new ArrayList<Object>();
+    if(o instanceof Collection){
+      Collection<?> l = (Collection<?>)o;
+      r.addAll(l);
+    }else{
+      r.add(o);
+    }
+    return r;
   }
 
   /**
