@@ -8,6 +8,7 @@ import nc.liat6.frame.db.transaction.ITrans;
 import nc.liat6.frame.db.transaction.TransFactory;
 import nc.liat6.frame.exception.BadUploadException;
 import nc.liat6.frame.execute.Request;
+import nc.liat6.frame.execute.upload.IUploader;
 import nc.liat6.frame.execute.upload.UploadedFile;
 import nc.liat6.frame.paging.PageData;
 import nc.liat6.frame.util.ID;
@@ -16,7 +17,6 @@ import nc.liat6.frame.web.WebContext;
 import nc.liat6.frame.web.response.Alert;
 import nc.liat6.frame.web.response.Json;
 import nc.liat6.frame.web.response.Paging;
-import nc.liat6.frame.web.upload.FileUploader;
 
 /**
  * 示例
@@ -50,7 +50,7 @@ public class Action{
    */
   public Object upload(){
     Request r = Context.get(Statics.REQUEST);
-    FileUploader uploader = r.find(Statics.FIND_UPLOADER);
+    IUploader uploader = r.find(Statics.FIND_UPLOADER);
     UploadedFile file = uploader.getFile();
     return new Json(file.getName());
   }
@@ -63,7 +63,7 @@ public class Action{
    */
   public Object uploadPic(){
     Request r = Context.get(Statics.REQUEST);
-    FileUploader uploader = r.find(Statics.FIND_UPLOADER);
+    IUploader uploader = r.find(Statics.FIND_UPLOADER);
     UploadedFile file = uploader.getFile("jpg","gif","bmp","png");
     java.io.File dir = new java.io.File(WebContext.REAL_PATH,"uploaded");
     if(!dir.exists()||!dir.isDirectory()){
