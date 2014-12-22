@@ -13,6 +13,10 @@ NLF框架用户手册：http://6tail.cn/npress/demo/jsp
 WebContent下有六特尔开发的i.js框架，通过一个核心js文件自动按需加载需要的组件，示例地址：http://6tail.cn/npress/api.html
 
 #更新日志
+##2014-12-22
+1. 微信公众号插件重构（支持接收所有消息，支持发送被动响应消息，支持自定义菜单创建、查询、删除，支持获取access_token）
+* 增加微信公众号插件使用示例
+
 ##2014-12-21
 1. 增加微信公众号开发插件nlf-plugin-weixin.jar
 
