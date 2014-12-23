@@ -30,7 +30,6 @@ import nc.liat6.frame.web.upload.FileUploader;
  *
  */
 public class WebManager extends AbstractWebManager{
-
   public WebManager(IWebConfig config){
     super(config);
   }
@@ -67,7 +66,7 @@ public class WebManager extends AbstractWebManager{
         return json;
       }
       // 文件上传，自动转换为JSON返回
-      if(!"".equals(req.get(FileUploader.ARG_ID))){
+      if(req.get(FileUploader.ARG_ID).length()>0){
         Json json = new Json(r);
         json.setMsg(r);
         json.setSuccess(false);
@@ -135,7 +134,6 @@ public class WebManager extends AbstractWebManager{
         return cm;
       }
     }
-
     // 匹配路径，pkg.Klass/method
     if(!path.matches("[/].{1,}[/]\\w{1,}")){
       return null;

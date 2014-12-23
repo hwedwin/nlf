@@ -23,7 +23,6 @@ import nc.liat6.frame.exception.NlfException;
  * 
  */
 public class Stringer{
-
   private Stringer(){}
 
   /**
@@ -68,8 +67,7 @@ public class Stringer{
    * @return 连接后的字符串
    */
   public static String join(String[] arrays,String tag){
-    if(null==arrays)
-      return null;
+    if(null==arrays) return null;
     StringBuffer s = new StringBuffer();
     for(int i = 0;i<arrays.length;i++){
       s.append(arrays[i]);
@@ -88,12 +86,11 @@ public class Stringer{
    * @return 连接后的字符串
    */
   public static String join(List<String> list,String tag){
-    if(null==list)
-      return null;
+    if(null==list) return null;
     StringBuffer s = new StringBuffer();
-    for(int i = 0;i<list.size();i++){
+    for(int i = 0,n=list.size();i<n;i++){
       s.append(list.get(i));
-      if(i<list.size()-1){
+      if(i<n-1){
         s.append(tag);
       }
     }
@@ -261,7 +258,7 @@ public class Stringer{
     if(null==s){
       return null;
     }
-    if("".equals(s)){
+    if(s.length()<1){
       return new byte[0];
     }
     String chars = "0123456789ABCDEF";

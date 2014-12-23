@@ -10,7 +10,6 @@ import nc.liat6.frame.db.plugin.Rule;
  * 
  */
 public class CommonDeleter extends SuperExecuter implements IDeleter{
-
   public IDeleter table(String tableName){
     tables.add(tableName);
     return this;
@@ -61,9 +60,8 @@ public class CommonDeleter extends SuperExecuter implements IDeleter{
     // 重置SQL
     resetSql();
     // 重新构造
-    sql.append(" DELETE FROM");
-    int l = tables.size();
-    for(int i = 0;i<l;i++){
+    sql.append("DELETE FROM");
+    for(int i = 0,l = tables.size();i<l;i++){
       if(i>0){
         sql.append(",");
       }

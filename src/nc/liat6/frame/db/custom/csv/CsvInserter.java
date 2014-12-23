@@ -75,12 +75,13 @@ public class CsvInserter extends CsvExecuter implements IInserter{
 
   private void updateOld(CSVFileReader cr,File file,String[] oldHead,List<String> heads){
     try{
+      int headSize = heads.size();
       File f = new File(file.getAbsolutePath()+".tmp");
       CSVWriter cw = new CSVWriter(f,true);
       cw.writeLine(heads);
       for(int i = 1;i<cr.getLineCount();i++){
         String[] oldData = cr.getLine(i);
-        String[] data = new String[heads.size()];
+        String[] data = new String[headSize];
         outer:for(int j = 0;j<data.length;j++){
           for(int k = 0;k<oldHead.length;k++){
             if(oldHead[k].equalsIgnoreCase(heads.get(j))){
@@ -92,7 +93,7 @@ public class CsvInserter extends CsvExecuter implements IInserter{
         }
         cw.writeLine(data);
       }
-      String[] data = new String[heads.size()];
+      String[] data = new String[headSize];
       for(int i = 0;i<data.length;i++){
         data[i] = row.getString(heads.get(i),"");
       }
@@ -131,8 +132,9 @@ public class CsvInserter extends CsvExecuter implements IInserter{
       IOHelper.closeQuietly(cr);
     }
     try{
+      int keySize = row.keySet().size();
       if(null==head){// 第一次插入
-        head = new String[row.keySet().size()];
+        head = new String[keySize];
         int idx = 0;
         for(String k:row.keySet()){
           head[idx] = k;
@@ -149,7 +151,7 @@ public class CsvInserter extends CsvExecuter implements IInserter{
         cw.flush();
         cw.close();
       }else{
-        String[] newHead = new String[row.keySet().size()];
+        String[] newHead = new String[keySize];
         int idx = 0;
         for(String k:row.keySet()){
           newHead[idx] = k;

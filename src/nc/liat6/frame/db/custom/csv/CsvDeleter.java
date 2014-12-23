@@ -79,7 +79,8 @@ public class CsvDeleter extends CsvExecuter implements IDeleter{
       File f = new File(file.getAbsolutePath()+".tmp");
       CSVWriter cw = new CSVWriter(f);
       cw.writeLine(head);
-      if(wheres.size()>0){
+      int w = wheres.size();
+      if(w>0){
         outer:for(int i = 1;i<cr.getLineCount();i++){
           String[] data = cr.getLine(i);
           Bean o = new Bean();
@@ -92,7 +93,7 @@ public class CsvDeleter extends CsvExecuter implements IDeleter{
             }
           }
           // 满足条件的跳过，即不写入文件
-          for(int j = 0;j<wheres.size();j++){
+          for(int j = 0;j<w;j++){
             Rule r = wheres.get(j);
             // 操作类型
             String op = r.getOpStart();

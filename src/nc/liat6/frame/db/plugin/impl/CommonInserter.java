@@ -19,7 +19,7 @@ public class CommonInserter extends SuperExecuter implements IInserter{
 
   public IInserter set(String column,Object value){
     // 如果有重复的，替换值
-    for(int i = 0;i<cols.size();i++){
+    for(int i = 0,n=cols.size();i<n;i++){
       if(cols.get(i).getColumn().equalsIgnoreCase(column)){
         paramCols.set(i,value);
         return this;

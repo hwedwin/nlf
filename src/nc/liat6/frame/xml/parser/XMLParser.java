@@ -97,12 +97,13 @@ public class XMLParser{
   }
   
   private void parseEndTag(String tag){
-    if(stack.size()<2){
+    int stackSize = stack.size();
+    if(stackSize<2){
       return;
     }
     // 最后一个节点
-    IXmlElement el = stack.remove(stack.size()-1);
-    IXmlElement p = stack.get(stack.size()-1);
+    IXmlElement el = stack.remove(stackSize-1);
+    IXmlElement p = stack.get(stackSize-1);
     switch(p.type()){
       case LIST:
         p.toXmlList().add(el);
@@ -119,7 +120,7 @@ public class XMLParser{
           xl.setAttributes(attrs);
           xl.add(xe);
           xl.add(el);
-          stack.set(stack.size()-1,xl);
+          stack.set(stackSize-1,xl);
         }
         p.toXmlMap().set(tag,el);
         break;
@@ -132,7 +133,7 @@ public class XMLParser{
           p.setName(tagName);
           p.setNote(n);
           p.setAttributes(attrs);
-          stack.set(stack.size()-1,p);
+          stack.set(stackSize-1,p);
         }
         p.toXmlMap().set(tag,el);
     }
@@ -160,8 +161,9 @@ public class XMLParser{
           }
           s = s.substring(CDATA_PREFIX.length());
           s = s.substring(0,s.length()-CDATA_SUFFIX.length());
-          if(stack.size()>0){
-            IXmlElement p = stack.get(stack.size()-1);
+          int stackSize = stack.size();
+          if(stackSize>0){
+            IXmlElement p = stack.get(stackSize-1);
             p.toXmlString().set(s);
           }
         }else if(us.startsWith(ANNO_PREFIX)){// 处理注释

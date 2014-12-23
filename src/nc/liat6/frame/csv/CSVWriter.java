@@ -19,7 +19,6 @@ import nc.liat6.frame.util.IOHelper;
  * 
  */
 public class CSVWriter implements Closeable{
-
   /** 回车符 */
   public static String CR = "\r";
   /** 换行符 */
@@ -108,8 +107,9 @@ public class CSVWriter implements Closeable{
    * @throws IOException
    */
   public void writeLine(List<String> cols) throws IOException{
-    String[] line = new String[cols.size()];
-    for(int i = 0;i<cols.size();i++){
+    int n = cols.size();
+    String[] line = new String[n];
+    for(int i = 0;i<n;i++){
       line[i] = cols.get(i);
     }
     writeLine(line);

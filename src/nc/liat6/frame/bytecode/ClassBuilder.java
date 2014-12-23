@@ -56,7 +56,8 @@ public class ClassBuilder{
       b = new byte[2];//constant count
       in.read(b);
       int count = Mather.toInt(b);
-      out.write(Mather.toByte(count+interfaces.size()*2,2));
+      int interfaceSize = interfaces.size();
+      out.write(Mather.toByte(count+interfaceSize*2,2));
       for(int i = 1;i<count;i++){
         byte tag = in.readByte();
         out.write(tag);
@@ -100,7 +101,7 @@ public class ClassBuilder{
             break;
         }
       }
-      for(int i=0;i<interfaces.size();i++){
+      for(int i=0;i<interfaceSize;i++){
         out.write(Mather.toByte(IConstant.TYPE_CLASS,1));
         out.write(Mather.toByte(count+2*i+1,2));
         out.write(Mather.toByte(IConstant.TYPE_UTF,1));
@@ -122,13 +123,13 @@ public class ClassBuilder{
       b = new byte[2];//interface count
       in.read(b);
       int interfaceCount = Mather.toInt(b);
-      out.write(Mather.toByte(interfaceCount+interfaces.size(),2));
+      out.write(Mather.toByte(interfaceCount+interfaceSize,2));
       for(int i = 0;i<interfaceCount;i++){
         b = new byte[2];
         in.read(b);
         out.write(b);
       }
-      for(int i=0;i<interfaces.size();i++){
+      for(int i=0;i<interfaceSize;i++){
         out.write(Mather.toByte(count+i*2,2));
       }
       

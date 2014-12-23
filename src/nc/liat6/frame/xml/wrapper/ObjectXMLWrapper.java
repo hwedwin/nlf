@@ -118,11 +118,11 @@ public class ObjectXMLWrapper implements IXMLWrapper{
           s.append("\r\n");
         }
         XmlList l = el.toXmlList();
-        for(int i = 0;i<l.size();i++){
+        for(int i = 0,n=l.size();i<n;i++){
           IXmlElement e = l.get(i);
           s.append(wrapXmlElement(e,e.getName(),level+1));
           if(!tiny){
-            if(i<l.size()-1){
+            if(i<n-1){
               s.append("\r\n");
             }
           }

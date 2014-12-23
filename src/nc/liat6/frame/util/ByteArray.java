@@ -69,7 +69,7 @@ public class ByteArray{
   public ByteArray sub(int fromIndex,int toIndex){
     ByteArray ba = new ByteArray();
     List<Byte> sl = l.subList(fromIndex,toIndex);
-    for(int i = 0;i<sl.size();i++){
+    for(int i = 0,n=sl.size();i<n;i++){
       ba.add(sl.get(i).byteValue());
     }
     return ba;
@@ -101,8 +101,9 @@ public class ByteArray{
    * @return 字节数组
    */
   public byte[] toArray(){
-    byte[] b = new byte[l.size()];
-    for(int i = 0;i<l.size();i++){
+    int n = l.size();
+    byte[] b = new byte[n];
+    for(int i = 0;i<n;i++){
       b[i] = l.get(i).byteValue();
     }
     return b;
@@ -115,9 +116,8 @@ public class ByteArray{
    */
   public int indexOf(byte[] bytes){
     int m = bytes.length;
-    int n = l.size();
     int index = 0;
-    for(int i = 0;i<n;i++){
+    for(int i = 0,n=l.size();i<n;i++){
       byte b = l.get(i);
       if(b!=bytes[index]){
         index = 0;
@@ -134,9 +134,9 @@ public class ByteArray{
 
   public String toString(){
     StringBuilder s = new StringBuilder();
-    for(int i = 0;i<l.size();i++){
+    for(int i = 0,n=l.size();i<n;i++){
       s.append(l.get(i));
-      if(i<l.size()-1){
+      if(i<n-1){
         s.append(",");
       }
     }

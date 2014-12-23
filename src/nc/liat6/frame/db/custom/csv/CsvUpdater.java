@@ -21,7 +21,6 @@ import nc.liat6.frame.util.Stringer;
  *
  */
 public class CsvUpdater extends CsvExecuter implements IUpdater{
-
   public IUpdater table(String tableName){
     initTable(tableName);
     return this;
@@ -116,7 +115,7 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
 
   public IUpdater set(String column,Object value){
     // 如果有重复的，替换值
-    for(int i = 0;i<cols.size();i++){
+    for(int i = 0,n = cols.size();i<n;i++){
       if(cols.get(i).getColumn().equals(column)){
         paramCols.set(i,value);
         return this;
@@ -151,7 +150,8 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
       File f = new File(file.getAbsolutePath()+".tmp");
       CSVWriter cw = new CSVWriter(f);
       cw.writeLine(head);
-      if(wheres.size()>0){
+      int w = wheres.size();
+      if(w>0){
         outer:for(int i = 1;i<cr.getLineCount();i++){
           String[] data = cr.getLine(i);
           Bean o = new Bean();
@@ -165,12 +165,11 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
           }
           //补全data
           data = new String[head.length];
-          for(int j=0;j<data.length;j++){
+          for(int j = 0;j<data.length;j++){
             data[j] = o.getString(head[j].toUpperCase(),"");
           }
-
           // 不满足条件的，直接写入
-          for(int j = 0;j<wheres.size();j++){
+          for(int j = 0;j<w;j++){
             Rule r = wheres.get(j);
             // 操作类型
             String op = r.getOpStart();
@@ -231,7 +230,7 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
               }
             }
           }
-          for(int j = 0;j<cols.size();j++){
+          for(int j = 0,n = cols.size();j<n;j++){
             o.set(cols.get(j).getColumn().toUpperCase(),paramCols.get(j));
           }
           for(int j = 0;j<head.length;j++){
@@ -251,7 +250,7 @@ public class CsvUpdater extends CsvExecuter implements IUpdater{
               o.set(s,"");
             }
           }
-          for(int j = 0;j<cols.size();j++){
+          for(int j = 0,n = cols.size();j<n;j++){
             o.set(cols.get(j).getColumn().toUpperCase(),paramCols.get(j));
           }
           for(int j = 0;j<head.length;j++){

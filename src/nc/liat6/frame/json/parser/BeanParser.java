@@ -58,7 +58,7 @@ public class BeanParser{
    */
   private List<Object> genList(JsonList jm){
     List<Object> l = new ArrayList<Object>();
-    for(int i = 0;i<jm.size();i++){
+    for(int i = 0,n=jm.size();i<n;i++){
       IJsonElement ve = jm.get(i);
       if(null==ve){
         l.add(null);

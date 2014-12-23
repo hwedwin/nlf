@@ -25,7 +25,6 @@ import nc.liat6.frame.util.Stringer;
  *
  */
 public class CsvSelecter extends CsvExecuter implements ISelecter{
-
   public ISelecter table(String tableName){
     initTable(tableName);
     return this;
@@ -168,7 +167,7 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
           }
         }
         // 不满足条件的跳过，即不加入结果集
-        for(int j = 0;j<wheres.size();j++){
+        for(int j = 0,n = wheres.size();j<n;j++){
           Rule r = wheres.get(j);
           // 操作类型
           String op = r.getOpStart();
@@ -255,33 +254,35 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
       pageNumber = 1;
     }
     List<Bean> l = select();
-    if(l.size()<pageNumber*pageSize){
-      pageNumber = (int)Math.ceil(l.size()*1D/pageSize);
+    int n = l.size();
+    if(n<pageNumber*pageSize){
+      pageNumber = (int)Math.ceil(n*1D/pageSize);
     }
     int fromIndex = (pageNumber-1)*pageSize;
     if(fromIndex<0){
       fromIndex = 0;
     }
     int toIndex = fromIndex+pageSize;
-    if(toIndex>l.size()){
-      toIndex = l.size();
+    if(toIndex>n){
+      toIndex = n;
     }
     List<Bean> rl = l.subList(fromIndex,toIndex);
     reset();
     PageData pd = new PageData();
     pd.setPageNumber(pageNumber);
     pd.setPageSize(pageSize);
-    pd.setRecordCount(l.size());
+    pd.setRecordCount(n);
     pd.setData(rl);
     return pd;
   }
 
   public Bean one(){
     List<Bean> l = select();
-    if(l.size()>1){
+    int n = l.size();
+    if(n>1){
       throw new DaoException(L.get("sql.record_too_many"));
     }
-    if(l.size()<1){
+    if(n<1){
       throw new DaoException(L.get("sql.record_not_found"));
     }
     return l.get(0);

@@ -135,7 +135,7 @@ public class CsvCounter extends CsvExecuter implements ICounter{
           }
         }
         // 不满足条件的跳过，即不加入计数
-        for(int j = 0;j<wheres.size();j++){
+        for(int j = 0,w=wheres.size();j<w;j++){
           Rule r = wheres.get(j);
           // 操作类型
           String op = r.getOpStart();

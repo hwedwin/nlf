@@ -19,7 +19,6 @@ import nc.liat6.frame.util.IOHelper;
  * 
  */
 public class CSVReader implements Closeable{
-
   /** 回车符 */
   public static String CR = "\r";
   /** 换行符 */
@@ -163,8 +162,9 @@ public class CSVReader implements Closeable{
       List<String> segs = split(r,SPACE);
       l.addAll(combin(segs));
     }
-    String[] cols = new String[l.size()];
-    for(int i = 0;i<l.size();i++){
+    int n = l.size();
+    String[] cols = new String[n];
+    for(int i = 0;i<n;i++){
       String col = l.get(i);
       if(col.equals(QUOTE)){
         col = "";

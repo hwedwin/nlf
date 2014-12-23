@@ -13,7 +13,6 @@ import nc.liat6.frame.db.sql.ITemplate;
  * 
  */
 public abstract class SuperExecuter implements IExecuter{
-
   /** 执行模板 */
   protected ITemplate template;
   /** SQL语句 */
@@ -75,8 +74,7 @@ public abstract class SuperExecuter implements IExecuter{
 
   protected String getWhereSql(){
     StringBuffer sql = new StringBuffer();
-    int l = wheres.size();
-    for(int i = 0;i<l;i++){
+    for(int i = 0,l = wheres.size();i<l;i++){
       if(i<1){
         sql.append(" WHERE");
       }else{
@@ -141,7 +139,7 @@ public abstract class SuperExecuter implements IExecuter{
     wheres.add(r);
     return this;
   }
-  
+
   protected IExecuter whereNotIn(String column,Object... value){
     Rule r = new Rule();
     r.setColumn(column);

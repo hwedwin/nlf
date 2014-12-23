@@ -18,7 +18,6 @@ import nc.liat6.frame.util.Stringer;
  * 
  */
 public class Request{
-
   /** 分页页码标识 */
   public static final String PAGE_NUMBER_VAR = "nlfPagingNumber";
   /** 分页每页大小标识 */
@@ -381,13 +380,10 @@ public class Request{
   public List<Pair> getSorts(){
     List<Pair> l = new ArrayList<Pair>();
     String s = pagingParam.getParam(PAGE_SORT_VAR);
-    if(null==s)
-      return l;
+    if(null==s) return l;
     s = s.trim();
-    if("".equals(s))
-      return l;
-    if(!s.contains(":"))
-      return l;
+    if(s.length()<1) return l;
+    if(!s.contains(":")) return l;
     if(s.contains(";")){
       String[] ps = s.split(";",-1);
       for(String psit:ps){

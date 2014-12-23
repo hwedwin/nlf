@@ -70,10 +70,11 @@ public class CommonTemplate extends SuperTemplate{
 
   public Object[] one(String sql,Object param){
     List<Object[]> l = query(sql,param);
-    if(l.size()>1){
+    int n = l.size();
+    if(n>1){
       throw new DaoException(L.get("sql.record_too_many"));
     }
-    if(l.size()<1){
+    if(n<1){
       throw new DaoException(L.get("sql.record_not_found"));
     }
     return l.get(0);
@@ -85,10 +86,11 @@ public class CommonTemplate extends SuperTemplate{
 
   public Bean oneEntity(String sql,Object param){
     List<Bean> l = queryEntity(sql,param);
-    if(l.size()>1){
+    int n = l.size();
+    if(n>1){
       throw new DaoException(L.get("sql.record_too_many"));
     }
-    if(l.size()<1){
+    if(n<1){
       throw new DaoException(L.get("sql.record_not_found"));
     }
     return l.get(0);

@@ -30,7 +30,7 @@ public class ProxoolConnVarProvider extends SuperConnVarProvider{
     cv.setAlias(setting.getAlias());
     DbConfig dc = DbConfigFactory.getDbConfig(setting.getDbType());
     String testSql = dc.getTestSql();
-    if(null==testSql||"".equals(testSql.trim())){
+    if(null==testSql||testSql.trim().length()<1){
       testSql = DEFAULT_TEST_SQL;
     }
     Object ds = Reflector.newInstance("org.logicalcobwebs.proxool.ProxoolDataSource");
