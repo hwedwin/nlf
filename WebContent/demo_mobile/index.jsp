@@ -12,63 +12,61 @@ body{display:none;}
 </style>
 </head>
 <body>
-  <section>
-    <header>
-      <nav><a class="fa fa-home" href="${PATH}/"></a></nav>
-      NLF MOBILE
-      <nav>
-        <a class="fa fa-info-circle"></a>
-        <a class="fa fa-bars" data-aside="rmenu"></a>
-      </nav>
-    </header>
-    <article class="padding">
-      <ul>
-        <li>
-          <strong>Hello World!</strong>
-          <small>接啊可是看到接啊看世界大赛将贷款啊时间跨度。</small>
-        </li>
-        <li>Hello World!</li>
-        <li>Hello World!</li>
-        <li>Hello World!</li>
-        <li>Hello World!</li>
-        <li><a class="fa fa-home">Hello World!</a></li>
-      </ul>
-    </article>
-    <footer>
-      <nav>
-        <a class="fa fa-align-right" data-aside="lmenu">左菜单</a>
-        <a class="fa fa-home active"></a>
-        <a class="fa fa-align-left" data-aside="rmenu">右菜单</a>
-      </nav>
-    </footer>
-  </section>
-  <aside id="lmenu">
-    <header>左菜单<nav><a class="fa fa-arrow-circle-left" data-aside="lmenu"></a></nav></header>
-    <article>
-      <ul>
-        <li><a class="fa fa-info-circle">关于我们</a></li>
-        <li><a class="fa fa-info-circle">关于我们</a></li>
-        <li><a class="fa fa-info-circle">关于我们</a></li>
-      </ul>
-    </article>
-    <footer></footer>
-  </aside>
-  <aside id="rmenu" class="right">
-    <header>右菜单<nav><a class="fa fa-arrow-circle-right" data-aside="rmenu"></a></nav></header>
-    <article>
-      <ul>
-        <li><a class="fa fa-info-circle">关于我们</a></li>
-        <li><a class="fa fa-info-circle">关于我们</a></li>
-        <li><a class="fa fa-info-circle">关于我们</a></li>
-      </ul>
-    </article>
-    <footer>
-      <nav>
-        <a class="fa fa-align-right" data-aside="lmenu">左菜单</a>
-        <a class="fa fa-align-left active" data-aside="rmenu">右菜单</a>
-      </nav>
-    </footer>
-  </aside>
+  <header>
+    <nav>
+      <a class="fa fa-home"></a>
+      <a class="fa fa-info-circle"></a>
+    </nav>
+    <i>NLF MOBILE</i>
+    <nav>
+      <a class="fa fa-info"></a>
+      <a class="fa fa-bars"></a>
+    </nav>
+  </header>
+  <article>
+    <label>个人</label>
+    <ul>
+      <li>个性化设置</li>
+      <li class="link"><a class="fa fa-user">账户与同步</a></li>
+      <li><a class="fa fa-map-marker">位置</a></li>
+      <li>安全</li>
+      <li>辅助功能</li>
+      <li>备份与重置</li>
+    </ul>
+    <label>设备</label>
+    <ul>
+      <li>显示、手势和按钮</li>
+      <li><a class="fa fa-volume-up">声音</a></li>
+      <li><a class="fa fa-phone">呼叫</a></li>
+      <li>应用程序</li>
+      <li>存储</li>
+      <li>电源</li>
+    </ul>
+    <label>个人资料</label>
+    <ul>
+      <li class="input"><i>姓名</i><input type="text" placeholder="六特尔" /></li>
+      <li class="input"><i>年龄</i><input type="text" placeholder="18" /></li>
+      <li class="input"><i>性别</i><select><option>男</option><option>女</option></select></li>
+      <li class="input"><i>简介</i><textarea rows="6"></textarea></li>
+    </ul>
+    <label>个人资料</label>
+    <ul>
+      <li>
+        <input type="text" placeholder="姓名" />&nbsp;
+        <input type="text" placeholder="年龄" />&nbsp;
+        <select><option>男</option><option>女</option></select>
+      </li>
+    </ul>
+    <a class="button orange fa fa-check" style="margin:1em;">确定</a>
+  </article>
+  <footer>
+    <nav>
+      <a><em class="fa fa-weixin"></em><div>微信</div></a>
+      <a><em class="fa fa-fax"></em>通讯录</a>
+      <a><em class="fa fa-crosshairs"></em>发现</a>
+      <a><em class="fa fa-user"></em><div>我</div></a>
+    </nav>
+  </footer>
   <script>
   I.want(function(){
     I.ui.Mobile.render();

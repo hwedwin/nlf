@@ -8,26 +8,7 @@ I.regist('ui.Mobile',function(W,D){
   };
 
   var _init = function(obj){
-    var a = I.$('tag','a');
-    for(var i=0;i<a.length;i++){
-      var o = a[i];
-      I.listen(o,'click',function(m,e){
-        var da = m.getAttribute('data-aside');
-        if(!da){
-          return;
-        }
-        var aside = I.$(da);
-        if(!aside){
-          return;
-        }
-        var cls = aside.getAttribute('class')||aside.className;
-        if(cls.indexOf('active')>-1){
-          I.cls(aside,I.trim(cls.replace('active','')));
-        }else{
-          I.cls(aside,'active '+cls);
-        }
-      });
-    }
+    //总需要做点什么
   };
   var _render = function(config){
     var obj = {config:null};
