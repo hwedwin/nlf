@@ -8,7 +8,18 @@ I.regist('ui.Mobile',function(W,D){
   };
 
   var _init = function(obj){
-    //总需要做点什么
+    var group = I.$('class','group');
+    for(var i=0;i<group.length;i++){
+      var g = group[i];
+      var a = I.$(g,'*');
+      I.listen(a,'click',function(m,e){
+        var q = m.parentNode;
+        var as = I.$(q,'*');
+        for(var j=0;j<as.length;j++){
+          I.cls(as[j],m==as[j]?'active':'');
+        }
+      });
+    }
   };
   var _render = function(config){
     var obj = {config:null};

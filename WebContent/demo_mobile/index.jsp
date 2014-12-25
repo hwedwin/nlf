@@ -24,13 +24,20 @@ body{display:none;}
     </nav>
   </header>
   <article>
+    <div style="margin:1em;">
+      <div class="group">
+        <a class="active">Hello</a>
+        <a>World</a>
+        <a>!</a>
+      </div>
+    </div>
     <label>个人</label>
     <ul>
       <li>个性化设置</li>
-      <li class="link"><a class="fa fa-user">账户与同步</a></li>
-      <li><a class="fa fa-map-marker">位置</a></li>
-      <li>安全</li>
-      <li>辅助功能</li>
+      <li class="link"><a id="win" class="fa fa-desktop">mobile.Win</a></li>
+      <li><a id="alert" class="fa fa-info-circle">mobile.Alert</a></li>
+      <li><a id="confirm" class="fa fa-question-circle">mobile.Confirm</a></li>
+      <li><a id="toast" class="fa fa-comments-o">mobile.Toast</a></li>
       <li>备份与重置</li>
     </ul>
     <label>设备</label>
@@ -46,7 +53,14 @@ body{display:none;}
     <ul>
       <li class="input"><i>姓名</i><input type="text" placeholder="六特尔" /></li>
       <li class="input"><i>年龄</i><input type="text" placeholder="18" /></li>
-      <li class="input"><i>性别</i><select><option>男</option><option>女</option></select></li>
+      <li class="input"><i>性别</i>
+        <div>
+        <div class="group">
+          <a class="active">男</a>
+          <a>女</a>
+        </div>
+        </div>
+      </li>
       <li class="input"><i>简介</i><textarea rows="6"></textarea></li>
     </ul>
     <label>个人资料</label>
@@ -70,6 +84,26 @@ body{display:none;}
   <script>
   I.want(function(){
     I.ui.Mobile.render();
+    I.listen('win','click',function(m,e){
+      I.mobile.Win.create({title:'<i class="fa fa-info-circle">提示</i>',content:'内容部分。'});
+    });
+    I.listen('alert','click',function(m,e){
+      I.mobile.Alert.create({content:'内容部分。'});
+    });
+    I.listen('confirm','click',function(m,e){
+      I.mobile.Confirm.create({
+        content:'您确定要修炼辟邪剑谱吗？',
+        yes:function(){
+          I.mobile.Alert.create({content:'您已经成功变性，但是修炼失败！'});
+        },
+        no:function(){
+          I.mobile.Alert.create({content:'欲练此功，必先自宫哦。'});
+        }
+      });
+    });
+    I.listen('toast','click',function(m,e){
+      I.mobile.Toast.create({msg:'Hello World!'});
+    });
   });
   </script>
 </body>
