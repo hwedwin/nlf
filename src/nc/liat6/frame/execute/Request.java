@@ -34,29 +34,23 @@ public class Request{
   private Map<String,Object> bundle = new HashMap<String,Object>();
   /** 分页参数 */
   private PagingParam pagingParam;
-  /** 客户端类型：电脑 */
-  public static final int CLIENT_TYPE_COMPUTER = 0;
-  /** 客户端类型：移动设备 */
-  public static final int CLIENT_TYPE_MOBILE = 1;
-  /** 客户端类型 */
-  private int clientType = CLIENT_TYPE_COMPUTER;
+  /** 客户端 */
+  private Client client;
 
   /**
-   * 获取客户端类型
-   * 
-   * @return 客户端类型
+   * 获取客户端
+   * @return 客户端
    */
-  public int getClientType(){
-    return clientType;
+  public Client getClient(){
+    return client;
   }
 
   /**
-   * 设置客户端类型
-   * 
-   * @param clientType 客户端类型
+   * 设置客户端
+   * @param client 客户端
    */
-  public void setClientType(int clientType){
-    this.clientType = clientType;
+  public void setClient(Client client){
+    this.client = client;
   }
 
   /**

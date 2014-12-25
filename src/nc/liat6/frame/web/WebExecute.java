@@ -15,6 +15,7 @@ import nc.liat6.frame.Factory;
 import nc.liat6.frame.context.Context;
 import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.exception.BadException;
+import nc.liat6.frame.execute.Client;
 import nc.liat6.frame.execute.Request;
 import nc.liat6.frame.execute.Response;
 import nc.liat6.frame.execute.impl.AbstractExecute;
@@ -42,12 +43,11 @@ import nc.liat6.frame.web.response.Tip;
  *
  */
 public class WebExecute extends AbstractExecute{
-
   static final String HTTP_SERVLET_REQUEST = "NLF_HTTP_SERVLET_REQUEST";
   static final String HTTP_SERVLET_RESPONSE = "NLF_HTTP_SERVLET_RESPONSE";
   static final String HTTP_FILTERCHAIN = "NLF_HTTP_FILTERCHAIN";
-  static final String[] MOBILE_AGENT = {"iphone","ipad","android","phone","mobile","wap","netfront","java","opera mobi","opera mini","ucweb","windows ce","symbian","series","webos","sony","blackberry","dopod","nokia","samsung","palmsource","xda","pieplus","meizu","midp","cldc","motorola","foma","docomo","up.browser","up.link","blazer","helio","hosin","huawei","novarra","coolpad","webos","techfaith","palmsource","alcatel","amoi","ktouch","nexian","ericsson","philips","sagem","wellcom","bunjalloo","maui","smartphone","iemobile","spice","bird","zte-","longcos","pantech","gionee","portalmmm","jig browser","hiptop","benq","haier","^lct","320x320","240x320","176x220","w3c ","acs-","alav","alca","amoi","audi","avan","benq","bird","blac","blaz","brew","cell","cldc","cmd-","dang","doco","eric","hipt","inno","ipaq","java","jigs","kddi","keji","leno","lg-c","lg-d","lg-g","lge-","maui","maxo","midp","mits","mmef","mobi","mot-","moto","mwbp","nec-","newt","noki","oper","palm","pana","pant","phil","play","port","prox","qwap","sage","sams","sany","sch-","sec-","send","seri","sgh-","shar","sie-","siem","smal","smar","sony","sph-","symb","t-mo","teli","tim-","tsm-","upg1","upsi","vk-v","voda","wap-","wapa","wapi","wapp","wapr","webc","winw","winw","xda","xda-","Googlebot-Mobile"};
-
+  static final String[] AGENT_MOBILE = {"iphone","ipad","android","phone","mobile","wap","netfront","java","opera mobi","opera mini","ucweb","windows ce","symbian","series","webos","sony","blackberry","dopod","nokia","samsung","palmsource","xda","pieplus","meizu","midp","cldc","motorola","foma","docomo","up.browser","up.link","blazer","helio","hosin","huawei","novarra","coolpad","webos","techfaith","palmsource","alcatel","amoi","ktouch","nexian","ericsson","philips","sagem","wellcom","bunjalloo","maui","smartphone","iemobile","spice","bird","zte-","longcos","pantech","gionee","portalmmm","jig browser","hiptop","benq","haier","^lct","320x320","240x320","176x220","w3c ","acs-","alav","alca","amoi","audi","avan","benq","bird","blac","blaz","brew","cell","cldc","cmd-","dang","doco","eric","hipt","inno","ipaq","java","jigs","kddi","keji","leno","lg-c","lg-d","lg-g","lge-","maui","maxo","midp","mits","mmef","mobi","mot-","moto","mwbp","nec-","newt","noki","oper","palm","pana","pant","phil","play","port","prox","qwap","sage","sams","sany","sch-","sec-","send","seri","sgh-","shar","sie-","siem","smal","smar","sony","sph-","symb","t-mo","teli","tim-","tsm-","upg1","upsi","vk-v","voda","wap-","wapa","wapi","wapp","wapr","webc","winw","winw","xda","xda-","Googlebot-Mobile"};
+  static final String AGENT_WEIXIN = "MicroMessenger";
   protected StringBuffer logs = new StringBuffer();
 
   /**
@@ -58,16 +58,23 @@ public class WebExecute extends AbstractExecute{
     HttpServletRequest oreq = req.find(Statics.FIND_REQUEST);
     // 获取AJAX请求标识
     String headAjax = oreq.getHeader("x-requested-with");
-    // 判断移动浏览器
+    Client client = new Client();
     String userAgent = oreq.getHeader("User-Agent");
+    client.setUserAgent(userAgent);
     if(null!=userAgent){
-      for(String ma:MOBILE_AGENT){
+      // 判断移动浏览器
+      for(String ma:AGENT_MOBILE){
         if(userAgent.toLowerCase().contains(ma)){
-          req.setClientType(Request.CLIENT_TYPE_MOBILE);
+          client.setType(Client.TYPE_MOBILE);
           break;
         }
       }
+      // 判断微信
+      if(userAgent.contains(AGENT_WEIXIN)){
+        client.setType(Client.TYPE_WEIXIN);
+      }
     }
+    req.setClient(client);
     // 请求方式：GET、POST等
     String reqMethod = oreq.getMethod();
     Map<String,String> args = req.getParams();
@@ -276,5 +283,4 @@ public class WebExecute extends AbstractExecute{
       throw new BadException(e);
     }
   }
-
 }
