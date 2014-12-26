@@ -20,6 +20,13 @@ I.regist('ui.Mobile',function(W,D){
         }
       });
     }
+    var as = I.$('class','a');
+    I.listen(as,'click',function(m,e){
+      var href = m.getAttribute('data-href');
+      if(href){
+        self.location = href;
+      }
+    });
   };
   var _render = function(config){
     var obj = {config:null};

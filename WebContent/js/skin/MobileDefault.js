@@ -96,6 +96,37 @@ body{
   box-orient:vertical;
   height:100%;
   overflow:hidden;
+  
+  -webkit-animation-duration:.3s;
+  -webkit-animation-timing-function: ease;
+  -webkit-animation-fill-mode: both;
+  
+  -moz-animation-duration:.3s;
+  -moz-animation-timing-function: ease;
+  -moz-animation-fill-mode: both;
+  
+  -o-animation-duration:.3s;
+  -o-animation-timing-function: ease;
+  -o-animation-fill-mode: both;
+  
+  -ms-animation-duration:.3s;
+  -ms-animation-timing-function: ease;
+  -ms-animation-fill-mode: both;
+  
+  animation-duration:.3s;
+  animation-timing-function: ease;
+  animation-fill-mode: both;
+  
+  -webkit-animation-name: fadeInLeft;
+  -moz-animation-name: fadeInLeft;
+  -ms-animation-name: fadeInLeft;
+  -o-animation-name: fadeInLeft;
+  animation-name: fadeInLeft;
+  -webkit-animation-delay: .1s;
+  -moz-animation-delay: .1s;
+  -o-animation-delay: .1s;
+  -ms-animation-delay: .1s;
+  animation-delay: .1s;
 }
 
 header{

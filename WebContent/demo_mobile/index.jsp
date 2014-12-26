@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <title>mobile</title>
 <meta name="viewport" content="width=device-width,user-scalable=no" />
+<link type="text/css" rel="stylesheet" href="${PATH}/css/animate.css" />
 <link type="text/css" rel="stylesheet" href="${PATH}/css/font-awesome.css" />
 <script src="${PATH}/js/icore.js"></script>
 <style type="text/css">
@@ -21,29 +22,29 @@ body{display:none;}
   <article>
     <label>UI示例</label>
     <ul>
-      <li class="link"><a href="mobile_List.jsp" class="fa fa-list">列表</a></li>
-      <li class="link"><a href="mobile_Ball.jsp" class="fa fa-circle">mobile.Ball</a></li>
-      <li><a id="win" class="fa fa-desktop">mobile.Win</a></li>
-      <li><a id="alert" class="fa fa-info-circle">mobile.Alert</a></li>
-      <li><a id="confirm" class="fa fa-question-circle">mobile.Confirm</a></li>
-      <li><a id="toast" class="fa fa-comments-o">mobile.Toast</a></li>
-      <li class="link"><a href="mobile_Group.jsp" class="fa fa-exchange">切换</a></li>
-      <li class="link"><a href="mobile_Form.jsp" class="fa fa-file-o">表单</a></li>
+      <li class="link a" data-href="mobile_List.jsp"><i class="fa fa-list">列表</i></li>
+      <li class="link a" data-href="mobile_Ball.jsp"><i class="fa fa-circle">mobile.Ball</i></li>
+      <li id="win"><i class="fa fa-desktop">mobile.Win</i></li>
+      <li id="alert"><i class="fa fa-info-circle">mobile.Alert</i></li>
+      <li id="confirm"><i class="fa fa-question-circle">mobile.Confirm</i></li>
+      <li id="toast"><i class="fa fa-comments-o">mobile.Toast</i></li>
+      <li class="link a" data-href="mobile_Group.jsp"><i class="fa fa-exchange">切换</i></li>
+      <li class="link a" data-href="mobile_Form.jsp"><i class="fa fa-file-o">表单</i></li>
     </ul>
     <label>标题栏</label>
     <ul>
-      <li class="link"><a href="mobile_Title.jsp" class="fa fa-bars">两边都有按钮的标题栏</a></li>
-      <li class="link"><a href="mobile_Title_Left.jsp" class="fa fa-bars">左边有按钮的标题栏</a></li>
-      <li class="link"><a href="mobile_Title_Right.jsp" class="fa fa-bars">右边有按钮的标题栏</a></li>
-      <li class="link"><a href="mobile_Title_None.jsp" class="fa fa-bars">没有按钮的标题栏</a></li>
+      <li class="link a" data-href="mobile_Title.jsp"><i class="fa fa-bars">两边都有按钮的标题栏</i></li>
+      <li class="link a" data-href="mobile_Title_Left.jsp"><i class="fa fa-bars">左边有按钮的标题栏</i></li>
+      <li class="link a" data-href="mobile_Title_Right.jsp"><i class="fa fa-bars">右边有按钮的标题栏</i></li>
+      <li class="link a" data-href="mobile_Title_None.jsp"><i class="fa fa-bars">没有按钮的标题栏</i></li>
     </ul>
     <label>底部</label>
     <ul>
-      <li class="link"><a href="mobile_Bottom_Icon_V.jsp" class="fa fa-ellipsis-h">带纵向图标的底部按钮</a></li>
-      <li class="link"><a href="mobile_Bottom_Icon_H.jsp" class="fa fa-ellipsis-h">带横向图标的底部按钮</a></li>
-      <li class="link"><a href="mobile_Bottom_Icon_None.jsp" class="fa fa-ellipsis-h">纯文字的底部按钮</a></li>
-      <li class="link"><a href="mobile_Bottom_Def.jsp" class="fa fa-ellipsis-h">自定义的底部</a></li>
-      <li class="link"><a href="mobile_Bottom_Transparent.jsp" class="fa fa-ellipsis-h">半透明的浮动底部</a></li>
+      <li class="link a" data-href="mobile_Bottom_Icon_V.jsp"><i class="fa fa-ellipsis-h">带纵向图标的底部按钮</i></li>
+      <li class="link a" data-href="mobile_Bottom_Icon_H.jsp"><i class="fa fa-ellipsis-h">带横向图标的底部按钮</i></li>
+      <li class="link a" data-href="mobile_Bottom_Icon_None.jsp"><i class="fa fa-ellipsis-h">纯文字的底部按钮</i></li>
+      <li class="link a" data-href="mobile_Bottom_Def.jsp"><i class="fa fa-ellipsis-h">自定义的底部</i></li>
+      <li class="link a" data-href="mobile_Bottom_Transparent.jsp"><i class="fa fa-ellipsis-h">半透明的浮动底部</i></li>
     </ul>
   </article>
   <script>

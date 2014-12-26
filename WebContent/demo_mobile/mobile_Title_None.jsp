@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <title>mobile</title>
 <meta name="viewport" content="width=device-width,user-scalable=no" />
+<link type="text/css" rel="stylesheet" href="${PATH}/css/animate.css" />
 <link type="text/css" rel="stylesheet" href="${PATH}/css/font-awesome.css" />
 <script src="${PATH}/js/icore.js"></script>
 <style type="text/css">
@@ -17,7 +18,7 @@ body{display:none;}
   </header>
   <article>
     <ul>
-      <li><a class="fa fa-chevron-left" href="index.jsp">返回</a></li>
+      <li class="a" data-href="index.jsp"><i class="fa fa-chevron-left">返回</i></li>
     </ul>
   </article>
   <script>
