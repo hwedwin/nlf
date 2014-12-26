@@ -15,72 +15,37 @@ body{display:none;}
   <header>
     <nav>
       <a class="fa fa-home"></a>
-      <a class="fa fa-info-circle"></a>
     </nav>
     <i>NLF MOBILE</i>
-    <nav>
-      <a class="fa fa-info"></a>
-      <a class="fa fa-bars"></a>
-    </nav>
   </header>
   <article>
-    <div style="margin:1em;">
-      <div class="group">
-        <a class="active">Hello</a>
-        <a>World</a>
-        <a>!</a>
-      </div>
-    </div>
-    <label>个人</label>
+    <label>UI示例</label>
     <ul>
-      <li>个性化设置</li>
-      <li class="link"><a id="win" class="fa fa-desktop">mobile.Win</a></li>
+      <li class="link"><a href="mobile_List.jsp" class="fa fa-list">列表</a></li>
+      <li class="link"><a href="mobile_Ball.jsp" class="fa fa-circle">mobile.Ball</a></li>
+      <li><a id="win" class="fa fa-desktop">mobile.Win</a></li>
       <li><a id="alert" class="fa fa-info-circle">mobile.Alert</a></li>
       <li><a id="confirm" class="fa fa-question-circle">mobile.Confirm</a></li>
       <li><a id="toast" class="fa fa-comments-o">mobile.Toast</a></li>
-      <li>备份与重置</li>
+      <li class="link"><a href="mobile_Group.jsp" class="fa fa-exchange">切换</a></li>
+      <li class="link"><a href="mobile_Form.jsp" class="fa fa-file-o">表单</a></li>
     </ul>
-    <label>设备</label>
+    <label>标题栏</label>
     <ul>
-      <li>显示、手势和按钮</li>
-      <li><a class="fa fa-volume-up">声音</a></li>
-      <li><a class="fa fa-phone">呼叫</a></li>
-      <li>应用程序</li>
-      <li>存储</li>
-      <li>电源</li>
+      <li class="link"><a href="mobile_Title.jsp" class="fa fa-bars">两边都有按钮的标题栏</a></li>
+      <li class="link"><a href="mobile_Title_Left.jsp" class="fa fa-bars">左边有按钮的标题栏</a></li>
+      <li class="link"><a href="mobile_Title_Right.jsp" class="fa fa-bars">右边有按钮的标题栏</a></li>
+      <li class="link"><a href="mobile_Title_None.jsp" class="fa fa-bars">没有按钮的标题栏</a></li>
     </ul>
-    <label>个人资料</label>
+    <label>底部</label>
     <ul>
-      <li class="input"><i>姓名</i><input type="text" placeholder="六特尔" /></li>
-      <li class="input"><i>年龄</i><input type="text" placeholder="18" /></li>
-      <li class="input"><i>性别</i>
-        <div>
-        <div class="group">
-          <a class="active">男</a>
-          <a>女</a>
-        </div>
-        </div>
-      </li>
-      <li class="input"><i>简介</i><textarea rows="6"></textarea></li>
+      <li class="link"><a href="mobile_Bottom_Icon_V.jsp" class="fa fa-ellipsis-h">带纵向图标的底部按钮</a></li>
+      <li class="link"><a href="mobile_Bottom_Icon_H.jsp" class="fa fa-ellipsis-h">带横向图标的底部按钮</a></li>
+      <li class="link"><a href="mobile_Bottom_Icon_None.jsp" class="fa fa-ellipsis-h">纯文字的底部按钮</a></li>
+      <li class="link"><a href="mobile_Bottom_Def.jsp" class="fa fa-ellipsis-h">自定义的底部</a></li>
+      <li class="link"><a href="mobile_Bottom_Transparent.jsp" class="fa fa-ellipsis-h">半透明的浮动底部</a></li>
     </ul>
-    <label>个人资料</label>
-    <ul>
-      <li>
-        <input type="text" placeholder="姓名" />&nbsp;
-        <input type="text" placeholder="年龄" />&nbsp;
-        <select><option>男</option><option>女</option></select>
-      </li>
-    </ul>
-    <a class="button orange fa fa-check" style="margin:1em;">确定</a>
   </article>
-  <footer>
-    <nav>
-      <a><em class="fa fa-weixin"></em><div>微信</div></a>
-      <a><em class="fa fa-fax"></em>通讯录</a>
-      <a><em class="fa fa-crosshairs"></em>发现</a>
-      <a><em class="fa fa-user"></em><div>我</div></a>
-    </nav>
-  </footer>
   <script>
   I.want(function(){
     I.ui.Mobile.render();
