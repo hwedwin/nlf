@@ -233,6 +233,7 @@ article ul li.link:after{
   background-color:transparent;
 }
 label{
+  display:block;
   line-height:2em;
   padding-left:0.8em;
 }

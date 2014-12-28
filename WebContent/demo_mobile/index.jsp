@@ -15,7 +15,7 @@ body{display:none;}
 <body>
   <header>
     <nav>
-      <a class="fa fa-home"></a>
+      <a class="fa fa-home" href="index.jsp"></a>
     </nav>
     <i>NLF MOBILE</i>
   </header>

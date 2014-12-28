@@ -674,6 +674,9 @@
         }catch(e){}
       }
     };
+    var _getStyle = function(o,s){
+      return o.currentStyle?o.currentStyle[s]:W.getComputedStyle(o,null)[s];
+    };
     var _each = function(l,f){
       var tp = Object.prototype.toString.apply(l);
       if(EACH[tp]||(l.length&&(!l.alert)&&('[object String]'!=tp))){
@@ -701,7 +704,7 @@
     I['style'] = function(s){_style(s);return I;};
     I['each'] = function(l,f){_each(l,f);return I;};
     I['delay'] = function(time,callback){_delay(time,callback);};
-    
+    I['getStyle'] = function(o,s){return _getStyle(o,s);};
     return {};
   }+'');
 })(window,document);
