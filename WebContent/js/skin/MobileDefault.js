@@ -449,6 +449,7 @@ textarea{
 }
 
 .i-mobile-Mask-${skin}{z-index:902;position:fixed;margin:0;padding:0;font-size:0;left:0;top:0;width:100%;height:100%;border:0;}
+.i-mobile-ScrollBar-${skin}{position:fixed;right:0;width:6px;border:1px solid #F3F3F3;background-color:#777;font-size:0;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px;filter:alpha(opacity=50);-moz-opacity:0.50;opacity:0.50;}
 .i-mobile-Win-${skin}{z-index:992;position:fixed;left:1em;top:1em;right:1em;padding:0;overflow:hidden;border:0;border-radius:0.5em;-webkit-border-radius:0.5em;-moz-border-radius:0.5em;-webkit-box-shadow: #666 0px 0px 10px;-moz-box-shadow: #666 0px 0px 10px;box-shadow: #666 0px 0px 10px;}
 .i-mobile-Win-${skin} i{position:relative;display:block;width:100%;font-weight;normal;font-style:normal;}
 .i-mobile-Win-${skin} .i-title{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;-o-user-select:none;margin:0;padding:0;overflow:hidden;padding:0.5em;padding-bottom:0.2em;font-size:1.2em;font-weight:bold;}
