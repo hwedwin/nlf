@@ -6,24 +6,22 @@
     return;
   }
   W.I = {
-    version:'2.0.3',
+    version:'2.0.4',
     ROOT:'auto',
     debug:true
   };
-  
   var M = 'icore.js';
+  var V = 'i_js_version';
   var R = '';
   var L = false;
   var SYN = true;
   var Q = {};
-  //加载队列
   var P = {};
-  
   var _dir = function(u){
     var r = '';
     if(!L){
       var c = D.getElementsByTagName('script');
-      for(var i=0;i<c.length;i++){
+      for(var i=0,n=c.length;i<n;i++){
         var s = c[i].getAttribute('src');
         if(!s) continue;
         var j = s.indexOf(M);
@@ -43,12 +41,11 @@
     }
     return r;
   };
-  
   var _autoRoot = function(r){
     if('auto'!=I.ROOT){
       return;
     }
-    var n = r.indexOf('://'); 
+    var n = r.indexOf('://');
     if(n>0){
       r = r.substr(n+3);
     }
@@ -70,10 +67,9 @@
       }
     }
   };
-  
   var initPackage = function(k){
     var p = I;
-    for(var i=0;i<k.length;i++){
+    for(var i=0,n=k.length;i<n;i++){
       if(!p[k[i]]){
         p[k[i]]={};
       }
@@ -81,21 +77,20 @@
     }
     return p;
   };
-  
   var localLoad = function(c,callback){
     if(I.debug){
       I.lang.Store.clear();
-      throw 'I.js debug mode';
+      throw '';
     }
-    var v = I.lang.Store.get('i_js_version');
+    var v = I.lang.Store.get(V);
     if(!v||I.version!=v){
       I.lang.Store.remove('I.*');
-      I.lang.Store.set('i_js_version',I.version);
-      throw 'I.js need update';
+      I.lang.Store.set(V,I.version);
+      throw '';
     }
     var code = I.lang.Store.get('I.'+c);
     if(!code){
-      throw c+' need update';
+      throw '';
     }
     var o = D.createElement('script');
     o.text = code;
@@ -108,8 +103,7 @@
   var lazyLoad = function(c,callback){
     var o = D.createElement('script');
     o.type = 'text/javascript';
-    var src = R+c.replace(/\./g,'/')+'.js?t='+new Date().getTime();
-    o.src = src;
+    o.src = R+c.replace(/\./g,'/')+'.js?t='+new Date().getTime();
     o.onload = function(){
       try{
         this.parentNode.removeChild(this);
@@ -143,7 +137,8 @@
     }
   };
   var checkLoad = function(callback){
-    for(var i in P){
+    var i;
+    for(i in P){
       if(!P[i].loaded){
         W.setTimeout(function(){
           checkLoad(callback);
@@ -152,16 +147,16 @@
       }
     }
     var cq = {};
-    for(var i in P){
+    for(i in P){
       if(!Q[i].loaded){
         var cs =_depend(Q[i].code);
-        for(var j=0;j<cs.length;j++){
+        for(var j=0,k=cs.length;j<k;j++){
           cq[cs[j]] = {};
         }
       }
     }
     var over = true;
-    for(var i in cq){
+    for(i in cq){
       if(P[i]) continue;
       P[i] = {loaded:false};
       tryLoad(i);
@@ -173,7 +168,7 @@
       },1);
       return;
     }
-    for(var i in P){
+    for(i in P){
       if(!Q[i].loaded){
         initClass(i,Q[i].code);
         Q[i].loaded = true;
@@ -195,7 +190,7 @@
   };
   var load = function(cs,callback){
     SYN = true;
-    for(var i=0;i<cs.length;i++){
+    for(var i=0,j=cs.length;i<j;i++){
       var s = cs[i];
       if(Q[s]) continue;
       if(P[s]) continue;
@@ -204,7 +199,6 @@
     }
     checkLoad(callback);
   };
-  
   var preLoad = function(cs,f){
     if(SYN){
       W.setTimeout(function(){
@@ -214,14 +208,12 @@
       load(cs,f);
     }
   };
-  
   _dir();
-  
   var F = [
     function(f){W.attachEvent('onload',f);},
     function(f){W.addEventListener('DOMContentLoaded',f,false);}
   ];
-  for(var i=0;i<F.length;i++){
+  for(var i=0,j=F.length;i<j;i++){
     try{
       F[i](function(){
         SYN = false;
@@ -229,52 +221,46 @@
       break;
     }catch(e){}
   }
-    
   var _regist = function(c,cd){
     Q[c] = {
       loaded:false,
       code:cd
     };
     if(0==c.indexOf('lang.')){
-      try{
-        initClass(c,cd);
-      }catch(e){
-        throw e;
-      }
+      initClass(c,cd);
     }else{
       try{
         I.lang.Store.set('I.'+c,'I.regist(\''+c+'\','+cd+'+\'\');');
       }catch(e){}
     }
   };
-  
   var _depend = function(code){
     var c = {};
     var s = code;
     var idx = s.indexOf('I.');
+    var h,i,j,k,ix,q,sk,arr,z=[];
     while(idx>-1){
       s = s.substr(idx+2);
-      var kh = [];
-      kh.push(s.indexOf('('));
-      kh.push(s.indexOf('['));
-      kh.push(s.indexOf(';'));
-      var ix = -1;
-      for(var i=0;i<kh.length;i++){
-        if(kh[i]<0){
+      z.splice(0,z.length);
+      z.push(s.indexOf('('));
+      z.push(s.indexOf('['));
+      z.push(s.indexOf(';'));
+      ix = -1;
+      for(i=0,j=z.length;i<j;i++){
+        if(z[i]<0){
           continue;
         }
         if(ix<0){
-          ix = kh[i];
+          ix = z[i];
         }else{
-          if(kh[i]<ix){
-            ix = kh[i];
+          if(z[i]<ix){
+            ix = z[i];
           }
         }
       }
-      
-      var q = s.substr(0, ix);
+      q = s.substr(0, ix);
       if(q.indexOf('.')>-1){
-        var k = q.substr(0, q.lastIndexOf('.'));
+        k = q.substr(0,q.lastIndexOf('.'));
         if(k.indexOf('.')>-1){
           c[k] = {};
         }
@@ -283,16 +269,16 @@
     }
     s = code;
     idx = 0;
-    var arr = /skin\s*:\s*['|"]/g.exec(s);
+    arr = /skin\s*:\s*['|"]/g.exec(s);
     while(null!=arr){
       idx = arr.index;
       s = s.substr(idx+arr[0].length);
-      var h = arr[0];
+      h = arr[0];
       h = h.substr(h.length-1);
       idx = s.indexOf(h);
-      var skin = s.substr(0,idx);
-      skin = 'skin.'+skin;
-      c[skin] = {};
+      sk = s.substr(0,idx);
+      sk = 'skin.'+sk;
+      c[sk] = {};
       arr = /skin\s*:\s*['|"]/g.exec(s);
     }
     s = code;
@@ -300,18 +286,19 @@
     while(null!=arr){
       idx = arr.index;
       s = s.substr(idx+arr[0].length);
-      var h = arr[0];
+      h = arr[0];
       h = h.substr(h.length-1);
       idx = s.indexOf(h);
-      var skin = s.substr(0,idx);
-      skin = 'skin.'+skin;
-      c[skin] = {};
+      sk = s.substr(0,idx);
+      sk = 'skin.'+sk;
+      c[sk] = {};
       arr = /util\.Skin\.init\(['|"]/g.exec(s);
     }
-    var z = [];
-    for(var i in c){
-      if(i.indexOf('+')>-1){
-        i = i.substr(0,i.indexOf('+'));
+    z.splice(0,z.length);
+    for(i in c){
+      j = i.indexOf('+');
+      if(j>-1){
+        i = i.substr(0,j);
       }
       if(0==i.indexOf('lang.')||'ROOT'==i||'debug'==i||'version'==i){
         continue;
@@ -320,7 +307,6 @@
     }
     return z;
   };
-  
   var _want = function(callback){
     var cs = _depend(callback+'');
     if(cs.length<1){
@@ -329,24 +315,21 @@
       preLoad(cs,callback);
     }
   };
-  
   var _get = function(klass,callback){
     preLoad([klass],function(){
       var k = klass.split('.');
       var name = k.pop();
       var obj = I;
-      for(var i=0;i<k.length;i++){
+      for(var i=0,j=k.length;i<j;i++){
         obj = obj[k];
       }
       callback.call(obj[name]);
     });
   };
-
   I.regist = function(klass,code){_regist(klass,code);return this;};
   I.dir = function(res){return _dir(res);};
   I.want = function(callback){_want(callback);};
   I.get = function(klass,callback){_get(klass,callback);};
-  
   I.regist('lang.Store',function(w,d){
     var _host = location.hostname||'localhost';
     var _LS = [{
@@ -372,11 +355,12 @@
         var inst = this.instance;
         var c = [];
         var l = inst.length;
+        var i,key;
         switch(k.indexOf('*')){
           case 0:
             var suffix = k.substr(1);
-            for(var i=0;i<l;i++){
-              var key = inst.key(i);
+            for(i=0;i<l;i++){
+              key = inst.key(i);
               if(key.indexOf(suffix)==key.length-suffix.length){
                 c.push(key);
               }
@@ -384,8 +368,8 @@
           break;
           case k.length-1:
             var prefix = k.substr(0,k.length-1);
-            for(var i=0;i<l;i++){
-              var key = inst.key(i);
+            for(i=0;i<l;i++){
+              key = inst.key(i);
               if(0==key.indexOf(prefix)){
                 c.push(key);
               }
@@ -393,7 +377,7 @@
           break;
           default:c.push(k);break;
         }
-        for(var i =0;i<c.length;i++){
+        for(i=0,j=c.length;i<j;i++){
           inst.removeItem(c[i]);
         }
       }
@@ -449,7 +433,7 @@
       }
     }];
     var _set = function(k,v){
-      for(var i=0;i<_LS.length;i++){
+      for(var i=0,j=_LS.length;i<j;i++){
         if(_LS[i].support()){
           _LS[i].setItem(k,v);
           break;
@@ -457,7 +441,7 @@
       }
     };
     var _get = function(k){
-      for(var i=0;i<_LS.length;i++){
+      for(var i=0,j=_LS.length;i<j;i++){
         if(_LS[i].support()){
           return _LS[i].getItem(k);
         }
@@ -465,7 +449,7 @@
       return null;
     };
     var _clear = function(){
-      for(var i=0;i<_LS.length;i++){
+      for(var i=0,j=_LS.length;i<j;i++){
         if(_LS[i].support()){
           _LS[i].clear();
           break;
@@ -473,7 +457,7 @@
       }
     };
     var _remove = function(k){
-      for(var i=0;i<_LS.length;i++){
+      for(var i=0,j=_LS.length;i<j;i++){
         if(_LS[i].support()){
           _LS[i].removeItem(k);
           break;
@@ -487,7 +471,6 @@
       clear:function(){_clear();}
     };
   }+'');
-  
   I.regist('lang.Core',function(W,D){
     var EACH = {'[object Array]':true,'[object NodeList]':true,'[object HTMLCollection]':true,'[object Arguments]':true};
     var C = [
@@ -502,15 +485,30 @@
       function(o,n){o.style.filter='alpha(opacity='+n+')';},
       function(o,n){o.style.opacity = n/100;}
     ];
+    var EV = function(f,o,e){
+      var r = f(o,e);
+      if(!r){
+        if(e.stopPropagation){
+          e.stopPropagation();
+        }else{
+          e.cancelBubble = true;
+        }
+        if(e.preventDefault){
+          e.preventDefault();
+        }else{
+          e.returnValue = false;
+        }
+      }
+    };
     var E = [
       function(o,s,f){
         o.attachEvent('on'+s,function(e){
-          f(o,W.event || e);
+          EV(f,o,W.event||e);
         });
       },
       function(o,s,f){
         o.addEventListener(s,function(e){
-          f(o,W.event || e);
+          EV(f,o,W.event||e);
         },false);
       }
     ];
@@ -532,7 +530,7 @@
       TAG:function(o,s){return o.getElementsByTagName(s);},
       CHILD:function(o){
         var c = [];
-        for(var i=0;i<o.childNodes.length;i++){
+        for(var i=0,j=o.childNodes.length;i<j;i++){
           var m = o.childNodes[i];
           if(1 == m.nodeType){
             c.push(m);
@@ -544,7 +542,7 @@
         var pt = o.parentNode;
         var chd = this.CHILD(pt);
         var me = false;
-        for(var i=0;i<chd.length;i++){
+        for(var i=0,j=chd.length;i<j;i++){
           if(me){
             return chd[i];
           }
@@ -558,7 +556,7 @@
         var pt = o.parentNode;
         var chd = this.CHILD(pt);
         var last = null;
-        for(var i=0;i<chd.length;i++){
+        for(var i=0,j=chd.length;i<j;i++){
           if(chd[i]==o){
             return last;
           }
@@ -629,7 +627,7 @@
     };
     var _listen = function(o,s,f){
       _each(o,function(m,j){
-        for(var i=0;i<E.length;i++){
+        for(var i=0,k=E.length;i<k;i++){
           try{
             E[i]($([m]),s,f);
             break;
@@ -639,7 +637,7 @@
     };
     var _opacity = function(o,n){
       _each(o,function(m,j){
-        for(var i=0;i<P.length;i++){
+        for(var i=0,k=P.length;i<k;i++){
           try{
             P[i]($([m]),n);
           }catch(e){}
@@ -648,7 +646,7 @@
     };
     var _css = function(o,s){
       _each(o,function(m,j){
-        for(var i=0;i<C.length;i++){
+        for(var i=0,k=C.length;i<k;i++){
           try{
             C[i](m,s);
             break;
@@ -658,7 +656,7 @@
     };
     var _cls = function(o,s){
       _each(o,function(m,j){
-        for(var i=0;i<S.length;i++){
+        for(var i=0,k=S.length;i<k;i++){
           try{
             S[i](m,s);
             break;
@@ -667,7 +665,7 @@
       });
     };
     var _style = function(s){
-      for(var i=0;i<STYLE.length;i++){
+      for(var i=0,j=STYLE.length;i<j;i++){
         try{
           STYLE[i](s);
           break;
@@ -680,7 +678,7 @@
     var _each = function(l,f){
       var tp = Object.prototype.toString.apply(l);
       if(EACH[tp]||(l.length&&(!l.alert)&&('[object String]'!=tp))){
-        for(var i=0;i<l.length;i++){
+        for(var i=0,j=l.length;i<j;i++){
           f(l[i],i);
         }
       }else{
@@ -692,7 +690,6 @@
         callback.call(callback);
       },time);
     };
-   
     I['$'] = function(){return $(arguments);};
     I['region'] = function(){return _region(arguments);};
     I['css'] = function(o,s){_css(o,s);return I;};

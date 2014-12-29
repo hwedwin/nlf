@@ -7,17 +7,25 @@ I.regist('ui.Mobile',function(W,D){
     skin:'MobileDefault'
   };
   var _init = function(obj){
+    var i,j,k;
+    var ats = I.$('tag','article');
+    if(ats&&ats.length>0){
+      for(i=0,j=ats.length;i<j;i++){
+        I.mobile.Scroll.create(ats[i]);
+        break;
+      }
+    }
     var gp = I.$('class','group');
     if(gp&&gp.length>0){
-      for(var i=0;i<gp.length;i++){
+      for(i=0,j=gp.length;i<j;i++){
         var g = gp[i];
         var a = I.$(g,'*');
         I.listen(a,'click',function(m,e){
           var q = m.parentNode;
           var as = I.$(q,'*');
-          for(var j=0;j<as.length;j++){
-            I.cls(as[j],m==as[j]?'active':'');
-          }
+          I.each(as,function(n,k){
+            I.cls(n,m==n?'active':'');
+          });
         });
       }
     }
@@ -29,12 +37,6 @@ I.regist('ui.Mobile',function(W,D){
           self.location = href;
         }
       });
-    }
-    var ats = I.$('tag','article');
-    if(ats&&ats.length>0){
-      for(var i=0,j=ats.length;i<j;i++){
-        I.mobile.Scroll.create(ats[i]);
-      }
     }
   };
   var _render = function(config){
