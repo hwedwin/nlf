@@ -4,15 +4,18 @@
  */
 I.regist('ui.Mobile',function(W,D){
   var CFG = {
-    skin:'MobileDefault'
+    skin:'MobileDefault',
+    scroll:false
   };
   var _init = function(obj){
     var i,j,k;
-    var ats = I.$('tag','article');
-    if(ats&&ats.length>0){
-      for(i=0,j=ats.length;i<j;i++){
-        I.mobile.Scroll.create(ats[i]);
-        break;
+    if(obj.config.scroll){
+      var ats = I.$('tag','article');
+      if(ats&&ats.length>0){
+        for(i=0,j=ats.length;i<j;i++){
+          I.mobile.Scroll.create(ats[i]);
+          break;
+        }
       }
     }
     var gp = I.$('class','group');
