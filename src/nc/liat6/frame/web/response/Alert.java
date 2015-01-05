@@ -7,10 +7,13 @@ package nc.liat6.frame.web.response;
  * 
  */
 public class Alert extends AbstractType{
-
+  /** 标题 */
   private String title = null;
+  /** 内容 */
   private String content = null;
+  /** 宽度 */
   private Integer width = null;
+  /** 高度 */
   private Integer height = null;
 
   public Alert(){
@@ -19,6 +22,12 @@ public class Alert extends AbstractType{
 
   public Alert(String content){
     this();
+    setContent(content);
+  }
+
+  public Alert(String title,String content){
+    this();
+    setTitle(title);
     setContent(content);
   }
 

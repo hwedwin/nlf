@@ -10,4 +10,12 @@ public class Alert extends nc.liat6.frame.web.response.Alert{
   public Alert(){
     super("mobile.Alert");
   }
+  
+  public Alert(String content){
+    super(content);
+  }
+  
+  public Alert(String title,String content){
+    super(title,content);
+  }
 }
