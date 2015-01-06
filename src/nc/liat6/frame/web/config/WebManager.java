@@ -72,19 +72,17 @@ public class WebManager extends AbstractWebManager{
         json.setSuccess(false);
         return json;
       }
-      String errorPage = config.getErrorPage(req,404);
-      if(null==errorPage){
-        if(cause instanceof ClassNotFoundException){
+      if(cause instanceof ClassNotFoundException){
+        String errorPage = config.getErrorPage(req,404);
+        if(null==errorPage){
           ores.setStatus(404);
           return null;
-        }
-      }else{
-        Page p = new Page(errorPage);
-        p.set("e",cause);
-        if(cause instanceof ClassNotFoundException){
+        }else{
+          Page p = new Page(errorPage);
+          p.set("e",cause);
           p.setStatus(404);
+          return p;
         }
-        return p;
       }
       return r;
     }else{

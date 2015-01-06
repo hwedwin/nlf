@@ -310,32 +310,63 @@ public class Bean implements Map<String,Object>,Serializable{
     }
     if(object instanceof Bean){
       Bean o = (Bean)object;
+      String key;
       for(String p:o.keySet()){
-        String key = null==rule?p:rule.getKey(p);
-        set(null==key?p:key,o.get(p));
+        if(null==rule){
+          set(p,o.get(p));
+        }else{
+          key = rule.getKey(p);
+          if(null==key){
+            continue;
+          }else{
+            set(key,o.get(p));
+          }
+        }
       }
     }else if(object instanceof Map){
       Map<?,?> map = (Map<?,?>)object;
+      String p;
+      String key;
       for(Object o:map.keySet()){
-        String p = o.toString();
-        String key = null==rule?p:rule.getKey(p);
-        set(null==key?p:key,map.get(o));
+        p = o.toString();
+        if(null==rule){
+          set(p,map.get(p));
+        }else{
+          key = rule.getKey(p);
+          if(null==key){
+            continue;
+          }else{
+            set(key,map.get(p));
+          }
+        }
       }
     }else{
       try{
         BeanInfo info = BeanPool.getBeanInfo(object.getClass());
         PropertyDescriptor[] props = info.getPropertyDescriptors();
-        for(int i = 0;i<props.length;i++){
-          PropertyDescriptor desc = props[i];
+        PropertyDescriptor desc;
+        Method method;
+        String p;
+        String key;
+        for(int i = 0,j=props.length;i<j;i++){
+          desc = props[i];
           // getter
-          Method method = desc.getReadMethod();
+          method = desc.getReadMethod();
           if(null==method){
             continue;
           }
           // 属性
-          String p = desc.getName();
-          String key = null==rule?p:rule.getKey(p);
-          set(null==rule?p:key,method.invoke(object));
+          p = desc.getName();
+          if(null==rule){
+            set(p,method.invoke(object));
+          }else{
+            key = rule.getKey(p);
+            if(null==key){
+              continue;
+            }else{
+              set(key,method.invoke(object));
+            }
+          }
         }
       }catch(Exception e){
         throw new NlfException(null==e?null:e.getMessage(),e);
