@@ -103,6 +103,7 @@ public class XMLParser{
     }
     // 最后一个节点
     IXmlElement el = stack.remove(stackSize-1);
+    stackSize--;
     IXmlElement p = stack.get(stackSize-1);
     switch(p.type()){
       case LIST:
