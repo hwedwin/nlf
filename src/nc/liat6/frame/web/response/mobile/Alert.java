@@ -8,7 +8,8 @@ package nc.liat6.frame.web.response.mobile;
  */
 public class Alert extends nc.liat6.frame.web.response.Alert{
   public Alert(){
-    super("mobile.Alert");
+    super();
+    setXtype("mobile.Alert");
   }
   
   public Alert(String content){

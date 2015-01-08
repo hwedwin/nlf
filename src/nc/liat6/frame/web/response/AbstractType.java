@@ -17,4 +17,8 @@ public abstract class AbstractType extends Json{
   public String getXtype(){
     return xtype;
   }
+
+  public void setXtype(String xtype){
+    this.xtype = xtype;
+  }
 }
