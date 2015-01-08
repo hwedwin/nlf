@@ -19,7 +19,7 @@ public class Forbid{
   public Object access(){
     Request r = Context.get(Statics.REQUEST);
     Response res = Context.get(Statics.RESPONSE);
-    HttpServletResponse ores = res.find("response");
+    HttpServletResponse ores = res.find(Statics.FIND_RESPONSE);
     String errorPage = Dispatcher.config.getErrorPage(r,403);
     if(null==errorPage){
       ores.setStatus(403);

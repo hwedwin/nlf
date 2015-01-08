@@ -53,9 +53,9 @@ public class WebManager extends AbstractWebManager{
     }
     String r = null==cause?null:cause.getMessage();
     Request req = Context.get(Statics.REQUEST);
-    HttpServletRequest oreq = req.find("request");
+    HttpServletRequest oreq = req.find(Statics.FIND_REQUEST);
     Response res = Context.get(Statics.RESPONSE);
-    HttpServletResponse ores = res.find("response");
+    HttpServletResponse ores = res.find(Statics.FIND_RESPONSE);
     String headAjax = oreq.getHeader("x-requested-with");
     if(null==headAjax){
       // 文件上传异常，转换为JSON返回
@@ -72,7 +72,8 @@ public class WebManager extends AbstractWebManager{
         json.setSuccess(false);
         return json;
       }
-      if(cause instanceof ClassNotFoundException){
+      //如果class或method没找到，返回404
+      if(cause instanceof ClassNotFoundException || cause instanceof NoSuchMethodException){
         String errorPage = config.getErrorPage(req,404);
         if(null==errorPage){
           ores.setStatus(404);
