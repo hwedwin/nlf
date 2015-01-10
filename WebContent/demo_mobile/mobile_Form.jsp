@@ -10,6 +10,10 @@
 <script src="${PATH}/js/icore.js"></script>
 <style type="text/css">
 body{display:none;}
+i.col0{
+  width:3em;
+  line-height:2em;
+}
 </style>
 </head>
 <body>
@@ -22,17 +26,17 @@ body{display:none;}
   <article>
     <label>个人资料</label>
     <ul>
-      <li class="input"><i>姓名</i><input type="text" placeholder="六特尔" /></li>
-      <li class="input"><i>年龄</i><input type="text" placeholder="18" /></li>
-      <li class="input"><i>性别</i>
-        <div>
+      <li class="grid"><i class="col0">姓名</i><input type="text" placeholder="六特尔" /></li>
+      <li class="grid"><i class="col0">年龄</i><input type="text" placeholder="18" /></li>
+      <li class="grid"><i class="col0">性别</i>
+        <div class="col0">
         <div class="group">
           <a class="active">男</a>
           <a>女</a>
         </div>
         </div>
       </li>
-      <li class="input"><i>简介</i><textarea rows="6"></textarea></li>
+      <li class="grid"><i class="col0">简介</i><textarea rows="6"></textarea></li>
     </ul>
     <label>个人资料</label>
     <ul>

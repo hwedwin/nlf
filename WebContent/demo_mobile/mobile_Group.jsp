@@ -10,6 +10,10 @@
 <script src="${PATH}/js/icore.js"></script>
 <style type="text/css">
 body{display:none;}
+i.col0{
+  width:3em;
+  line-height:2em;
+}
 </style>
 </head>
 <body>
@@ -29,8 +33,8 @@ body{display:none;}
     </div>
     <label>个人资料</label>
     <ul>
-      <li class="input"><i>性别</i>
-        <div>
+      <li class="grid"><i class="col0">性别</i>
+        <div class="col0">
         <div class="group">
           <a class="active">男</a>
           <a>女</a>
