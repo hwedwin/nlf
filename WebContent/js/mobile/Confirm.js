@@ -8,31 +8,33 @@ I.regist('mobile.Confirm',function(W,D){
     title:'提示',
     content:'',
     yes_button_label:'确定',
-    yes_button_border:'1px solid #0074D9',
-    yes_button_background:'#0074D9',
-    yes_button_color:'#FFF',
+    yes_button_border:'0',
+    yes_button_background:'transparent',
+    yes_button_color:'#333',
     no_button_label:'取消',
-    no_button_border:'1px solid #DDD',
-    no_button_background:'#E9E9E9',
-    no_button_color:'#333',
+    no_button_border:'0',
+    no_button_background:'transparent',
+    no_button_color:'#999',
+    split_color:'#DFDFDF',
     mask_close:false,
     callback:function(){},
     yes:function(){},
     no:function(){}
   };
   var _create = function(obj){
+    var cfg = obj.config;
     obj.contentPanel.innerHTML = '';
     var html = obj.config.content;
     if(html.indexOf('<')<0){
-      html = '<table width="100%" height="100%"><tbody><tr><td colspan="2" width="100%" height="100%" align="center" valign="middle">'+html+'</td></tr><tr><td></td><td></td></tr></tbody></table>';
+      html = '<table width="100%" height="100%"><tbody><tr><td width="100%" height="100%" align="center" valign="middle">'+html+'</td></tr></tbody></table>';
     }
     var m = I.insert('div',obj.contentPanel);
-    m.innerHTML = html;
+    m.innerHTML = html+'<div class="grid" style="margin-top:1em;border-top:1px solid '+cfg.split_color+';"></div>';
     obj.contentPanel = m;
-    var cfg = obj.config;
-    var td = I.$(obj.contentPanel,'tag','td');
+    var buttonBar = I.$(obj.contentPanel,'*')[1];
+    obj.buttonBar = buttonBar;
     var btnNo = I.mobile.Button.create({
-      dom:td[td.length-2],
+      dom:buttonBar,
       skin:cfg.skin,
       label:cfg.no_button_label,
       border:cfg.no_button_border,
@@ -44,9 +46,13 @@ I.regist('mobile.Confirm',function(W,D){
       }
     });
     obj.buttonNo = btnNo;
-    
+    var div = I.insert('div',buttonBar);
+    I.cls(div,'col0');
+    div.style.width = '1px';
+    div.style.height = '2em';
+    div.style.backgroundColor = cfg.split_color;
     var btnYes = I.mobile.Button.create({
-      dom:td[td.length-1],
+      dom:buttonBar,
       skin:cfg.skin,
       label:cfg.yes_button_label,
       border:cfg.yes_button_border,
@@ -58,7 +64,7 @@ I.regist('mobile.Confirm',function(W,D){
       }
     });
     obj.buttonYes = btnYes;
-    obj.suit();
+    obj.goCenter();
   };
 
   var _prepare = function(config){

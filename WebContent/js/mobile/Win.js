@@ -10,10 +10,12 @@ I.regist('mobile.Win',function(W,D){
     mask_color:'#000',
     mask_close:true,
     title:'窗口',
-    title_background:'#FFF',
+    title_background:'#F8F8F8',
     title_color:'#000',
     content:'',
-    content_background:'#FFF',
+    content_background:'#F8F8F8',
+    line_top_color:'#DFDFDF',
+    line_bottom_color:'#FFF',
     callback:function(){}
   };
   var _create = function(obj){
@@ -22,18 +24,20 @@ I.regist('mobile.Win',function(W,D){
       obj.mask = I.mobile.Mask.create({skin:cfg.skin,opacity:cfg.mask_opacity,color:cfg.mask_color});
     }
     var o = I.insert('div');
-    o.innerHTML = '<i class="i-title"></i><i class="i-content"></i>';
+    o.innerHTML = '<i class="i-title"></i><hr class="i-line" /><i class="i-content"></i>';
     I.cls(o,obj.className);
     obj.layer = o;
     obj.titleBar = I.$(o,'class','i-title')[0];
-    obj.line = I.$(o,'class','i-line')[0];
     obj.contentPanel = I.$(o,'class','i-content')[0];
-    obj.titleBar.innerHTML = cfg.title+'<hr class="i-line" />';
+    obj.titleBar.innerHTML = cfg.title;
+    obj.line = I.$(o,'class','i-line')[0];
     obj.contentPanel.innerHTML = cfg.content;
     
     obj.titleBar.style.backgroundColor = cfg.title_background;
     obj.titleBar.style.color = cfg.title_color;
     obj.contentPanel.style.backgroundColor = cfg.content_background;
+    obj.line.style.borderTop = '1px solid '+cfg.line_top_color;
+    obj.line.style.borderBottom = '1px solid '+cfg.line_bottom_color;
     if(cfg.mask){
       if(cfg.mask_close){
         I.listen(obj.mask.layer,'click',function(m,e){
@@ -41,13 +45,21 @@ I.regist('mobile.Win',function(W,D){
         });
       }
     }
-    obj.suit = function(){
+    obj.goTop = function(){
+      obj.layer.style.top = '1em';
+      obj.layer.style.bottom = 'auto';
+    };
+    obj.goCenter = function(){
       var r = I.region();
       var or = I.region(obj.layer);
       var y = Math.floor((r.height-or.height)/2);
       obj.layer.style.top = y+'px';
+      obj.layer.style.bottom = 'auto';
     };
-    obj.suit();
+    obj.goBottom = function(){
+      obj.layer.style.top = 'auto';
+      obj.layer.style.bottom = '1em';
+    };
   };
 
   var _prepare = function(config){

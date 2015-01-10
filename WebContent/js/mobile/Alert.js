@@ -8,24 +8,27 @@ I.regist('mobile.Alert',function(W,D){
     title:'提示',
     content:'',
     button_label:'确定',
-    button_border:'1px solid #DDD',
-    button_background:'#E9E9E9',
+    button_border:'0',
+    button_background:'#DFDFDF',
     button_color:'#333',
+    split_color:'transparent',
     mask_close:false,
     callback:function(){}
   };
   var _create = function(obj){
+    var cfg = obj.config;
     obj.contentPanel.innerHTML = '';
     var html = obj.config.content;
     if(html.indexOf('<')<0){
-      html = '<table style="margin-bottom:0.5em;" width="100%" height="100%"><tbody><tr><td width="100%" height="100%" align="center" valign="middle">'+html+'</td></tr></tbody></table>';
+      html = '<table width="100%" height="100%"><tbody><tr><td width="100%" height="100%" align="center" valign="middle">'+html+'</td></tr></tbody></table>';
     }
     var m = I.insert('div',obj.contentPanel);
-    m.innerHTML = html;
+    m.innerHTML = html+'<div class="grid" style="margin-top:1em;border-top:1px solid '+cfg.split_color+';"></div>';
     obj.contentPanel = m;
-    var cfg = obj.config;
+    var buttonBar = I.$(obj.contentPanel,'*')[1];
+    obj.buttonBar = buttonBar;
     var btnOK = I.mobile.Button.create({
-      dom:obj.contentPanel,
+      dom:buttonBar,
       skin:cfg.skin,
       label:cfg.button_label,
       border:cfg.button_border,
@@ -36,7 +39,7 @@ I.regist('mobile.Alert',function(W,D){
       }
     });
     obj.buttonOK = btnOK;
-    obj.suit();
+    obj.goCenter();
   };
     
   var _prepare = function(config){

@@ -30,6 +30,7 @@ body{display:none;}
       <li id="toast"><i class="fa fa-comments-o">mobile.Toast</i></li>
       <li class="link a" data-href="mobile_Group.jsp"><i class="fa fa-exchange">切换</i></li>
       <li class="link a" data-href="mobile_Form.jsp"><i class="fa fa-file-o">表单</i></li>
+      <li class="link a" data-href="mobile_Button.jsp"><i class="fa fa-stop">按钮</i></li>
     </ul>
     <label>标题栏</label>
     <ul>
