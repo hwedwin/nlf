@@ -1,7 +1,9 @@
 package test;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import nc.liat6.frame.context.Context;
 import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.db.transaction.ITrans;
@@ -20,11 +22,11 @@ import nc.liat6.frame.web.response.Paging;
 
 /**
  * 示例
+ * 
  * @author 6tail
  *
  */
 public class Action{
-
   /**
    * 自动分页
    *
@@ -35,7 +37,6 @@ public class Action{
     ITrans t = TransFactory.getTrans();
     PageData pd = t.getSelecter().table("TABLE_USER").page(r.getPageNumber(),r.getPageSize());
     t.rollback();
-    t.close();
     Paging p = new Paging();
     p.setPageData(pd);
     p.setUri("/demo/paging.jsp");
@@ -48,11 +49,14 @@ public class Action{
    * @return
    * @throws IOException
    */
-  public Object upload(){
+  public Object upload() throws IOException{
     Request r = Context.get(Statics.REQUEST);
     IUploader uploader = r.find(Statics.FIND_UPLOADER);
-    UploadedFile file = uploader.getFile();
-    return new Json(file.getName());
+    List<UploadedFile> files = uploader.getFiles();
+    for(UploadedFile file:files){
+      file.writeTo(new File("D:\\"+file.getName()));
+    }
+    return new Json(files.size()+"个文件已上传成功！");
   }
 
   /**
@@ -81,11 +85,12 @@ public class Action{
 
   /**
    * 添加数据
+   * 
    * @return
    */
   public Object addData(){
     ITrans t = TransFactory.getTrans();
-    for(int i=0;i<20;i++){
+    for(int i = 0;i<20;i++){
       t.getInserter().table("TABLE_USER").set("NAME","张三"+i).set("AGE",1+(int)(Math.random()*100)).insert();
     }
     t.commit();

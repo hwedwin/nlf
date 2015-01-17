@@ -37,6 +37,29 @@ I.want(function(){
 });
 </script>
 <p></p>
+允许一次性上传多个文件：
+<div id="myUploadMultiple">
+  <i>文件上传</i>
+  <b></b>
+  <form>
+    <input type="file" />
+  </form>
+</div>
+<script type="text/javascript">
+//通过html渲染的上传组件
+I.want(function(){
+  I.ui.Upload.render('myUploadMultiple',{
+    width:90,
+    height:30,
+    multiple:true,
+    url:'${PATH}/test.Action/upload',//上传地址，必选
+    onSuccess:function(r){//上传成功后调用
+      window.alert('文件上传成功：'+r.data);
+    }
+  });
+});
+</script>
+<p></p>
 <a id="btnA">动态创建上传组件</a>
 <script type="text/javascript">
 //动态创建的上传组件

@@ -17,6 +17,7 @@ I.regist('ui.Upload',function(W,D){
     color_hover:'#333',
     checkKlass:'nc.liat6.frame.web.upload.UploadStatus',
     checkMethod:'getStatus',
+    multiple:false,
     onUpload:function(cfg){},
     onSuccess:function(result){},
     onFailed:function(result){
@@ -55,6 +56,9 @@ I.regist('ui.Upload',function(W,D){
     obj.form.method = 'post';
     obj.form.enctype = 'multipart/form-data';
     obj.input.name = 'iLibUploadFile';
+    if(cfg.multiple){
+      obj.input.multiple = 'multiple';
+    }
     I.listen(obj.input,'change',function(m,e){
       obj.upload(m.value);
     });
