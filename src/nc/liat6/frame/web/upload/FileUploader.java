@@ -6,11 +6,11 @@ import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.execute.Request;
 import nc.liat6.frame.execute.request.AbstractRequestFind;
 import nc.liat6.frame.execute.upload.IUploader;
+import nc.liat6.frame.execute.upload.UploadRule;
 import nc.liat6.frame.execute.upload.UploadedFile;
 import nc.liat6.frame.web.request.IWebRequestFind;
-import nc.liat6.frame.web.upload.bean.UploadRule;
-import nc.liat6.frame.web.upload.impl.UploadParser;
 import nc.liat6.frame.web.upload.impl.UploadListener;
+import nc.liat6.frame.web.upload.impl.UploadParser;
 
 /**
  * 文件上传器

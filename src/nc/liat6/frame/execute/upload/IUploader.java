@@ -1,7 +1,6 @@
 package nc.liat6.frame.execute.upload;
 
 import java.util.List;
-import nc.liat6.frame.web.upload.bean.UploadRule;
 
 /**
  * 文件上传接口，仅支持单文件上传

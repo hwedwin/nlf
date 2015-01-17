@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.exception.BadUploadException;
 import nc.liat6.frame.execute.upload.IProgressListener;
+import nc.liat6.frame.execute.upload.UploadRule;
 import nc.liat6.frame.execute.upload.UploadedFile;
 import nc.liat6.frame.locale.L;
 import nc.liat6.frame.util.ByteArray;
@@ -18,7 +19,6 @@ import nc.liat6.frame.util.Mather;
 import nc.liat6.frame.util.Stringer;
 import nc.liat6.frame.util.UUID;
 import nc.liat6.frame.web.upload.IParser;
-import nc.liat6.frame.web.upload.bean.UploadRule;
 
 /**
  * 通过磁盘缓存的文件上传解析器，支持多个文件的上传。

@@ -3,8 +3,8 @@ package nc.liat6.frame.web.upload;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import nc.liat6.frame.execute.upload.IProgressListener;
+import nc.liat6.frame.execute.upload.UploadRule;
 import nc.liat6.frame.execute.upload.UploadedFile;
-import nc.liat6.frame.web.upload.bean.UploadRule;
 
 /**
  * 文件上传解析接口
