@@ -9,7 +9,6 @@ import nc.liat6.frame.locale.L;
  * 
  */
 public class NlfException extends RuntimeException{
-
   private static final long serialVersionUID = 3199501826477240563L;
   private static final String MESSAGE = "exception.frame";
 

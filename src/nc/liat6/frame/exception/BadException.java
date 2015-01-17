@@ -9,7 +9,6 @@ import nc.liat6.frame.locale.L;
  * 
  */
 public class BadException extends NlfException{
-
   private static final long serialVersionUID = -5122157914640946740L;
   private static final String MESSAGE = "exception.bad";
   private Object data = null;

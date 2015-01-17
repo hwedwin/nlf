@@ -9,7 +9,6 @@ import nc.liat6.frame.locale.L;
  * 
  */
 public class ImplNotFoundException extends NlfException{
-
   private static final long serialVersionUID = 3932096485467560097L;
   private static final String MESSAGE = "exception.impl_not_found";
 
@@ -18,7 +17,7 @@ public class ImplNotFoundException extends NlfException{
   }
 
   public ImplNotFoundException(String message){
-    super(L.get(MESSAGE)+" : "+message);
+    super(message);
   }
 
   public ImplNotFoundException(Throwable cause){

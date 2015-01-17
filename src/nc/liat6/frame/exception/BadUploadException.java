@@ -10,7 +10,6 @@ import nc.liat6.frame.locale.L;
  * 
  */
 public class BadUploadException extends NlfException{
-
   private static final long serialVersionUID = -2382517006519673215L;
   private static final String MESSAGE = "exception.upload";
 
@@ -19,14 +18,14 @@ public class BadUploadException extends NlfException{
   }
 
   public BadUploadException(String message){
-    super(L.get(MESSAGE)+" : "+message);
+    super(message);
   }
 
   public BadUploadException(Throwable cause){
-    this(null==cause?null:cause.getMessage());
+    super(L.get(MESSAGE),cause);
   }
 
   public BadUploadException(String message,Throwable cause){
-    this(null==cause?null:cause.getMessage());
+    super(message,cause);
   }
 }
