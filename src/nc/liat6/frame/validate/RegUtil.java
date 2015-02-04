@@ -7,7 +7,6 @@ package nc.liat6.frame.validate;
  * 
  */
 public class RegUtil{
-
   /** 0到9的数字 */
   public static final String NUMBER = "^[0-9]*$";
   /** 正整数 */
@@ -36,8 +35,16 @@ public class RegUtil{
   public static final String LETTER_UPPERCASE = "^[A-Z]+$";
   /** 小写字母 */
   public static final String LETTER_LOWERCASE = "^[a-z]+$";
+  /** 字母和数字 */
+  public static final String LETTER_AND_NUMBER = "^[A-Za-z0-9]+$";
+  /** 大写字母和数字 */
+  public static final String LETTER_UPPERCASE_AND_NUMBER = "^[A-Z0-9]+$";
+  /** 小写字母和数字 */
+  public static final String LETTER_LOWERCASE_AND_NUMBER = "^[a-z0-9]+$";
   /** 电子邮件 */
   public static final String EMAIL = "^\\w+([-+\\.]\\w+)*@\\w+([-\\.]\\w+)*\\.\\w+([-\\.]\\w+)*$";
   /** 手机号码 */
-  public static final String MOBILE = "^((13[0-9])|(15[^4,\\D])|(18[0-9]))\\d{8}$";
+  public static final String MOBILE = "^((13[0-9])|(14[0-9])|(15[^4,\\D])|(17[0-9])|(18[0-9]))\\d{8}$";
+  /** 身份证 */
+  public static final String ID_CODE = "^\\d{15}|^\\d{17}([0-9]|X|x)$";
 }

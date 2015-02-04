@@ -228,15 +228,29 @@ public class Stringer{
   }
 
   /**
-   * 对字符串进行MD5加密
+   * 对字符串进行MD5加密，utf-8编码
    * 
    * @param s 原文
    * @return 密文,大写形式
+   * @throws UnsupportedEncodingException 
    * @throws Exception
    */
-  public static String md5(String s) throws NoSuchAlgorithmException{
+  public static String md5(String s) throws NoSuchAlgorithmException, UnsupportedEncodingException{
+    return md5(s,"utf-8");
+  }
+  
+  /**
+   * 对字符串进行MD5加密
+   * 
+   * @param s 原文
+   * @param encode 编码
+   * @return 密文,大写形式
+   * @throws UnsupportedEncodingException 
+   * @throws Exception
+   */
+  public static String md5(String s,String encode) throws NoSuchAlgorithmException, UnsupportedEncodingException{
     MessageDigest md = MessageDigest.getInstance("MD5");
-    md.update(s.getBytes());
+    md.update(s.getBytes(encode));
     byte[] b = md.digest();
     StringBuffer sb = new StringBuffer();
     for(int i = 0;i<b.length;i++){
