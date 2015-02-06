@@ -10,12 +10,8 @@ I.regist('mobile.Win',function(W,D){
     mask_color:'#000',
     mask_close:true,
     title:'窗口',
-    title_background:'#F8F8F8',
-    title_color:'#000',
     content:'',
-    content_background:'#F8F8F8',
-    line_top_color:'#DFDFDF',
-    line_bottom_color:'#FFF',
+    content_background:'#FFF',
     callback:function(){}
   };
   var _create = function(obj){
@@ -23,21 +19,17 @@ I.regist('mobile.Win',function(W,D){
     if(cfg.mask){
       obj.mask = I.mobile.Mask.create({skin:cfg.skin,opacity:cfg.mask_opacity,color:cfg.mask_color});
     }
-    var o = I.insert('div');
-    o.innerHTML = '<i class="i-title"></i><hr class="i-line" /><i class="i-content"></i>';
+    var o = I.insert('section');
+    o.innerHTML = '<header></header><article></article><footer></footer>';
     I.cls(o,obj.className);
     obj.layer = o;
-    obj.titleBar = I.$(o,'class','i-title')[0];
-    obj.contentPanel = I.$(o,'class','i-content')[0];
-    obj.titleBar.innerHTML = cfg.title;
-    obj.line = I.$(o,'class','i-line')[0];
-    obj.contentPanel.innerHTML = cfg.content;
-    
-    obj.titleBar.style.backgroundColor = cfg.title_background;
-    obj.titleBar.style.color = cfg.title_color;
-    obj.contentPanel.style.backgroundColor = cfg.content_background;
-    obj.line.style.borderTop = '1px solid '+cfg.line_top_color;
-    obj.line.style.borderBottom = '1px solid '+cfg.line_bottom_color;
+    var chd = I.$(o,'*');
+    obj.header = chd[0];
+    obj.article = chd[1];
+    obj.footer = chd[2];
+    obj.header.innerHTML = cfg.title;
+    obj.article.innerHTML = cfg.content;
+    obj.article.style.backgroundColor = cfg.content_background;
     if(cfg.mask){
       if(cfg.mask_close){
         I.listen(obj.mask.layer,'click',function(m,e){

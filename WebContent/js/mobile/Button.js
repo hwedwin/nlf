@@ -7,6 +7,7 @@ I.regist('mobile.Button',function(W,D){
     skin:'MobileDefault',
     border:'1px solid #DDD',
     background:'#E9E9E9',
+    round:false,
     color:'#333',
     label:null,
     icon:null,
@@ -38,6 +39,9 @@ I.regist('mobile.Button',function(W,D){
     obj.className = 'i-mobile-Button-'+cfg.skin;
     if(cfg.icon){
       obj.className += ' '+cfg.icon;
+    }
+    if(cfg.round){
+      obj.className += ' round';
     }
     I.util.Skin.init(cfg.skin);
     if('a'==dom.tagName.toLowerCase()){

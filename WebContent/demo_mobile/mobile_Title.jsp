@@ -5,7 +5,6 @@
 <meta charset="UTF-8">
 <title>mobile</title>
 <meta name="viewport" content="width=device-width,user-scalable=no" />
-<link type="text/css" rel="stylesheet" href="${PATH}/css/animate.css" />
 <link type="text/css" rel="stylesheet" href="${PATH}/css/font-awesome.css" />
 <script src="${PATH}/js/icore.js"></script>
 <style type="text/css">
@@ -17,16 +16,11 @@ body{display:none;}
     <nav>
       <a href="index.jsp" class="fa fa-chevron-left"></a>
       <a class="fa fa-signal"></a>
-      <a class="fa fa-sliders"></a>
-      <a class="fa fa-volume-up"></a>
-      <a class="fa fa-bars"></a>
     </nav>
     <i>标题栏</i>
     <nav>
+      <a class="fa fa-cog"></a>
       <a class="fa fa-signal"></a>
-      <a class="fa fa-sliders"></a>
-      <a class="fa fa-volume-up"></a>
-      <a class="fa fa-bars"></a>
     </nav>
   </header>
   <article>

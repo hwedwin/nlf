@@ -5,7 +5,6 @@
 <meta charset="UTF-8">
 <title>mobile</title>
 <meta name="viewport" content="width=device-width,user-scalable=no" />
-<link type="text/css" rel="stylesheet" href="${PATH}/css/animate.css" />
 <link type="text/css" rel="stylesheet" href="${PATH}/css/font-awesome.css" />
 <script src="${PATH}/js/icore.js"></script>
 <style type="text/css">
@@ -22,6 +21,9 @@ i.col0{
       <a href="index.jsp" class="fa fa-chevron-left"></a>
     </nav>
     <i>表单</i>
+    <nav>
+      <a class="fa fa-none"></a>
+    </nav>
   </header>
   <article>
     <label>个人资料</label>
@@ -37,14 +39,6 @@ i.col0{
         </div>
       </li>
       <li class="grid"><i class="col0">简介</i><textarea rows="6"></textarea></li>
-    </ul>
-    <label>个人资料</label>
-    <ul>
-      <li>
-        <input type="text" placeholder="姓名" />&nbsp;
-        <input type="text" placeholder="年龄" />&nbsp;
-        <select><option>男</option><option>女</option></select>
-      </li>
     </ul>
     <a class="button orange fa fa-check" style="margin:1em;">确定</a>
   </article>

@@ -5,28 +5,24 @@
 I.regist('mobile.Alert',function(W,D){
   var CFG = {
     skin:'MobileDefault',
-    title:'提示',
+    title:'<i>提示</i>',
     content:'',
     button_label:'确定',
     button_border:'0',
-    button_background:'#DFDFDF',
+    button_background:'#FFF',
     button_color:'#333',
-    split_color:'transparent',
     mask_close:false,
     callback:function(){}
   };
   var _create = function(obj){
     var cfg = obj.config;
-    obj.contentPanel.innerHTML = '';
     var html = obj.config.content;
     if(html.indexOf('<')<0){
-      html = '<table width="100%" height="100%"><tbody><tr><td width="100%" height="100%" align="center" valign="middle">'+html+'</td></tr></tbody></table>';
+      html = '<div style="padding:1em;text-align:center">'+html+'</div>';
     }
-    var m = I.insert('div',obj.contentPanel);
-    m.innerHTML = html+'<div class="grid" style="margin-top:1em;border-top:1px solid '+cfg.split_color+';"></div>';
-    obj.contentPanel = m;
-    var buttonBar = I.$(obj.contentPanel,'*')[1];
-    obj.buttonBar = buttonBar;
+    obj.article.innerHTML = html;
+    obj.footer.innerHTML = '<div class="grid" style="padding:.6em"></div>';
+    var buttonBar = I.$(obj.footer,'*')[0];
     var btnOK = I.mobile.Button.create({
       dom:buttonBar,
       skin:cfg.skin,

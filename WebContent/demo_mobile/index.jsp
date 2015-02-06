@@ -5,11 +5,14 @@
 <meta charset="UTF-8">
 <title>mobile</title>
 <meta name="viewport" content="width=device-width,user-scalable=no" />
-<link type="text/css" rel="stylesheet" href="${PATH}/css/animate.css" />
 <link type="text/css" rel="stylesheet" href="${PATH}/css/font-awesome.css" />
 <script src="${PATH}/js/icore.js"></script>
 <style type="text/css">
 body{display:none;}
+footer{
+  border-top:1px solid #D6D6D6;
+  background-color:#FFF;
+}
 </style>
 </head>
 <body>
@@ -18,6 +21,9 @@ body{display:none;}
       <a class="fa fa-home" href="index.jsp"></a>
     </nav>
     <i>NLF MOBILE</i>
+    <nav>
+      <a class="fa fa-none"></a>
+    </nav>
   </header>
   <article>
     <label>UI示例</label>
@@ -28,6 +34,8 @@ body{display:none;}
       <li id="alert"><i class="fa fa-info-circle">mobile.Alert</i></li>
       <li id="confirm"><i class="fa fa-question-circle">mobile.Confirm</i></li>
       <li id="toast"><i class="fa fa-comments-o">mobile.Toast</i></li>
+      <li id="loading"><i class="fa fa-spinner">mobile.Loading</i></li>
+      <li id="mask"><i class="fa fa-slack">mobile.Mask</i></li>
       <li class="link a" data-href="mobile_Group.jsp"><i class="fa fa-exchange">切换</i></li>
       <li class="link a" data-href="mobile_Form.jsp"><i class="fa fa-file-o">表单</i></li>
       <li class="link a" data-href="mobile_Button.jsp"><i class="fa fa-stop">按钮</i></li>
@@ -52,15 +60,28 @@ body{display:none;}
   I.want(function(){
     I.ui.Mobile.render();
     I.listen('win','click',function(m,e){
-      I.mobile.Win.create({title:'<i class="fa fa-info-circle">提示</i>',content:'内容部分。'});
+      I.mobile.Win.create({title:'<i>标题</i>',content:'内容部分。'});
     });
     I.listen('alert','click',function(m,e){
       I.mobile.Alert.create({content:'内容部分。'});
+    });
+    I.listen('loading','click',function(m,e){
+      var loading = I.mobile.Loading.create();
+      I.delay(3000,function(){
+        loading.close();
+      });
+    });
+    I.listen('mask','click',function(m,e){
+      var mask = I.mobile.Mask.create();
+      I.delay(3000,function(){
+        mask.close();
+      });
     });
     I.listen('confirm','click',function(m,e){
       I.mobile.Confirm.create({
         content:'您确定要修炼辟邪剑谱吗？',
         yes:function(){
+          this.close();
           I.mobile.Alert.create({content:'您已经成功变性，但是修炼失败！'});
         },
         no:function(){

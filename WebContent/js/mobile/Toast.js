@@ -23,12 +23,10 @@ I.regist('mobile.Toast',function(W,D){
     I.cls(o,obj.className);
     obj.layer = o;
     o.innerHTML = '<span>'+cfg.msg+'</span>';
-    o.style.backgroundColor = cfg.background;
-    o.style.color = cfg.color;
-    o.style.border = cfg.border;
-    var nr = I.region(I.$(o,'*')[0]);
-    var pr = I.region();
-    o.style.left = Math.max(Math.floor(pr.x+pr.width/2-nr.width/2),0)+'px';
+    obj.span = I.$(o,'*')[0];
+    obj.span.style.backgroundColor = cfg.background;
+    obj.span.style.color = cfg.color;
+    obj.span.style.border = cfg.border;
     var op = 0;
     I.opacity(o,op);
     obj.timer = W.setInterval(function(){

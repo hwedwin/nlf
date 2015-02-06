@@ -15,7 +15,7 @@
 <body>
 <a href="${PATH}/">返回首页</a>
 <p></p>
-文件上传：
+单文件上传：
 <div id="myUpload">
   <i>文件上传</i>
   <b></b>

@@ -5,16 +5,16 @@
 I.regist('mobile.Confirm',function(W,D){
   var CFG = {
     skin:'MobileDefault',
-    title:'提示',
+    title:'<i>提示</i>',
     content:'',
     yes_button_label:'确定',
     yes_button_border:'0',
-    yes_button_background:'transparent',
+    yes_button_background:'#FFF',
     yes_button_color:'#333',
     no_button_label:'取消',
     no_button_border:'0',
-    no_button_background:'transparent',
-    no_button_color:'#999',
+    no_button_background:'#FFF',
+    no_button_color:'#333',
     split_color:'#DFDFDF',
     mask_close:false,
     callback:function(){},
@@ -23,16 +23,14 @@ I.regist('mobile.Confirm',function(W,D){
   };
   var _create = function(obj){
     var cfg = obj.config;
-    obj.contentPanel.innerHTML = '';
+    obj.article.innerHTML = '';
     var html = obj.config.content;
     if(html.indexOf('<')<0){
-      html = '<table width="100%" height="100%"><tbody><tr><td width="100%" height="100%" align="center" valign="middle">'+html+'</td></tr></tbody></table>';
+      html = '<div style="padding:1em;text-align:center">'+html+'</div>';
     }
-    var m = I.insert('div',obj.contentPanel);
-    m.innerHTML = html+'<div class="grid" style="margin-top:1em;border-top:1px solid '+cfg.split_color+';"></div>';
-    obj.contentPanel = m;
-    var buttonBar = I.$(obj.contentPanel,'*')[1];
-    obj.buttonBar = buttonBar;
+    obj.article.innerHTML = html;
+    obj.footer.innerHTML = '<div class="grid" style="padding:.6em"></div>';
+    var buttonBar = I.$(obj.footer,'*')[0];
     var btnNo = I.mobile.Button.create({
       dom:buttonBar,
       skin:cfg.skin,
@@ -59,7 +57,6 @@ I.regist('mobile.Confirm',function(W,D){
       background:cfg.yes_button_background,
       color:cfg.yes_button_color,
       callback:function(){
-        obj.close();
         obj.config.yes.call(obj);
       }
     });

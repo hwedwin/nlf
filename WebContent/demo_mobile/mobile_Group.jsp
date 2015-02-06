@@ -5,7 +5,6 @@
 <meta charset="UTF-8">
 <title>mobile</title>
 <meta name="viewport" content="width=device-width,user-scalable=no" />
-<link type="text/css" rel="stylesheet" href="${PATH}/css/animate.css" />
 <link type="text/css" rel="stylesheet" href="${PATH}/css/font-awesome.css" />
 <script src="${PATH}/js/icore.js"></script>
 <style type="text/css">
@@ -22,6 +21,9 @@ i.col0{
       <a href="index.jsp" class="fa fa-chevron-left"></a>
     </nav>
     <i>切换</i>
+    <nav>
+      <a class="fa fa-none"></a>
+    </nav>
   </header>
   <article>
     <div style="margin:1em;">
