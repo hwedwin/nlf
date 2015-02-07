@@ -15,16 +15,26 @@
 <body>
 <a href="${PATH}/">返回首页</a>
 <p></p>
-<a id="btnA">蓝色Confirm</a>
 <a id="btnB">默认Confirm</a>
+<a id="btnA">蓝色Confirm</a>
 <a id="btnC">深色遮罩Confirm</a>
 <script type="text/javascript">
 I.want(function(){
   I.ui.Button.render('btnA',{icon:'fa fa-thumbs-up',callback:function(){
     I.z.Confirm.create({
-      title_background:'#0074D9',
-      title_border_color:'#0074D9',
-      content_border_color:'#0074D9',
+      title_background:'#5bc0de',
+      close_background:'#5bc0de',
+      title_border_color:'#46b8da',
+      title_color:'#FFF',
+      close_color:'#FFF',
+      shadow:'#5bc0de 0px 0px 8px',
+      content:'Hello World!',
+      yes_button_background:'#5bc0de',
+      yes_button_border:'1px solid #46b8da',
+      yes_button_color:'#FFF',
+      yes_button_background_hover:'#31b0d5',
+      yes_button_border_hover:'1px solid #269abc',
+      yes_button_color_hover:'#FFF',
       content:'Hello World!',
       yes:function(){
         I.z.Alert.create({content:'u choosed yes'});
@@ -49,11 +59,6 @@ I.want(function(){
     I.z.Confirm.create({
       mask_opacity:60,
       mask_color:'#000',
-      shadow_color:'#FFF',
-      shadow_opacity:50,
-      title_background:'#0074D9',
-      title_border_color:'#0074D9',
-      content_border_color:'#0074D9',
       content:'Hello World!',
       yes:function(){
         I.z.Alert.create({content:'u choosed yes'});

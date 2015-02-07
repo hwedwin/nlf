@@ -21,10 +21,6 @@ I.want(function(){
   I.ui.Button.render('btnA',{
     callback:function(){
       var win = I.z.NoTitleWin.create({
-        mask_color:'#000',
-        mask_opacity:50,
-        shadow_color:'#FFF',
-        shadow_opacity:50,
         content:'你没中奖...',
         width:500,
         height:300

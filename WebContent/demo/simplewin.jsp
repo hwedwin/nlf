@@ -16,14 +16,30 @@
 <a href="${PATH}/">返回首页</a>
 <p></p>
 <a id="btnA">显示简单窗</a>
+<a id="btnB">固定宽度的简单窗</a>
+<a id="btnC">固定高度的简单窗</a>
 <script type="text/javascript">
 I.want(function(){
   I.ui.Button.render('btnA',{
     callback:function(){
       I.z.SimpleWin.create({
-        content:'你没中奖...',
-        width:500,
-        height:300
+        content:'我会随着窗口大小变化而变化。'
+      });
+    }
+  });
+  I.ui.Button.render('btnB',{
+    callback:function(){
+      I.z.SimpleWin.create({
+        width:600,
+        content:'我只有600像素宽。'
+      });
+    }
+  });
+  I.ui.Button.render('btnC',{
+    callback:function(){
+      I.z.SimpleWin.create({
+        height:300,
+        content:'我只有300像素高。'
       });
     }
   });

@@ -4,30 +4,49 @@
  */
 I.regist('z.Alert',function(W,D){
   var CFG = {
-    skin:'Default',
-    width:400,
-    height:150,
-    title:'提示',
-    title_height:30,
-    content:'',
-    button_label:'确定',
-    button_border:'1px solid #DDD',
-    button_border_hover:'1px solid #999',
-    button_background:'#E9E9E9',
-    button_background_hover:'#FBFBFB',
-    button_color:'#333',
-    button_color_hover:'#333',
-    callback:function(){}
+   skin:'Default',
+   mask:true,
+   mask_opacity:10,
+   mask_color:'#FFF',
+   width:400,
+   height:150,
+   shadow:'#333 0px 0px 8px',
+   round:6,
+   title:'提示',
+   title_height:30,
+   title_background:'#EFEFF0',
+   title_color:'#000',
+   title_border_color:'#BBB',
+   title_border_height:1,
+   close_icon:'fa fa-times',
+   close_background:'#EFEFF0',
+   close_color:'#000',
+   close_hover_background:'#EFEFF0',
+   close_hover_color:'#000',
+   content:'',
+   content_background:'#FFF',
+   footer_height:40,
+   footer_background:'#FFF',
+   footer_border_color:'#EEE',
+   footer_border_height:1,
+   button_skin:'Default',
+   button_background:'#FBFBFB',
+   button_border:'1px solid #CCC',
+   button_color:'#333',
+   button_round:4,
+   button_background_hover:'#E6E6E6',
+   button_border_hover:'1px solid #ADADAD',
+   button_color_hover:'#333',
+   button_round_hover:4,
+   button_label:'确定',
+   button_icon:null,
+   callback:function(){}
   };
   var _create = function(obj){
-    obj.contentPanel.innerHTML = '';
-    var o = I.insert('div',obj.contentPanel);
-    I.css(o,'position:absolute;margin:0;padding:0;left:0;bottom:0;height:40px;overflow:hidden;width:100%;border-top:1px solid #EEE;');
-    obj.bottomPanel = o;
     var cfg = obj.config;
     var btn = I.ui.Button.create({
-      dom:o,
-      skin:cfg.skin,
+      dom:obj.footerBar,
+      skin:cfg.button_skin,
       label:cfg.button_label,
       border:cfg.button_border,
       border_hover:cfg.button_border_hover,
@@ -35,26 +54,25 @@ I.regist('z.Alert',function(W,D){
       background_hover:cfg.button_background_hover,
       color:cfg.button_color,
       color_hover:cfg.button_color_hover,
+      icon:cfg.button_icon,
+      round:cfg.button_round,
+      round_hover:cfg.button_round_hover,
       callback:function(){
         obj.close();
       }
     });
-    btn.dom.style.position = 'absolute';
     var r = I.region(btn.dom);
-    var space = Math.floor((40-r.height)/2);
-    btn.dom.style.right = space+'px';
-    btn.dom.style.top = space+'px';
+    var space = Math.floor((cfg.footer_height-r.height)/2);
+    I.util.Boost.addStyle(btn.dom,'position:absolute;right:'+space+'px;top:'+space+'px;');
     obj.buttonOK = btn;
-    
-    var html = obj.config.content;
+
+    var html = cfg.content;
     if(html.indexOf('<')<0){
-      html = '<table width="100%" height="'+(obj.config.height-40)+'"><tbody><tr><td width="100%" height="100%" align="center" valign="middle">'+html+'</td></tr></tbody></table>';
+      html = '<table width="100%" height="100%"><tbody><tr><td width="100%" height="100%" align="center" valign="middle">'+html+'</td></tr></tbody></table>';
     }
-    var m = I.insert('div',obj.contentPanel);
-    m.innerHTML = html;
-    obj.contentPanel = m;
+    obj.contentPanel.innerHTML = html;
   };
-    
+
   var _prepare = function(config){
     var cfg = I.ui.Component.initConfig(config,CFG);
     var obj = I.z.Win.create(cfg);

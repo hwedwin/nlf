@@ -5,12 +5,14 @@
 I.regist('ui.Button',function(W,D){
   var CFG = {
     skin:'Default',
-    border:'1px solid #DDD',
-    border_hover:'1px solid #999',
-    background:'#E9E9E9',
-    background_hover:'#FBFBFB',
+    background:'#FBFBFB',
+    border:'1px solid #CCC',
     color:'#333',
+    round:4,
+    background_hover:'#E6E6E6',
+    border_hover:'1px solid #ADADAD',
     color_hover:'#333',
+    round_hover:4,
     label:null,
     icon:null,
     dom:D.body,
@@ -19,21 +21,18 @@ I.regist('ui.Button',function(W,D){
   var _bindEvent = function(obj){
     var cfg = obj.config;
     var dom = obj.dom;
-    dom.style.border = cfg.border;
-    dom.style.backgroundColor = cfg.background;
-    dom.style.color = cfg.color;
+    I.util.Boost.addStyle(dom,'border:'+cfg.border+';background:'+cfg.background+';color:'+cfg.color);
+    I.util.Boost.round(dom,cfg.round);
     I.listen(dom,'click',function(m,e){
       cfg.callback.call(obj);
     });
     I.listen(dom,'mouseover',function(m,e){
-      m.style.border = cfg.border_hover;
-      m.style.backgroundColor = cfg.background_hover;
-      m.style.color = cfg.color_hover;
+      I.util.Boost.addStyle(dom,'border:'+cfg.border_hover+';background:'+cfg.background_hover+';color:'+cfg.color_hover);
+      I.util.Boost.round(dom,cfg.round_hover);
     });
     I.listen(dom,'mouseout',function(m,e){
-      m.style.border = cfg.border;
-      m.style.backgroundColor = cfg.background;
-      m.style.color = cfg.color;
+      I.util.Boost.addStyle(dom,'border:'+cfg.border+';background:'+cfg.background+';color:'+cfg.color);
+      I.util.Boost.round(dom,cfg.round);
     });
   };
   var _create = function(config){

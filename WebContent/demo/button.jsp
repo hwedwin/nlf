@@ -24,12 +24,20 @@
 I.want(function(){
   I.ui.Button.render('btnA');
   I.ui.Button.render('btnB',{
-    background:'#0074D9',
-    background_hover:'#0068C3',
+    background:'#5bc0de',
+    border:'1px solid #46b8da',
     color:'#FFF',
+    background_hover:'#31b0d5',
+    border_hover:'1px solid #269abc',
     color_hover:'#FFF'
   });
   I.ui.Button.render('btnC',{
+    background:'#5cb85c',
+    border:'1px solid #4cae4c',
+    color:'#FFF',
+    background_hover:'#449d44',
+    border_hover:'1px solid #398439',
+    color_hover:'#FFF',
     callback:function(){
       I.z.Alert.create({content:this.dom.innerHTML});
     }
@@ -59,7 +67,13 @@ I.want(function(){
   I.ui.Button.create({
     dom:I.$('buttons'),
     icon:'fa fa-car',//带个图标
-    label:'动态创建的带图标的按钮2'
+    label:'&nbsp;动态创建的带图标的按钮2'
+  });
+  I.ui.Button.create({
+    dom:I.$('buttons'),
+    round:'1em',
+    round_hover:'1em',
+    label:'改变一下样子'
   });
 });
 </script>

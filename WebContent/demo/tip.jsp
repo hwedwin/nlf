@@ -21,7 +21,7 @@
 I.want(function(){
   I.ui.Button.render('btnA',{icon:'fa fa-phone',callback:function(){
     //创建蓝色提示信息
-    I.ui.Tip.create({msg:'Hello World!',background:'#0074D9',color:'#FFF'});
+    I.ui.Tip.create({msg:'Hello World!',background:'#46b8da',color:'#FFF'});
   }});
   I.ui.Button.render('btnB',{icon:'fa fa-car',callback:function(){
     //创建默认提示信息

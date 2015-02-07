@@ -20,10 +20,14 @@
 I.want(function(){
   I.ui.Button.render('btnA',{
     callback:function(){
-      I.z.Win.create({
-        content:'你没中奖...',
+      var win = I.z.Win.create({
+        content:'2秒后窗口变大',
         width:500,
         height:300
+      });
+      I.delay(2000,function(){
+        win.resizeTo(600,400);
+        win.contentPanel.innerHTML = '呵呵';
       });
     }
   });
