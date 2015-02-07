@@ -29,6 +29,7 @@
       <li><b></b><i></i><a data-url="${PATH}/demo/form.jsp">表单</a></li>
       <li><b></b><i></i><a data-url="${PATH}/demo/editor.jsp">文本编辑器</a></li>
       <li><b></b><i></i><a data-url="${PATH}/demo/slider.jsp">滑块</a></li>
+      <li><b></b><i></i><a data-url="${PATH}/demo/calendar.jsp">日历控件</a></li>
     </ul>
   </li>
   <li><b></b><i></i><a>自动分页</a>

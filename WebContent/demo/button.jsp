@@ -39,7 +39,7 @@ I.want(function(){
     border_hover:'1px solid #398439',
     color_hover:'#FFF',
     callback:function(){
-      I.z.Alert.create({content:this.dom.innerHTML});
+      I.z.Alert.create({content:this.dom.innerHTML,mask_opacity:60,mask_color:'#000',});
     }
   });
 });

@@ -14,7 +14,19 @@ I.regist('skin.Default',function(W,D){
  top:0;
  border:0;
 }
-.i-ui-Loading-${skin}{z-index:992;position:absolute;left:0;top:0;width:0;height:2px;margin:0;padding:0;overflow:hidden;background-color:#0074D9;font-size:0;border:0;}
+.i-ui-Loading-${skin}{
+ z-index:992;
+ position:absolute;
+ left:0;
+ top:0;
+ width:0;
+ height:2px;
+ margin:0;
+ padding:0;
+ overflow:hidden;
+ font-size:0;
+ border:0;
+}
 .i-ui-Button-${skin}{
  -webkit-box-sizing:border-box;
  -moz-box-sizing:border-box;
