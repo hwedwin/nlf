@@ -66,7 +66,7 @@
   <ul>
     <li data-width="10">是否超级管理员：</li>
     <li>
-      <a id="check">
+      <a id="check"><b></b><i></i>
         <input id="check0" type="checkbox" value="a" />
       </a>
     </li>
@@ -74,16 +74,16 @@
   <ul>
     <li data-width="10">星期：</li>
     <li>
-      <a id="week1">一
+      <a id="week1"><b></b><i>一</i>
         <input id="week_1" type="checkbox" value="1" />
       </a>
-      <a id="week2">二
+      <a id="week2"><b></b><i>二</i>
         <input id="week_2" type="checkbox" value="2" />
       </a>
-      <a id="week3">三
+      <a id="week3"><b></b><i>三</i>
         <input id="week_3" type="checkbox" value="3" />
       </a>
-      <a id="week4">四
+      <a id="week4"><b></b><i>四</i>
         <input id="week_4" type="checkbox" value="4" />
       </a>
     </li>

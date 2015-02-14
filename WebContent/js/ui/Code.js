@@ -9,8 +9,8 @@ I.regist('ui.Code',function(W,D){
   };
   var _TAG = {
     keyword:[
-      'var','function','try','catch','throw','if','else','return','new','break','switch','case','for','while','delete','do','typeof','undefined','in','this','void','continue','true','false','instanceof','finally','with','null',
-      'abstract','boolean','byte','char','class','default','double','extends','final','float','implements','import','int','interface','long','native','package','private','protected','public','short','static','super','synchronized','throws','transient','volatile'
+     'var','function','try','catch','throw','if','else','return','new','break','switch','case','for','while','delete','do','typeof','undefined','in','this','void','continue','true','false','instanceof','finally','with','null',
+     'abstract','boolean','byte','char','class','default','double','extends','final','float','implements','import','int','interface','long','native','package','private','protected','public','short','static','super','synchronized','throws','transient','volatile'
     ]
   };
   var TAG = {
@@ -123,11 +123,16 @@ I.regist('ui.Code',function(W,D){
     s = s.replace(/\n\n/g,'\n');
     var ns = s.split('\n');
     var comment = 0;
-    for(var i=0;i<ns.length;i++){
-      var li = I.insert('li',obj.dom);
-      var span = I.insert('span',li);
+    for(var i=0,k=ns.length;i<k;i++){
       var rs = ns[i];
       rs = rs.replace('\t','  ');
+      if(i==k-1){
+        if(I.trim(rs).length<1){
+          break;
+        }
+      }
+      var li = I.insert('li',obj.dom);
+      var span = I.insert('span',li);
       var q = [];
       var reader = new StringReader(rs);
       while(reader.hasNext()){

@@ -21,7 +21,7 @@ var CFG={
  close_hover_color:'#000',
  content:'',
  content_background:'#FFF',
- footer_height:40,
+ footer_height:60,
  footer_background:'#FFF',
  footer_border_color:'#EEE',
  footer_border_height:1,
