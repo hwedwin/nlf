@@ -67,7 +67,6 @@ var _create=function(obj){
   round:cfg.yes_button_round,
   round_hover:cfg.yes_button_round_hover,
   callback:function(){
-   obj.close();
    obj.config.yes.call(obj);
   }
  });
@@ -89,8 +88,8 @@ var _create=function(obj){
   round:cfg.no_button_round,
   round_hover:cfg.no_button_round_hover,
   callback:function(){
-   obj.close();
    obj.config.no.call(obj);
+   obj.close();
   }
  });
  I.util.Boost.addStyle(btnNo.dom,'position:absolute;right:'+(space+space+r.width)+'px;top:'+space+'px;');

@@ -2,7 +2,8 @@ I.regist('ui.Tip',function(W,D){
 var TIME={
  '0':8000,
  '1':3000,
- '2':1000
+ '2':1000,
+ '3':-1
 };
 var CFG={
  skin:'Default',
@@ -34,9 +35,11 @@ var _create=function(obj){
   }else{
    I.opacity(o,100);
    W.clearInterval(obj.timer);
-   I.delay(TIME[cfg.type],function(){
-    obj.close();
-   });
+   if(TIME[cfg.type+'']>0){
+    I.delay(TIME[cfg.type+''],function(){
+     obj.close();
+    });
+   }
   }
  },20);
 };
