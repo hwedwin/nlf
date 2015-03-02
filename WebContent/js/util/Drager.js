@@ -1,15 +1,12 @@
 ﻿I.regist('util.Drager',function(W,D){
-var zIndex=1000;
 var C=null,Q=null;
 var _drag=function(org,dst){
  C=org,Q=dst?dst:org;
  C.style.cursor='move';
- Q.style.zIndex=(zIndex++)+'';
  C.ondragstart=function(){return false;};
  C.onselectstart=function(){return false;};
  I.listen(C,'mousedown',function(m,e){
   C=m;
-  Q.style.zIndex=(zIndex++)+'';
   if(D.all) C.setCapture();
   var r=I.region(Q);
   Q.setAttribute('X',r.x-e.clientX);
