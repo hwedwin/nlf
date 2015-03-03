@@ -88,7 +88,7 @@ public class Stringer{
   public static String join(List<String> list,String tag){
     if(null==list) return null;
     StringBuffer s = new StringBuffer();
-    for(int i = 0,n=list.size();i<n;i++){
+    for(int i = 0,n = list.size();i<n;i++){
       s.append(list.get(i));
       if(i<n-1){
         s.append(tag);
@@ -232,33 +232,37 @@ public class Stringer{
    * 
    * @param s 原文
    * @return 密文,大写形式
-   * @throws UnsupportedEncodingException 
-   * @throws Exception
+   * @throws UnsupportedEncodingException
+   * @throws NoSuchAlgorithmException
    */
-  public static String md5(String s) throws NoSuchAlgorithmException, UnsupportedEncodingException{
+  public static String md5(String s){
     return md5(s,"utf-8");
   }
-  
+
   /**
    * 对字符串进行MD5加密
    * 
    * @param s 原文
    * @param encode 编码
    * @return 密文,大写形式
-   * @throws UnsupportedEncodingException 
-   * @throws Exception
+   * @throws UnsupportedEncodingException
+   * @throws NoSuchAlgorithmException
    */
-  public static String md5(String s,String encode) throws NoSuchAlgorithmException, UnsupportedEncodingException{
-    MessageDigest md = MessageDigest.getInstance("MD5");
-    md.update(s.getBytes(encode));
-    byte[] b = md.digest();
-    StringBuffer sb = new StringBuffer();
-    for(int i = 0;i<b.length;i++){
-      String hex = Integer.toHexString(b[i]&0xFF);
-      hex = (hex.length()==1?"0":"")+hex;
-      sb.append(hex.toUpperCase());
+  public static String md5(String s,String encode){
+    try{
+      MessageDigest md = MessageDigest.getInstance("MD5");
+      md.update(s.getBytes(encode));
+      byte[] b = md.digest();
+      StringBuffer sb = new StringBuffer();
+      for(int i = 0;i<b.length;i++){
+        String hex = Integer.toHexString(b[i]&0xFF);
+        hex = (hex.length()==1?"0":"")+hex;
+        sb.append(hex.toUpperCase());
+      }
+      return sb.toString();
+    }catch(Exception e){
+      throw new RuntimeException(e);
     }
-    return sb.toString();
   }
 
   /**
