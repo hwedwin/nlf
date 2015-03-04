@@ -4,6 +4,7 @@ var CFG={
  mask:true,
  mask_opacity:10,
  mask_color:'#FFF',
+ mask_close:false,
  width:400,
  height:250,
  shadow:'#333 0px 0px 8px',

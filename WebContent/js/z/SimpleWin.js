@@ -4,6 +4,7 @@ var CFG={
  mask:true,
  mask_opacity:10,
  mask_color:'#FFF',
+ mask_close:false,
  space:20,
  width:0,
  height:0,
@@ -55,6 +56,14 @@ var _create=function(obj){
  obj.contentPanel.style.background=cfg.content_background;
  obj.footerBar=I.$(o,'class','i-footer')[0];
  I.util.Boost.addStyle(obj.footerBar,'background:'+cfg.footer_background+';border-top:'+cfg.footer_border_height+'px solid '+cfg.footer_border_color+';');
+ if(cfg.mask){
+  if(cfg.mask_close){
+   I.listen(obj.mask.layer,'click',function(m,e){
+    obj.close();
+    return true;
+   });
+  }
+ }
  obj.suit=function(){
   var that=this;
   var c=that.config;
