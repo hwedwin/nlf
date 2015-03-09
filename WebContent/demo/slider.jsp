@@ -4,19 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <title>滑块</title>
-<link type="text/css" rel="stylesheet" href="${PATH}/css/font-awesome.css" />
-<style type="text/css">
-*{font-size:14px;}
-</style>
 <script type="text/javascript" src="${PATH}/js/icore.js"></script>
 </head>
 <body>
-<a href="${PATH}/">返回首页</a>
-<p></p>
-第1种方式：标签渲染
-<br />
+<p>第1种方式：标签渲染</p>
+<p>&nbsp;</p>
 <p>数值：<span id="num"></span></p>
 <div id="slider">
   <b></b>
@@ -32,13 +26,11 @@ I.want(function(){
   });
 });
 </script>
-<p></p>
-第2种方式：js动态创建
-<br />
-<p></p>
+<p>&nbsp;</p>
+<p>第2种方式：js动态创建</p>
+<p>&nbsp;</p>
 <a id="btn">动态创建滑块</a>
-<br />
-<p></p>
+<p>&nbsp;</p>
 <div id="here"></div>
 <script type="text/javascript">
 I.want(function(){

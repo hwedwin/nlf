@@ -4,17 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <title>文本编辑器</title>
-<link type="text/css" rel="stylesheet" href="${PATH}/css/font-awesome.css" />
-<style type="text/css">
-*{font-size:14px;}
-</style>
 <script type="text/javascript" src="${PATH}/js/icore.js"></script>
 </head>
 <body>
-<a href="${PATH}/">返回首页</a>
-<p>&nbsp;</p>
 <textarea id="editor">Hello World!</textarea>
 <p>&nbsp;</p>
 <div id="v"></div>

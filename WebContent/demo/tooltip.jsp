@@ -4,17 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <title>提示条</title>
-<link type="text/css" rel="stylesheet" href="${PATH}/css/font-awesome.css" />
-<style type="text/css">
-*{font-size:14px;}
-</style>
 <script type="text/javascript" src="${PATH}/js/icore.js"></script>
 </head>
 <body>
-<a href="${PATH}/">返回首页</a>
-<p></p>
 <a id="btnA">显示ToolTip</a>
 <script type="text/javascript">
 I.want(function(){
@@ -25,7 +19,7 @@ I.want(function(){
       tip.close();
       tip = null;
     }
-    tip = I.ui.ToolTip.create({dom:'btnA',content:'Hello World!'});
+    tip = I.ui.ToolTip.create({dom:I.$('btnA'),content:'Hello World!'});
   });
   I.listen('btnA','mouseout',function(){
     if(tip){

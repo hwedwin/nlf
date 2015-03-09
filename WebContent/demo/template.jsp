@@ -4,19 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <title>js模板引擎</title>
-<link type="text/css" rel="stylesheet" href="${PATH}/css/font-awesome.css" />
-<style type="text/css">
-*{font-size:14px;}
-</style>
 <script type="text/javascript" src="${PATH}/js/icore.js"></script>
 </head>
 <body>
-<a href="${PATH}/">返回首页</a>
-<p></p>
-模板：<br />
-<textarea id="tmp" cols="60" rows="10">
+<p>模板：</p>
+<textarea id="tmp" cols="60" rows="4">
 <div>{$=data.a$}</div>
 <ul>
 {$
@@ -28,12 +22,12 @@ $}
 $}
 </ul>
 </textarea>
-<br />
-编译结果：<br />
-<textarea id="com" cols="60" rows="10"></textarea>
-<br />
-渲染结果：<br />
-<textarea id="res" cols="60" rows="10"></textarea>
+<p>&nbsp;</p>
+<p>编译结果：</p>
+<textarea id="com" cols="60" rows="4"></textarea>
+<p>&nbsp;</p>
+<p>渲染结果：</p>
+<textarea id="res" cols="60" rows="4"></textarea>
 <script type="text/javascript">
 I.want(function(){
   var callback = I.util.Template.compile(I.$('tmp').value);
@@ -41,8 +35,8 @@ I.want(function(){
   I.$('res').value = callback({'a':'hello'});
 });
 </script>
-<p></p>
-实际使用：
+<p>&nbsp;</p>
+<p>实际使用：</p>
 <!-- 模板 -->
 <nlft:tpl id="myTemplate">
 <div>{$=data.a$}</div>

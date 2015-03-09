@@ -4,17 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <title>表单</title>
-<link type="text/css" rel="stylesheet" href="${PATH}/css/font-awesome.css" />
-<style type="text/css">
-*{font-size:14px;}
-</style>
 <script type="text/javascript" src="${PATH}/js/icore.js"></script>
 </head>
 <body>
-<a href="${PATH}/">返回首页</a>
-<p></p>
 <div id="myForm">
   <ul>
     <li data-width="10">姓名：</li>

@@ -4,19 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <title>按钮</title>
-<link type="text/css" rel="stylesheet" href="${PATH}/css/font-awesome.css" />
-<style type="text/css">
-*{font-size:14px;}
-</style>
 <script type="text/javascript" src="${PATH}/js/icore.js"></script>
 </head>
 <body>
-<a href="${PATH}/">返回首页</a>
-<p></p>
-第1种方式：标签渲染
-<br />
+<p>第1种方式：标签渲染</p>
 <a id="btnA">按钮1</a>
 <div id="btnB">按钮2</div>
 <span id="btnC">带事件响应的按钮</span>
@@ -44,8 +37,8 @@ I.want(function(){
   });
 });
 </script>
-<p></p>
-第2种方式：js动态创建
+<p>&nbsp;</p>
+<p>第2种方式：js动态创建</p>
 <div id="buttons"></div>
 <script type="text/javascript">
 I.want(function(){

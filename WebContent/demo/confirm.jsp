@@ -4,24 +4,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <title>Confirm</title>
-<link type="text/css" rel="stylesheet" href="${PATH}/css/font-awesome.css" />
-<style type="text/css">
-*{font-size:14px;}
-</style>
 <script type="text/javascript" src="${PATH}/js/icore.js"></script>
 </head>
 <body>
-<a href="${PATH}/">返回首页</a>
-<p></p>
 <a id="btnB">默认Confirm</a>
 <a id="btnA">蓝色Confirm</a>
 <a id="btnC">深色遮罩Confirm</a>
 <script type="text/javascript">
 I.want(function(){
   I.ui.Button.render('btnA',{icon:'fa fa-thumbs-up',callback:function(){
-    I.z.Confirm.create({
+    var win = I.z.Confirm.create({
       title_background:'#5bc0de',
       close_background:'#5bc0de',
       title_border_color:'#46b8da',
@@ -38,6 +32,7 @@ I.want(function(){
       content:'Hello World!',
       yes:function(){
         I.z.Alert.create({content:'u choosed yes'});
+        win.close();
       },
       no:function(){
         I.z.Alert.create({content:'u choosed no'});
@@ -45,10 +40,11 @@ I.want(function(){
     });
   }});
   I.ui.Button.render('btnB',{icon:'fa fa-thumbs-up',callback:function(){
-    I.z.Confirm.create({
+    var win = I.z.Confirm.create({
       content:'Hello World!',
       yes:function(){
         I.z.Alert.create({content:'u choosed yes'});
+        win.close();
       },
       no:function(){
         I.z.Alert.create({content:'u choosed no'});
@@ -56,12 +52,13 @@ I.want(function(){
     });
   }});
   I.ui.Button.render('btnC',{icon:'fa fa-thumbs-up',callback:function(){
-    I.z.Confirm.create({
+    var win = I.z.Confirm.create({
       mask_opacity:60,
       mask_color:'#000',
       content:'Hello World!',
       yes:function(){
         I.z.Alert.create({content:'u choosed yes'});
+        win.close();
       },
       no:function(){
         I.z.Alert.create({content:'u choosed no'});

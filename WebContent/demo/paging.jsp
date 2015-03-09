@@ -4,12 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <title>自动分页</title>
-<link type="text/css" rel="stylesheet" href="${PATH}/css/font-awesome.css" />
 <link type="text/css" rel="stylesheet" href="${PATH}/css/paging.css" />
 <style type="text/css">
-*{font-size:14px;}
 table.list {
   width: 100%;
   margin-left: auto;
@@ -108,8 +106,6 @@ table.list tfoot td {
 <script type="text/javascript" src="${PATH}/js/icore.js"></script>
 </head>
 <body>
-<a href="${PATH}/">返回首页</a>
-<p></p>
 <table class="list">
   <thead>
     <tr>

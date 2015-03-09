@@ -4,22 +4,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <title>树</title>
-<link type="text/css" rel="stylesheet" href="${PATH}/css/font-awesome.css" />
-<style type="text/css">
-*{font-size:14px;}
-</style>
 <script type="text/javascript" src="${PATH}/js/icore.js"></script>
 </head>
 <body>
-<a href="${PATH}/">返回首页</a>
-<p></p>
 <!-- 通过html渲染tree -->
 <ul id="tree">
   <li><b></b><i></i><input type="checkbox" /><a>一年级</a>
     <ul>
-      <li><b></b><i></i><input type="checkbox" /><a>1班</a>
+      <li><b></b><i></i><input type="checkbox" checked="checked" /><a>1班</a>
         <ul>
           <li><b></b><i></i><input type="checkbox" /><a>甲阿贾克斯的就啊就是看到</a></li>
           <li><b></b><i></i><input type="checkbox" /><a>乙</a></li>
@@ -45,7 +39,9 @@
 <a id="btnD">删除选中节点</a>
 <a id="btnE">全部展开</a>
 <a id="btnF">全部收缩</a>
-<p></p>
+<a id="btnH">全部选中</a>
+<a id="btnI">全部不选</a>
+<p>&nbsp;</p>
 <a id="btnC">通过json创建一颗新的树</a>
 <script type="text/javascript">
 I.want(function(){
@@ -66,13 +62,10 @@ I.want(function(){
     },
     //当点击checkbox的时候的事件响应，who指点击的节点对象
     onCheck:function(who){
-      //获取子节点
+      //获取子节点,子节点选中状态保持与父节点一致
       var chd = who.getChildren();
       for(var i=0;i<chd.length;i++){
-        //子节点选中状态保持与父节点一致
-        chd[i].checked = who.checked;
-        //别忘了更新
-        chd[i].repaint();
+        chd[i].check(who.checked);
       }
     }
   });
@@ -94,6 +87,16 @@ I.want(function(){
   I.ui.Button.render('btnF',{
     callback:function(){
       tree.close();
+    }
+  });
+  I.ui.Button.render('btnH',{
+    callback:function(){
+      tree.checkAll(true);
+    }
+  });
+  I.ui.Button.render('btnI',{
+    callback:function(){
+      tree.checkAll(false);
     }
   });
 
@@ -167,7 +170,7 @@ I.want(function(){
       }}
     ];
     var newTree = I.ui.Tree.create({
-      //dom:document.body,
+      dom:I.$('tree').parentNode,
       folder_open_icon:'fa fa-car',//文件夹打开的图标
       data:d,//数据
       //点击text事件
