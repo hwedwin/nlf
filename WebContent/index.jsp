@@ -8,9 +8,7 @@
 </head>
 <body>
   <script type="text/javascript">
-  I.want(function(){
-    I.net.Page.find('demo/dashboard.jsp');
-  });
+  self.location = '${PATH}/demo/dashboard.jsp';
   </script>
 </body>
 </html>
