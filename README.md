@@ -14,6 +14,9 @@ NLF框架用户手册：http://6tail.cn/npress/demo/jsp
 WebContent下有六特尔开发的i.js框架，通过一个核心js文件自动按需加载需要的组件，示例地址：http://6tail.cn/npress/api.html
 
 #更新日志
+##2015-03-16
+1. 修正多数据库支持问题。
+
 ##2015-03-09
 1. mysql增加is null条件的支持。
 

@@ -32,14 +32,15 @@ public class ConnVarFactory{
   public static ConnVar getConnVar(String alias){
     IDbSetting setting = DbSettingFactory.getSetting(alias);
     String type = setting.getType();
-    if(pool.containsKey(type)){
-      return pool.get(type).getConnVar();
+    String key = type+"-"+setting.getDbName();
+    if(pool.containsKey(key)){
+      return pool.get(key).getConnVar();
     }
     List<String> impls = Factory.getImpls(IConnVarProvider.class.getName());
     for(String klass:impls){
       IConnVarProvider cvp = Factory.getCaller().newInstance(klass);
       if(cvp.support(type)){
-        pool.put(type,cvp);
+        pool.put(key,cvp);
         cvp.initSetting(setting);
         return cvp.getConnVar();
       }
