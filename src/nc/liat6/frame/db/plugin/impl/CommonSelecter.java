@@ -22,9 +22,14 @@ public class CommonSelecter extends SuperExecuter implements ISelecter{
   public ISelecter where(String column,Object value){
     Rule r = new Rule();
     r.setColumn(column);
-    r.setOpStart("=");
+    if(null != value){
+      r.setOpStart("=");
+      paramWheres.add(value);
+    }else{
+      r.setOpStart(" IS NULL");
+      r.setTag("");
+    }
     wheres.add(r);
-    paramWheres.add(value);
     return this;
   }
 
@@ -83,9 +88,14 @@ public class CommonSelecter extends SuperExecuter implements ISelecter{
   public ISelecter whereNq(String column,Object value){
     Rule r = new Rule();
     r.setColumn(column);
-    r.setOpStart("!=");
+    if(null != value){
+      r.setOpStart("!=");
+      paramWheres.add(value);
+    }else{
+      r.setOpStart(" IS NOT NULL");
+      r.setTag("");
+    }
     wheres.add(r);
-    paramWheres.add(value);
     return this;
   }
 

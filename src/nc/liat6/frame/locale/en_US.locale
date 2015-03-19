@@ -6,7 +6,7 @@ logger.debug = DEBUG
 
 obj.init_fail = ? init fail
 
-request.forbid = request forbid:
+request.forbid = request forbid
 
 xml.notsupport = xml not supported
 xml.cdata_not_end = CDATA not end:

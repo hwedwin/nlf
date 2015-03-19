@@ -97,7 +97,7 @@ public class Handler implements Runnable{
         // 请求过滤
         if(contains(NlfServer.forbid,km)){
           if(!contains(NlfServer.allow,km)){
-            s = L.get(LocaleFactory.locale,"request.forbid")+km;
+            s = L.get(LocaleFactory.locale,"request.forbid")+":"+km;
             logs.append(s);
             valid = false;
           }

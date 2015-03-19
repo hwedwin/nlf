@@ -57,8 +57,9 @@ var _bindEvent=function(obj){
   m.style.backgroundColor=cfg.background;
   m.style.color=cfg.color;
  });
- I.cls(dom,obj.className+' '+(cfg.checked?cfg.icon_checked:cfg.icon_normal));
  var ipt=I.$(dom,'tag','input')[0];
+ cfg.checked=(ipt.checked?true:false)||cfg.checked;
+ I.cls(dom,obj.className+' '+(cfg.checked?cfg.icon_checked:cfg.icon_normal));
  if(cfg.checked){
   ipt.checked='checked';
  }
