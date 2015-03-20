@@ -307,6 +307,20 @@ html,body{
  color:#000;
  margin-left:5px;
 }
+ul.bread-${skin}{
+ list-style:none;
+ float:left;
+}
+ul.bread-${skin} li{
+ float:left;
+ display:block;
+ color:#999;
+ margin-left:5px;
+}
+ul.bread-${skin} li.arrow{
+ font-family:Webdings;
+ color:#CCC;
+}
 */}+'';
 return {
  getCss:function(){return CSS;}

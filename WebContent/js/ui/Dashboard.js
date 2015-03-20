@@ -57,6 +57,30 @@ var _api=function(obj){
  obj.find=function(url,args){
   I.net.Page.find(url,args,this.content);
  };
+ obj.addBread=function(dom){
+  I.cls(I.insert('ul',dom),'bread-'+this.config.skin);
+ };
+ obj.updateBread=function(){
+  var that=this;
+  var breads=I.$('class','bread-'+that.config.skin);
+  var s=[];
+  if(that.breads.first) s.push('<li>'+that.breads.first.text+'</li>');
+  if(that.breads.second){
+   s.push('<li class="arrow">4</li>');
+   s.push('<li>'+that.breads.second.text+'</li>');
+  }
+  if(that.breads.third){
+   s.push('<li class="arrow">4</li>');
+   s.push('<li>'+that.breads.third.text+'</li>');
+  }
+  s=s.join('');
+  I.each(breads,function(q){
+   q.innerHTML=s;
+   var r=I.region(q.parentNode);
+   var ro=I.region(q);
+   I.util.Boost.addStyle(q,'margin-top:'+Math.floor((r.height-ro.height)/2)+'px;');
+  });
+ };
  obj.addItem=function(dom,items,callback){
   var that=this;
   var cfg=that.config;
@@ -123,6 +147,8 @@ var _api=function(obj){
      I.each(lis,function(m){
        I.cls(m,m==who?'active':'');
      });
+     that.breads.third=cache;
+     that.updateBread();
      if(cache.callback) cache.callback.call(cache);
      else if(cache.link) that.find(cache.link,null);
     };
@@ -154,6 +180,9 @@ var _api=function(obj){
      });
      var id=this.getAttribute('data-id');
      var cache=that.menuDataCache[id];
+     that.breads.second=cache;
+     that.breads.third=null;
+     that.updateBread();
      var cd=cache.children;
      if(cd){
       var expand=('1'==this.getAttribute('data-expand'));
@@ -178,6 +207,7 @@ var _api=function(obj){
    var d,o;
    that.toolBar.innerHTML='';
    that.tools=[];
+   that.breads={first:null,second:null,third:null};
    for(var i=0,j=ds.length;i<j;i++){
     d=ds[i];
     o=I.insert('a',that.toolBar);
@@ -208,6 +238,10 @@ var _api=function(obj){
      I.each(all,function(q){
       q.style.visibility='hidden';
      });
+     that.breads.first=cache;
+     that.breads.second=null;
+     that.breads.third=null;
+     that.updateBread();
      I.util.Animator.create().change('linear',function(n){
        cfg.menu_width=n;
        that.suit();
