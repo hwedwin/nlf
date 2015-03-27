@@ -14,6 +14,9 @@ NLF框架用户手册：http://6tail.cn/npress/demo/jsp
 WebContent下有六特尔开发的i.js框架，通过一个核心js文件自动按需加载需要的组件，示例地址：http://6tail.cn/npress/api.html
 
 #更新日志
+##2015-03-27
+1. 修正rmi的中文乱码问题。
+
 ##2015-03-19
 1. 减少is null条件的冗余代码。
 * 自增ID增加分布式应用支持。

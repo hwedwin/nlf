@@ -1,6 +1,5 @@
 package nc.liat6.frame.rmi.server;
 
-import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
@@ -20,8 +19,7 @@ import nc.liat6.frame.log.ILog;
 import nc.liat6.frame.log.Logger;
 import nc.liat6.frame.rmi.server.exception.ReqNotMatchException;
 import nc.liat6.frame.rmi.server.request.RmiRequest;
-import nc.liat6.frame.util.Base64Coder;
-import nc.liat6.frame.util.Mather;
+import nc.liat6.frame.util.IOHelper;
 import nc.liat6.frame.web.response.Json;
 
 /**
@@ -31,9 +29,8 @@ import nc.liat6.frame.web.response.Json;
  *
  */
 public class Handler implements Runnable{
-
+  /** Socket */
   private Socket socket = null;
-  private DataInputStream in = null;
 
   Handler(Socket socket){
     this.socket = socket;
@@ -41,48 +38,32 @@ public class Handler implements Runnable{
 
   private boolean contains(List<String> l,String s){
     for(String o:l){
-      if(s.startsWith(o))
-        return true;
+      if(s.startsWith(o)) return true;
     }
     return false;
   }
 
   public void run(){
+    DataInputStream in = null;
     DataOutputStream out = null;
     try{
       in = new DataInputStream(socket.getInputStream());
-      ByteArrayOutputStream bo = new ByteArrayOutputStream(NlfServer.BUFFER_SIZE);
-      byte[] reqTag = new byte[NlfServer.REQ_TAG.getBytes().length];
-      int total = 0;
-      int c = 0;
-      while((c = in.read())!=-1){
-        if('\0'==c){
-          break;
-        }
-        if(total<reqTag.length){
-          reqTag[total] = (byte)c;
-          total++;
-          if(total==reqTag.length){
-            String tag = new String(reqTag);
-            if(!NlfServer.REQ_TAG.equals(tag)){
-              throw new ReqNotMatchException(tag);
-            }
-          }
-        }else{
-          bo.write(c);
-        }
+      out = new DataOutputStream(socket.getOutputStream());
+      String reqTag = in.readUTF();
+      if(!NlfServer.REQ_TAG.equals(reqTag)){
+        throw new ReqNotMatchException(reqTag);
       }
-      // 数据内容
-      byte[] d = bo.toByteArray();
-      bo.close();
-      IJsonElement obj = JSON.fromJson(new String(Base64Coder.decode(new String(d))));
+      int l = in.readInt();
+      byte[] d = new byte[l];
+      in.readFully(d);
+      IJsonElement obj = JSON.fromJson(new String(d,"utf-8"));
       JsonMap m = obj.toJsonMap();
-      String uuid = m.get("uuid").toJsonString().toString();
       StringBuilder logs = new StringBuilder();
-      logs.append("UUID："+uuid+"\r\n");
+      String uuid = m.get("uuid").toJsonString().toString();
       String klass = m.get("class").toJsonString().toString();
-      logs.append(L.get(LocaleFactory.locale,"rmi.req_class")+klass+"\r\n");
       String method = m.get("method").toJsonString().toString();
+      logs.append("UUID："+uuid+"\r\n");
+      logs.append(L.get(LocaleFactory.locale,"rmi.req_class")+klass+"\r\n");
       logs.append(L.get(LocaleFactory.locale,"rmi.req_class")+method+"\r\n");
       String km = klass+"/"+method;
       boolean valid = true;
@@ -141,34 +122,19 @@ public class Handler implements Runnable{
       if(NlfServer.enableLog){
         log.debug(logs);
       }
-      byte[] t = Mather.merge(NlfServer.RSP_TAG.getBytes(),Base64Coder.encode(s.getBytes()).getBytes());
-      t = Mather.merge(t,new byte[]{'\0'});
-      out = new DataOutputStream(socket.getOutputStream());
-      out.write(t);
+      byte[] r = s.getBytes("utf-8");
+      out.writeUTF(NlfServer.RSP_TAG);
+      out.writeInt(r.length);
+      out.write(r);
       out.flush();
     }catch(ReqNotMatchException e){
       // 忽略非法请求
     }catch(Exception e){
       Logger.getLog().error(L.get(LocaleFactory.locale,"rmi.req_fail"),e);
     }finally{
-      if(null!=in){
-        try{
-          in.close();
-        }catch(Exception e){}
-        in = null;
-      }
-      if(null!=out){
-        try{
-          out.close();
-        }catch(Exception e){}
-        out = null;
-      }
-      if(null!=socket){
-        try{
-          socket.close();
-        }catch(Exception e){}
-        socket = null;
-      }
+      IOHelper.closeQuietly(in);
+      IOHelper.closeQuietly(out);
+      IOHelper.closeQuietly(socket);
     }
   }
 }
