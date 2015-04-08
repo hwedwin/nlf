@@ -12,6 +12,9 @@
 <p>选择日期：<input id="day" type="text" /></p>
 <script type="text/javascript">
 I.want(function(){
+  I.util.MultiCalendar.setConfig({
+    offsetMonth:-1
+  });
   I.util.MultiCalendar.bind('day');
 });
 </script>

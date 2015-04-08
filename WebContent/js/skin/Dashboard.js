@@ -134,11 +134,12 @@ html,body{
 }
 .menu-${skin},.menu-${skin}-active{
  display:block;
+ margin:0;
+ padding:0;
  height:40px;
- background-color:#F9F9F9;
+ background-color:#F8F8F8;
  border-bottom:1px solid #EDEDED;
- cursor:pointer;
- clear:both;
+ cursor:default;
  -webkit-user-select:none;
  -moz-user-select:none;
  -ms-user-select:none;
@@ -149,12 +150,14 @@ html,body{
  text-overflow:ellipsis;
 }
 .menu-${skin}-active{
- background-color:#F6F6F6;
+ background-color:#FA9231;
+ border-bottom:0;
 }
 .menu-${skin}:hover{
  background-color:#F6F6F6;
 }
 .menu-${skin} i,.menu-${skin}-active i{
+ clear:left;
  display:block;
  float:left;
  line-height:40px;
@@ -169,9 +172,8 @@ html,body{
  line-height:40px;
  margin-left:8px;
  color:#475B76;
- font-weight:bold;
+ font-weight:normal;
  font-size:1.2em;
- letter-spacing:1px;
  white-space:nowrap;
  text-overflow:ellipsis;
 }
@@ -186,10 +188,13 @@ html,body{
  text-decoration:none;
 }
 .menu-${skin}-active i{
-  color:#FA9231;
+  color:#FFF;
 }
 .menu-${skin}-active b{
-  color:#FA9231;
+  color:#FFF;
+}
+.menu-${skin}-active u{
+  color:#FFF;
 }
 .menu-${skin}:hover i{
   color:#FA9231;
@@ -197,12 +202,19 @@ html,body{
 .menu-${skin}:hover b{
   color:#FA9231;
 }
+.menu-${skin}:hover u{
+  color:#FA9231;
+}
 .menu-item-${skin}{
+ clear:left;
  display:block;
  background-color:#FFF;
  overflow:hidden;
  height:0;
- cursor:pointer;
+ margin:0;
+ padding:0;
+ cursor:default;
+ list-style:none;
  -webkit-user-select:none;
  -moz-user-select:none;
  -ms-user-select:none;
@@ -240,11 +252,26 @@ html,body{
  white-space:nowrap;
  text-overflow:ellipsis;
 }
+.menu-item-${skin} u{
+ margin:0;
+ padding:0;
+ font-family:Webdings;
+ text-decoration:none;
+ float:right;
+ line-height:40px;
+ margin-right:8px;
+ font-weight:bold;
+ color:#FA9231;
+ display:none;
+}
 .menu-item-${skin} li.active i{
  color:#FA9231;
 }
 .menu-item-${skin} li.active b{
  color:#FA9231;
+}
+.menu-item-${skin} li.active u{
+ display:block;
 }
 .menu-item-${skin} a:hover i{
  color:#FA9231;

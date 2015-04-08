@@ -6,7 +6,7 @@ W.I={
  isMobile:false,
  version:'2.0.42',
  ROOT:'auto',
- debug:true
+ debug:false
 };
 var M='icore.js',V='i_js_version',R='',L=false,SYN=true,Q={},P={};
 var _dir=function(u){

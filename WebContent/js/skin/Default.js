@@ -1,11 +1,7 @@
-﻿/**
- * I.skin.Default
- * <i>默认皮肤</i>
- */
-I.regist('skin.Default',function(W,D){
+﻿I.regist('skin.Default',function(W,D){
   var CSS = function(){/*
 .i-ui-Mask-${skin}{
- z-index:902;
+ z-index:992;
  position:absolute;
  margin:0;
  padding:0;
@@ -167,7 +163,7 @@ I.regist('skin.Default',function(W,D){
 }
 
 
-.i-ui-ToolTip-${skin}{z-index:901;position:absolute;margin:0;padding:0;left:0;top:0;}
+.i-ui-ToolTip-${skin}{z-index:993;position:absolute;margin:0;padding:0;left:0;top:0;}
 .i-ui-ToolTip-${skin} b{font-weight:normal;font-style:normal;display:none;}
 .i-ui-ToolTip-${skin} b.c{display:block;margin:0;padding:0;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;}
 .i-ui-ToolTip-${skin} b.content{display:block;margin:10px;padding:0;}

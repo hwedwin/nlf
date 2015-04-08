@@ -133,7 +133,7 @@ var _api=function(obj){
    for(var i=0,j=ds.length;i<j;i++){
     d=ds[i];
     o=I.insert('li',ul);
-    o.innerHTML='<a><i class="'+d.icon+'"></i><b>'+d.text+'</b></a>';
+    o.innerHTML='<a><i class="'+d.icon+'"></i><b>'+d.text+'</b><u>4</u></a>';
     o.setAttribute('data-id',d.uuid);
     I.$(o,'*')[0].onclick=function(){
      var who=this.parentNode;
@@ -189,10 +189,11 @@ var _api=function(obj){
       var from=expand?cd.length*40:0;
       var to=expand?0:cd.length*40;
       var icon=expand?'fa fa-caret-down':'fa fa-caret-up';
+      var ul=I.$('next',who);
       I.util.Animator.create().change('linear',function(n){
-       I.$('next',who).style.height=n+'px';
+       ul.style.height=n+'px';
       },function(){
-       I.$('next',who).style.height=to+'px';
+       ul.style.height=to+'px';
        I.cls(I.$(who,'*')[2],icon);
       },10,from,to);
       this.setAttribute('data-expand',expand?'0':'1');

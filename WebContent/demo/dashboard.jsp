@@ -16,9 +16,7 @@ I.want(function(){
     tool_bar_height:60
   });
   win.setMenu([
-    {text:'首页',icon:'fa fa-home',callback:function(){
-     win.head.innerHTML=this.text;
-    }},
+    {text:'首页',icon:'fa fa-home'},
     {text:'UI组件',icon:'fa fa-desktop',children:[
       {text:'按钮',icon:'fa fa-hand-o-up',link:'demo/button.jsp'},
       {text:'进度条',icon:'fa fa-spinner',link:'demo/loading.jsp'},
@@ -39,23 +37,17 @@ I.want(function(){
       {text:'滑块',icon:'fa fa-sliders',link:'demo/slider.jsp'},
       {text:'日历控件',icon:'fa fa-calendar',link:'demo/calendar.jsp'},
       {text:'取色器',icon:'fa fa-tint',link:'demo/color.jsp'}
-    ],callback:function(){
-     win.head.innerHTML=this.text;
-    }},
+    ]},
     {text:'自动分页',icon:'fa fa-bars',children:[
       {text:'普通页面自动分页',icon:'fa fa-bars',link:'test.Action/paging',callback:function(){
         window.open('${PATH}/'+this.link);
       }},
       {text:'ajax自动分页',icon:'fa fa-bars',link:'test.Action/paging'}
-    ],callback:function(){
-     win.head.innerHTML=this.text;
-    }},
+    ]},
     {text:'工具',icon:'fa fa-briefcase',children:[
       {text:'js模板引擎',icon:'fa fa-terminal',link:'demo/template.jsp'},
       {text:'代码着色',icon:'fa fa-code',link:'demo/code.jsp'}
-    ],callback:function(){
-      win.head.innerHTML=this.text;
-    }}
+    ]}
   ]);
   win.addItem(win.toolBar,[
     {type:'head',content:'http://6tail.cn/npress/uploads/1412070377753000.jpg'},
@@ -116,10 +108,6 @@ I.want(function(){
   I.util.Boost.addStyle(div,'text-align:center;line-height:'+win.config.footer_height+'px');
   div.innerHTML='底部';
   
-  //内容区的顶部
-  I.util.Boost.addStyle(win.head,'text-indent:1em;line-height:'+win.config.head_height+'px');
-  win.head.innerHTML='内容区的顶部';
-  
   //内容区的底部
   div = I.insert('div',win.foot);
   I.util.Boost.addStyle(div,'text-align:center;line-height:'+win.config.foot_height+'px');
@@ -131,6 +119,8 @@ I.want(function(){
   div = I.insert('div',win.content);
   I.util.Boost.addStyle(div,'line-height:3em;');
   div.innerHTML='内容区';
+  
+  win.addBread(win.head);
 });
 </script>
 </body>
