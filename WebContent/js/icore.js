@@ -4,9 +4,9 @@ if(W.I){
 }
 W.I={
  isMobile:false,
- version:'2.0.42',
+ version:'2.0.43',
  ROOT:'auto',
- debug:false
+ debug:true
 };
 var M='icore.js',V='i_js_version',R='',L=false,SYN=true,Q={},P={};
 var _dir=function(u){

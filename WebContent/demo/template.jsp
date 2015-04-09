@@ -9,7 +9,7 @@
 <script type="text/javascript" src="${PATH}/js/icore.js"></script>
 </head>
 <body>
-<p>模板：</p>
+<p>模板：(模板中内置printf函数可以输出html和js变量的混合体。)</p>
 <textarea id="tmp" cols="60" rows="4">
 <div>{$=data.a$}</div>
 <ul>
@@ -18,7 +18,9 @@
 $}
   <li>{$=i$}</li>
 {$
+    printf('<li style="color:red">'+i+'</li>');
   }
+  printf('<li style="color:red">OK</li>');
 $}
 </ul>
 </textarea>
@@ -46,7 +48,9 @@ I.want(function(){
 $}
   <li>{$=i$}</li>
 {$
+    printf('<li style="color:red">'+i+'</li>');
   }
+  printf('<li style="color:red">OK</li>');
 $}
 </ul>
 </nlft:tpl>
