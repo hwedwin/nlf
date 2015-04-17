@@ -1,5 +1,8 @@
 package nc.liat6.frame.db.sql;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Iterator;
 import java.util.List;
 import nc.liat6.frame.db.connection.ConnVar;
 import nc.liat6.frame.db.entity.Bean;
@@ -205,4 +208,33 @@ public interface ITemplate{
    * @param procName 存储过程名称
    */
   void call(String procName);
+  
+  /**
+   * 迭代结果集
+   *
+   * @param sql SQL语句
+   * @return 
+   */
+  Iterator<Bean> iterator(String sql);
+  
+  /**
+   * 迭代结果集
+   *
+   * @param sql SQL语句
+   * @param param 绑定变量，可以是数组，也可以是单值
+   * @return 
+   */
+  Iterator<Bean> iterator(String sql,Object param);
+  
+  /**
+   * 对Statement和结果集的善后处理
+   * @param stmt Statement
+   * @param rs 结果集
+   */
+  void finalize(Statement stmt,ResultSet rs);
+  
+  /**
+   * 最终的善后处理
+   */
+  void finalizeAll();
 }

@@ -1,5 +1,6 @@
 package nc.liat6.frame.db.plugin.impl;
 
+import java.util.Iterator;
 import java.util.List;
 import nc.liat6.frame.db.entity.Bean;
 import nc.liat6.frame.db.plugin.ISelecter;
@@ -181,5 +182,12 @@ public class CommonSelecter extends SuperExecuter implements ISelecter{
     PageData pd = template.queryEntity(sql,pageNumber,pageSize,getParam());
     reset();
     return pd;
+  }
+
+  public Iterator<Bean> iterator(){
+    String sql = getSql();
+    Iterator<Bean> l = template.iterator(sql,getParam());
+    reset();
+    return l;
   }
 }

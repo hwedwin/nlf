@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import nc.liat6.frame.csv.CSVFileReader;
 import nc.liat6.frame.db.entity.Bean;
@@ -286,5 +287,9 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
       throw new DaoException(L.get("sql.record_not_found"));
     }
     return l.get(0);
+  }
+
+  public Iterator<Bean> iterator(){
+    return select().iterator();
   }
 }

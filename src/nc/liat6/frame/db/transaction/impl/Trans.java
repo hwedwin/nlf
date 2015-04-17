@@ -76,6 +76,7 @@ public class Trans implements ITrans{
   }
 
   public void close(){
+    template.finalizeAll();
     ConnVar cv = template.getConnVar();
     cv.setLevel(cv.getLevel()-1);
     if(cv.getLevel()<1){

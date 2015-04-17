@@ -1,5 +1,6 @@
 package nc.liat6.frame.db.plugin;
 
+import java.util.Iterator;
 import java.util.List;
 import nc.liat6.frame.db.entity.Bean;
 import nc.liat6.frame.paging.PageData;
@@ -11,7 +12,6 @@ import nc.liat6.frame.paging.PageData;
  *
  */
 public interface ISelecter extends IExecuter{
-
   /**
    * 设置表名
    *
@@ -146,4 +146,11 @@ public interface ISelecter extends IExecuter{
    * @return 单记录对象
    */
   Bean one();
+
+  /**
+   * 迭代结果集
+   * 
+   * @return
+   */
+  Iterator<Bean> iterator();
 }

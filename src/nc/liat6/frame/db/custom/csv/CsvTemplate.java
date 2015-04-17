@@ -1,5 +1,8 @@
 package nc.liat6.frame.db.custom.csv;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Iterator;
 import java.util.List;
 import nc.liat6.frame.context.Context;
 import nc.liat6.frame.context.Statics;
@@ -120,5 +123,19 @@ public class CsvTemplate implements ITemplate,ICsv{
 
   public void call(String procName){
     throw new DaoException(L.get("sql.proc_not_support")+cv.getDbType());
+  }
+
+  public Iterator<Bean> iterator(String sql){
+    throw new DaoException(L.get("sql.sql_not_support")+cv.getDbType());
+  }
+
+  public Iterator<Bean> iterator(String sql,Object param){
+    throw new DaoException(L.get("sql.sql_not_support")+cv.getDbType());
+  }
+
+  public void finalize(Statement stmt,ResultSet rs){
+  }
+
+  public void finalizeAll(){
   }
 }

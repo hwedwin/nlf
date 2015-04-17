@@ -17,7 +17,7 @@ import nc.liat6.frame.json.JSON;
  */
 public class ID{
   /** 前缀 */
-  private static String prefix = "";
+  public static String prefix = "";
   /** 自增序列 */
   private static int serial = 0;
   /** 当前时间 */

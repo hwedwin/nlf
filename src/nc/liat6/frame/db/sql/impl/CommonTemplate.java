@@ -6,8 +6,11 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import nc.liat6.frame.db.entity.Bean;
+import nc.liat6.frame.db.entity.ResultSetIterator;
+import nc.liat6.frame.db.entity.StatementAndResultSet;
 import nc.liat6.frame.db.exception.DaoException;
 import nc.liat6.frame.locale.L;
 import nc.liat6.frame.locale.LocaleFactory;
@@ -294,5 +297,36 @@ public class CommonTemplate extends SuperTemplate{
 
   public PageData queryEntity(String sql,int pageNumber,int pageSize,Object param){
     throw new DaoException(L.get("sql.page_not_support")+cv.getDbType());
+  }
+
+  public Iterator<Bean> iterator(String sql){
+    return iterator(sql,null);
+  }
+
+  public Iterator<Bean> iterator(String sql,Object param){
+    flush();
+    Iterator<Bean> l = null;
+    PreparedStatement stmt = null;
+    ResultSet rs = null;
+    try{
+      stmt = cv.getConnection().getSqlConnection().prepareStatement(sql);
+      List<Object> pl = processParams(stmt,param);
+      StringBuilder s = new StringBuilder();
+      for(Object o:pl){
+        s.append("\t");
+        s.append(o);
+        s.append("\r\n");
+      }
+      log.debug(Stringer.print("??\r\n?\r\n?",L.get(LocaleFactory.locale,"sql.query_entity"),sql,L.get(LocaleFactory.locale,"sql.var"),s.toString()));
+      rs = stmt.executeQuery();
+      l = new ResultSetIterator(rs);
+    }catch(SQLException e){
+      throw new DaoException(e);
+    }finally{
+      if(null!=stmt&&null!=rs){
+        sars.add(new StatementAndResultSet(stmt,rs));
+      }
+    }
+    return l;
   }
 }

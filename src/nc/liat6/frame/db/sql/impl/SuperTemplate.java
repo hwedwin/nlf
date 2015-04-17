@@ -9,6 +9,7 @@ import java.util.List;
 import nc.liat6.frame.context.Context;
 import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.db.connection.ConnVar;
+import nc.liat6.frame.db.entity.StatementAndResultSet;
 import nc.liat6.frame.db.sql.ITemplate;
 import nc.liat6.frame.db.transaction.ITrans;
 
@@ -28,6 +29,7 @@ public abstract class SuperTemplate implements ITemplate{
   protected ConnVar cv;
   /** 事务接口 */
   protected ITrans trans;
+  protected List<StatementAndResultSet> sars = new ArrayList<StatementAndResultSet>();
 
   public ITrans getTrans(){
     return trans;
@@ -91,13 +93,7 @@ public abstract class SuperTemplate implements ITemplate{
     return pl;
   }
 
-  /**
-   * 善后处理
-   * 
-   * @param stmt
-   * @param rs
-   */
-  protected void finalize(Statement stmt,ResultSet rs){
+  public void finalize(Statement stmt,ResultSet rs){
     if(null!=rs){
       try{
         rs.close();
@@ -116,5 +112,11 @@ public abstract class SuperTemplate implements ITemplate{
 
   public ConnVar getConnVar(){
     return cv;
+  }
+  
+  public void finalizeAll(){
+    for(StatementAndResultSet o:sars){
+      finalize(o.getStatement(),o.getResultSet());
+    }
   }
 }
