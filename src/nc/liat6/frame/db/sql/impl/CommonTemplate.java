@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import nc.liat6.frame.db.entity.Bean;
+import nc.liat6.frame.db.entity.IBeanRule;
 import nc.liat6.frame.db.entity.ResultSetIterator;
+import nc.liat6.frame.db.entity.TResultSetIterator;
 import nc.liat6.frame.db.entity.StatementAndResultSet;
 import nc.liat6.frame.db.exception.DaoException;
 import nc.liat6.frame.locale.L;
@@ -320,6 +322,106 @@ public class CommonTemplate extends SuperTemplate{
       log.debug(Stringer.print("??\r\n?\r\n?",L.get(LocaleFactory.locale,"sql.query_entity"),sql,L.get(LocaleFactory.locale,"sql.var"),s.toString()));
       rs = stmt.executeQuery();
       l = new ResultSetIterator(rs);
+    }catch(SQLException e){
+      throw new DaoException(e);
+    }finally{
+      if(null!=stmt&&null!=rs){
+        sars.add(new StatementAndResultSet(stmt,rs));
+      }
+    }
+    return l;
+  }
+
+  public <T>List<T> queryObject(String sql,Class<?> klass){
+    return queryObject(sql,null,klass,null);
+  }
+
+  public <T>List<T> queryObject(String sql,Class<?> klass,IBeanRule rule){
+    return queryObject(sql,null,klass,rule);
+  }
+
+  public <T>List<T> queryObject(String sql,Object param,Class<?> klass){
+    return queryObject(sql,param,klass,null);
+  }
+
+  public <T>List<T> queryObject(String sql,Object param,Class<?> klass,IBeanRule rule){
+    List<Bean> l = queryEntity(sql,param);
+    List<T> lt = new ArrayList<T>(l.size());
+    for(Bean o:l){
+      T t = o.toObject(klass,rule);
+      lt.add(t);
+    }
+    return lt;
+  }
+
+  public <T>T oneObject(String sql,Class<?> klass){
+    return oneObject(sql,null,klass,null);
+  }
+
+  public <T>T oneObject(String sql,Class<?> klass,IBeanRule rule){
+    return oneObject(sql,null,klass,rule);
+  }
+
+  public <T>T oneObject(String sql,Object param,Class<?> klass){
+    return oneObject(sql,param,klass,null);
+  }
+
+  public <T>T oneObject(String sql,Object param,Class<?> klass,IBeanRule rule){
+    return oneEntity(sql,param).toObject(klass,rule);
+  }
+
+  public PageData queryObject(String sql,int pageNumber,int pageSize,Class<?> klass){
+    return queryObject(sql,pageNumber,pageSize,null,klass,null);
+  }
+
+  public PageData queryObject(String sql,int pageNumber,int pageSize,Class<?> klass,IBeanRule rule){
+    return queryObject(sql,pageNumber,pageSize,null,klass,rule);
+  }
+
+  public PageData queryObject(String sql,int pageNumber,int pageSize,Object param,Class<?> klass){
+    return queryObject(sql,pageNumber,pageSize,param,klass,null);
+  }
+
+  public PageData queryObject(String sql,int pageNumber,int pageSize,Object param,Class<?> klass,IBeanRule rule){
+    PageData pd = queryEntity(sql,pageNumber,pageSize,param);
+    int size = pd.getSize();
+    List<Object> l = new ArrayList<Object>(size);
+    for(int i=0,j=pd.getSize();i<j;i++){
+      l.add(pd.getBean(i).toObject(klass,rule));
+    }
+    pd.setData(l);
+    return pd;
+  }
+
+  public <T>Iterator<T> iterator(String sql,Class<?> klass){
+    return iterator(sql,null,klass,null);
+  }
+
+  public <T>Iterator<T> iterator(String sql,Class<?> klass,IBeanRule rule){
+    return iterator(sql,null,klass,rule);
+  }
+
+  public <T>Iterator<T> iterator(String sql,Object param,Class<?> klass){
+    return iterator(sql,param,klass,null);
+  }
+
+  public <T>Iterator<T> iterator(String sql,Object param,Class<?> klass,IBeanRule rule){
+    flush();
+    Iterator<T> l = null;
+    PreparedStatement stmt = null;
+    ResultSet rs = null;
+    try{
+      stmt = cv.getConnection().getSqlConnection().prepareStatement(sql);
+      List<Object> pl = processParams(stmt,param);
+      StringBuilder s = new StringBuilder();
+      for(Object o:pl){
+        s.append("\t");
+        s.append(o);
+        s.append("\r\n");
+      }
+      log.debug(Stringer.print("??\r\n?\r\n?",L.get(LocaleFactory.locale,"sql.query_entity"),sql,L.get(LocaleFactory.locale,"sql.var"),s.toString()));
+      rs = stmt.executeQuery();
+      l = new TResultSetIterator<T>(rs,klass,rule);
     }catch(SQLException e){
       throw new DaoException(e);
     }finally{

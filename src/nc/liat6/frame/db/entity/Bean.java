@@ -145,6 +145,15 @@ public class Bean implements Map<String,Object>,Serializable{
   public String toString(){
     return values.toString();
   }
+  
+  /**
+   * 获取Bean值，一般用于链式调用，可能返回null
+   * @param key 键
+   * @return 值，可能为null
+   */
+  public Bean getBean(String key){
+    return get(key);
+  }
 
   /**
    * 获取int值，如果获取不到或出错，返回默认值，不抛出异常

@@ -3,6 +3,7 @@ package nc.liat6.frame.db.plugin.impl;
 import java.util.Iterator;
 import java.util.List;
 import nc.liat6.frame.db.entity.Bean;
+import nc.liat6.frame.db.entity.IBeanRule;
 import nc.liat6.frame.db.plugin.ISelecter;
 import nc.liat6.frame.db.plugin.Rule;
 import nc.liat6.frame.paging.PageData;
@@ -14,7 +15,6 @@ import nc.liat6.frame.paging.PageData;
  * 
  */
 public class CommonSelecter extends SuperExecuter implements ISelecter{
-
   public ISelecter table(String tableName){
     tables.add(tableName);
     return this;
@@ -23,7 +23,7 @@ public class CommonSelecter extends SuperExecuter implements ISelecter{
   public ISelecter where(String column,Object value){
     Rule r = new Rule();
     r.setColumn(column);
-    if(null != value){
+    if(null!=value){
       r.setOpStart("=");
       paramWheres.add(value);
     }else{
@@ -89,7 +89,7 @@ public class CommonSelecter extends SuperExecuter implements ISelecter{
   public ISelecter whereNq(String column,Object value){
     Rule r = new Rule();
     r.setColumn(column);
-    if(null != value){
+    if(null!=value){
       r.setOpStart("!=");
       paramWheres.add(value);
     }else{
@@ -187,6 +187,50 @@ public class CommonSelecter extends SuperExecuter implements ISelecter{
   public Iterator<Bean> iterator(){
     String sql = getSql();
     Iterator<Bean> l = template.iterator(sql,getParam());
+    reset();
+    return l;
+  }
+
+  public <T>List<T> select(Class<?> klass){
+    return select(klass,null);
+  }
+
+  public <T>List<T> select(Class<?> klass,IBeanRule rule){
+    String sql = getSql();
+    List<T> l = template.queryObject(sql,getParam(),klass,rule);
+    reset();
+    return l;
+  }
+
+  public PageData page(int pageNumber,int pageSize,Class<?> klass){
+    return page(pageNumber,pageSize,klass,null);
+  }
+
+  public PageData page(int pageNumber,int pageSize,Class<?> klass,IBeanRule rule){
+    String sql = getSql();
+    PageData pd = template.queryObject(sql,pageNumber,pageSize,getParam(),klass,rule);
+    reset();
+    return pd;
+  }
+
+  public <T>T one(Class<?> klass){
+    return one(klass,null);
+  }
+
+  public <T>T one(Class<?> klass,IBeanRule rule){
+    String sql = getSql();
+    T o = template.oneObject(sql,getParam(),klass,rule);
+    reset();
+    return o;
+  }
+
+  public <T>Iterator<T> iterator(Class<?> klass){
+    return iterator(klass,null);
+  }
+
+  public <T>Iterator<T> iterator(Class<?> klass,IBeanRule rule){
+    String sql = getSql();
+    Iterator<T> l = template.iterator(sql,getParam(),klass,rule);
     reset();
     return l;
   }

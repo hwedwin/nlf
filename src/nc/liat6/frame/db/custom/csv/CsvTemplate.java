@@ -8,6 +8,7 @@ import nc.liat6.frame.context.Context;
 import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.db.connection.ConnVar;
 import nc.liat6.frame.db.entity.Bean;
+import nc.liat6.frame.db.entity.IBeanRule;
 import nc.liat6.frame.db.exception.DaoException;
 import nc.liat6.frame.db.sql.ITemplate;
 import nc.liat6.frame.db.transaction.ITrans;
@@ -137,5 +138,69 @@ public class CsvTemplate implements ITemplate,ICsv{
   }
 
   public void finalizeAll(){
+  }
+
+  public <T>List<T> queryObject(String sql,Class<?> klass){
+    throw new DaoException(L.get("sql.sql_not_support")+cv.getDbType());
+  }
+
+  public <T>List<T> queryObject(String sql,Class<?> klass,IBeanRule rule){
+    throw new DaoException(L.get("sql.sql_not_support")+cv.getDbType());
+  }
+
+  public <T>List<T> queryObject(String sql,Object param,Class<?> klass){
+    throw new DaoException(L.get("sql.sql_not_support")+cv.getDbType());
+  }
+
+  public <T>List<T> queryObject(String sql,Object param,Class<?> klass,IBeanRule rule){
+    throw new DaoException(L.get("sql.sql_not_support")+cv.getDbType());
+  }
+
+  public <T>T oneObject(String sql,Class<?> klass){
+    throw new DaoException(L.get("sql.sql_not_support")+cv.getDbType());
+  }
+
+  public <T>T oneObject(String sql,Class<?> klass,IBeanRule rule){
+    throw new DaoException(L.get("sql.sql_not_support")+cv.getDbType());
+  }
+
+  public <T>T oneObject(String sql,Object param,Class<?> klass){
+    throw new DaoException(L.get("sql.sql_not_support")+cv.getDbType());
+  }
+
+  public <T>T oneObject(String sql,Object param,Class<?> klass,IBeanRule rule){
+    throw new DaoException(L.get("sql.sql_not_support")+cv.getDbType());
+  }
+
+  public PageData queryObject(String sql,int pageNumber,int pageSize,Class<?> klass){
+    throw new DaoException(L.get("sql.sql_not_support")+cv.getDbType());
+  }
+
+  public PageData queryObject(String sql,int pageNumber,int pageSize,Class<?> klass,IBeanRule rule){
+    throw new DaoException(L.get("sql.sql_not_support")+cv.getDbType());
+  }
+
+  public PageData queryObject(String sql,int pageNumber,int pageSize,Object param,Class<?> klass){
+    throw new DaoException(L.get("sql.sql_not_support")+cv.getDbType());
+  }
+
+  public PageData queryObject(String sql,int pageNumber,int pageSize,Object param,Class<?> klass,IBeanRule rule){
+    throw new DaoException(L.get("sql.sql_not_support")+cv.getDbType());
+  }
+
+  public <T>Iterator<T> iterator(String sql,Class<?> klass){
+    throw new DaoException(L.get("sql.sql_not_support")+cv.getDbType());
+  }
+
+  public <T>Iterator<T> iterator(String sql,Class<?> klass,IBeanRule rule){
+    throw new DaoException(L.get("sql.sql_not_support")+cv.getDbType());
+  }
+
+  public <T>Iterator<T> iterator(String sql,Object param,Class<?> klass){
+    throw new DaoException(L.get("sql.sql_not_support")+cv.getDbType());
+  }
+
+  public <T>Iterator<T> iterator(String sql,Object param,Class<?> klass,IBeanRule rule){
+    throw new DaoException(L.get("sql.sql_not_support")+cv.getDbType());
   }
 }

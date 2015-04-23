@@ -214,7 +214,7 @@ public class WebExecute extends AbstractExecute{
 
   protected void responseHideJson(HideJson p){
     String s = p+"";
-    logs.append(Stringer.print("??",L.get(LocaleFactory.locale,"web.res_json"),s));
+    logs.append(Stringer.print("??",L.get(LocaleFactory.locale,"web.res_hide_json"),JSON.toJson(new Json(p.getOldData()))));
     Logger.getLog().debug(logs.toString());
     Response res = Context.get(Statics.RESPONSE);
     HttpServletResponse ores = res.find(Statics.FIND_RESPONSE);

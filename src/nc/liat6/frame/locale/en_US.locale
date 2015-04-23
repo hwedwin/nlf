@@ -133,6 +133,7 @@ web.req_args = request arguments:
 web.res_stream = response stream:
 web.res_string = response string:
 web.res_json = response json:
+web.res_hide_json = response hide json:
 web.res_page = response page:
 web.res_status = response status:
 web.res_page_var = page variables:

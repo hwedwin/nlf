@@ -3,6 +3,7 @@ package nc.liat6.frame.db.plugin.impl;
 import java.util.Iterator;
 import java.util.List;
 import nc.liat6.frame.db.entity.Bean;
+import nc.liat6.frame.db.entity.IBeanRule;
 import nc.liat6.frame.db.plugin.ISelecter;
 import nc.liat6.frame.db.sql.ITemplate;
 import nc.liat6.frame.db.transaction.ITrans;
@@ -137,5 +138,53 @@ public class AutoCloseSelecter implements ISelecter{
   public Iterator<Bean> iterator(){
     //注意，iterator操作不允许关闭连接
     return selecter.iterator();
+  }
+
+  public <T>List<T> select(Class<?> klass){
+    return select(klass,null);
+  }
+
+  public <T>List<T> select(Class<?> klass,IBeanRule rule){
+    try{
+      return selecter.select(klass,rule);
+    }finally{
+      //查询完成自动关闭
+      IOHelper.closeQuietly(t);
+    }
+  }
+
+  public PageData page(int pageNumber,int pageSize,Class<?> klass){
+    return page(pageNumber,pageSize,klass,null);
+  }
+
+  public PageData page(int pageNumber,int pageSize,Class<?> klass,IBeanRule rule){
+    try{
+      return selecter.page(pageNumber,pageSize,klass,rule);
+    }finally{
+      //查询完成自动关闭
+      IOHelper.closeQuietly(t);
+    }
+  }
+
+  public <T>T one(Class<?> klass){
+    return one(klass,null);
+  }
+
+  public <T>T one(Class<?> klass,IBeanRule rule){
+    try{
+      return selecter.one(klass,rule);
+    }finally{
+      //查询完成自动关闭
+      IOHelper.closeQuietly(t);
+    }
+  }
+
+  public <T>Iterator<T> iterator(Class<?> klass){
+    return iterator(klass,null);
+  }
+
+  public <T>Iterator<T> iterator(Class<?> klass,IBeanRule rule){
+    //注意，iterator操作不允许关闭连接
+    return selecter.iterator(klass,rule);
   }
 }

@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import nc.liat6.frame.db.connection.ConnVar;
 import nc.liat6.frame.db.entity.Bean;
+import nc.liat6.frame.db.entity.IBeanRule;
 import nc.liat6.frame.db.transaction.ITrans;
 import nc.liat6.frame.paging.PageData;
 
@@ -16,7 +17,6 @@ import nc.liat6.frame.paging.PageData;
  *
  */
 public interface ITemplate{
-
   /**
    * 设置事务接口
    *
@@ -74,6 +74,25 @@ public interface ITemplate{
   List<Bean> queryEntity(String sql);
 
   /**
+   * 查询对象列表
+   *
+   * @param sql SQL语句
+   * @param klass 转换的类
+   * @return 包含Bean的列表
+   */
+  <T>List<T> queryObject(String sql,Class<?> klass);
+
+  /**
+   * 查询对象列表
+   *
+   * @param sql SQL语句
+   * @param klass 转换的类
+   * @param rule 转换规则
+   * @return 包含Bean的列表
+   */
+  <T>List<T> queryObject(String sql,Class<?> klass,IBeanRule rule);
+
+  /**
    * 查询实体列表
    *
    * @param sql SQL语句
@@ -81,6 +100,27 @@ public interface ITemplate{
    * @return 包含Bean的列表
    */
   List<Bean> queryEntity(String sql,Object param);
+
+  /**
+   * 查询对象列表
+   *
+   * @param sql SQL语句
+   * @param param 绑定变量，可以是数组，也可以是单值
+   * @param klass 转换的类
+   * @return 包含Bean的列表
+   */
+  <T>List<T> queryObject(String sql,Object param,Class<?> klass);
+
+  /**
+   * 查询对象列表
+   *
+   * @param sql SQL语句
+   * @param param 绑定变量，可以是数组，也可以是单值
+   * @param klass 转换的类
+   * @param rule 转换规则
+   * @return 包含Bean的列表
+   */
+  <T>List<T> queryObject(String sql,Object param,Class<?> klass,IBeanRule rule);
 
   /**
    * 查询单个实体
@@ -91,6 +131,25 @@ public interface ITemplate{
   Bean oneEntity(String sql);
 
   /**
+   * 查询单个对象
+   *
+   * @param sql SQL语句
+   * @param klass 转换的类
+   * @return Bean
+   */
+  <T>T oneObject(String sql,Class<?> klass);
+
+  /**
+   * 查询单个对象
+   *
+   * @param sql SQL语句
+   * @param klass 转换的类
+   * @param rule 转换规则
+   * @return Bean
+   */
+  <T>T oneObject(String sql,Class<?> klass,IBeanRule rule);
+
+  /**
    * 带参数查询单个实体
    *
    * @param sql SQL语句
@@ -98,6 +157,27 @@ public interface ITemplate{
    * @return Bean
    */
   Bean oneEntity(String sql,Object param);
+
+  /**
+   * 带参数查询单个对象
+   *
+   * @param sql SQL语句
+   * @param param 绑定变量
+   * @param klass 转换的类
+   * @return Bean
+   */
+  <T>T oneObject(String sql,Object param,Class<?> klass);
+
+  /**
+   * 带参数查询单个对象
+   *
+   * @param sql SQL语句
+   * @param param 绑定变量
+   * @param klass 转换的类
+   * @param rule 转换规则
+   * @return Bean
+   */
+  <T>T oneObject(String sql,Object param,Class<?> klass,IBeanRule rule);
 
   /**
    * 获取记录数
@@ -176,6 +256,54 @@ public interface ITemplate{
   PageData queryEntity(String sql,int pageNumber,int pageSize,Object param);
 
   /**
+   * 对象分页查询
+   *
+   * @param sql SQL语句
+   * @param pageNumber 页码，从1开始
+   * @param pageSize 每页记录数
+   * @param klass 转换的类
+   * @return 实体分页数据封装
+   */
+  PageData queryObject(String sql,int pageNumber,int pageSize,Class<?> klass);
+
+  /**
+   * 对象分页查询
+   *
+   * @param sql SQL语句
+   * @param pageNumber 页码，从1开始
+   * @param pageSize 每页记录数
+   * @param klass 转换的类
+   * @param rule 转换规则
+   * @return 实体分页数据封装
+   */
+  PageData queryObject(String sql,int pageNumber,int pageSize,Class<?> klass,IBeanRule rule);
+
+  /**
+   * 带参数的对象分页查询
+   *
+   * @param sql SQL语句
+   * @param pageNumber 页码，从1开始
+   * @param pageSize 每页记录数
+   * @param param 绑定变量，可以是数组，也可以是单值
+   * @param klass 转换的类
+   * @return 实体分页数据封装
+   */
+  PageData queryObject(String sql,int pageNumber,int pageSize,Object param,Class<?> klass);
+
+  /**
+   * 带参数的对象分页查询
+   *
+   * @param sql SQL语句
+   * @param pageNumber 页码，从1开始
+   * @param pageSize 每页记录数
+   * @param param 绑定变量，可以是数组，也可以是单值
+   * @param klass 转换的类
+   * @param rule 转换规则
+   * @return 实体分页数据封装
+   */
+  PageData queryObject(String sql,int pageNumber,int pageSize,Object param,Class<?> klass,IBeanRule rule);
+
+  /**
    * 获取连接变量
    *
    * @return 连接变量
@@ -208,31 +336,72 @@ public interface ITemplate{
    * @param procName 存储过程名称
    */
   void call(String procName);
-  
+
   /**
    * 迭代结果集
    *
    * @param sql SQL语句
-   * @return 
+   * @return
    */
   Iterator<Bean> iterator(String sql);
-  
+
+  /**
+   * 迭代结果集
+   *
+   * @param sql SQL语句
+   * @param klass 转换的类
+   * @return
+   */
+  <T>Iterator<T> iterator(String sql,Class<?> klass);
+
+  /**
+   * 迭代结果集
+   *
+   * @param sql SQL语句
+   * @param klass 转换的类
+   * @param rule 转换规则
+   * @return
+   */
+  <T>Iterator<T> iterator(String sql,Class<?> klass,IBeanRule rule);
+
   /**
    * 迭代结果集
    *
    * @param sql SQL语句
    * @param param 绑定变量，可以是数组，也可以是单值
-   * @return 
+   * @return
    */
   Iterator<Bean> iterator(String sql,Object param);
-  
+
+  /**
+   * 迭代结果集
+   *
+   * @param sql SQL语句
+   * @param param 绑定变量，可以是数组，也可以是单值
+   * @param klass 转换的类
+   * @return
+   */
+  <T>Iterator<T> iterator(String sql,Object param,Class<?> klass);
+
+  /**
+   * 迭代结果集
+   *
+   * @param sql SQL语句
+   * @param param 绑定变量，可以是数组，也可以是单值
+   * @param klass 转换的类
+   * @param rule 转换规则
+   * @return
+   */
+  <T>Iterator<T> iterator(String sql,Object param,Class<?> klass,IBeanRule rule);
+
   /**
    * 对Statement和结果集的善后处理
+   * 
    * @param stmt Statement
    * @param rs 结果集
    */
   void finalize(Statement stmt,ResultSet rs);
-  
+
   /**
    * 最终的善后处理
    */

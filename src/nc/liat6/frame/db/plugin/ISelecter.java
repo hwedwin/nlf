@@ -3,6 +3,7 @@ package nc.liat6.frame.db.plugin;
 import java.util.Iterator;
 import java.util.List;
 import nc.liat6.frame.db.entity.Bean;
+import nc.liat6.frame.db.entity.IBeanRule;
 import nc.liat6.frame.paging.PageData;
 
 /**
@@ -130,6 +131,21 @@ public interface ISelecter extends IExecuter{
    * @return 列表
    */
   List<Bean> select();
+  
+  /**
+   * 返回自动转换后的对象列表
+   * @param klass 转换的类
+   * @return 对象列表
+   */
+  <T>List<T> select(Class<?> klass);
+  
+  /**
+   * 返回自动转换后的对象列表
+   * @param klass 转换的类
+   * @param rule 转换规则
+   * @return 对象列表
+   */
+  <T>List<T> select(Class<?> klass,IBeanRule rule);
 
   /**
    * 分页查询
@@ -139,6 +155,27 @@ public interface ISelecter extends IExecuter{
    * @return 分页数据
    */
   PageData page(int pageNumber,int pageSize);
+  
+  /**
+   * 自动转换对象的分页查询
+   *
+   * @param pageNumber 页码
+   * @param pageSize 每页记录数
+   * @param klass 转换的类
+   * @return 分页数据
+   */
+  PageData page(int pageNumber,int pageSize,Class<?> klass);
+  
+  /**
+   * 自动转换对象的分页查询
+   *
+   * @param pageNumber 页码
+   * @param pageSize 每页记录数
+   * @param klass 转换的类
+   * @param rule 转换规则
+   * @return 分页数据
+   */
+  PageData page(int pageNumber,int pageSize,Class<?> klass,IBeanRule rule);
 
   /**
    * 获取单个记录
@@ -146,6 +183,21 @@ public interface ISelecter extends IExecuter{
    * @return 单记录对象
    */
   Bean one();
+  
+  /**
+   * 获取自动转换对象的单个记录
+   * @param klass 转换的类
+   * @return 单记录对象
+   */
+  <T>T one(Class<?> klass);
+  
+  /**
+   * 获取自动转换对象的单个记录
+   * @param klass 转换的类
+   * @param rule 转换规则
+   * @return 单记录对象
+   */
+  <T>T one(Class<?> klass,IBeanRule rule);
 
   /**
    * 迭代结果集
@@ -153,4 +205,19 @@ public interface ISelecter extends IExecuter{
    * @return
    */
   Iterator<Bean> iterator();
+  
+  /**
+   * 自动转换对象的迭代结果集
+   * @param klass 转换的类
+   * @return
+   */
+  <T>Iterator<T> iterator(Class<?> klass);
+  
+  /**
+   * 自动转换对象的迭代结果集
+   * @param klass 转换的类
+   * @param rule 转换规则
+   * @return
+   */
+  <T>Iterator<T> iterator(Class<?> klass,IBeanRule rule);
 }

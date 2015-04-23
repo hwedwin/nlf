@@ -9,6 +9,7 @@ import java.util.List;
 import nc.liat6.frame.csv.CSVFileReader;
 import nc.liat6.frame.db.entity.Bean;
 import nc.liat6.frame.db.entity.BeanComparator;
+import nc.liat6.frame.db.entity.IBeanRule;
 import nc.liat6.frame.db.exception.DaoException;
 import nc.liat6.frame.db.plugin.ISelecter;
 import nc.liat6.frame.db.plugin.Rule;
@@ -291,5 +292,56 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
 
   public Iterator<Bean> iterator(){
     return select().iterator();
+  }
+
+  public <T>List<T> select(Class<?> klass){
+    return select(klass,null);
+  }
+
+  public <T>List<T> select(Class<?> klass,IBeanRule rule){
+    List<Bean> l = select();
+    List<T> tl = new ArrayList<T>(l.size());
+    for(Bean o:l){
+      T t = o.toObject(klass,rule);
+      tl.add(t);
+    }
+    return tl;
+  }
+
+  public PageData page(int pageNumber,int pageSize,Class<?> klass){
+    return page(pageNumber,pageSize,klass,null);
+  }
+
+  public PageData page(int pageNumber,int pageSize,Class<?> klass,IBeanRule rule){
+    PageData pd = page(pageNumber,pageSize);
+    int size = pd.getSize();
+    List<Object> l = new ArrayList<Object>(size);
+    for(int i=0,j=pd.getSize();i<j;i++){
+      l.add(pd.getBean(i).toObject(klass,rule));
+    }
+    pd.setData(l);
+    return pd;
+  }
+
+  public <T>T one(Class<?> klass){
+    return one(klass,null);
+  }
+
+  public <T>T one(Class<?> klass,IBeanRule rule){
+    return one().toObject(klass,rule);
+  }
+
+  public <T>Iterator<T> iterator(Class<?> klass){
+    return iterator(klass,null);
+  }
+
+  public <T>Iterator<T> iterator(Class<?> klass,IBeanRule rule){
+    List<Bean> l = select();
+    List<T> lo = new ArrayList<T>();
+    for(Bean o:l){
+      T t = o.toObject(klass,rule);
+      lo.add(t);
+    }
+    return lo.iterator();
   }
 }

@@ -133,6 +133,7 @@ web.req_args = 请求参数：
 web.res_stream = 返回流：
 web.res_string = 返回字符串：
 web.res_json = 返回JSON：
+web.res_hide_json = 返回隐藏JSON：
 web.res_page = 返回页面：
 web.res_status = 返回状态:
 web.res_page_var = 页面赋值：
