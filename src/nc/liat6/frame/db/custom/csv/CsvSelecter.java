@@ -344,4 +344,24 @@ public class CsvSelecter extends CsvExecuter implements ISelecter{
     }
     return lo.iterator();
   }
+
+  public List<Bean> top(int n){
+    List<Bean> l = select();
+    if(l.size()>n){
+      return l.subList(0,n);
+    }
+    return l;
+  }
+
+  public <T>List<T> top(int n,Class<?> klass){
+    return top(n,klass,null);
+  }
+
+  public <T>List<T> top(int n,Class<?> klass,IBeanRule rule){
+    List<T> l = select(klass,rule);
+    if(l.size()>n){
+      return l.subList(0,n);
+    }
+    return l;
+  }
 }

@@ -234,4 +234,22 @@ public class CommonSelecter extends SuperExecuter implements ISelecter{
     reset();
     return l;
   }
+
+  public List<Bean> top(int n){
+    String sql = getSql();
+    List<Bean> l = template.topEntity(sql,getParam(),n);
+    reset();
+    return l;
+  }
+
+  public <T>List<T> top(int n,Class<?> klass){
+    return top(n,klass,null);
+  }
+
+  public <T>List<T> top(int n,Class<?> klass,IBeanRule rule){
+    String sql = getSql();
+    List<T> l = template.topObject(sql,getParam(),n,klass,rule);
+    reset();
+    return l;
+  }
 }

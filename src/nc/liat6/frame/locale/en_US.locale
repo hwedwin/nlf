@@ -69,6 +69,8 @@ sql.query_page_size = size per page:
 sql.count = count:
 sql.update = update:
 sql.var = variables
+sql.top_not_support = top not supported:
+sql.query_top = top query:
 
 bean.data_convert_fail = data convert failed
 

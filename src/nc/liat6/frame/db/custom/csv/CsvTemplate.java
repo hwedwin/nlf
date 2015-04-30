@@ -203,4 +203,36 @@ public class CsvTemplate implements ITemplate,ICsv{
   public <T>Iterator<T> iterator(String sql,Object param,Class<?> klass,IBeanRule rule){
     throw new DaoException(L.get("sql.sql_not_support")+cv.getDbType());
   }
+
+  public List<Object[]> top(String sql,int n){
+    throw new DaoException(L.get("sql.top_not_support")+cv.getDbType());
+  }
+
+  public List<Object[]> top(String sql,Object param,int n){
+    throw new DaoException(L.get("sql.top_not_support")+cv.getDbType());
+  }
+
+  public List<Bean> topEntity(String sql,int n){
+    throw new DaoException(L.get("sql.top_not_support")+cv.getDbType());
+  }
+
+  public List<Bean> topEntity(String sql,Object param,int n){
+    throw new DaoException(L.get("sql.top_not_support")+cv.getDbType());
+  }
+
+  public <T>List<T> topObject(String sql,int n,Class<?> klass){
+    throw new DaoException(L.get("sql.top_not_support")+cv.getDbType());
+  }
+
+  public <T>List<T> topObject(String sql,int n,Class<?> klass,IBeanRule rule){
+    throw new DaoException(L.get("sql.top_not_support")+cv.getDbType());
+  }
+
+  public <T>List<T> topObject(String sql,Object param,int n,Class<?> klass){
+    throw new DaoException(L.get("sql.top_not_support")+cv.getDbType());
+  }
+
+  public <T>List<T> topObject(String sql,Object param,int n,Class<?> klass,IBeanRule rule){
+    throw new DaoException(L.get("sql.top_not_support")+cv.getDbType());
+  }
 }

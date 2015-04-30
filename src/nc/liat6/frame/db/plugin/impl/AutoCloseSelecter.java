@@ -187,4 +187,24 @@ public class AutoCloseSelecter implements ISelecter{
     //注意，iterator操作不允许关闭连接
     return selecter.iterator(klass,rule);
   }
+
+  public List<Bean> top(int n){
+    try{
+      return selecter.top(n);
+    }finally{
+      IOHelper.closeQuietly(t);
+    }
+  }
+
+  public <T>List<T> top(int n,Class<?> klass){
+    return top(n,klass,null);
+  }
+
+  public <T>List<T> top(int n,Class<?> klass,IBeanRule rule){
+    try{
+      return selecter.top(n,klass,rule);
+    }finally{
+      IOHelper.closeQuietly(t);
+    }
+  }
 }

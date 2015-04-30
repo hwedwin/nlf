@@ -69,6 +69,8 @@ sql.query_page_size = 每页条数：
 sql.count = 查询记录数：
 sql.update = 更新：
 sql.var = 变量：
+sql.top_not_support = 不支持top操作：
+sql.query_top = TOP查询：
 
 bean.data_convert_fail = 数据转换失败
 

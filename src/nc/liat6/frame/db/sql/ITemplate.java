@@ -393,6 +393,80 @@ public interface ITemplate{
    * @return
    */
   <T>Iterator<T> iterator(String sql,Object param,Class<?> klass,IBeanRule rule);
+  
+  /**
+   * 查询最前面几条记录
+   * @param sql SQL语句
+   * @param n 条数
+   * @return 包含列值数组的列表
+   */
+  List<Object[]> top(String sql,int n);
+  
+  /**
+   * 查询最前面几条记录
+   * @param sql SQL语句
+   * @param param 绑定变量，可以是数组，也可以是单值
+   * @param n 条数
+   * @return 包含列值数组的列表
+   */
+  List<Object[]> top(String sql,Object param,int n);
+  
+  /**
+   * 查询最前面几个实体
+   * @param sql SQL语句
+   * @param n 条数
+   * @return 实体列表
+   */
+  List<Bean> topEntity(String sql,int n);
+  
+  /**
+   * 查询最前面几个实体
+   * @param sql SQL语句
+   * @param param 绑定变量，可以是数组，也可以是单值
+   * @param n 条数
+   * @return 实体列表
+   */
+  List<Bean> topEntity(String sql,Object param,int n);
+  
+  /**
+   * 查询最前面几个对象
+   * @param sql SQL语句
+   * @param n 条数
+   * @param klass 转换的类
+   * @return 对象列表
+   */
+  <T>List<T> topObject(String sql,int n,Class<?> klass);
+  
+  /**
+   * 查询最前面几个对象
+   * @param sql SQL语句
+   * @param n 条数
+   * @param klass 转换的类
+   * @param rule 转换规则
+   * @return 对象列表
+   */
+  <T>List<T> topObject(String sql,int n,Class<?> klass,IBeanRule rule);
+  
+  /**
+   * 查询最前面几个对象
+   * @param sql SQL语句
+   * @param param 绑定变量，可以是数组，也可以是单值
+   * @param n 条数
+   * @param klass 转换的类
+   * @return 对象列表
+   */
+  <T>List<T> topObject(String sql,Object param,int n,Class<?> klass);
+  
+  /**
+   * 查询最前面几个对象
+   * @param sql SQL语句
+   * @param param 绑定变量，可以是数组，也可以是单值
+   * @param n 条数
+   * @param klass 转换的类
+   * @param rule 转换规则
+   * @return 对象列表
+   */
+  <T>List<T> topObject(String sql,Object param,int n,Class<?> klass,IBeanRule rule);
 
   /**
    * 对Statement和结果集的善后处理

@@ -220,4 +220,28 @@ public interface ISelecter extends IExecuter{
    * @return
    */
   <T>Iterator<T> iterator(Class<?> klass,IBeanRule rule);
+  
+  /**
+   * 最前面的几个实体
+   * @param n 数量
+   * @return 实体列表
+   */
+  List<Bean> top(int n);
+  
+  /**
+   * 最前面的几个对象
+   * @param n 数量
+   * @param klass 要转换的类名
+   * @return 对象列表
+   */
+  <T>List<T> top(int n,Class<?> klass);
+  
+  /**
+   * 最前面的几个对象
+   * @param n 数量
+   * @param klass 要转换的类名
+   * @param rule 转换规则
+   * @return 对象列表
+   */
+  <T>List<T> top(int n,Class<?> klass,IBeanRule rule);
 }

@@ -278,7 +278,7 @@ public class CommonTemplate extends SuperTemplate{
   }
 
   public int count(String sql){
-    throw new DaoException(L.get("sql.count_not_support")+cv.getDbType());
+    return count(sql,null);
   }
 
   public int count(String sql,Object param){
@@ -286,7 +286,7 @@ public class CommonTemplate extends SuperTemplate{
   }
 
   public PageData query(String sql,int pageNumber,int pageSize){
-    throw new DaoException(L.get("sql.page_not_support")+cv.getDbType());
+    return query(sql,pageNumber,pageSize,null);
   }
 
   public PageData query(String sql,int pageNumber,int pageSize,Object param){
@@ -294,7 +294,7 @@ public class CommonTemplate extends SuperTemplate{
   }
 
   public PageData queryEntity(String sql,int pageNumber,int pageSize){
-    throw new DaoException(L.get("sql.page_not_support")+cv.getDbType());
+    return queryEntity(sql,pageNumber,pageSize,null);
   }
 
   public PageData queryEntity(String sql,int pageNumber,int pageSize,Object param){
@@ -430,5 +430,37 @@ public class CommonTemplate extends SuperTemplate{
       }
     }
     return l;
+  }
+
+  public List<Object[]> top(String sql,int n){
+    return top(sql,null,n);
+  }
+
+  public List<Object[]> top(String sql,Object param,int n){
+    throw new DaoException(L.get("sql.top_not_support")+cv.getDbType());
+  }
+
+  public List<Bean> topEntity(String sql,int n){
+    return topEntity(sql,null,n);
+  }
+
+  public List<Bean> topEntity(String sql,Object param,int n){
+    throw new DaoException(L.get("sql.top_not_support")+cv.getDbType());
+  }
+
+  public <T>List<T> topObject(String sql,int n,Class<?> klass){
+    return topObject(sql,n,klass,null);
+  }
+
+  public <T>List<T> topObject(String sql,int n,Class<?> klass,IBeanRule rule){
+    return topObject(sql,null,n,klass,rule);
+  }
+
+  public <T>List<T> topObject(String sql,Object param,int n,Class<?> klass){
+    return topObject(sql,param,n,klass,null);
+  }
+
+  public <T>List<T> topObject(String sql,Object param,int n,Class<?> klass,IBeanRule rule){
+    throw new DaoException(L.get("sql.top_not_support")+cv.getDbType());
   }
 }

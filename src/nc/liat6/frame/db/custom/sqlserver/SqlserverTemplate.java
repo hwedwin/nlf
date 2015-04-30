@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import nc.liat6.frame.db.entity.Bean;
+import nc.liat6.frame.db.entity.IBeanRule;
 import nc.liat6.frame.db.exception.DaoException;
 import nc.liat6.frame.db.sql.impl.CommonTemplate;
 import nc.liat6.frame.locale.L;
@@ -23,7 +24,6 @@ import nc.liat6.frame.util.Stringer;
  * 
  */
 public class SqlserverTemplate extends CommonTemplate implements ISqlserver{
-
   private static ILog log = Logger.getLog();
 
   public int count(String sql,Object param){
@@ -161,5 +161,95 @@ public class SqlserverTemplate extends CommonTemplate implements ISqlserver{
     }
     d.setData(l);
     return d;
+  }
+
+  public List<Object[]> top(String sql,Object param,int n){
+    flush();
+    String nsql = null;
+    String upsql = sql.toUpperCase();
+    int index = upsql.indexOf("SELECT ");
+    if(index>-1){
+      nsql = sql.substring(index+"SELECT ".length());
+    }
+    nsql = "SELECT TOP "+n+" "+nsql;
+    List<Object[]> l = new ArrayList<Object[]>();
+    PreparedStatement stmt = null;
+    ResultSet rs = null;
+    try{
+      stmt = cv.getConnection().getSqlConnection().prepareStatement(nsql);
+      List<Object> pl = processParams(stmt,param);
+      StringBuilder s = new StringBuilder();
+      for(Object o:pl){
+        s.append("\t");
+        s.append(o);
+        s.append("\r\n");
+      }
+      log.debug(Stringer.print("??\r\n?\r\n?",L.get(LocaleFactory.locale,"sql.query_top"),nsql,L.get(LocaleFactory.locale,"sql.var"),s.toString()));
+      rs = stmt.executeQuery();
+      while(rs.next()){
+        ResultSetMetaData rsmd = rs.getMetaData();
+        int columnCount = rsmd.getColumnCount();
+        Object[] o = new Object[columnCount];
+        for(int i = 0;i<columnCount;i++){
+          o[i] = rs.getObject(i+1);
+        }
+        l.add(o);
+      }
+    }catch(SQLException e){
+      throw new DaoException(e);
+    }finally{
+      finalize(stmt,rs);
+    }
+    return l;
+  }
+
+  public List<Bean> topEntity(String sql,Object param,int n){
+    flush();
+    String nsql = null;
+    String upsql = sql.toUpperCase();
+    int index = upsql.indexOf("SELECT ");
+    if(index>-1){
+      nsql = sql.substring(index+"SELECT ".length());
+    }
+    nsql = "SELECT TOP "+n+" "+nsql;
+    List<Bean> l = new ArrayList<Bean>();
+    PreparedStatement stmt = null;
+    ResultSet rs = null;
+    try{
+      stmt = cv.getConnection().getSqlConnection().prepareStatement(nsql);
+      List<Object> pl = processParams(stmt,param);
+      StringBuilder s = new StringBuilder();
+      for(Object o:pl){
+        s.append("\t");
+        s.append(o);
+        s.append("\r\n");
+      }
+      log.debug(Stringer.print("??\r\n?\r\n?",L.get(LocaleFactory.locale,"sql.query_top"),nsql,L.get(LocaleFactory.locale,"sql.var"),s.toString()));
+      rs = stmt.executeQuery();
+      while(rs.next()){
+        ResultSetMetaData rsmd = rs.getMetaData();
+        int columnCount = rsmd.getColumnCount();
+        Bean o = new Bean();
+        for(int i = 0;i<columnCount;i++){
+          o.set(rsmd.getColumnLabel(i+1),rs.getObject(i+1));
+        }
+        l.add(o);
+      }
+    }catch(SQLException e){
+      throw new DaoException(e);
+    }finally{
+      finalize(stmt,rs);
+    }
+    return l;
+  }
+
+  public <T>List<T> topObject(String sql,Object param,int n,Class<?> klass,IBeanRule rule){
+    List<Bean> l = topEntity(sql,param,n);
+    List<T> lt = new ArrayList<T>(l.size());
+    for(Bean o:l){
+      T t = o.toObject(klass,rule);
+      lt.add(t);
+    }
+    return lt;
   }
 }
