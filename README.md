@@ -14,6 +14,9 @@ NLF框架用户手册：http://6tail.cn/npress/demo/jsp
 WebContent下有六特尔开发的i.js框架，通过一个核心js文件自动按需加载需要的组件，示例地址：http://6tail.cn/npress/api.html
 
 #更新日志
+##2015-04-30
+1. 增加top查询，如List<Bean> = Dao.getSelecter().table("user").asc("id").top(5);
+
 ##2015-04-23
 1. 增加Dao自动映射，如User user = Dao.getSelecter().table("user").where("id",1).one(User.class);
 
