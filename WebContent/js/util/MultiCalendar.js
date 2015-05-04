@@ -1,5 +1,5 @@
 ﻿I.regist('util.MultiCalendar',function(W,D){
-var CFG={offsetMonth:0,offsetYear:0,offsetX:0,offsetY:0},inited=false,layer=null,current=null,input=[],WK='日一二三四五六'.split(''),STYLE=function(){/*
+var CFG={offsetMonth:0,offsetYear:0,offsetX:0,offsetY:0,ban:[]},inited=false,layer=null,current=null,input=[],WK='日一二三四五六'.split(''),STYLE=function(){/*
 .i-calendar{position:absolute;margin:0;padding:0;left:-1000px;top:-1000px;width:424px;z-index:1000;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box;}
 .i-calendar b{font-weight:normal;display:block;}
 .i-calendar div.container{margin:0;padding:0;background-color:#D9D9D9;width:424px;height:224px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box;}
@@ -76,7 +76,7 @@ var repaintP=function(dom,y,m){
  tb.innerHTML=y+'年'+m+'月';
  tb.setAttribute('y',y);
  tb.setAttribute('m',m);
- var bt=I.$(dom,'tag','td'),f=1,l=1,i,o;
+ var bt=I.$(dom,'tag','td'),f=1,l=1,i,o,n;
  for(i=0;i<42;i++){
   o=bt[i];
   I.util.Boost.addStyle(o,'cursor:pointer;background-color:#FFF;color:#7C7C7C');
@@ -90,6 +90,7 @@ var repaintP=function(dom,y,m){
    o.style.cursor='default';
    o.innerHTML='';
    o.setAttribute('d',(m>1?y:y-1)+'-'+format(m>1?m-1:12)+'-'+format(q+1-b+i));
+   o.onmousedown=null;
   }else if(f<=c){
    o.innerHTML=f;
    if(g.getFullYear()==y&&g.getMonth()+1==m&&g.getDate()==f){
@@ -104,11 +105,48 @@ var repaintP=function(dom,y,m){
    }else{
     //other
    }
-   o.setAttribute('d',y+'-'+format(m)+'-'+format(f++));
+   o.setAttribute('d',y+'-'+format(m)+'-'+format(f));
+   for(var j=0,k=CFG.ban.length;j<k;j++){
+    n=CFG.ban[j];
+    switch(n.tag){
+    case '=':
+     if(y==n.y&&m==n.m&&f==n.d){
+      I.util.Boost.addStyle(o,'background-color:#FFF;color:#EEE');
+      o.onmousedown=null;
+     }
+     break;
+    case '<':
+     if((y<=n.y&&m<=n.m&&f<n.d)||y<n.y||(y==n.y&&m<n.m)){
+      I.util.Boost.addStyle(o,'background-color:#FFF;color:#EEE');
+      o.onmousedown=null;
+     }
+     break;
+    case '<=':
+     if((y<=n.y&&m<=n.m&&f<=n.d)||y<n.y||(y==n.y&&m<n.m)){
+      I.util.Boost.addStyle(o,'background-color:#FFF;color:#EEE');
+      o.onmousedown=null;
+     }
+     break;
+    case '>':
+     if((y>=n.y&&m>=n.m&&f>n.d)||y>n.y||(y==n.y&&m>n.m)){
+      I.util.Boost.addStyle(o,'background-color:#FFF;color:#EEE');
+      o.onmousedown=null;
+     }
+     break;
+    case '>=':
+     if((y>=n.y&&m>=n.m&&f>=n.d)||y>=n.y||(y==n.y&&m>=n.m)){
+      I.util.Boost.addStyle(o,'background-color:#FFF;color:#EEE');
+      o.onmousedown=null;
+     }
+     break;
+    }
+   }
+   f++;
   }else{
    o.style.cursor='default';
    o.innerHTML='';
    o.setAttribute('d',(m<12?y:y+1)+'-'+format(m<12?m+1:1)+'-'+format(l++));
+   o.onmousedown=function(){};
   }
  }
 };

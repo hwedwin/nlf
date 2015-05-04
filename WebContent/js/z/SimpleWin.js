@@ -21,6 +21,11 @@ var CFG={
  close_color:'#000',
  close_hover_background:'#EFEFF0',
  close_hover_color:'#000',
+ max_icon:'fa fa-square-o',
+ max_background:'#EFEFF0',
+ max_color:'#000',
+ max_hover_background:'#EFEFF0',
+ max_hover_color:'#000',
  content:'',
  content_background:'#FFF',
  footer_height:0,
@@ -36,7 +41,7 @@ var _create=function(obj){
  }
  var o=I.insert('div');
  I.cls(o,obj.className);
- o.innerHTML='<i class="i-header"></i><a href="javascript:void(0);" class="i-close"></a><i class="i-body"></i><i class="i-footer"></i>';
+ o.innerHTML='<i class="i-header"></i><a href="javascript:void(0);" class="i-max"></a><a href="javascript:void(0);" class="i-close"></a><i class="i-body"></i><i class="i-footer"></i>';
  obj.layer=o;
  I.util.Boost.round(o,cfg.round);
  I.util.Boost.addStyle(o,'-webkit-box-shadow:'+cfg.shadow+';-moz-box-shadow:'+cfg.shadow+';-ms-box-shadow:'+cfg.shadow+';-o-box-shadow:'+cfg.shadow+';box-shadow:'+cfg.shadow+';');
@@ -50,6 +55,25 @@ var _create=function(obj){
  I.util.Boost.addStyle(obj.closeButton,'background:'+cfg.close_background+';color:'+cfg.close_color);
  I.listen(obj.closeButton,'click',function(){
   obj.close();
+ });
+ obj.maxButton=I.$(o,'class','i-max')[0];
+ if(cfg.max_icon){
+  I.cls(obj.maxButton,'i-max '+cfg.max_icon);
+ }
+ I.util.Boost.addStyle(obj.maxButton,'background:'+cfg.max_background+';color:'+cfg.max_color);
+ I.listen(obj.maxButton,'click',function(){
+  if('max'!=obj.state){
+   obj.config._width=obj.config.width;
+   obj.config._height=obj.config.height;
+   obj.config.width=-1;
+   obj.config.height=-1;
+   obj.state='max';
+  }else{
+   obj.config.width=obj.config._width;
+   obj.config.height=obj.config._height;
+   obj.state='normal';
+  }
+  obj.suit();
  });
  obj.contentPanel=I.$(o,'class','i-body')[0];
  obj.contentPanel.innerHTML=cfg.content;
@@ -73,6 +97,7 @@ var _create=function(obj){
   var ch=ht-c.title_height-c.footer_height;
   I.util.Boost.addStyle(that.layer,'left:'+(r.x+c.width>0?Math.floor((r.width-wd)/2):c.space)+'px;top:'+(r.y+c.space)+'px;width:'+wd+'px;height:'+ht+'px;');
   I.util.Boost.addStyle(that.titleBar,'width:'+wd+'px;height:'+c.title_height+'px;line-height:'+c.title_height+'px;');
+  I.util.Boost.addStyle(that.maxButton,'right:'+(c.title_height-c.title_border_height)+'px;width:'+(c.title_height-c.title_border_height)+'px;height:'+(c.title_height-c.title_border_height)+'px;line-height:'+c.title_height+'px;');
   I.util.Boost.addStyle(that.closeButton,'width:'+(c.title_height-c.title_border_height)+'px;height:'+(c.title_height-c.title_border_height)+'px;line-height:'+c.title_height+'px;');
   I.util.Boost.addStyle(that.contentPanel,'top:'+c.title_height+'px;width:'+wd+'px;height:'+ch+'px;');
   I.util.Boost.addStyle(that.footerBar,'width:'+wd+'px;height:'+c.footer_height+'px;');

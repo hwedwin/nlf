@@ -119,6 +119,22 @@
  white-space:nowrap;
  text-overflow:ellipsis;
 }
+.i-z-Win-${skin} a.i-max{
+ -webkit-box-sizing:border-box;
+ -moz-box-sizing:border-box;
+ -ms-box-sizing:border-box;
+ -o-box-sizing:border-box;
+ box-sizing:border-box;
+ outline:none;
+ position:absolute;
+ right:0;
+ top:0;
+ margin:0;
+ padding:0;
+ text-decoration:none;
+ border:0;
+ text-align:center;
+}
 .i-z-Win-${skin} a.i-close{
  -webkit-box-sizing:border-box;
  -moz-box-sizing:border-box;

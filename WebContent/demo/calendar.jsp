@@ -13,7 +13,18 @@
 <script type="text/javascript">
 I.want(function(){
   I.util.MultiCalendar.setConfig({
-    offsetMonth:-1
+    offsetMonth:-1,
+    ban:[{
+     tag:'=',
+     y:2015,
+     m:5,
+     d:4
+    },{
+      tag:'<',
+      y:2015,
+      m:5,
+      d:1
+     }]
   });
   I.util.MultiCalendar.bind('day');
 });
