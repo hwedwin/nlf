@@ -27,11 +27,30 @@ import com.sun.image.codec.jpeg.JPEGImageEncoder;
  * 
  */
 public class ImageHelper{
-
   /** 默认透明度 */
   public static final int DEFAULT_ALPHA = 255;
+  /** 默认背景色 */
   public static final int DEFAULT_BG = -1;
+  /** 默认前景色 */
   public static final int DEFAULT_FG = -16777216;
+  /** 图片保持原来大小，居中 */
+  public static final int SCALE_TYPE_CENTER = 0;
+  /** 非等比例缩放至充满 */
+  public static final int SCALE_TYPE_FIT_XY = 1;
+  /** 大图缩小至完全可见居中，小图放大至接触边缘居中 */
+  public static final int SCALE_TYPE_FIT_CENTER = 2;
+  /** 大图缩小至完全可见居右或下，小图放大至接触边缘居右或下 */
+  public static final int SCALE_TYPE_FIT_END = 3;
+  /** 大图缩小至完全可见居左或上，小图放大至接触边缘居左或上 */
+  public static final int SCALE_TYPE_FIT_START = 4;
+  /** 将图片等比例缩放，不留空白，缩放后截取中间部分 */
+  public static final int SCALE_TYPE_CENTER_CROP = 5;
+  /** 大图缩小至完全可见居中，小图保持原大小居中 */
+  public static final int SCALE_TYPE_CENTER_INSIDE = 6;
+  /** 默认缩放模式 */
+  public static final int DEFAULT_SCALE_TYPE = SCALE_TYPE_CENTER_CROP;
+  /** 默认缩放背景色 */
+  public static final Color DEFAULT_SCALE_BG = Color.WHITE;
 
   private ImageHelper(){}
 
@@ -159,8 +178,184 @@ public class ImageHelper{
     return pixels;
   }
 
+  public static BufferedImage resize(BufferedImage o,int width,int height,int type,Color bg){
+    switch(type){
+      case SCALE_TYPE_CENTER:
+        return resizeCenter(o,width,height,bg);
+      case SCALE_TYPE_CENTER_CROP:
+        return resizeCenterCrop(o,width,height,bg);
+      case SCALE_TYPE_CENTER_INSIDE:
+        return resizeCenterInside(o,width,height,bg);
+      case SCALE_TYPE_FIT_CENTER:
+        return resizeFitCenter(o,width,height,bg);
+      case SCALE_TYPE_FIT_START:
+        return resizeFitStart(o,width,height,bg);
+      case SCALE_TYPE_FIT_END:
+        return resizeFitEnd(o,width,height,bg);
+      case SCALE_TYPE_FIT_XY:
+        return resizeFitXY(o,width,height,bg);
+    }
+    return o;
+  }
+
+  public static BufferedImage resize(BufferedImage o,int width,int height,int type){
+    return resize(o,width,height,type,DEFAULT_SCALE_BG);
+  }
+
+  public static BufferedImage resize(BufferedImage o,int width,int height){
+    return resize(o,width,height,DEFAULT_SCALE_TYPE,DEFAULT_SCALE_BG);
+  }
+
+  public static BufferedImage resizeFitXY(BufferedImage o,int width,int height,Color bg){
+    BufferedImage t = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
+    Graphics g = t.createGraphics();
+    g.setColor(bg);
+    g.fillRect(0,0,width,height);
+    g.drawImage(o.getScaledInstance(width,height,Image.SCALE_SMOOTH),0,0,width,height,null);
+    g.dispose();
+    return t;
+  }
+  
+  public static BufferedImage resizeFitXY(BufferedImage o,int width,int height){
+    return resizeFitXY(o,width,height,DEFAULT_SCALE_BG);
+  }
+
+  public static BufferedImage resizeCenter(BufferedImage o,int width,int height,Color bg){
+    BufferedImage t = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
+    Graphics g = t.createGraphics();
+    g.setColor(bg);
+    g.fillRect(0,0,width,height);
+    int ow = o.getWidth();
+    int oh = o.getHeight();
+    int x = (width-ow)/2;
+    int y = (height-oh)/2;
+    g.drawImage(o,x,y,null);
+    g.dispose();
+    return t;
+  }
+
+  public static BufferedImage resizeCenter(BufferedImage o,int width,int height){
+    return resizeCenter(o,width,height,DEFAULT_SCALE_BG);
+  }
+
+  public static BufferedImage resizeCenterCrop(BufferedImage o,int width,int height,Color bg){
+    BufferedImage t = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
+    Graphics g = t.createGraphics();
+    g.setColor(bg);
+    g.fillRect(0,0,width,height);
+    int x = 0;
+    int y = 0;
+    int w = width;
+    int h = height;
+    double r0 = o.getWidth()*1D/width;
+    double r1 = o.getHeight()*1D/height;
+    if(r0<r1){
+      x = 0;
+      w = width;
+      h = (int)(o.getHeight()*1D/r0);
+      y = (int)((height-h)/2);
+    }else{
+      y = 0;
+      h = height;
+      w = (int)(o.getWidth()*1D/r1);
+      x = (int)((width-w)/2);
+    }
+    g.drawImage(o.getScaledInstance(w,h,Image.SCALE_SMOOTH),x,y,w,h,null);
+    g.dispose();
+    return t;
+  }
+
+  public static BufferedImage resizeCenterCrop(BufferedImage o,int width,int height){
+    return resizeCenterCrop(o,width,height,DEFAULT_SCALE_BG);
+  }
+
+  public static BufferedImage resizeFitCenter(BufferedImage o,int width,int height,Color bg){
+    BufferedImage t = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
+    Graphics g = t.createGraphics();
+    g.setColor(bg);
+    g.fillRect(0,0,width,height);
+    int x = 0;
+    int y = 0;
+    int w = width;
+    int h = height;
+    double r0 = o.getWidth()*1D/width;
+    double r1 = o.getHeight()*1D/height;
+    if(r0<r1){
+      y = 0;
+      h = height;
+      w = (int)(o.getWidth()*1D/r1);
+      x = (int)((width-w)/2);
+    }else{
+      x = 0;
+      w = width;
+      h = (int)(o.getHeight()*1D/r0);
+      y = (int)((height-h)/2);
+    }
+    g.drawImage(o.getScaledInstance(w,h,Image.SCALE_SMOOTH),x,y,w,h,null);
+    g.dispose();
+    return t;
+  }
+
+  public static BufferedImage resizeFitCenter(BufferedImage o,int width,int height){
+    return resizeFitCenter(o,width,height,DEFAULT_SCALE_BG);
+  }
+
+  public static BufferedImage resizeFitStart(BufferedImage o,int width,int height,Color bg){
+    BufferedImage t = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
+    Graphics g = t.createGraphics();
+    g.setColor(bg);
+    g.fillRect(0,0,width,height);
+    int x = 0;
+    int y = 0;
+    int w = width;
+    int h = height;
+    double r0 = o.getWidth()*1D/width;
+    double r1 = o.getHeight()*1D/height;
+    if(r0<r1){
+      h = height;
+      w = (int)(o.getWidth()*1D/r1);
+    }else{
+      w = width;
+      h = (int)(o.getHeight()*1D/r0);
+    }
+    g.drawImage(o.getScaledInstance(w,h,Image.SCALE_SMOOTH),x,y,w,h,null);
+    g.dispose();
+    return t;
+  }
+
+  public static BufferedImage resizeFitStart(BufferedImage o,int width,int height){
+    return resizeFitStart(o,width,height,DEFAULT_SCALE_BG);
+  }
+
+  public static BufferedImage resizeFitEnd(BufferedImage o,int width,int height,Color bg){
+    BufferedImage t = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
+    Graphics g = t.createGraphics();
+    g.setColor(bg);
+    g.fillRect(0,0,width,height);
+    int w = width;
+    int h = height;
+    double r0 = o.getWidth()*1D/width;
+    double r1 = o.getHeight()*1D/height;
+    if(r0<r1){
+      h = height;
+      w = (int)(o.getWidth()*1D/r1);
+    }else{
+      w = width;
+      h = (int)(o.getHeight()*1D/r0);
+    }
+    int x = width-w;
+    int y = height-h;
+    g.drawImage(o.getScaledInstance(w,h,Image.SCALE_SMOOTH),x,y,w,h,null);
+    g.dispose();
+    return t;
+  }
+
+  public static BufferedImage resizeFitEnd(BufferedImage o,int width,int height){
+    return resizeFitEnd(o,width,height,DEFAULT_SCALE_BG);
+  }
+
   /**
-   * 缩放图像，可控制是否带边框
+   * 缩放图像
    * 
    * @param o 原图像
    * @param width 缩放后宽度
@@ -168,18 +363,11 @@ public class ImageHelper{
    * @param border 是否带边框
    * @return 缩放后图像
    */
-  public static BufferedImage resize(BufferedImage o,int width,int height,boolean border){
-    if(width<=1||height<=1){
-      return o;
-    }
+  public static BufferedImage resizeCenterInside(BufferedImage o,int width,int height,Color bg){
     BufferedImage t = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
     Graphics g = t.createGraphics();
-    g.setColor(Color.WHITE);
+    g.setColor(bg);
     g.fillRect(0,0,width,height);
-    if(border){
-      width = width-2;
-      height = height-2;
-    }
     int x = 0;
     int y = 0;
     int w = width;
@@ -214,25 +402,21 @@ public class ImageHelper{
         y = (int)((height-h)/2);
       }
     }
-    if(border){
-      x = x+1;
-      y = y+1;
-    }
     g.drawImage(o.getScaledInstance(w,h,Image.SCALE_SMOOTH),x,y,w,h,null);
     g.dispose();
     return t;
   }
 
   /**
-   * 图像缩放，不带边框
+   * 图像缩放
    * 
    * @param o 原图像
    * @param width 缩放后宽度
    * @param height 缩放后高度
    * @return 缩放后图像
    */
-  public static BufferedImage resize(BufferedImage o,int width,int height){
-    return resize(o,width,height,false);
+  public static BufferedImage resizeCenterInside(BufferedImage o,int width,int height){
+    return resizeCenterInside(o,width,height,DEFAULT_SCALE_BG);
   }
 
   /**
