@@ -15,8 +15,7 @@ var CFG={
  callback:function(){}
 };
 var _bindEvent=function(obj){
- var cfg=obj.config;
- var dom=obj.dom;
+ var cfg=obj.config,dom=obj.dom;
  I.util.Boost.addStyle(dom,'border:'+cfg.border+';background:'+cfg.background+';color:'+cfg.color);
  I.util.Boost.round(dom,cfg.round);
  I.listen(dom,'click',function(m,e){
@@ -32,31 +31,31 @@ var _bindEvent=function(obj){
  });
 };
 var _create=function(config){
- var dom=I.insert('a',config.dom?config.dom:CFG.dom);
- return _render(dom,config);
+ return _render(I.insert('a',config.dom?config.dom:CFG.dom),config);
 };
-var _render=function(dom,config){
+var _renderOne=function(dom,config){
  dom=I.$(dom);
  var obj={dom:dom,className:null,config:null};
  var cfg=I.ui.Component.initConfig(config,CFG);
  obj.config=cfg;
- if(cfg.label){
-  dom.innerHTML=cfg.label;
- }
+ if(cfg.label) dom.innerHTML=cfg.label;
  obj.className='i-ui-Button-'+cfg.skin;
- if(cfg.icon){
-  obj.className+=' '+cfg.icon;
- }
+ if(cfg.icon) obj.className+=' '+cfg.icon;
  I.util.Skin.init(cfg.skin);
  if('a'==dom.tagName.toLowerCase()){
-  if(!dom.getAttribute('href')){
-   dom.href='javascript:void(0);';
-  }
+  if(!dom.getAttribute('href')) dom.href='javascript:void(0);';
  }
  I.cls(dom,obj.className);
  _bindEvent(obj);
  return obj;
 };
+var _render=function(dom,config){
+ var who;
+ I.each(dom,function(m,i){
+  who=_renderOne(m,config);
+ });
+ return who;
+}
 return{
  create:function(cfg){return _create(cfg);},
  render:function(dom,cfg){return _render(dom,cfg);}

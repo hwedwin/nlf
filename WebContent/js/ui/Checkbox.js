@@ -15,8 +15,7 @@ var CFG={
  checked:false,
  dom:D.body,
  _callback:function(){
-  var dom=this.dom;
-  var cfg=this.config;
+  var dom=this.dom,cfg=this.config;
   var ipt=I.$(dom,'tag','input')[0];
   if(ipt.checked){
    ipt.checked='';
@@ -33,8 +32,8 @@ var CFG={
  }
 };
 var _bindEvent=function(obj){
- var cfg=obj.config;
- var dom=obj.dom;
+ var cfg=obj.config,dom=obj.dom;
+ var ipt=I.$(dom,'tag','input')[0];
  I.util.Boost.addStyle(dom,'border:'+cfg.border+';background:'+cfg.background+';color:'+cfg.color);
  I.listen(dom,'click',function(m,e){cfg.callback.call(obj);});
  I.listen(dom,'mouseover',function(m,e){
@@ -43,7 +42,6 @@ var _bindEvent=function(obj){
  I.listen(dom,'mouseout',function(m,e){
   I.util.Boost.addStyle(m,'border:'+cfg.border+';background:'+cfg.background+';color:'+cfg.color);
  });
- var ipt=I.$(dom,'tag','input')[0];
  cfg.checked=(ipt.checked?true:false)||cfg.checked;
  I.cls(I.$(dom,'tag','b')[0],cfg.checked?cfg.icon_checked:cfg.icon_normal);
 };
@@ -52,7 +50,7 @@ var _create=function(config){
  if(config.label) dom.innerHTML=config.label;
  return _render(dom,config);
 };
-var _render=function(dom,config){
+var _renderOne=function(dom,config){
  dom=I.$(dom);
  var obj={dom:dom,className:null,config:null};
  var cfg=I.ui.Component.initConfig(config,CFG);
@@ -66,9 +64,7 @@ var _render=function(dom,config){
  obj.className='i-ui-Checkbox-'+cfg.skin;
  I.util.Skin.init(cfg.skin);
  if('a'==dom.tagName.toLowerCase()){
-  if(!dom.getAttribute('href')){
-   dom.href='javascript:void(0);';
-  }
+  if(!dom.getAttribute('href')) dom.href='javascript:void(0);';
  }
  I.cls(dom,obj.className);
  _bindEvent(obj);
@@ -86,6 +82,13 @@ var _render=function(dom,config){
  };
  return obj;
 };
+var _render=function(dom,config){
+ var who;
+ I.each(dom,function(m,i){
+  who=_renderOne(m,config);
+ });
+ return who;
+}
 return {
  create:function(cfg){return _create(cfg);},
  render:function(dom,cfg){return _render(dom,cfg);}

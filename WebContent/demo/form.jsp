@@ -48,11 +48,11 @@
   </ul>
   <ul>
     <li data-width="10">radio：</li>
-    <li>
-      <a id="radio0">是
-        <input name="rd" type="radio" value="1" />
+    <li id="radios">
+      <a>是
+        <input name="rd" type="radio" value="1" checked="checked" />
       </a>
-      <a id="radio1">否
+      <a>否
         <input name="rd" type="radio" value="0" />
       </a>
     </li>
@@ -67,18 +67,18 @@
   </ul>
   <ul>
     <li data-width="10">星期：</li>
-    <li>
-      <a id="week1"><b></b><i>一</i>
-        <input id="week_1" type="checkbox" value="1" />
+    <li id="weeks">
+      <a><b></b><i>一</i>
+        <input type="checkbox" value="1" />
       </a>
-      <a id="week2"><b></b><i>二</i>
-        <input id="week_2" type="checkbox" value="2" />
+      <a><b></b><i>二</i>
+        <input type="checkbox" value="2" />
       </a>
-      <a id="week3"><b></b><i>三</i>
-        <input id="week_3" type="checkbox" value="3" />
+      <a><b></b><i>三</i>
+        <input type="checkbox" value="3" />
       </a>
-      <a id="week4"><b></b><i>四</i>
-        <input id="week_4" type="checkbox" value="4" />
+      <a><b></b><i>四</i>
+        <input type="checkbox" value="4" />
       </a>
     </li>
   </ul>
@@ -122,13 +122,9 @@ I.want(function(){
     callback:function(){
     }
   });
-  I.ui.Radio.render('radio0');
-  I.ui.Radio.render('radio1');
+  I.ui.Radio.render(I.$('radios','*'));
   I.ui.Checkbox.render('check');
-  I.ui.Checkbox.render('week1');
-  I.ui.Checkbox.render('week2');
-  I.ui.Checkbox.render('week3');
-  I.ui.Checkbox.render('week4');
+  I.ui.Checkbox.render(I.$('weeks','*'));
   I.util.MultiCalendar.bind('date');
 });
 </script>

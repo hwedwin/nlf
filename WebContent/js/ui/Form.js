@@ -1,11 +1,11 @@
 I.regist('ui.Form',function(W,D){
 var CFG={
  skin:'Default',
- border:'1px solid #DDD',
- border_hover:'1px solid #BBB',
+ border:'0',
+ border_hover:'0',
  background:'#FFF',
  label_width:20,
- background_hover:'#FBFBFB',
+ background_hover:'#FFF',
  dom:D.body
 };
 var _renderForm=function(obj){

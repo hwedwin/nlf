@@ -13,8 +13,24 @@
 <a id="btnA">按钮1</a>
 <div id="btnB">按钮2</div>
 <span id="btnC">带事件响应的按钮</span>
+<p>&nbsp;</p>
+<p>第2种方式：批量渲染</p>
+<ul id="ul">
+  <li>按钮A</li>
+  <li>按钮B</li>
+  <li>按钮C</li>
+  <li>按钮D</li>
+  <li>按钮E</li>
+  <li>按钮F</li>
+  <li>按钮G</li>
+</ul>
 <script type="text/javascript">
 I.want(function(){
+  I.ui.Button.render(I.$('ul','*'),{
+    callback:function(){
+      window.alert(this.dom.innerHTML);
+    }
+  });
   I.ui.Button.render('btnA');
   I.ui.Button.render('btnB',{
     background:'#5bc0de',
@@ -38,7 +54,7 @@ I.want(function(){
 });
 </script>
 <p>&nbsp;</p>
-<p>第2种方式：js动态创建</p>
+<p>第3种方式：js动态创建</p>
 <div id="buttons"></div>
 <script type="text/javascript">
 I.want(function(){
