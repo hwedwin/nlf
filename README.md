@@ -19,7 +19,7 @@ WebContent下有六特尔开发的i.js框架，通过一个核心js文件自动�
 2. 优化部分前端UI。
 
 ##2015-04-30
-1. 增加top查询，如List<Bean> = Dao.getSelecter().table("user").asc("id").top(5);
+1. 增加top查询，如List<Bean> users = Dao.getSelecter().table("user").asc("id").top(5);
 
 ##2015-04-23
 1. 增加Dao自动映射，如User user = Dao.getSelecter().table("user").where("id",1).one(User.class);
