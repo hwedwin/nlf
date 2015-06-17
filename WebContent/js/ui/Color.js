@@ -41,27 +41,33 @@ var _trim=function(os){
  return s;
 };
 var _init=function(){
- I.style(_trim(STYLE));
- var o=I.insert('div');
- I.cls(o,'i-color');
- var s='<ul>';
- for(var i=0;i<10;i++){
-  s+='<li style="background-color:'+COLOR[0][i]+'" data-color="'+COLOR[0][i]+'"></li>';
- }
- s+='</ul>';
- for(var i=0;i<10;i++){
-  s+='<ol>';
-  for(var j=0;j<5;j++){
-    s+='<li style="background-color:'+COLOR[i+1][j]+'" data-color="'+COLOR[i+1][j]+'"></li>';
+ var o=I.$('class','i-color');
+ if(o&&o.length>0){
+  o=o[0];
+ }else{
+  I.style(_trim(STYLE));
+  o=I.insert('div');
+  I.cls(o,'i-color');
+  var s='<ul>';
+  for(var i=0;i<10;i++){
+   s+='<li style="background-color:'+COLOR[0][i]+'" data-color="'+COLOR[0][i]+'"></li>';
   }
-  s+='</ol>';
+  s+='</ul>';
+  for(var i=0;i<10;i++){
+   s+='<ol>';
+   for(var j=0;j<5;j++){
+    s+='<li style="background-color:'+COLOR[i+1][j]+'" data-color="'+COLOR[i+1][j]+'"></li>';
+   }
+   s+='</ol>';
+  }
+  s+='<ul>';
+  for(var i=0;i<10;i++){
+   s+='<li style="background-color:'+COLOR[11][i]+'" data-color="'+COLOR[11][i]+'"></li>';
+  }
+  s+='</ul>';
+  o.innerHTML=s;
+  bindEvent();
  }
- s+='<ul>';
- for(var i=0;i<10;i++){
-  s+='<li style="background-color:'+COLOR[11][i]+'" data-color="'+COLOR[11][i]+'"></li>';
- }
- s+='</ul>';
- o.innerHTML=s;
  obj.layer=o;
  obj.close=function(){
   this.layer.style.left='-1000px';
@@ -87,19 +93,7 @@ var _init=function(){
   m.style.border='';
  });
 };
-var _bind=function(dom,config){
- if(!obj.inited) _init();
- dom=I.$(dom);
- var uuid=I.util.UUID.next();
- dom.setAttribute(TAG,uuid);
- obj.doms.push(dom);
- var cfg=I.ui.Component.initConfig(config,CFG);
- obj.config[uuid]=cfg;
- I.listen(dom,'click',function(m,e){
-  var r=I.region(m);
-  obj.moveTo(r.x,r.y+r.height);
-  obj.current=m;
- });
+var bindEvent=function(){
  I.listen(D,'click',function(o,e){
   try{
    o=e.srcElement||e.target;
@@ -118,6 +112,20 @@ var _bind=function(dom,config){
    if(x < m.x || y < m.y || x > m.x+m.width || y > m.y+m.height) obj.close();
   }catch(ee){}
   return true;
+ });
+};
+var _bind=function(dom,config){
+ if(!obj.inited) _init();
+ dom=I.$(dom);
+ var uuid=I.util.UUID.next();
+ dom.setAttribute(TAG,uuid);
+ obj.doms.push(dom);
+ var cfg=I.ui.Component.initConfig(config,CFG);
+ obj.config[uuid]=cfg;
+ I.listen(dom,'click',function(m,e){
+  var r=I.region(m);
+  obj.moveTo(r.x,r.y+r.height);
+  obj.current=m;
  });
  return obj;
 };

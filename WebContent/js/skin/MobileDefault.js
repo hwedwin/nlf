@@ -1,8 +1,4 @@
-﻿/**
- * I.skin.MobileDefault
- * <i>移动端默认皮肤</i>
- */
-I.regist('skin.MobileDefault',function(W,D){var CSS = function(){/*
+﻿I.regist('skin.MobileDefault',function(W,D){var CSS=function(){/*
 *{
  margin:0;
  padding:0;
@@ -562,7 +558,12 @@ textarea{
  padding:.5em 1em;
  font-size:1em;
  text-align:center;
- -webkit-border-radius:6px;-moz-border-radius:6px;-ms-border-radius:6px;-o-border-radius:6px;border-radius:6px;}
+ -webkit-border-radius:6px;
+ -moz-border-radius:6px;
+ -ms-border-radius:6px;
+ -o-border-radius:6px;
+ border-radius:6px;
+}
 .grid{
  display:-webkit-box;
  display:-moz-box;
@@ -575,14 +576,7 @@ textarea{
  -o-box-orient:horizontal;
  box-orient:horizontal
 }
-.grid > *{
- display:block;
- -webkit-box-flex:1;
- -moz-box-flex:1;
- -ms-box-flex:1;
- -o-box-flex:1;
- box-flex:1;
-}
+.grid > *{display:block;-webkit-box-flex:1;-moz-box-flex:1;-ms-box-flex:1;-o-box-flex:1;box-flex:1;}
 .grid > *.col0{-webkit-box-flex:0;-moz-box-flex:0;-ms-box-flex:0;-o-box-flex:0;box-flex:0;}
 .grid > *.col2{-webkit-box-flex:2;-moz-box-flex:2;-ms-box-flex:2;-o-box-flex:2;box-flex:2;}
 .grid > *.col3{-webkit-box-flex:3;-moz-box-flex:3;-ms-box-flex:3;-o-box-flex:3;box-flex:3;}
@@ -592,4 +586,5 @@ textarea{
 .grid > *.col7{-webkit-box-flex:7;-moz-box-flex:7;-ms-box-flex:7;-o-box-flex:7;box-flex:7;}
 .grid > *.col8{-webkit-box-flex:8;-moz-box-flex:8;-ms-box-flex:8;-o-box-flex:8;box-flex:8;}
 .grid > *.col9{-webkit-box-flex:9;-moz-box-flex:9;-ms-box-flex:9;-o-box-flex:9;box-flex:9;}
+aside{overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;position:absolute;top:0;height:100%;display:none;}
 */}+'';return{getCss:function(){return CSS;}};}+'');

@@ -6,7 +6,7 @@ var CFG={
  checkMethod:'getStatus',
  border:'1px solid #DDD',
  fillHeight:false,
- toolbar:['source','fullscreen','|','bold','italic','underline','strikethrough','|','superscript','subscript','|','forecolor','backcolor','|','removeformat','|','insertorderedlist','insertunorderedlist','justifyleft','justifycenter','justifyright','justifyfull','|','indent','outdent','|','link','unlink','|','image','code','|','horizontal'],
+ toolbar:['source','fullscreen','|','bold','italic','underline','strikethrough','|','superscript','subscript','fontsize','|','forecolor','backcolor','|','removeformat','|','insertorderedlist','insertunorderedlist','justifyleft','justifycenter','justifyright','justifyfull','|','indent','outdent','|','link','unlink','|','image','code','|','horizontal'],
  dom:D.body
 };
 var TIP={
@@ -18,6 +18,7 @@ var TIP={
  strikethrough:'删除线',
  superscript:'上标',
  subscript:'下标',
+ fontsize:'字体大小',
  forecolor:'字体颜色',
  backcolor:'背景色',
  removeformat:'清除格式',
@@ -44,6 +45,7 @@ var ICON={
  strikethrough:'fa fa-strikethrough',
  superscript:'fa fa-superscript',
  subscript:'fa fa-subscript',
+ fontsize:'fa fa-text-height',
  forecolor:'fa fa-pencil',
  backcolor:'fa fa-pencil-square',
  removeformat:'fa fa-eraser',
@@ -135,6 +137,16 @@ var _renderToolbar=function(obj){
      win.editor=editor;
     });
     break;
+   case 'fontsize':
+     var a=_tool(obj,name,function(a){});
+     I.ui.FontSize.bind(a,{
+      callback:function(fs){
+       obj.doc.execCommand('fontsize',false,fs);
+      }
+     });
+     var b=I.insert('b',a);
+     I.cls(b,'fa fa-sort-desc');
+     break;
    case 'forecolor':
     var a=_tool(obj,name,function(a){});
     I.ui.Color.bind(a,{

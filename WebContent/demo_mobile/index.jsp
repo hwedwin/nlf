@@ -13,6 +13,17 @@ footer{
   border-top:1px solid #D6D6D6;
   background-color:#FFF;
 }
+#menu{
+  background-color:#FFF;
+  width:50%;
+  z-index:2;
+  border-left:1px solid #DDD;
+  -webkit-box-shadow:-2px 0px 5px #666;
+  -moz-box-shadow:-2px 0px 5px #666;
+  -ms-box-shadow:-2px 0px 5px #666;
+  -o-box-shadow:-2px 0px 5px #666;
+  box-shadow:-2px 0px 5px #666;
+}
 </style>
 </head>
 <body>
@@ -22,7 +33,7 @@ footer{
     </nav>
     <i>NLF MOBILE</i>
     <nav>
-      <a class="fa fa-none"></a>
+      <a class="fa fa-bars a" data-aside="menu"></a>
     </nav>
   </header>
   <article>
@@ -57,6 +68,22 @@ footer{
       <li class="link a" data-href="mobile_Bottom_Transparent.jsp"><i class="fa fa-ellipsis-h">半透明的浮动底部</i></li>
     </ul>
   </article>
+  <aside id="menu" data-at="right">
+    <header>
+    <nav>
+      <a class="fa fa-bars a" data-aside="menu"></a>
+    </nav>
+    <i>菜单</i>
+    <nav>
+      <a class="fa fa-none"></a>
+    </nav>
+    </header>
+    <article>
+    <ul>
+      <li>测试</li>
+    </ul>
+    </article>
+  </aside>
   <script>
   I.want(function(){
     I.ui.Mobile.render();

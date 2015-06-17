@@ -35,6 +35,7 @@ I.regist('net.Page',function(W,D){
     D.getElementsByTagName('head')[0].appendChild(o);
   };
   var _createCss = function(css){
+    if(I.trim(css).length<1) return;
     var o = D.createElement("style");
     o.type = "text/css";
     o.innerHTML = css;

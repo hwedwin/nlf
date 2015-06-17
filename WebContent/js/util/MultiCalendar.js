@@ -174,11 +174,36 @@ var show=function(){
  y+=Math.floor(m/12);
  repaint(s2d([y,format(m),format(d)].join('-')));
 };
+var bindEvent=function(){
+ I.listen(D,'click',function(o,e){
+  try{
+   o=e.srcElement||e.target;
+   var v=false,i;
+   for(i=0;i<input.length;i++){
+    if(o==input[i]){
+     v=true;
+     break;
+    }
+   }
+   if(v) return;
+   v=I.region();
+   var x=e.clientX+v.x,y=e.clientY+v.y,m=I.region(layer);
+   if(x<m.x||y<m.y||x>m.x+m.width||y>m.y+m.height) hide();
+  }catch(ee){}
+  return true;
+ });
+};
 var init=function(){
- I.style(trim(STYLE));
- var o=I.insert('div');
- I.cls(o,'i-calendar');
- o.innerHTML=['<div class="container">',genLR('left','&lt;'),genLR('right','&gt;'),'</div>'].join('');
+ var o=I.$('class','i-calendar');
+ if(o&&o.length>0){
+  o=o[0];
+ }else{
+  I.style(trim(STYLE));
+  o=I.insert('div');
+  I.cls(o,'i-calendar');
+  o.innerHTML=['<div class="container">',genLR('left','&lt;'),genLR('right','&gt;'),'</div>'].join('');
+  bindEvent();
+ }
  layer=o;
  var a=I.$(layer,'tag','a'),i=I.$(layer,'tag','i');
  a[0].onclick=function(){
@@ -204,23 +229,6 @@ var init=function(){
   repaint(s2d(year+'-'+month+'-01'));
  };
 };
-I.listen(D,'click',function(o,e){
- try{
-  o=e.srcElement||e.target;
-  var v=false,i;
-  for(i=0;i<input.length;i++){
-   if(o==input[i]){
-    v=true;
-    break;
-   }
-  }
-  if(v) return;
-  v=I.region();
-  var x=e.clientX+v.x,y=e.clientY+v.y,m=I.region(layer);
-  if(x<m.x||y<m.y||x>m.x+m.width||y>m.y+m.height) hide();
- }catch(ee){}
- return true;
-});
 var bind=function(o){
  if(!inited) init();
  o=I.$(o);
