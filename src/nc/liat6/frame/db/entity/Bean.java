@@ -464,7 +464,7 @@ public class Bean implements Map<String,Object>,Serializable{
             }
           }
         }catch(Exception e){
-          throw new NlfException(null==e?null:e.getMessage(),e);
+          throw new NlfException(L.get("bean.data_convert_fail")+":"+property,e);
         }
       }
       return (T)o;
