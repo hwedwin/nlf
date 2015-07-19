@@ -16,7 +16,6 @@ footer{
 #menu{
   background-color:#FFF;
   width:50%;
-  z-index:2;
   border-left:1px solid #DDD;
   -webkit-box-shadow:-2px 0px 5px #666;
   -moz-box-shadow:-2px 0px 5px #666;
