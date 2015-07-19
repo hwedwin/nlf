@@ -145,9 +145,10 @@ public class Bean implements Map<String,Object>,Serializable{
   public String toString(){
     return values.toString();
   }
-  
+
   /**
    * 获取Bean值，一般用于链式调用，可能返回null
+   * 
    * @param key 键
    * @return 值，可能为null
    */
@@ -262,9 +263,10 @@ public class Bean implements Map<String,Object>,Serializable{
     }
     return o+"";
   }
-  
+
   /**
    * 强制获取List，即使是非Collection，也会强制返回只有1个元素的List。如果不存在该键，返回null。
+   * 
    * @param key 键
    * @return List
    */
@@ -357,7 +359,7 @@ public class Bean implements Map<String,Object>,Serializable{
         Method method;
         String p;
         String key;
-        for(int i = 0,j=props.length;i<j;i++){
+        for(int i = 0,j = props.length;i<j;i++){
           desc = props[i];
           // getter
           method = desc.getReadMethod();
@@ -399,7 +401,7 @@ public class Bean implements Map<String,Object>,Serializable{
       }
       BeanInfo info = BeanPool.getBeanInfo(klass);
       PropertyDescriptor[] props = info.getPropertyDescriptors();
-      for(int i = 0;i<props.length;i++){
+      for(int i = 0,j = props.length;i<j;i++){
         PropertyDescriptor desc = props[i];
         String property = desc.getName();
         Method method = desc.getWriteMethod();
@@ -441,7 +443,7 @@ public class Bean implements Map<String,Object>,Serializable{
             }else if(Byte.class.equals(pt)||byte.class.equals(pt)){
               method.invoke(o,Byte.parseByte(v.toString()));
             }else if(Boolean.class.equals(pt)||boolean.class.equals(pt)){
-              method.invoke(o,Boolean.parseBoolean(v.toString()));
+              method.invoke(o,Boolean.parseBoolean(v.toString())||!"0".equals(v.toString()));
             }else if(BigDecimal.class.equals(vt)){
               BigDecimal bd = (BigDecimal)v;
               if(Long.class.equals(pt)||long.class.equals(pt)){

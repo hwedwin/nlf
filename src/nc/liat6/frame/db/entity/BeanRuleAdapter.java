@@ -9,6 +9,6 @@ package nc.liat6.frame.db.entity;
 public abstract class BeanRuleAdapter implements IBeanRule{
 
   public String getKey(String property){
-    return null;
+    return property;
   }
 }
