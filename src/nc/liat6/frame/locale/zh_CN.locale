@@ -139,7 +139,7 @@ web.res_hide_json = 返回隐藏JSON：
 web.res_page = 返回页面：
 web.res_status = 返回状态:
 web.res_page_var = 页面赋值：
-
+web.res_redirect = 重定向：
 
 rmi.app_start = RMI服务已启动：
 rmi.port = 端口：

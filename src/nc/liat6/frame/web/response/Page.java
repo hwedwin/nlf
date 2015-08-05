@@ -105,11 +105,11 @@ public class Page{
    * 调用后可将上一个页面传递来的参数自动传递到下一个页面
    */
   public void deliver(){
-    Request request = Context.get(Statics.REQUEST);
-    HttpServletRequest r = request.find("request");
-    Map<String,String> m = request.getParams();
+    Request req = Context.get(Statics.REQUEST);
+    HttpServletRequest oreq = req.find(Statics.FIND_REQUEST);
+    Map<String,String> m = req.getParams();
     for(String key:m.keySet()){
-      r.setAttribute(key,m.get(key));
+      oreq.setAttribute(key,m.get(key));
     }
   }
 }

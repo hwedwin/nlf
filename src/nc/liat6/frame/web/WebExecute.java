@@ -34,6 +34,7 @@ import nc.liat6.frame.web.response.HideJson;
 import nc.liat6.frame.web.response.Json;
 import nc.liat6.frame.web.response.Output;
 import nc.liat6.frame.web.response.Page;
+import nc.liat6.frame.web.response.Redirect;
 import nc.liat6.frame.web.response.Tip;
 
 /**
@@ -170,6 +171,8 @@ public class WebExecute extends AbstractExecute{
       responseHideJson((HideJson)r);
     }else if(r instanceof Tip){
       responseJson((Tip)r);
+    }else if(r instanceof Redirect){
+      responseRedirect((Redirect)r);
     }else if(r instanceof Page){
       responsePage((Page)r);
     }else{
@@ -279,6 +282,18 @@ public class WebExecute extends AbstractExecute{
     Logger.getLog().debug(logs.toString());
     try{
       oreq.getRequestDispatcher(p.getUri()).forward(oreq,ores);
+    }catch(Exception e){
+      throw new BadException(e);
+    }
+  }
+  
+  protected void responseRedirect(Redirect p){
+    Response res = Context.get(Statics.RESPONSE);
+    HttpServletResponse ores = res.find(Statics.FIND_RESPONSE);
+    logs.append(Stringer.print("??",L.get(LocaleFactory.locale,"web.res_redirect"),p.getUri()));
+    Logger.getLog().debug(logs.toString());
+    try{
+      ores.sendRedirect(p.getUri());
     }catch(Exception e){
       throw new BadException(e);
     }
