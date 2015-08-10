@@ -12,7 +12,7 @@ public abstract class AbstractLog implements ILog{
 
   protected String klass;
 
-  AbstractLog(String klass){
+  protected AbstractLog(String klass){
     this.klass = klass;
   }
 }
