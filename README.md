@@ -14,6 +14,9 @@ NLF框架用户手册：http://6tail.cn/npress/demo/jsp
 WebContent下有六特尔开发的i.js框架，通过一个核心js文件自动按需加载需要的组件，示例地址：http://6tail.cn/npress/api.html
 
 #更新日志
+##2015-08-10
+1. 增强logger扩展性，从此可以愉快的使用slf4j+logback了(需要nlf-plugin-slf4j.jar)。
+
 ##2015-08-05
 1. 增加请求重定向（返回Redirect）。
 
