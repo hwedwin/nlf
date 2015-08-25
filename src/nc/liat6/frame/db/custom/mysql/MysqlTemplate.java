@@ -2,7 +2,6 @@ package nc.liat6.frame.db.custom.mysql;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,16 +36,11 @@ public class MysqlTemplate extends CommonTemplate implements IMysql{
       nsql = sql.substring(0,index);
     }
     nsql = "SELECT COUNT(*) FROM ("+nsql+") NLFTABLE_";
+    List<Object> pl = processParams(param);
+    log.debug(Stringer.print("??\r\n??",L.get(LocaleFactory.locale,"sql.count"),nsql,L.get(LocaleFactory.locale,"sql.var"),pl));
     try{
       stmt = cv.getConnection().getSqlConnection().prepareStatement(nsql);
-      List<Object> pl = processParams(stmt,param);
-      StringBuilder s = new StringBuilder();
-      for(Object o:pl){
-        s.append("\t");
-        s.append(o);
-        s.append("\r\n");
-      }
-      log.debug(Stringer.print("??\r\n?\r\n?",L.get(LocaleFactory.locale,"sql.count"),nsql,L.get(LocaleFactory.locale,"sql.var"),s.toString()));
+      processParams(stmt,pl);
       rs = stmt.executeQuery();
       rs.next();
       return rs.getInt(1);
@@ -73,29 +67,16 @@ public class MysqlTemplate extends CommonTemplate implements IMysql{
     int pageCount = d.getPageCount();
     d.setPageNumber(pageNumber>pageCount?pageCount:pageNumber);
     String nsql = "SELECT * FROM ("+sql+") NLFTABLE_ LIMIT "+((d.getPageNumber()-1)*d.getPageSize())+","+d.getPageSize();
-    List<Object[]> l = new ArrayList<Object[]>();
+    List<Object> pl = processParams(param);
+    log.debug(Stringer.print("??\r\n??\r\n??\r\n??",L.get(LocaleFactory.locale,"sql.query_page"),nsql,L.get(LocaleFactory.locale,"sql.query_page_num"),pageNumber,L.get(LocaleFactory.locale,"sql.query_page_size"),pageSize,L.get(LocaleFactory.locale,"sql.var"),pl));
     PreparedStatement stmt = null;
     ResultSet rs = null;
+    List<Object[]> l = null;
     try{
       stmt = cv.getConnection().getSqlConnection().prepareStatement(nsql);
-      List<Object> pl = processParams(stmt,param);
-      StringBuilder s = new StringBuilder();
-      for(Object o:pl){
-        s.append("\t");
-        s.append(o);
-        s.append("\r\n");
-      }
-      log.debug(Stringer.print("??\r\n??\r\n??\r\n?\r\n?",L.get(LocaleFactory.locale,"sql.query_page"),nsql,L.get(LocaleFactory.locale,"sql.query_page_num"),pageNumber,L.get(LocaleFactory.locale,"sql.query_page_size"),pageSize,L.get(LocaleFactory.locale,"sql.var"),s.toString()));
+      processParams(stmt,pl);
       rs = stmt.executeQuery();
-      while(rs.next()){
-        ResultSetMetaData rsmd = rs.getMetaData();
-        int columnCount = rsmd.getColumnCount();
-        Object[] o = new Object[columnCount];
-        for(int i = 0;i<columnCount;i++){
-          o[i] = rs.getObject(i+1);
-        }
-        l.add(o);
-      }
+      l = objs(rs);
     }catch(SQLException e){
       throw new DaoException(e);
     }finally{
@@ -107,36 +88,20 @@ public class MysqlTemplate extends CommonTemplate implements IMysql{
 
   public List<Bean> queryEntity(String sql,Object param){
     flush();
-    List<Bean> l = null;
+    List<Object> pl = processParams(param);
+    log.debug(Stringer.print("??\r\n??",L.get(LocaleFactory.locale,"sql.query_entity"),sql,L.get(LocaleFactory.locale,"sql.var"),pl));
     PreparedStatement stmt = null;
     ResultSet rs = null;
     try{
-      l = new ArrayList<Bean>();
       stmt = cv.getConnection().getSqlConnection().prepareStatement(sql);
-      List<Object> pl = processParams(stmt,param);
-      StringBuilder s = new StringBuilder();
-      for(Object o:pl){
-        s.append("\t");
-        s.append(o);
-        s.append("\r\n");
-      }
-      log.debug(Stringer.print("??\r\n?\r\n?",L.get(LocaleFactory.locale,"sql.query_entity"),sql,L.get(LocaleFactory.locale,"sql.var"),s.toString()));
+      processParams(stmt,pl);
       rs = stmt.executeQuery();
-      while(rs.next()){
-        ResultSetMetaData rsmd = rs.getMetaData();
-        int columnCount = rsmd.getColumnCount();
-        Bean o = new Bean();
-        for(int i = 0;i<columnCount;i++){
-          o.set(rsmd.getColumnLabel(i+1),rs.getObject(i+1));
-        }
-        l.add(o);
-      }
+      return beans(rs);
     }catch(SQLException e){
       throw new DaoException(e);
     }finally{
       finalize(stmt,rs);
     }
-    return l;
   }
 
   public PageData queryEntity(String sql,int pageNumber,int pageSize){
@@ -151,29 +116,16 @@ public class MysqlTemplate extends CommonTemplate implements IMysql{
     int pageCount = d.getPageCount();
     d.setPageNumber(pageNumber>pageCount?pageCount:pageNumber);
     String nsql = "SELECT * FROM ("+sql+") NLFTABLE_ LIMIT "+((d.getPageNumber()-1)*d.getPageSize())+","+d.getPageSize();
-    List<Bean> l = new ArrayList<Bean>();
+    List<Object> pl = processParams(param);
+    log.debug(Stringer.print("??\r\n??\r\n??\r\n?\r\n?",L.get(LocaleFactory.locale,"sql.query_entity_page"),nsql,L.get(LocaleFactory.locale,"sql.query_page_num"),pageNumber,L.get(LocaleFactory.locale,"sql.query_page_size"),pageSize,L.get(LocaleFactory.locale,"sql.var"),pl));
     PreparedStatement stmt = null;
     ResultSet rs = null;
+    List<Bean> l = null;
     try{
       stmt = cv.getConnection().getSqlConnection().prepareStatement(nsql);
-      List<Object> pl = processParams(stmt,param);
-      StringBuilder s = new StringBuilder();
-      for(Object o:pl){
-        s.append("\t");
-        s.append(o);
-        s.append("\r\n");
-      }
-      log.debug(Stringer.print("??\r\n??\r\n??\r\n?\r\n?",L.get(LocaleFactory.locale,"sql.query_entity_page"),nsql,L.get(LocaleFactory.locale,"sql.query_page_num"),pageNumber,L.get(LocaleFactory.locale,"sql.query_page_size"),pageSize,L.get(LocaleFactory.locale,"sql.var"),s.toString()));
+      processParams(stmt,pl);
       rs = stmt.executeQuery();
-      while(rs.next()){
-        ResultSetMetaData rsmd = rs.getMetaData();
-        int columnCount = rsmd.getColumnCount();
-        Bean o = new Bean();
-        for(int i = 0;i<columnCount;i++){
-          o.set(rsmd.getColumnLabel(i+1),rs.getObject(i+1));
-        }
-        l.add(o);
-      }
+      l = beans(rs);
     }catch(SQLException e){
       throw new DaoException(e);
     }finally{
@@ -186,69 +138,39 @@ public class MysqlTemplate extends CommonTemplate implements IMysql{
   public List<Object[]> top(String sql,Object param,int n){
     flush();
     String nsql = sql+" LIMIT 0,"+n;
-    List<Object[]> l = new ArrayList<Object[]>();
+    List<Object> pl = processParams(param);
+    log.debug(Stringer.print("??\r\n??",L.get(LocaleFactory.locale,"sql.query_top"),nsql,L.get(LocaleFactory.locale,"sql.var"),pl));
     PreparedStatement stmt = null;
     ResultSet rs = null;
     try{
       stmt = cv.getConnection().getSqlConnection().prepareStatement(nsql);
-      List<Object> pl = processParams(stmt,param);
-      StringBuilder s = new StringBuilder();
-      for(Object o:pl){
-        s.append("\t");
-        s.append(o);
-        s.append("\r\n");
-      }
-      log.debug(Stringer.print("??\r\n?\r\n?",L.get(LocaleFactory.locale,"sql.query_top"),nsql,L.get(LocaleFactory.locale,"sql.var"),s.toString()));
+      processParams(stmt,pl);
       rs = stmt.executeQuery();
-      while(rs.next()){
-        ResultSetMetaData rsmd = rs.getMetaData();
-        int columnCount = rsmd.getColumnCount();
-        Object[] o = new Object[columnCount];
-        for(int i = 0;i<columnCount;i++){
-          o[i] = rs.getObject(i+1);
-        }
-        l.add(o);
-      }
+      return objs(rs);
     }catch(SQLException e){
       throw new DaoException(e);
     }finally{
       finalize(stmt,rs);
     }
-    return l;
   }
 
   public List<Bean> topEntity(String sql,Object param,int n){
     flush();
     String nsql = sql+" LIMIT 0,"+n;
-    List<Bean> l = new ArrayList<Bean>();
+    List<Object> pl = processParams(param);
+    log.debug(Stringer.print("??\r\n??",L.get(LocaleFactory.locale,"sql.query_top"),nsql,L.get(LocaleFactory.locale,"sql.var"),pl));
     PreparedStatement stmt = null;
     ResultSet rs = null;
     try{
       stmt = cv.getConnection().getSqlConnection().prepareStatement(nsql);
-      List<Object> pl = processParams(stmt,param);
-      StringBuilder s = new StringBuilder();
-      for(Object o:pl){
-        s.append("\t");
-        s.append(o);
-        s.append("\r\n");
-      }
-      log.debug(Stringer.print("??\r\n?\r\n?",L.get(LocaleFactory.locale,"sql.query_top"),nsql,L.get(LocaleFactory.locale,"sql.var"),s.toString()));
+      processParams(stmt,pl);
       rs = stmt.executeQuery();
-      while(rs.next()){
-        ResultSetMetaData rsmd = rs.getMetaData();
-        int columnCount = rsmd.getColumnCount();
-        Bean o = new Bean();
-        for(int i = 0;i<columnCount;i++){
-          o.set(rsmd.getColumnLabel(i+1),rs.getObject(i+1));
-        }
-        l.add(o);
-      }
+      return beans(rs);
     }catch(SQLException e){
       throw new DaoException(e);
     }finally{
       finalize(stmt,rs);
     }
-    return l;
   }
 
   public <T>List<T> topObject(String sql,Object param,int n,Class<?> klass,IBeanRule rule){

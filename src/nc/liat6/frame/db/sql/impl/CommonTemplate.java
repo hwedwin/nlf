@@ -3,7 +3,6 @@ package nc.liat6.frame.db.sql.impl;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -11,8 +10,8 @@ import java.util.List;
 import nc.liat6.frame.db.entity.Bean;
 import nc.liat6.frame.db.entity.IBeanRule;
 import nc.liat6.frame.db.entity.ResultSetIterator;
-import nc.liat6.frame.db.entity.TResultSetIterator;
 import nc.liat6.frame.db.entity.StatementAndResultSet;
+import nc.liat6.frame.db.entity.TResultSetIterator;
 import nc.liat6.frame.db.exception.DaoException;
 import nc.liat6.frame.locale.L;
 import nc.liat6.frame.locale.LocaleFactory;
@@ -28,7 +27,6 @@ import nc.liat6.frame.util.Stringer;
  * 
  */
 public class CommonTemplate extends SuperTemplate{
-
   private static ILog log = Logger.getLog();
 
   public List<Object[]> query(String sql){
@@ -37,36 +35,20 @@ public class CommonTemplate extends SuperTemplate{
 
   public List<Object[]> query(String sql,Object param){
     flush();
-    List<Object[]> l = null;
+    List<Object> pl = processParams(param);
+    log.debug(Stringer.print("??\r\n??",L.get(LocaleFactory.locale,"sql.query"),sql,L.get(LocaleFactory.locale,"sql.var"),pl));
     PreparedStatement stmt = null;
     ResultSet rs = null;
     try{
-      l = new ArrayList<Object[]>();
       stmt = cv.getConnection().getSqlConnection().prepareStatement(sql);
-      List<Object> pl = processParams(stmt,param);
-      StringBuilder s = new StringBuilder();
-      for(Object o:pl){
-        s.append("\t");
-        s.append(o);
-        s.append("\r\n");
-      }
-      log.debug(Stringer.print("??\r\n?\r\n?",L.get(LocaleFactory.locale,"sql.query"),sql,L.get(LocaleFactory.locale,"sql.var"),s.toString()));
+      processParams(stmt,pl);
       rs = stmt.executeQuery();
-      while(rs.next()){
-        ResultSetMetaData rsmd = rs.getMetaData();
-        int columnCount = rsmd.getColumnCount();
-        Object[] o = new Object[columnCount];
-        for(int i = 0;i<columnCount;i++){
-          o[i] = rs.getObject(i+1);
-        }
-        l.add(o);
-      }
+      return objs(rs);
     }catch(SQLException e){
       throw new DaoException(e);
     }finally{
       finalize(stmt,rs);
     }
-    return l;
   }
 
   public Object[] one(String sql){
@@ -107,36 +89,20 @@ public class CommonTemplate extends SuperTemplate{
 
   public List<Bean> queryEntity(String sql,Object param){
     flush();
-    List<Bean> l = null;
+    List<Object> pl = processParams(param);
+    log.debug(Stringer.print("??\r\n??",L.get(LocaleFactory.locale,"sql.query_entity"),sql,L.get(LocaleFactory.locale,"sql.var"),pl));
     PreparedStatement stmt = null;
     ResultSet rs = null;
     try{
-      l = new ArrayList<Bean>();
       stmt = cv.getConnection().getSqlConnection().prepareStatement(sql);
-      List<Object> pl = processParams(stmt,param);
-      StringBuilder s = new StringBuilder();
-      for(Object o:pl){
-        s.append("\t");
-        s.append(o);
-        s.append("\r\n");
-      }
-      log.debug(Stringer.print("??\r\n?\r\n?",L.get(LocaleFactory.locale,"sql.query_entity"),sql,L.get(LocaleFactory.locale,"sql.var"),s.toString()));
+      processParams(stmt,pl);
       rs = stmt.executeQuery();
-      while(rs.next()){
-        ResultSetMetaData rsmd = rs.getMetaData();
-        int columnCount = rsmd.getColumnCount();
-        Bean o = new Bean();
-        for(int i = 0;i<columnCount;i++){
-          o.set(rsmd.getColumnName(i+1),rs.getObject(i+1));
-        }
-        l.add(o);
-      }
+      return beans(rs);
     }catch(SQLException e){
       throw new DaoException(e);
     }finally{
       finalize(stmt,rs);
     }
-    return l;
   }
 
   public int update(String sql){
@@ -177,6 +143,8 @@ public class CommonTemplate extends SuperTemplate{
    */
   public int update(String sql,Object param){
     boolean sptBatch = cv.getConnection().isSupportsBatchUpdates()&&trans.isBatchEnabled();
+    List<Object> pl = processParams(param);
+    log.debug(Stringer.print("??\r\n??",L.get(LocaleFactory.locale,"sql.update"),sql,L.get(LocaleFactory.locale,"sql.var"),pl));
     PreparedStatement stmt = null;
     try{
       // 如果支持批处理
@@ -193,16 +161,7 @@ public class CommonTemplate extends SuperTemplate{
         stmt = cv.getConnection().getSqlConnection().prepareStatement(sql);
         stackSql = null;
       }
-      // 参数预处理
-      List<Object> pl = processParams(stmt,param);
-      // debug语句及参数
-      StringBuilder s = new StringBuilder();
-      for(Object o:pl){
-        s.append("\t");
-        s.append(o);
-        s.append("\r\n");
-      }
-      log.debug(Stringer.print("??\r\n?\r\n?",L.get(LocaleFactory.locale,"sql.update"),sql,L.get(LocaleFactory.locale,"sql.var"),s.toString()));
+      processParams(stmt,pl);
       // 如果支持批处理，加入批处理
       if(sptBatch){
         stmt.addBatch();
@@ -237,38 +196,22 @@ public class CommonTemplate extends SuperTemplate{
 
   public void call(String procName,Object param){
     flush();
+    List<Object> pl = processParams(param);
+    StringBuilder s = new StringBuilder();
+    s.append("{call ?(");
+    for(int i = 0,j = pl.size();i<j;i++){
+      s.append("?");
+      if(i<j-1){
+        s.append(",");
+      }
+    }
+    s.append(")}");
+    String sql = Stringer.print(s.toString(),procName);
+    log.debug(Stringer.print("??\r\n??",L.get(LocaleFactory.locale,"sql.call_proc"),sql,L.get(LocaleFactory.locale,"sql.var"),pl));
     CallableStatement stmt = null;
     try{
-      Object[] params = null;
-      if(null!=param){
-        if(param instanceof Object[]){
-          params = (Object[])param;
-        }else{
-          params = new Object[1];
-          params[0] = param;
-        }
-      }
-      StringBuilder s = new StringBuilder();
-      s.append("{call ?(");
-      for(int i = 0;i<params.length;i++){
-        s.append("?");
-        if(i<params.length-1){
-          s.append(",");
-        }
-      }
-      s.append(")}");
-      String sql = Stringer.print(s.toString(),procName);
       stmt = cv.getConnection().getSqlConnection().prepareCall(sql);
-      // 参数预处理
-      List<Object> pl = processParams(stmt,param);
-      // debug语句及参数
-      StringBuilder sb = new StringBuilder();
-      for(Object o:pl){
-        sb.append("\t");
-        sb.append(o);
-        sb.append("\r\n");
-      }
-      log.debug(Stringer.print("??\r\n?\r\n?",L.get(LocaleFactory.locale,"sql.call_proc"),sql,L.get(LocaleFactory.locale,"sql.var"),sb.toString()));
+      processParams(stmt,pl);
       stmt.execute();
     }catch(SQLException e){
       throw new DaoException(e);
@@ -307,19 +250,14 @@ public class CommonTemplate extends SuperTemplate{
 
   public Iterator<Bean> iterator(String sql,Object param){
     flush();
+    List<Object> pl = processParams(param);
+    log.debug(Stringer.print("??\r\n??",L.get(LocaleFactory.locale,"sql.query_entity"),sql,L.get(LocaleFactory.locale,"sql.var"),pl));
     Iterator<Bean> l = null;
     PreparedStatement stmt = null;
     ResultSet rs = null;
     try{
       stmt = cv.getConnection().getSqlConnection().prepareStatement(sql);
-      List<Object> pl = processParams(stmt,param);
-      StringBuilder s = new StringBuilder();
-      for(Object o:pl){
-        s.append("\t");
-        s.append(o);
-        s.append("\r\n");
-      }
-      log.debug(Stringer.print("??\r\n?\r\n?",L.get(LocaleFactory.locale,"sql.query_entity"),sql,L.get(LocaleFactory.locale,"sql.var"),s.toString()));
+      processParams(stmt,pl);
       rs = stmt.executeQuery();
       l = new ResultSetIterator(rs);
     }catch(SQLException e){
@@ -386,7 +324,7 @@ public class CommonTemplate extends SuperTemplate{
     PageData pd = queryEntity(sql,pageNumber,pageSize,param);
     int size = pd.getSize();
     List<Object> l = new ArrayList<Object>(size);
-    for(int i=0,j=pd.getSize();i<j;i++){
+    for(int i = 0,j = pd.getSize();i<j;i++){
       l.add(pd.getBean(i).toObject(klass,rule));
     }
     pd.setData(l);
@@ -407,19 +345,14 @@ public class CommonTemplate extends SuperTemplate{
 
   public <T>Iterator<T> iterator(String sql,Object param,Class<?> klass,IBeanRule rule){
     flush();
+    List<Object> pl = processParams(param);
+    log.debug(Stringer.print("??\r\n??",L.get(LocaleFactory.locale,"sql.query_entity"),sql,L.get(LocaleFactory.locale,"sql.var"),pl));
     Iterator<T> l = null;
     PreparedStatement stmt = null;
     ResultSet rs = null;
     try{
       stmt = cv.getConnection().getSqlConnection().prepareStatement(sql);
-      List<Object> pl = processParams(stmt,param);
-      StringBuilder s = new StringBuilder();
-      for(Object o:pl){
-        s.append("\t");
-        s.append(o);
-        s.append("\r\n");
-      }
-      log.debug(Stringer.print("??\r\n?\r\n?",L.get(LocaleFactory.locale,"sql.query_entity"),sql,L.get(LocaleFactory.locale,"sql.var"),s.toString()));
+      processParams(stmt,pl);
       rs = stmt.executeQuery();
       l = new TResultSetIterator<T>(rs,klass,rule);
     }catch(SQLException e){

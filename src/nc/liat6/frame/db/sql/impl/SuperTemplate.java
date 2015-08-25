@@ -2,13 +2,16 @@ package nc.liat6.frame.db.sql.impl;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import nc.liat6.frame.context.Context;
 import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.db.connection.ConnVar;
+import nc.liat6.frame.db.entity.Bean;
 import nc.liat6.frame.db.entity.StatementAndResultSet;
 import nc.liat6.frame.db.sql.ITemplate;
 import nc.liat6.frame.db.transaction.ITrans;
@@ -48,49 +51,80 @@ public abstract class SuperTemplate implements ITemplate{
       }
     }
   }
+  
+  protected List<Object> processParams(Object params){
+    List<Object> pl = new ArrayList<Object>();
+    if(null==params){
+      return pl;
+    }
+    if(params.getClass().isArray()){
+      Object[] l = (Object[])params;
+      for(Object o:l){
+        pl.add(o);
+      }
+    }else if(params instanceof Collection){
+      Collection<?> l = (Collection<?>)params;
+      for(Object o:l){
+        pl.add(o);
+      }
+    }else{
+      pl.add(params);
+    }
+    return pl;
+  }
 
   /**
    * 参数的预处理
    * 
    * @param stmt PreparedStatement
-   * @param params 参数，可以是数组，也可以是单值
-   * @return 参数列表
+   * @param params 参数
    * @throws SQLException
    */
-  protected List<Object> processParams(PreparedStatement stmt,Object params) throws SQLException{
-    List<Object> pl = new ArrayList<Object>();
+  protected void processParams(PreparedStatement stmt,List<Object> params) throws SQLException{
     if(null==params){
-      return pl;
+      return;
     }
-    if(params instanceof Object[]){
-      Object[] p = (Object[])params;
-      for(int i = 0;i<p.length;i++){
-        if(p[i] instanceof java.sql.Timestamp){
-          stmt.setTimestamp(i+1,(java.sql.Timestamp)p[i]);
-        }else if(p[i] instanceof java.sql.Date){
-          stmt.setDate(i+1,(java.sql.Date)p[i]);
-        }else if(p[i] instanceof java.util.Date){
-          java.util.Date dd = (java.util.Date)p[i];
-          stmt.setDate(i+1,new java.sql.Date(dd.getTime()));
-        }else{
-          stmt.setObject(i+1,p[i]);
-        }
-        pl.add(p[i]);
-      }
-    }else{
-      if(params instanceof java.sql.Timestamp){
-        stmt.setTimestamp(1,(java.sql.Timestamp)params);
-      }else if(params instanceof java.sql.Date){
-        stmt.setDate(1,(java.sql.Date)params);
-      }else if(params instanceof java.util.Date){
-        java.util.Date dd = (java.util.Date)params;
-        stmt.setDate(1,new java.sql.Date(dd.getTime()));
+    for(int i=0,j=params.size();i<j;i++){
+      Object p = params.get(i);
+      if(p instanceof java.sql.Timestamp){
+        stmt.setTimestamp(i+1,(java.sql.Timestamp)p);
+      }else if(p instanceof java.sql.Date){
+        stmt.setDate(i+1,(java.sql.Date)p);
+      }else if(p instanceof java.util.Date){
+        java.util.Date dd = (java.util.Date)p;
+        stmt.setDate(i+1,new java.sql.Date(dd.getTime()));
       }else{
-        stmt.setObject(1,params);
+        stmt.setObject(i+1,p);
       }
-      pl.add(params);
     }
-    return pl;
+  }
+  
+  protected List<Object[]> objs(ResultSet rs) throws SQLException{
+    List<Object[]> l = new ArrayList<Object[]>();
+    while(rs.next()){
+      ResultSetMetaData rsmd = rs.getMetaData();
+      int columnCount = rsmd.getColumnCount();
+      Object[] o = new Object[columnCount];
+      for(int i = 0;i<columnCount;i++){
+        o[i] = rs.getObject(i+1);
+      }
+      l.add(o);
+    }
+    return l;
+  }
+  
+  protected List<Bean> beans(ResultSet rs) throws SQLException{
+    List<Bean> l = new ArrayList<Bean>();
+    while(rs.next()){
+      ResultSetMetaData rsmd = rs.getMetaData();
+      int columnCount = rsmd.getColumnCount();
+      Bean o = new Bean();
+      for(int i = 0;i<columnCount;i++){
+        o.set(rsmd.getColumnName(i+1),rs.getObject(i+1));
+      }
+      l.add(o);
+    }
+    return l;
   }
 
   public void finalize(Statement stmt,ResultSet rs){
