@@ -120,7 +120,7 @@ public abstract class SuperTemplate implements ITemplate{
       int columnCount = rsmd.getColumnCount();
       Bean o = new Bean();
       for(int i = 0;i<columnCount;i++){
-        o.set(rsmd.getColumnName(i+1),rs.getObject(i+1));
+        o.set(rsmd.getColumnLabel(i+1),rs.getObject(i+1));
       }
       l.add(o);
     }
