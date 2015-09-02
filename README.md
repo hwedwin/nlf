@@ -14,6 +14,9 @@ NLF框架用户手册：http://6tail.cn/npress/demo/jsp
 WebContent下有六特尔开发的i.js框架，通过一个核心js文件自动按需加载需要的组件，示例地址：http://6tail.cn/npress/api.html
 
 #更新日志
+##2015-09-03
+1. 修正proxool连接池houseKeepingSleepTime参数错误。
+
 ##2015-08-25
 1. 优化db模块代码及sql日志
 
