@@ -12,7 +12,7 @@ public class ProxoolSetting extends SuperDbSetting{
   /** 默认连接类型 */
   public static final String DEFAULT_TYPE = "proxool";
   private int prototypeCount = -1;
-  private int houseKeepingSleepTime = -1;
+  private long houseKeepingSleepTime = -1;
   private long maximumActiveTime = -1;
   private int maximumConnectionLifeTime = -1;
   private int maximumConnectionCount = -1;
@@ -33,11 +33,11 @@ public class ProxoolSetting extends SuperDbSetting{
     this.prototypeCount = prototypeCount;
   }
 
-  public int getHouseKeepingSleepTime(){
+  public long getHouseKeepingSleepTime(){
     return houseKeepingSleepTime;
   }
 
-  public void setHouseKeepingSleepTime(int houseKeepingSleepTime){
+  public void setHouseKeepingSleepTime(long houseKeepingSleepTime){
     this.houseKeepingSleepTime = houseKeepingSleepTime;
   }
 

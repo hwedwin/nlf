@@ -30,7 +30,7 @@ public class ProxoolSettingProvider implements IDbSettingProvider{
     ps.setDbType(dbType);
     ps.setDbName(dbname);
     ps.setPrototypeCount(o.getInt("prototypeCount",-1));
-    ps.setHouseKeepingSleepTime(o.getInt("houseKeepingSleepTime",-1));
+    ps.setHouseKeepingSleepTime(o.getLong("houseKeepingSleepTime",-1));
     ps.setMaximumActiveTime(o.getInt("maximumActiveTime",-1));
     ps.setMaximumConnectionLifeTime(o.getInt("maximumConnectionLifeTime",-1));
     ps.setMaximumConnectionCount(o.getInt("maximumConnectionCount",-1));
