@@ -13,6 +13,10 @@ import nc.liat6.frame.locale.LocaleFactory;
 public class ClassFileFilter implements FileFilter{
 
   public boolean accept(File f){
-    return f.isDirectory()||f.getName().endsWith(".class")||f.getName().endsWith(LocaleFactory.FILE_SUFFIX);
+    String name = f.getName();
+    String path = f.getAbsolutePath();
+    boolean check = f.isDirectory()||name.endsWith(".class")||name.endsWith(LocaleFactory.FILE_SUFFIX);
+    check = check&&(!path.contains("com.mongodb".replace(".",File.separator)))&&(!path.contains("org.bson".replace(".",File.separator)));
+    return check;
   }
 }

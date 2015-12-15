@@ -32,7 +32,9 @@ public class ConnVarFactory{
   public static ConnVar getConnVar(String alias){
     IDbSetting setting = DbSettingFactory.getSetting(alias);
     String type = setting.getType();
-    String key = type+"-"+setting.getDbName();
+    //String key = type+"-"+setting.getDbName();
+    //以数据库类型和数据库实例名为key是不可靠的。
+    String key = alias;
     if(pool.containsKey(key)){
       return pool.get(key).getConnVar();
     }

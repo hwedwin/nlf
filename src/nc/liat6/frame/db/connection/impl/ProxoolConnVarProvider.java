@@ -52,7 +52,7 @@ public class ProxoolConnVarProvider extends SuperConnVarProvider{
       Reflector.execute(ds,"setMaximumConnectionCount",new Class[]{int.class},new Object[]{setting.getMaximumConnectionCount()});
     }
     if(-1!=setting.getMaximumConnectionLifeTime()){
-      Reflector.execute(ds,"setMaximumConnectionLifeTime",new Class[]{int.class},new Object[]{setting.getMaximumConnectionLifeTime()});
+      Reflector.execute(ds,"setMaximumConnectionLifeTime",new Class[]{long.class},new Object[]{setting.getMaximumConnectionLifeTime()});
     }
     if(-1!=setting.getMinimumConnectionCount()){
       Reflector.execute(ds,"setMinimumConnectionCount",new Class[]{int.class},new Object[]{setting.getMinimumConnectionCount()});
