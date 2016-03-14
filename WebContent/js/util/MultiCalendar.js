@@ -169,9 +169,10 @@ var show=function(){
  layer.style.top=(r.y+r.height+CFG.offsetY)+'px';
  m+=CFG.offsetMonth;
  m=m%12;
+ var om = m;
  m=0==m?12:m;
  y+=CFG.offsetYear;
- y+=Math.floor(m/12);
+ y+=Math.floor(om/12);
  repaint(s2d([y,format(m),format(d)].join('-')));
 };
 var bindEvent=function(){
