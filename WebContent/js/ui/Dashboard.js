@@ -268,8 +268,12 @@ var _api=function(obj){
 var _prepare=function(config){
  var obj={config:null,className:null,menuData:null,menuDataCache:null};
  var cfg=I.ui.Component.initConfig(config,CFG);
+ var tcfg={};
  for(var i in cfg){
-  cfg['_'+i]=cfg[i];
+  tcfg['_'+i]=cfg[i];
+ }
+ for(var i in tcfg){
+  cfg[i]=tcfg[i];
  }
  cfg.menu_width=0;
  obj.config=cfg;
