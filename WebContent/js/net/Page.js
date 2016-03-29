@@ -36,10 +36,9 @@ I.regist('net.Page',function(W,D){
   };
   var _createCss = function(css){
     if(I.trim(css).length<1) return;
-    var o = D.createElement("style");
-    o.type = "text/css";
-    o.innerHTML = css;
-    D.getElementsByTagName("head")[0].appendChild(o);
+    var o = D.createElement("div");
+    o.innerHTML = '<b></b><style>'+css+'</style>';
+    D.getElementsByTagName("head")[0].appendChild(o.lastChild);
   };
   var _loadJsByQueue = function(queue,callback){
     if(queue.length<1){
