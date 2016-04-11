@@ -28,8 +28,8 @@ html,body{
  overflow:hidden;
 }
 .tool-bar-${skin}{
- background-color:#418EC6;
- border-bottom:4px solid #FC9431;
+ background-color:#11a9cc;
+ border-bottom:0;
  overflow:hidden;
 }
 .body-${skin}{
@@ -62,6 +62,12 @@ html,body{
  _height:100%;
  background-color:#FFF;
  border-right:1px solid #EDEDED;
+ -webkit-box-shadow:0 0 10px 0 rgba(60,60,60,0.3);
+ -moz-box-shadow:0 0 10px 0 rgba(60,60,60,0.3);
+ -ms-box-shadow:0 0 10px 0 rgba(60,60,60,0.3);
+ -o-box-shadow:0 0 10px 0 rgba(60,60,60,0.3);
+ box-shadow:0 0 10px 0 rgba(60,60,60,0.3);
+ z-index:1;
 }
 .head-${skin}{
  position:absolute;
@@ -69,7 +75,7 @@ html,body{
  right:0;
  overflow:hidden;
  _width:100%;
- background-color:#F5F5F5;
+ background-color:#F9F9F9;
  border-bottom:1px solid #E5E5E5;
 }
 .content-${skin}{
@@ -80,7 +86,7 @@ html,body{
  _overflow:hidden;
  _width:100%;
  _height:100%;
- background-color:#FFF;
+ background-color:#EEE;
 }
 .foot-${skin}{
  position:absolute;
@@ -88,7 +94,7 @@ html,body{
  right:0;
  overflow:hidden;
  _width:100%;
- background-color:#F5F5F5;
+ background-color:#F9F9F9;
  border-top:1px solid #EDEDED;
 }
 .tool-${skin},.tool-${skin}-active{
@@ -137,7 +143,7 @@ html,body{
  margin:0;
  padding:0;
  height:40px;
- background-color:#F8F8F8;
+ background-color:#FFF;
  border-bottom:1px solid #EDEDED;
  cursor:default;
  -webkit-user-select:none;
@@ -150,11 +156,11 @@ html,body{
  text-overflow:ellipsis;
 }
 .menu-${skin}-active{
- background-color:#FA9231;
- border-bottom:0;
+ background-color:#F2F2F2;
+ color:#262626;
 }
 .menu-${skin}:hover{
- background-color:#F6F6F6;
+ background-color:#FBFBFB;
 }
 .menu-${skin} i,.menu-${skin}-active i{
  clear:left;
@@ -163,7 +169,7 @@ html,body{
  line-height:40px;
  margin-left:8px;
  text-align:center;
- color:#9CA5B6;
+ color:#999;
  font-size:1.333em;
 }
 .menu-${skin} b,.menu-${skin}-active b{
@@ -171,7 +177,7 @@ html,body{
  float:left;
  line-height:40px;
  margin-left:8px;
- color:#475B76;
+ color:#999;
  font-weight:normal;
  font-size:1.2em;
  white-space:nowrap;
@@ -183,27 +189,21 @@ html,body{
  line-height:40px;
  margin-right:8px;
  text-align:center;
- color:#DDD;
+ color:#999;
  font-size:1.33em;
  text-decoration:none;
 }
-.menu-${skin}-active i{
-  color:#FFF;
-}
-.menu-${skin}-active b{
-  color:#FFF;
-}
-.menu-${skin}-active u{
-  color:#FFF;
+.menu-${skin}-active i,.menu-${skin}-active b,.menu-${skin}-active u{
+  color:#11a9cc;
 }
 .menu-${skin}:hover i{
-  color:#FA9231;
+  color:#262626;
 }
 .menu-${skin}:hover b{
-  color:#FA9231;
+  color:#262626;
 }
 .menu-${skin}:hover u{
-  color:#FA9231;
+  color:#262626;
 }
 .menu-item-${skin}{
  clear:left;
@@ -225,7 +225,6 @@ html,body{
 .menu-item-${skin} li{
  display:block;
  height:40px;
- border-top:1px solid #FFF;
  border-bottom:1px solid #EDEDED;
 }
 .menu-item-${skin} a{
@@ -239,7 +238,7 @@ html,body{
  line-height:40px;
  margin-left:28px;
  text-align:center;
- color:#DDD;
+ color:#999;
  font-size:1.33em;
 }
 .menu-item-${skin} b{
@@ -247,7 +246,7 @@ html,body{
  float:left;
  line-height:40px;
  margin-left:8px;
- color:#2C3C56;
+ color:#999;
  font-weight:normal;
  white-space:nowrap;
  text-overflow:ellipsis;
@@ -261,23 +260,28 @@ html,body{
  line-height:40px;
  margin-right:8px;
  font-weight:bold;
- color:#FA9231;
+ color:#999;
  display:none;
 }
 .menu-item-${skin} li.active i{
- color:#FA9231;
+ color:#262626;
 }
 .menu-item-${skin} li.active b{
- color:#FA9231;
+ color:#262626;
 }
 .menu-item-${skin} li.active u{
  display:block;
+ color:#262626;
+}
+.menu-item-${skin} li.active{
+ background-color:#F9F9F9;
+ color:#262626;
 }
 .menu-item-${skin} a:hover i{
- color:#FA9231;
+ color:#262626;
 }
 .menu-item-${skin} a:hover b{
- color:#FA9231;
+ color:#262626;
 }
 .tool-bar-${skin} ul.user-${skin}{
  list-style:none;

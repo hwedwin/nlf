@@ -204,6 +204,50 @@ var _api=function(obj){
     that.menus.push(o);
    }
   };
+  function _expand(who){
+   I.each(that.tools,function(m){
+    I.cls(m,'tool-'+cfg.skin+(m==who?'-active':''));
+    if(m!=who){
+     m.setAttribute('data-expand','0');
+    }
+   });
+   var id=who.getAttribute('data-id');
+   var expand = who.getAttribute('data-expand');
+   var cache=that.menuDataCache[id];
+   var cd=cache.children;
+   var from=0,to=0;
+   if('1'==expand){
+    from=cd?cfg.menu_width:0;
+    to=0;
+   }else{
+    from=0;
+    to=cd?cfg._menu_width:0;
+   }
+   var all=I.$(that.menu,'*');
+   I.each(all,function(q){
+    q.style.visibility='hidden';
+   });
+   //that.breads.first=cache;
+   //that.breads.second=null;
+   //that.breads.third=null;
+   //that.updateBread();
+   I.util.Animator.create().change('linear',function(n){
+     cfg.menu_width=n;
+     that.suit();
+    },function(){
+     who.setAttribute('data-expand',expand=='1'?'0':'1');
+     I.each(all,function(q){
+      q.style.visibility='visible';
+     });
+     if(cd){
+      if(id!=that.menu.getAttribute('data-id')){
+       _second(cd);
+      }
+     }
+   },10,from,to);
+   if(cache.callback) cache.callback.call(cache);
+   else if(cache.link) that.find(cache.link,null);
+  }
   function _first(ds){
    var d,o;
    that.toolBar.innerHTML='';
@@ -226,40 +270,12 @@ var _api=function(obj){
     I.util.Boost.addStyle(o,'margin-top:'+Math.floor(cfg.tool_bar_height-r.height)/2+'px;');
     o.setAttribute('data-id',d.uuid);
     o.onclick=function(){
-     var who=this;
-     I.each(that.tools,function(m){
-      I.cls(m,'tool-'+cfg.skin+(m==who?'-active':''));
-     });
-     var id=this.getAttribute('data-id');
-     var cache=that.menuDataCache[id];
-     var cd=cache.children;
-     var from=cd?0:cfg.menu_width;
-     var to=cd?cfg._menu_width:0;
-     var all=I.$(that.menu,'*');
-     I.each(all,function(q){
-      q.style.visibility='hidden';
-     });
-     that.breads.first=cache;
-     that.breads.second=null;
-     that.breads.third=null;
-     that.updateBread();
-     I.util.Animator.create().change('linear',function(n){
-       cfg.menu_width=n;
-       that.suit();
-      },function(){
-       I.each(all,function(q){
-        q.style.visibility='visible';
-       });
-       if(cd){
-        if(id!=that.menu.getAttribute('data-id')){
-         _second(cd);
-        }
-       }
-     },10,from,to);
-     if(cache.callback) cache.callback.call(cache);
-     else if(cache.link) that.find(cache.link,null);
+     _expand(this);
     };
     that.tools.push(o);
+    if(i==0){
+      _expand(o);
+    }
    }
   }
   _first(data);

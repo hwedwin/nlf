@@ -31,7 +31,7 @@ var _create=function(obj){
     inst.percent = 100;
    }
    var r = I.region();
-   I.util.Boost.addStyle(inst.layer,'left:'+r.x+'px;top:'+r.y+';width:'+Math.floor(inst.percent/100*r.width)+'px;');
+   I.util.Boost.addStyle(inst.layer,'left:'+r.x+'px;bottom:'+r.y+';width:'+Math.floor(inst.percent/100*r.width)+'px;');
    if(inst.over){
     W.clearInterval(inst.timer);
     inst.timer=null;
