@@ -86,7 +86,7 @@ html,body{
  _overflow:hidden;
  _width:100%;
  _height:100%;
- background-color:#EEE;
+ background-color:#F2F2F2;
 }
 .foot-${skin}{
  position:absolute;
