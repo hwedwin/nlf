@@ -233,7 +233,8 @@ var _api=function(obj){
    //that.updateBread();
    I.util.Animator.create().change('linear',function(n){
      cfg.menu_width=n;
-     that.suit();
+     I.util.Boost.addStyle(that.menu,'width:'+cfg.menu_width+'px;');
+     I.util.Boost.addStyle(that.head,'left:'+cfg.menu_width+'px;');
     },function(){
      who.setAttribute('data-expand',expand=='1'?'0':'1');
      I.each(all,function(q){
@@ -244,6 +245,7 @@ var _api=function(obj){
        _second(cd);
       }
      }
+     that.suit();
    },10,from,to);
    if(cache.callback) cache.callback.call(cache);
    else if(cache.link) that.find(cache.link,null);
