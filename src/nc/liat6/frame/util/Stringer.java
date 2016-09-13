@@ -12,7 +12,9 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import nc.liat6.frame.context.Statics;
 import nc.liat6.frame.exception.NlfException;
 
@@ -23,6 +25,13 @@ import nc.liat6.frame.exception.NlfException;
  * 
  */
 public class Stringer{
+  
+  /**文件BOM头*/
+  public static Map<String,byte[]> BOM = new HashMap<String,byte[]>();
+  static{
+    BOM.put("utf-8",new byte[]{(byte)0xEF,(byte)0xBB,(byte)0xBF});
+  };
+
   private Stringer(){}
 
   /**
@@ -301,7 +310,7 @@ public class Stringer{
    * @throws IOException
    */
   public static String readFromFile(File file,String encode) throws IOException{
-    StringBuffer s = new StringBuffer();
+    StringBuilder s = new StringBuilder();
     BufferedReader br = null;
     try{
       br = new BufferedReader(new InputStreamReader(new FileInputStream(file),encode));
@@ -309,10 +318,18 @@ public class Stringer{
       while(null!=(line = br.readLine())){
         s.append(line+"\r\n");
       }
-      return s.toString();
     }finally{
       IOHelper.closeQuietly(br);
     }
+    String rs = s.toString();
+    byte[] bomBytes = BOM.get(encode.toLowerCase());
+    if(null!=bomBytes){
+      String bom = new String(bomBytes,encode);
+      if(rs.startsWith(bom)){
+        rs = rs.substring(bom.length());
+      }
+    }
+    return rs;
   }
 
   /**

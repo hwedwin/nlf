@@ -166,7 +166,12 @@ public class Factory{
     }
     if(new File(callerPath).exists()){
       CALLER = callerPath;
-      APP_PATH = callerPath.endsWith(".jar")?new File(callerPath).getParentFile().getAbsolutePath():callerPath;
+      String appPath = System.getProperty("APP_PATH");
+      if(null!=appPath){
+        APP_PATH = appPath.trim();
+      }else{
+        APP_PATH = callerPath.endsWith(".jar")?new File(callerPath).getParentFile().getAbsolutePath():callerPath;
+      }
       NLF_PATH = Pather.FRAME_JAR_PATH;
       System.out.println("CALLER   : "+CALLER);
       System.out.println("APP PATH : "+APP_PATH);
@@ -201,6 +206,8 @@ public class Factory{
       }
       paths.remove(p);
     }
+    //有时会遗漏nlf
+    paths.add(NLF_PATH);
     // 扫描class
     for(String p:paths){
       if(!LIBS.contains(p)){

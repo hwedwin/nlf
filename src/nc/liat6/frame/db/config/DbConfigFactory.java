@@ -30,7 +30,7 @@ public class DbConfigFactory{
   public static DbConfig getDbConfig(String dbType){
     dbType = dbType.toUpperCase();
     if(!pool.containsKey(dbType)){
-      throw new DaoException(L.get("db.db.dbtype_not_support")+dbType);
+      throw new DaoException(L.get("db.dbtype_not_support")+dbType);
     }
     return pool.get(dbType);
   }
