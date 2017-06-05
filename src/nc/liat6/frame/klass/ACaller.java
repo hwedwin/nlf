@@ -3,6 +3,7 @@ package nc.liat6.frame.klass;
 import java.beans.BeanInfo;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -98,8 +99,10 @@ public class ACaller implements ICaller{
           if("InnerClasses".equals(attr.getName())){
             List<InnerClass> ics = attr.toInnerClassAttribute().getInnerClasses();
             for(InnerClass ic:ics){
-              String icName = ic.getInnerClassName().replace("/",".");
-              loader.load(icName,bcr.readClass(Factory.getClass(icName)));
+              if(!Modifier.isStatic(ic.getInnerAccess())){
+                String icName = ic.getInnerClassName().replace("/",".");
+                loader.load(icName,bcr.readClass(Factory.getClass(icName)));
+              }
             }
           }
         }
